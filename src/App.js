@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import React from 'react';
+import Logo from './utils/Logo.js';
+import OcuFeed from './utils/OcuFeed.js';
+import CesOcuFeed from './utils/CesOcuFeed.js';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <main className="App">
+      <header className="header">
+        <Logo></Logo>
       </header>
-    </div>
+      <section>
+        <h2>Videos</h2>
+        <OcuFeed>
+        </OcuFeed>
+      </section>
+      <section>
+        <h2>CES name</h2>
+        <CesOcuFeed ces='ega'>
+        </CesOcuFeed>
+      </section>
+      <section>
+        <h2>Herramientas</h2>
+        <p>Coming soon...</p>
+      </section>
+    </main>
   );
 }
 
