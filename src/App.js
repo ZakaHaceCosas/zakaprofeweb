@@ -21,7 +21,7 @@ function App() {
         <CesOcuFeed ces='ega'>
         </CesOcuFeed>
       </section>
-      <section>
+      <section className="comingsoon">
         <h2>Herramientas</h2>
         <p>Coming soon...</p>
       </section>
