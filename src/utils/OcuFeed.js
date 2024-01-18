@@ -6,7 +6,7 @@ const OcuFeed = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('./content.json');
+        const response = await fetch('https://zakaprofeweb.vercel.app/content.json');
         const data = await response.json();
         setDatos(data);
       } catch (error) {
