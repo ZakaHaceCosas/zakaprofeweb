@@ -1,0 +1,18 @@
+[
+  {
+    "miniatura": "https://zakaprofeweb.vercel.app/.jpg",
+    "titulo": "Título del Video 1",
+    "descripcion": "Descripción del Video 1",
+    "asig": "Asignatura 1",
+    "dificult": "dificultad-alta",
+    "dificult_str": "Alta"
+  },
+  {
+    "miniatura": "ruta_a_la_miniatura_2.jpg",
+    "titulo": "Título del Video 2",
+    "descripcion": "Descripción del Video 2",
+    "asig": "Asignatura 2",
+    "dificult": "dificultad-media",
+    "dificult_str": "Media"
+  },
+]
