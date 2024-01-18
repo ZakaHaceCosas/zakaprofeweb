@@ -32,3 +32,15 @@ header.header {
   height: 50px;
   object-fit: scale-down;
 }
+
+section {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  gap: 20px;
+  background-color: #151515;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
