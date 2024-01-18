@@ -9,6 +9,7 @@ function App() {
     <main className="App">
       <header className="header">
         <Logo></Logo>
+        <h1>ZakaProfe</h1>
       </header>
       <section>
         <h2>Videos</h2>
