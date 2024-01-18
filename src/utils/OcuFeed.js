@@ -1,10 +1,10 @@
 import React from 'react';
 
 function OcuFeed() {
-  return(
+  return (
     <div className="feed">
     </div>
-    )
+  );
 }
 
-export default OcuFeed();
+export default OcuFeed;
