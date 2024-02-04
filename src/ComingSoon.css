@@ -4,16 +4,16 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: #0F0F0F;
   color: white;
 }
 
 .seviene-label {
-  font-size: clamp(2rem, 10vw, 6rem);
-  margin-left: 20px;
+  font-size: clamp(1em,5vw, 3.5rem);
+  margin-left: 40px;
 }
 
 .seviene-img {
   max-width: 200px;
-  margin-right: 20px;
+  margin-right: 40px;
 }
