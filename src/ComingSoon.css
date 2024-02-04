@@ -1,0 +1,19 @@
+.seviene-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+.seviene-text {
+  font-size: clamp(2rem, 10vw, 6rem);
+  margin-left: 20px;
+}
+
+.seviene-img {
+  max-width: 200px;
+  margin-right: 20px;
+}
