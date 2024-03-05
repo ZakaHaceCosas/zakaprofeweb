@@ -7,7 +7,7 @@ function App() {
   return (
     <main className="App">
       <section className="side1">
-        <h1>VIDEOS >>></h1>
+        <h1>VIDEOS</h1>
         <div className="flexcont">
           <h3>ZakaProfe en YouTube</h3>
           <RandomVideoFeed/>
@@ -20,7 +20,7 @@ function App() {
         <img id="zplogo" src="./logodetails.png" alt="Logotipo de ZakaProfe" />
       </section>
       <section className="side2">
-          <h1><<< CONTACTO</h1>
+          <h1>CONTACTO</h1>
           <div className="flexcont">
             <Zakavailable />
           </div>
