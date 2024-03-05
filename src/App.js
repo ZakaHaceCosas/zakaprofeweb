@@ -1,30 +1,31 @@
 import React from 'react';
-import Logo from './utils/Logo.js';
-import OcuFeed from './utils/OcuFeed.js';
-import CesOcuFeed from './utils/CesOcuFeed.js';
+import RandomVideoFeed from './utils/randomvids.js';
+import Zakavailable from './utils/zakavailable.js';
 import './App.css';
 
 function App() {
   return (
     <main className="App">
-      <header className="header">
-        <Logo></Logo>
-        <h1>ZakaProfe</h1>
-      </header>
-      <section>
-        <h2>Videos</h2>
-        <OcuFeed>
-        </OcuFeed>
+      <section className="side1">
+        <h1>VIDEOS >>></h1>
+        <div className="flexcont">
+          <h3>ZakaProfe en YouTube</h3>
+          <RandomVideoFeed/>
+          <a href="https://youtube.com/@ZakaProfe" target="_blank">
+            <h3>Ver más (hay muchos más)</h3>
+          </a>
+        </div>
       </section>
-      <section>
-        <h2>CES name</h2>
-        <CesOcuFeed ces='ega'>
-        </CesOcuFeed>
+      <section id="main">
+        <img id="zplogo" src="./logodetails.png" alt="Logotipo de ZakaProfe" />
       </section>
-      <section className="comingsoon">
-        <h2>Herramientas</h2>
-        <p>Coming soon...</p>
+      <section className="side2">
+          <h1><<< CONTACTO</h1>
+          <div className="flexcont">
+            <Zakavailable />
+          </div>
       </section>
+      <img src="./colors.png" id="bgcolors" />
     </main>
   );
 }
