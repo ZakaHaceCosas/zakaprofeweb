@@ -7,7 +7,7 @@
   outline: none;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  scroll-behavior: smootH;
+  scroll-behavior: smooth;
   -webkit-transition-duration: 300ms;
        -o-transition-duration: 300ms;
           transition-duration: 300ms;
@@ -21,6 +21,8 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  width: 100vw;
+  height: 100vh;
 }
 
 section {
