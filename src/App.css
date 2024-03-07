@@ -13,6 +13,10 @@
           transition-duration: 300ms;
   font-family: 'Roboto Flex';
 }
+
+a { color: white; text-decoration: none; }
+a:hover { color: #0064C8; text-decoration: underline; }
+
 body { background-color: black; }
 body, main {
   color: white;
