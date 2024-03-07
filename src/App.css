@@ -40,6 +40,33 @@ section.side2 {
   justify-content: end;
 }
 
+.video {
+  padding: 2px;
+  border: 2px solid white;
+}
+
+.video .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #00000010;
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  display: grid;
+  place-items: center;
+}
+
+.video:hover .overlay {
+  opacity: 1;
+}
+
+.video img {
+  aspect-ratio: 16/9;
+  width: 300px;
+}
+
 #bgcolors {
   position: fixed;
   z-index: 1;
