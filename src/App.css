@@ -42,11 +42,14 @@ section.side2 {
 .video {
   border-radius: 10px;
   border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  gap: -200px;
 }
 
 .video .overlay {
   position: fixed;
-  width: 300px;
+  height: 200px;
   aspect-ration: 16/9;
   background-color: #00000010;
   backdrop-filter: blur(20px);
@@ -61,7 +64,7 @@ section.side2 {
 
 .video img {
   aspect-ratio: 16/9;
-  width: 300px;
+  width: 200px;
 }
 
 #bgcolors {
