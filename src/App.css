@@ -14,7 +14,7 @@
   font-family: 'Roboto Flex';
 }
 
-body {
+body, main {
   background-color: black;
   color: white;
   display: flex;
