@@ -6,6 +6,7 @@ import './App.css';
 function App() {
   return (
     <main className="App">
+      <img src="./colors.png" id="bgcolors" alt="Colores" />
       <section className="side1">
         <h1>VIDEOS</h1>
         <div className="flexcont">
@@ -25,7 +26,6 @@ function App() {
             <Zakavailable />
           </div>
       </section>
-      <img src="./colors.png" id="bgcolors" />
     </main>
   );
 }
