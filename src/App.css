@@ -13,9 +13,8 @@
           transition-duration: 300ms;
   font-family: 'Roboto Flex';
 }
-
+body { background-color: black; }
 body, main {
-  background-color: black;
   color: white;
   display: flex;
   flex-direction: row;
@@ -69,5 +68,5 @@ section.side2 {
 
 #bgcolors {
   position: fixed;
-  z-index: 1;
+  z-index: -1;
 }
