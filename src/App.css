@@ -14,6 +14,7 @@
   font-family: 'Roboto Flex';
 }
 
+img { pointer-events: none!important }
 a { color: white; text-decoration: none; }
 a:hover { color: #0064C8; text-decoration: underline; }
 
