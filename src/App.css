@@ -105,3 +105,8 @@ section.side2 {
   position: fixed;
   z-index: -1;
 }
+#zplogo {
+  width: 250px;
+  height: auto;
+  object-fit: scale-down;
+}
