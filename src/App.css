@@ -53,13 +53,19 @@ section.side2 {
 
 .video .overlay {
   position: fixed;
-  height: 350px;
   aspect-ration: 16/9;
-  background-color: #00000010;
+  width: 350px;
+  background-color: #00000025;
   backdrop-filter: blur(20px);
   opacity: 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.video:hover img {
+  filter: blur(25px);
 }
 
 .video:hover .overlay {
