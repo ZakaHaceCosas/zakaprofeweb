@@ -66,14 +66,16 @@ section.side2 {
   flex-direction: column;
   gap: -350px;
   overflow: hidden;
-  aspect-ration: 16/9;
+  /*aspect-ration: 16/9;*/
+  height: 197px;
   width: 350px;
 }
 
 .video .overlay {
   position: fixed;
-  aspect-ration: 16/9;
+  /*aspect-ration: 16/9;*/
   width: 350px;
+  height: 197px;
   background-color: #00000025;
   backdrop-filter: blur(20px);
   opacity: 0;
@@ -95,7 +97,8 @@ section.side2 {
 
 .video img {
   border-radius: 10px;
-  aspect-ratio: 16/9;
+  height: 197px;
+  /*aspect-ration: 16/9;*/
   width: 350px;
 }
 
