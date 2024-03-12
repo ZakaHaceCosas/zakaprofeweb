@@ -34,7 +34,7 @@ body, main {
   width: fit-content;
   height: fit-content;
 }
-section, section .flexcont, section, section .flexcont2{
+section .flexcont, section, section .flexcont2{
   display: flex;
   flex-direction: column;
   gap: 10px;
