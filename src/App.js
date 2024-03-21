@@ -12,10 +12,10 @@ function App() {
         <div className="bggrad">
         <div className="flexcont">
           <div className="flexcont2">
-            <h3>ZakaProfe en YouTube</h3>
+            <h2 className="nonboldh">ZakaProfe en YouTube</h2>
             <RandomVideoFeed/>
             <a href="https://youtube.com/@ZakaProfe" target="_blank">
-              <h3>Ver más (hay muchos más)</h3>
+              <p>Ver más (hay muchos más)</p>
             </a>
           </div>
         </div>
