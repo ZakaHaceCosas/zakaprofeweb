@@ -141,3 +141,15 @@ h2.maomeno {
 h2.ocupado {
   color: #FF3232;
 }
+.rowy, .oneside {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.bola {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+}
