@@ -4,12 +4,13 @@ function Zakavailable() {
   const [status, setStatus] = useState('');
   const [statusp, setStatusp] = useState('');
   const [statusClass, setStatusClass] = useState('');
+  const [spanishtime, setSpanishtime] = useState('');
 
   useEffect(() => {
     const getTimeStatus = () => {
       const now = new Date();
       const hour = now.getUTCHours() + 1;
-      let spanishtime = hour;
+      setSpanishtime(hour);
       let newStatus = '';
       let newStatusp = '';
       let newStatusClass = '';
