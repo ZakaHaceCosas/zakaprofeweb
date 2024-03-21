@@ -17,6 +17,16 @@ const RandomVideoFeed = () => {
       thumbnail: 'https://zakaprofeweb.vercel.app/vid_byg_apexcretor_3eso.png',
       url: 'https://youtu.be/wZWR3jvr9mc'
     },
+    {
+      title: 'Verbos modales en inglés - 3º ESO',
+      thumbnail: 'https://zakaprofeweb.vercel.app/vid_eng_modalverbs_3eso.png',
+      url: 'https://youtu.be/TSPC_rJzEX4'
+    },
+    {
+      title: 'Aparato Circulatorio - 3º ESO',
+      thumbnail: 'https://zakaprofeweb.vercel.app/vid_bio_apcirculatorio_3eso.png',
+      url: 'https://youtu.be/mNu2JVjy1v4'
+    },
   ];
 
   const [video1, setVideo1] = useState(null);
