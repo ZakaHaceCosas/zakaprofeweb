@@ -118,3 +118,6 @@ section.side1, section.side2 {
 section#main {
   width: 20%;
 }
+.nonboldh{
+   font-weight: 400;
+}
