@@ -24,6 +24,7 @@ function App() {
       <section id="main">
         <img id="zplogo" src="./logodetails.png" alt="Logotipo de ZakaProfe" />
       </section>
+      /*
       <section className="side2">
           <h1>&lt;&lt;&lt; CONTACTO</h1>
           <div className="bggrad">
@@ -32,6 +33,7 @@ function App() {
           </div>
           </div>
       </section>
+      */
     </main>
   );
 }
