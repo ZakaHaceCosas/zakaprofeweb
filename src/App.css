@@ -13,6 +13,7 @@
        -o-transition-duration: 300ms;
           transition-duration: 300ms;
   font-family: 'Poppins';
+  line-height: 100%;
 }
 
 img { pointer-events: none!important }
@@ -149,7 +150,10 @@ h2.ocupado {
   justify-content: center;
 }
 .bola {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   border-radius: 9999px;
+}
+.oneside p {
+  text-align: end;
 }
