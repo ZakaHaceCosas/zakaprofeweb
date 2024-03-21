@@ -9,6 +9,7 @@ function Zakavailable() {
     const getTimeStatus = () => {
       const now = new Date();
       const hour = now.getUTCHours() + 1;
+      let spanishtime = hour;
       let newStatus = '';
       let newStatusp = '';
       let newStatusClass = '';
@@ -54,7 +55,7 @@ function Zakavailable() {
       </div>
       <div className="rowy">
         <div className="oneside">
-          <h2 className={`hora ${statusClass}`}>{hour}</h2>
+          <h2 className={`hora ${statusClass}`}>{spanishtime}</h2>
         </div>
         <p>
           Trato de responder siempre lo antes que puedo.
