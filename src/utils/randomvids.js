@@ -40,21 +40,25 @@ const RandomVideoFeed = () => {
     <div className="randoms">
       {video1 && (
         <a href={video1.url} target="_blank" rel="noopener noreferrer">
+          <div className="bggrad">
           <div className="video">
             <img src={video1.thumbnail} alt={video1.title} />
             <div className="overlay">
               <h1>Ver {video1.title} en YouTube</h1>
             </div>
           </div>
+          </div>
         </a>
       )}
       {video2 && (
         <a href={video2.url} target="_blank" rel="noopener noreferrer">
+          <div className="bggrad">
           <div className="video">
             <img src={video2.thumbnail} alt={video2.title} />
             <div className="overlay">
               <h1>Ver {video2.title} en YouTube</h1>
             </div>
+          </div>
           </div>
         </a>
       )}
