@@ -42,6 +42,7 @@ function Zakavailable() {
   }, []);
 
   return (
+      <>
       <div className="rowy">
         <div className="oneside">
           <div className={`bola ${statusClass}`}></div>
@@ -51,6 +52,15 @@ function Zakavailable() {
           {statusp}
         </p>
       </div>
+      <div className="rowy">
+        <div className="oneside">
+          <h2 className={`hora ${statusClass}`}>{hour}</h2>
+        </div>
+        <p>
+          Trato de responder siempre lo antes que puedo.
+        </p>
+      </div>
+      </>
   );
 }
 
