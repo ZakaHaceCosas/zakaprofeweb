@@ -58,7 +58,7 @@ function Zakavailable() {
       </div>
       <div className="rowy">
         <div className="oneside">
-          <h2 className={`nonboldh ${statusClass}`}>{spanishtime}</h2>
+          <h2 className={`nonboldh ${statusClass}`}>{spanishtime} (ESP)</h2>
         </div>
         <p>
           Trato de responder siempre lo antes que puedo.
