@@ -8,7 +8,7 @@ function App() {
     <main className="App">
       <img src="./colors.png" id="bgcolors" alt="Colores" />
       <section className="side1">
-        <h1>VIDEOS</h1>
+        <h1>VIDEOS&rt; &rt; &rt;</h1>
         <div className="bggrad">
         <div className="flexcont">
           <div className="flexcont2">
@@ -25,7 +25,7 @@ function App() {
         <img id="zplogo" src="./logodetails.png" alt="Logotipo de ZakaProfe" />
       </section>
       <section className="side2">
-          <h1>CONTACTO</h1>
+          <h1>&lt; &lt; &lt;CONTACTO</h1>
           <div className="bggrad">
           <div className="flexcont">
             <Zakavailable />
