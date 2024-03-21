@@ -121,3 +121,23 @@ section#main {
 .nonboldh{
    font-weight: 400;
 }
+div.bola.disponible {
+  background-color: #32FF80;
+}
+div.bola.maomeno {
+  background-color: #FF8032;
+}
+div.bola.ocupado {
+  background-color: #FF3232;
+}
+h2.disponible {
+  color: #32FF80;
+}
+
+h2.maomeno {
+  color: #FF8032;
+}
+
+h2.ocupado {
+  color: #FF3232;
+}
