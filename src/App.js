@@ -26,8 +26,10 @@ function App() {
       </section>
       <section className="side2">
           <h1>CONTACTO</h1>
+          <div className="bggrad">
           <div className="flexcont">
             <Zakavailable />
+          </div>
           </div>
       </section>
     </main>
