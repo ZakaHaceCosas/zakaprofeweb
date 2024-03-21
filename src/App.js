@@ -8,7 +8,7 @@ function App() {
     <main className="App">
       <img src="./colors.png" id="bgcolors" alt="Colores" />
       <section className="side1">
-        <h1>VIDEOS &gt;&gt;&rt;</h1>
+        <h1>VIDEOS &gt;&gt;&gt;</h1>
         <div className="bggrad">
         <div className="flexcont">
           <div className="flexcont2">
