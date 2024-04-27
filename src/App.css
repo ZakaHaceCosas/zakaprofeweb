@@ -114,6 +114,9 @@ section.side2 {
   object-fit: scale-down;
 }
 section.side1, section.side2 {
+  display: flex;
+    flex-direction: column;
+    gap: 10px;
   width: 30%;
 }
 section#main {
