@@ -22,7 +22,7 @@ function App() {
         </div>
       </section>
       <section id="main">
-        <img id="zplogo" src="./logodetails.png" alt="Logotipo de ZakaProfe" />
+        <img id="zplogo" src="./logobig.png" alt="Logotipo de ZakaProfe" />
       </section>
       {/*
       <section className="side2">
