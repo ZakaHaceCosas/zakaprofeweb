@@ -323,7 +323,9 @@ hr {
     .bodo {
         flex-direction: column;
         overflow-y: scroll;
-        height: 250vh;
+        min-height: 100vh;
+        justify-content: center;
+        gap: 40px;
     }
     nav, footer {
         left: 15px;
