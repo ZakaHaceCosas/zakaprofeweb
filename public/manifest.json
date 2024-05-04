@@ -1,25 +1,31 @@
 {
-  "short_name": "ZakaProfe",
-  "name": "ZakaProfe",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+    "short_name": "ZakaProfe",
+    "name": "ZakaProfe",
+    "description": "salvando tus notas",
+    "author": "ZakaHaceCosas",
+    "developer": {
+        "name": "ZakaHaceCosas",
+        "url": "https://github.com/ZakaHaceCosas/"
     },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#0047AB",
-  "background_color": "#ffffff"
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "logo192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "logo512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#0064C8",
+    "background_color": "#0F0F0F"
 }

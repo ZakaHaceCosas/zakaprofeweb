@@ -31,6 +31,7 @@ a:hover {
 body, html {
     background-color: #0f0f0f;
     color: white;
+    overflow: hidden;
 }
 .hero {
     display: -webkit-box;
@@ -220,7 +221,39 @@ h2.ocupado {
 .oneside p {
     text-align: end;
 }
-
+nav, footer, .bajaabajocoño {
+    position: fixed;
+    z-index: 999;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #000;
+    border: 2px solid #FFFFFF25;
+    box-shadow: 0px 0px 15px 0px #000;
+}
+nav {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+}
+.bajaabajocoño {
+    z-index: 1999;
+    left: 30vw;
+    right: 30vw;
+    bottom: 15vh;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+footer {
+    bottom: 20px;
+    left: 120px;
+    right: 120px;
+    text-align: center;
+    font-size: small;
+    color: #999;
+    font-weight: 500;
+    font-style: italic;
+}
 @media only screen and (max-width: 950px) {
     .hero {
         display: none;
