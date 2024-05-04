@@ -254,8 +254,21 @@ footer {
     font-weight: 500;
     font-style: italic;
 }
+.reactbuttonashref {
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+.reactbuttonashref:hover {
+    background-color: #FFFFFF25;
+}
 @media only screen and (max-width: 950px) {
     .hero {
         display: none;
+    }
+    .mobilehero {
+        display: flex;
     }
 }
