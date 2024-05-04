@@ -1,0 +1,31 @@
+/*
+    esto es un poco XD
+    por ahora no lo voy a implementar, no se aceptan preguntas. a largo plazo ya veremos.
+
+    const askzaka = () => {
+        const modalContainer = document.createElement('div');
+        document.body.appendChild(modalContainer);
+
+        const closeModal = () => {
+            ReactDOM.unmountComponentAtNode(modalContainer);
+            modalContainer.remove();
+        };
+    
+        ReactDOM.render(
+            <div className="modal" style={{backgroundColor: "#FFC83250"}}>
+                <div className="modal-content" style={{borderColor: "#FFC832", borderWidth: 2, borderStyle: "solid"}}>
+                    <h1>ANTES DE ENVIAR NADA, LEE ESTO</h1>
+                    <br></br>
+                    <ol style={{marginLeft: 20}}>
+                        <li>Estás pidiendo a un <i>random</i> de Internet que haga un video entero solo para ti, a cambio de nada. Entiendo que te puede hacer mucha falta, y haré lo posible, pero no hay <b>ninguna garantía</b> de que esté a tiempo.</li>
+                        <br></br>
+                        <li>Mínimo de 72 horas de antelación a tu examen (3 días). (No voy a auto-rechazarte por mandarlo con 71 horas, no es un límite obligatorio, pero entiende que lleva tiempo hacer explicaciones).</li>
+                        <br></br>
+                        <li>Se recomienda que envíes tu libro o los apuntes de tu profesor que no entiendas (no todas las clases hacen las mismas preguntas, aunque sea el mismo tema).</li>
+                    </ol>
+                    <button onClick={closeModal}>Cerrar</button>
+                </div>
+            </div>,
+            modalContainer
+        );
+    }*/

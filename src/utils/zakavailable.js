@@ -1,3 +1,5 @@
+// DEPRECADO (POR AHORA)
+// No borrar por si acaso
 import React, { useState, useEffect } from 'react';
 
 function Zakavailable() {
