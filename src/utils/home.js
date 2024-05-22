@@ -7,7 +7,7 @@ function Home() {
         <section className="hero">
             <div className="mobilehero">
                 <h1>¡Hola!</h1>
-                <hr></hr>
+                <hr/>
                 <p>
                     Esta página todavía no está del todo adaptada a dispositivos móviles o con pantallas pequeñas. Ábrela en PC, o vuelve otro día. ¡Gracias por tu visita (y tu paciencia)!
                 </p>

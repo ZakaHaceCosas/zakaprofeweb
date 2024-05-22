@@ -14,14 +14,41 @@
     font-family: 'Poppins';
     line-height: 100%;
 }
+:root {
+    /* DARK */
+    --ng1: #0F0F0F;
+    --txt: #FFFFFF;
+    --blk: #000000;
+    --grey: #999999;
+
+    --fff25: #FFFFFF25;
+    --00080: #00000080;
+    --000a5: #000000A5;
+
+    --alwaysblack: #000;
+    --alwayswhite: #FFF;
+
+    /* LIGHT */
+    --ng1: #F0F0F0;
+    --txt: #000000;
+    --blk: #FFFFFF;
+    --grey: #999999;
+
+    --fff25: #00000025;
+    --00080: #FFFFFF80;
+    --000a5: #FFFFFFA5;
+
+    --alwaysblack: #000;
+    --alwayswhite: #FFF;
+}
 img {
     pointer-events: none!important;
 }
 .bigh {
-    font-size: clamp(3vw, 27px, 23px);
+    font-size: 35px;
 }
 a {
-    color: white;
+    color: var(--txt);
     text-decoration: none;
 }
 a:hover {
@@ -29,8 +56,8 @@ a:hover {
     text-decoration: underline;
 }
 body, html {
-    background-color: #0f0f0f;
-    color: white;
+    background-color: var(--ng1);
+    color: var(--txt);
     overflow: hidden;
 }
 .hero {
@@ -66,9 +93,9 @@ body, html {
     height: 100vh;
 }
 .bggrad {
-    background-image: -webkit-gradient(linear, left top, right bottom, from(white), to(black));
-    background-image: -o-linear-gradient(top left, white, black);
-    background-image: linear-gradient(to bottom right, white, black);
+    background-image: -webkit-gradient(linear, left top, right bottom, from(var(--txt)), to(var(--blk)));
+    background-image: -o-linear-gradient(top left, var(--txt), var(--blk));
+    background-image: linear-gradient(to bottom right, var(--txt), var(--blk));
     padding: 2px;
     border-radius: 17px;
     width: -webkit-fit-content;
@@ -92,7 +119,7 @@ section .flexcont2 {
     -ms-flex-align: start;
     align-items: start;
     border-radius: 15px;
-    background-color: black;
+    background-color: var(--blk);
     padding: 15px;
 }
 section.side1 {
@@ -139,7 +166,7 @@ section.side2 {
     position: fixed;
     width: 350px;
     height: 197px;
-    background-color: #000000A5;
+    background-color: var(--000a5);
     opacity: 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -214,9 +241,9 @@ nav, footer {
     z-index: 999;
     padding: 15px;
     border-radius: 10px;
-    background-color: #000;
-    border: 2px solid #FFFFFF25;
-    box-shadow: 0px 0px 15px 0px #000;
+    background-color: var(--blk);
+    border: 2px solid var(--fff25);
+    box-shadow: 0px 0px 15px 0px var(--blk);
 }
 nav {
     top: 20px;
@@ -238,7 +265,7 @@ footer {
     right: 120px;
     text-align: center;
     font-size: small;
-    color: #999;
+    color: var(--grey);
     font-weight: 500;
     font-style: italic;
 }
@@ -247,56 +274,81 @@ footer {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    color: white;
+    color: var(--txt);
 }
 .reactbuttonashref:hover {
-    background-color: #FFFFFF25;
+    background-color: var(--fff25);
 }
 .boton {
     padding: 15px;
     background-color: #0064C8;
-    border: 2px solid #FFFFFF25;
+    border: 2px solid var(--fff25);
     cursor: pointer;
-    color: white;
+    color: var(--alwayswhite);
     border-radius: 10px;
 }
 .boton:hover {
-    background-color: #FFF;
+    background-color: var(--alwayswhite);
+    border: 2px solid #0064C8;
     color: #0064C8;
 }
 hr {
     width: 100%;
     height: 2px;
     border-radius: 100px;
-    background-color: #FFFFFF50;
+    background-color: var(--grey);
 }
 .modal {
     position: fixed;
     z-index: 99999;
     width: 100vw;
     height: 100vh;
-    background-color: #00000080;
+    background-color: var(--00080);
     display: flex;
+    gap: 10px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }.modal-content {
-    background-color: #0F0F0F;
+    background-color: var(--ng1);
     border-radius: 15px;
     padding: 20px;
-    border: 2px solid white;
+    border: 2px solid var(--txt);
     border-radius: 15px;
     max-width: 75vw;
+    max-height: 70vh;
+    overflow-y: scroll;
     display: flex;
     gap: 15px;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
+}.modal-top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--ng2);
+    gap: 10px;
+}
+.item .itemflex {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
 }
 .boton.deshabi{
     background-color: #FFC832;
-    color: black;
-    border: 2px solid #FFFFFF90;
+    color: var(--alwaysblack);
+    border: 2px solid var(--fff25);
     cursor: not-allowed;
 }
 .flexcontmaxed {
