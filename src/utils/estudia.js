@@ -19,30 +19,32 @@ function Estudia() {
                     <div className="modal">
                         <div className="modal-content">
                             <div className="modal-top">
-                                <h2 className='nonboldh'>Lista de documentos</h2>
+                                <h3 className='nonboldh'>Lista de documentos</h3>
                                 <button className='reactbuttonashref' onClick={exitsearch}>
                                     X
                                 </button>
                             </div>
+                            <hr />
                             { items.map(item => (
                                 <div className="item" key={item.id}>
-                                    <h3 style={{ fontWeight: 300 }}>{item.title}</h3>
+                                    <h2 style={{ fontWeight: 300 }}>{item.title}</h2>
                                     <div className="itemflex">
-                                        <p>{item.asig} · </p>
+                                        <p>{item.asig}</p>
+                                        <p>·</p>
                                         {typeof item.pdfpro === 'string' ? (
                                             <a href={item.pdfpro} rel='noopener noreferrer' target='_blank'>
                                                 PDF dinámico
                                             </a>
                                         ) : (
-                                            <p>Coming soon!</p>
+                                            <p>PDF dinámico pronto disponible</p>
                                         )}
-                                        <p> · </p>
+                                        <p>·</p>
                                         {typeof item.pdfnah === 'string' ? (
                                             <a href={item.pdfnah} rel='noopener noreferrer' target='_blank'>
                                                 PDF para imprimir
                                             </a>
                                         ) : (
-                                            <p>Coming soon!</p>
+                                            <p>PDF para imprimir pronto disponible</p>
                                         )}
                                     </div>
                                 </div>
