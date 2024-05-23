@@ -2,6 +2,14 @@
 Cambios pequeños / mejoras técnicas / arreglo de bugs = 0.0.X
 Cambios no tan pequeños (que sean notables) / Nuevas funciones / Cosas épicas = 0.X.0
 -->
+# 1.1.0
+- Own implementation of `/pagination`, to make pages easier to track.
+- Many visual changes, to make the design more responsive.
+- Added a `404` page.
+- Improved the modal layout.
+- Added `id` and `curso` props to items in the `videos.js` array.
+- Other minor changes and fixes.
+
 # 1.0.2
 - Changes to OpenGraph, added Twitter tags...
 

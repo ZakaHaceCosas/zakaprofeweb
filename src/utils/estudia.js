@@ -21,30 +21,30 @@ function Estudia() {
                             <div className="modal-top">
                                 <h3 className='nonboldh'>Lista de documentos</h3>
                                 <button className='reactbuttonashref' onClick={exitsearch}>
-                                    X
+                                    <b>X</b>
                                 </button>
                             </div>
                             <hr />
                             { items.map(item => (
                                 <div className="item" key={item.id}>
                                     <h2 style={{ fontWeight: 300 }}>{item.title}</h2>
+                                    <p>{item.asig} · {item.curso}</p>
+                                    <hr />
                                     <div className="itemflex">
-                                        <p>{item.asig}</p>
-                                        <p>·</p>
                                         {typeof item.pdfpro === 'string' ? (
                                             <a href={item.pdfpro} rel='noopener noreferrer' target='_blank'>
                                                 PDF dinámico
                                             </a>
                                         ) : (
-                                            <p>PDF dinámico pronto disponible</p>
+                                            <p>PDF dinámico no disponible</p>
                                         )}
-                                        <p>·</p>
+                                        <p className='itemflexdot'>·</p>
                                         {typeof item.pdfnah === 'string' ? (
                                             <a href={item.pdfnah} rel='noopener noreferrer' target='_blank'>
-                                                PDF para imprimir
+                                                PDF mínimo
                                             </a>
                                         ) : (
-                                            <p>PDF para imprimir pronto disponible</p>
+                                            <p>PDF mínimo no disponible</p>
                                         )}
                                     </div>
                                 </div>
