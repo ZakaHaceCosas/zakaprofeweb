@@ -1,6 +1,7 @@
 <!--
 Cambios pequeños / mejoras técnicas / arreglo de bugs = 0.0.X
 Cambios no tan pequeños (que sean notables) / Nuevas funciones / Cosas épicas = 0.X.0
+Cambios meramente técnicos (como corregir una errata de la anterior commit) = Nada.
 -->
 # 1.1.3
 - Visual improvments.
