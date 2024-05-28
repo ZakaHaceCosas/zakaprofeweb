@@ -163,7 +163,7 @@ section.side2 {
     position: fixed;
     width: 350px;
     height: 197px;
-    background-color: var(--always000a5);
+    background-color: var(--overlay);
     opacity: 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -414,6 +414,9 @@ hr {
     gap: 10px;
 }
 @media only screen and (max-width: 1150px) {
+    .kindauseless {
+        display: none;
+    }
     .hero .side1, .hero #main{
         display: none;
     }
