@@ -2,6 +2,9 @@
 Cambios pequeños / mejoras técnicas / arreglo de bugs = 0.0.X
 Cambios no tan pequeños (que sean notables) / Nuevas funciones / Cosas épicas = 0.X.0
 -->
+# 1.1.2
+- Updated `index.js` to match up with React's 18 syntax.
+
 # 1.1.1
 - Added (again) an alert to the new PDF section.
 - Added the version number to the page itself.

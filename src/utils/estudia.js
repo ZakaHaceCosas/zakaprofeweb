@@ -5,9 +5,9 @@ import items from '../resources/videos';
 function Estudia() {
     const [modalEnabled, setModalEnabled] = useState(false);
 
-    const searchpdfs = () => {
+    /*const searchpdfs = () => {
         setModalEnabled(true);
-    };
+    };*/
 
     const exitsearch = () => {
         setModalEnabled(false);
