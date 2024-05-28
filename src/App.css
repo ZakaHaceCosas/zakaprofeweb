@@ -163,7 +163,7 @@ section.side2 {
     position: fixed;
     width: 350px;
     height: 197px;
-    background-color: var(--000a5);
+    background-color: var(--always000a5);
     opacity: 0;
     display: -webkit-box;
     display: -ms-flexbox;

@@ -61,6 +61,7 @@ function App() {
             root.style.setProperty('--fff25', '#FFFFFF25');
             root.style.setProperty('--00080', '#00000080');
             root.style.setProperty('--000a5', '#000000A5');
+            root.style.setProperty('--always000a5', '#000000A5');
         } else {
             root.style.setProperty('--ng1', '#F0F0F0');
             root.style.setProperty('--ng2', '#FEFEFE');
@@ -71,6 +72,7 @@ function App() {
             root.style.setProperty('--fff25', '#00000025');
             root.style.setProperty('--00080', '#FFFFFF80');
             root.style.setProperty('--000a5', '#FFFFFFA5');
+            root.style.setProperty('--always000a5', '#000000A5');
         }
 
         document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Lax`;

@@ -130,6 +130,36 @@ const items = [
         pdfpro: null,
         pdfnah: null
     },
+    {
+        id: 14,
+        title: 'Funciones',
+        thumbnail: 'https://zakaprofeweb.vercel.app/vid_mate_funciones_3eso.png',
+        url: 'https://www.youtube.com/watch?v=TcuulLTJ23E',
+        asig: 'Matemáticas',
+        curso: '3º ESO',
+        pdfpro: null,
+        pdfnah: null
+    },
+    {
+        id: 15,
+        title: 'Dinámica',
+        thumbnail: 'https://zakaprofeweb.vercel.app/vid_fyq_dinamica_3eso',
+        url: 'https://www.youtube.com/watch?v=27jDsxGWpnc',
+        asig: 'Física y Química',
+        curso: '3º ESO',
+        pdfpro: null,
+        pdfnah: null
+    },
+    {
+        id: 16,
+        title: 'Cinemática',
+        thumbnail: 'https://zakaprofeweb.vercel.app/vid_fyq_cinematica_3eso',
+        url: 'https://www.youtube.com/watch?v=tR0KRK6OSGw',
+        asig: 'Física y Química',
+        curso: '3º ESO',
+        pdfpro: null,
+        pdfnah: null
+    }
 ];
 
 export default items;

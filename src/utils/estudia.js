@@ -57,9 +57,10 @@ function Estudia() {
                     <div className="flexcont flexcontmaxed">
                         <div className="flexcont2">
                             <h2 className="nonboldh">¿No eres de videos? ¿Prefieres leer?</h2>
-                            <p>Ahora los videos vienen con un PDF completo, con la explicación paso a paso y ejercicios prácticos. Tienen dos versiones, una "dinámica" (más visual) y una versión mínima en blanco y negro para imprimir en hojas DIN A4.</p>
-                            <button className='boton' onClick={() => searchpdfs()}>
-                                Ver todos
+                            <p>Pronto los videos vendrán con un PDF completo, con la explicación paso a paso y ejercicios prácticos.
+                            {/*Tienen dos versiones, una "dinámica" (más visual) y una versión mínima en blanco y negro para imprimir en hojas DIN A4.*/}</p>
+                            <button className='boton deshabi' onClick={() => {}}>
+                                Ver todos <b>(No disponible todavía)</b>
                             </button>
                         </div>
                     </div>
