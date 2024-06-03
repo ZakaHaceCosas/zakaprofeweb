@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import items from '../resources/videos';
+import React, { useState, useEffect } from "react";
+import items from "../resources/videos";
 
 const RandomVideoFeed = () => {
     const [video1, setVideo1] = useState(null);
@@ -17,7 +17,6 @@ const RandomVideoFeed = () => {
 
     useEffect(() => {
         RandomiseVids();
-        // eslint-disable-next-line
     }, []);
 
     return (
@@ -28,7 +27,9 @@ const RandomVideoFeed = () => {
                         <div className="video">
                             <img src={video1.thumbnail} alt={video1.title} />
                             <div className="overlay">
-                                <p>Ver <b>{video1.title}</b> en YouTube</p>
+                                <p>
+                                    Ver <b>{video1.title}</b> en YouTube
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +41,9 @@ const RandomVideoFeed = () => {
                         <div className="video">
                             <img src={video2.thumbnail} alt={video2.title} />
                             <div className="overlay">
-                                <p>Ver <b>{video2.title}</b> en YouTube</p>
+                                <p>
+                                    Ver <b>{video2.title}</b> en YouTube
+                                </p>
                             </div>
                         </div>
                     </div>

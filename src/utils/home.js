@@ -1,6 +1,6 @@
-import React from 'react';
-import '../App.css';
-import RandomVideoFeed from './randomvids.js';
+import React from "react";
+import "../App.css";
+import RandomVideoFeed from "./randomvids.js";
 
 function Home() {
     return (
@@ -8,7 +8,8 @@ function Home() {
             <div className="mobilehero">
                 <h1>¡Hola!</h1>
                 <p>
-                    Bienvenido a ZakaProfe. En esta página encontrarás <a href='/estudiamas'>recursos para estudiar</a>.
+                    Bienvenido a ZakaProfe. En esta página encontrarás{" "}
+                    <a href="/estudiamas">recursos para estudiar</a>.
                 </p>
             </div>
             <section className="side1">
@@ -17,8 +18,12 @@ function Home() {
                     <div className="flexcont">
                         <div className="flexcont2">
                             <h2 className="nonboldh">ZakaProfe en YouTube</h2>
-                            <RandomVideoFeed/>
-                            <a href="https://youtube.com/@ZakaProfe" target="_blank" rel='noopener noreferrer'>
+                            <RandomVideoFeed />
+                            <a
+                                href="https://youtube.com/@ZakaProfe"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 Ver más en YouTube
                             </a>
                         </div>
@@ -26,10 +31,14 @@ function Home() {
                 </div>
             </section>
             <section id="main">
-                <img id="zplogo" src="./logo512.png" alt="Logotipo de ZakaProfe" />
+                <img
+                    id="zplogo"
+                    src="./logo512.png"
+                    alt="Logotipo de ZakaProfe"
+                />
             </section>
         </section>
-    )
+    );
 }
 
 export default Home;

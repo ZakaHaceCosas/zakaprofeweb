@@ -2,5 +2,19 @@
     "editor.indentSize": 4,
     "editor.fontSize": 15,
     "editor.wordWrap": "on",
-    "editor.fontFamily": "Roboto Mono, Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "Roboto Mono, Consolas, 'Courier New', monospace",
+    "prettier.tabWidth": 4,
+    "editor.formatOnSave": true,
+    "[markdown]": {
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
+        "editor.formatOnSave": false
+    }
 }

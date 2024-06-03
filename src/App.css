@@ -47,7 +47,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    color: #0064C8;
+    color: #0099FF;
     text-decoration: underline;
 }
 body, html {
@@ -289,7 +289,7 @@ footer {
 }
 .boton {
     padding: 15px;
-    background-color: #0064C8;
+    background-color: #0099FF;
     border: 2px solid var(--fff25);
     cursor: pointer;
     color: var(--alwayswhite);
@@ -297,8 +297,8 @@ footer {
 }
 .boton:hover {
     background-color: var(--alwayswhite);
-    border: 2px solid #0064C8;
-    color: #0064C8;
+    border: 2px solid #0099FF;
+    color: #0099FF;
 }
 hr {
     width: 100%;
