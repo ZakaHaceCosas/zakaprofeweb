@@ -1,0 +1,68 @@
+/* css no utilizado, guárdalo aquí por si acaso */
+
+.modal {
+    position: fixed;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--modal-bg);
+    display: flex;
+    gap: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background-color: var(--ng1);
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid var(--txt);
+    max-width: 75vw;
+    max-height: 70vh;
+    overflow-y: scroll;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.modal-top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--ng2);
+    gap: 15px;
+}
+.item .item-flex {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+}
+.flex-container-maxed {
+    max-width: 40vw;
+    max-height: 95vh;
+    overflow-y: scroll;
+}
+
+@media noseque {
+    .flex-container-maxed {
+        max-width: 80vw;
+        max-height: -webkit-fit-content;
+        max-height: -moz-fit-content;
+        max-height: fit-content;
+    }
+}

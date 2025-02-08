@@ -2,7 +2,7 @@
 * Prefixed by https://autoprefixer.github.io
 * PostCSS: v8.4.14,
 * Autoprefixer: v10.4.7
-* Browsers: last 3 version,not dead,not op_mini all
+* Browsers: last 2 version,not dead,not op_mini all
 */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -39,6 +39,7 @@
 
     --alwaysWhite: #fff;
     --alwaysBlack: #000;
+    --zakaProfe: #0099ff;
 }
 img {
     pointer-events: none !important;
@@ -51,8 +52,11 @@ a {
     text-decoration: none;
 }
 a:hover {
-    color: #0099ff;
+    color: var(--zakaProfe);
     text-decoration: underline;
+}
+a:hover svg path {
+    fill: var(--zakaProfe);
 }
 body,
 html {
@@ -116,7 +120,6 @@ section.side2 {
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    gap: -350px;
     overflow: hidden;
     width: 350px;
     aspect-ratio: 16/9;
@@ -151,16 +154,11 @@ section.side2 {
     object-fit: scale-down;
 }
 section.side1,
-section.side2,
-section.side2-m {
+section.side2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 30%;
-}
-section.side2-m,
-section.side2-m .bg-grad {
-    width: 100%;
 }
 section#main {
     width: 10%;
@@ -170,16 +168,12 @@ section#main {
 .non-bold-header {
     font-weight: 400;
 }
-.one-side,
 .row-ish {
     display: flex;
     flex-direction: row;
     gap: 5px;
     align-items: center;
     justify-content: center;
-}
-.one-side p {
-    text-align: end;
 }
 nav,
 footer {
@@ -228,7 +222,7 @@ footer {
 }
 .btn {
     padding: 15px;
-    background-color: #0099ff;
+    background-color: var(--zakaProfe);
     border: 2px solid var(--fff25);
     cursor: pointer;
     color: var(--alwaysWhite);
@@ -236,77 +230,19 @@ footer {
 }
 .btn:hover {
     background-color: var(--alwaysWhite);
-    border: 2px solid #0099ff;
-    color: #0099ff;
+    border: 2px solid var(--zakaProfe);
+    color: var(--zakaProfe);
 }
 hr {
     width: 100%;
     height: 2px;
     border-bottom: 1px solid var(--grey);
 }
-.modal {
-    position: fixed;
-    z-index: 99999;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--modal-bg);
-    display: flex;
-    gap: 10px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.modal-content {
-    background-color: var(--ng1);
-    border-radius: 15px;
-    padding: 20px;
-    border: 2px solid var(--txt);
-    border-radius: 15px;
-    max-width: 75vw;
-    max-height: 70vh;
-    overflow-y: scroll;
-    display: flex;
-    gap: 15px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-}
-.modal-top {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-    justify-content: space-between;
-}
-.item {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    width: 100%;
-    border-radius: 10px;
-    background-color: var(--ng2);
-    gap: 15px;
-}
-.item .item-flex {
-    display: flex;
-    gap: 10px;
-    flex-direction: row;
-}
 .btn.btn-disabled {
     background-color: #ffc832;
     color: var(--alwaysBlack);
     border: 2px solid var(--fff25);
     cursor: not-allowed;
-}
-.flex-container-maxed {
-    max-width: 40vw;
-    max-height: 95vh;
-    overflow-y: scroll;
 }
 .mobile-hero {
     display: none;
@@ -364,12 +300,6 @@ hr {
     footer {
         bottom: 0;
     }
-    .flex-container-maxed {
-        max-width: 80vw;
-        max-height: -webkit-fit-content;
-        max-height: -moz-fit-content;
-        max-height: fit-content;
-    }
     #zp-logo-nav {
         height: 30px;
     }
@@ -401,7 +331,7 @@ hr {
     aspect-ratio: 1/1;
 }
 .bola.disponible {
-    background-color: #0099ff;
+    background-color: var(--zakaProfe);
 }
 .bola.mas-o-menos {
     background-color: #ff8032;
@@ -410,7 +340,7 @@ hr {
     background-color: #ff3232;
 }
 h2.disponible {
-    color: #0099ff;
+    color: var(--zakaProfe);
 }
 h2.mas-o-menos {
     color: #ff8032;
