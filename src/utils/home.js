@@ -15,13 +15,11 @@ export default function Home() {
                 <h1 className="big-header">VIDEOS &gt;&gt;&gt;</h1>
                 <div className="bg-grad">
                     <div className="flex-container">
-                        <div className="flex-container-two">
-                            <h2 className="non-bold-header">ZakaProfe en YouTube</h2>
-                            <RandomVideoFeed />
-                            <ExternalLink url="https://youtube.com/@ZakaProfe">
-                                Ver más en YouTube
-                            </ExternalLink>
-                        </div>
+                        <h2 className="non-bold-header">ZakaProfe en YouTube</h2>
+                        <RandomVideoFeed />
+                        <ExternalLink url="https://youtube.com/@ZakaProfe">
+                            Ver más en YouTube
+                        </ExternalLink>
                     </div>
                 </div>
             </section>

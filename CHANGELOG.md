@@ -1,5 +1,17 @@
 # ZPW Changelog
 
+## 2.0.1
+
+User-facing updates:
+
+- Now logo shows up in mobile navbar too.
+- Minimal layout & color tweaks.
+
+Internal (dev) updates:
+
+- Removed redundant CSS classes and markup.
+- Reorganized thumbnail images.
+
 ## 2.0.0
 
 - The website is back!

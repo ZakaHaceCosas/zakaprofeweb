@@ -61,18 +61,16 @@ export default function Estudia() {
             </h1>
             <div className="bg-grad">
                 <div className="flex-container flex-container-maxed">
-                    <div className="flex-container-two">
-                        <h2 className="non-bold-header">¿No eres de videos? ¿Prefieres leer?</h2>
-                        <p>
-                            Pronto los videos vendrán con un PDF completo, con la explicación paso a
-                            paso y ejercicios prácticos.
-                            {/* Tienen dos versiones, una "dinámica" (más visual) y una versión mínima
+                    <h2 className="non-bold-header">¿No eres de videos? ¿Prefieres leer?</h2>
+                    <p>
+                        Pronto los videos vendrán con un PDF completo, con la explicación paso a
+                        paso y ejercicios prácticos.
+                        {/* Tienen dos versiones, una "dinámica" (más visual) y una versión mínima
                             en blanco y negro para imprimir en hojas DIN A4. */}
-                        </p>
-                        <button className="btn btn-disabled" onClick={() => {}}>
-                            Ver todos <b>(No disponible todavía)</b>
-                        </button>
-                    </div>
+                    </p>
+                    <button className="btn btn-disabled" onClick={() => {}}>
+                        Ver todos <b>(No disponible todavía)</b>
+                    </button>
                 </div>
             </div>
         </section>

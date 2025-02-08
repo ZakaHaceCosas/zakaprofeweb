@@ -90,15 +90,14 @@ html {
     height: -moz-fit-content;
     height: fit-content;
 }
-section .flex-container,
-section .flex-container-two {
+section .flex-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: start;
     border-radius: 15px;
     background-color: var(--blk);
-    padding: 15px;
+    padding: 20px;
 }
 section.side1 {
     justify-content: start;
@@ -342,9 +341,6 @@ hr {
     .video .overlay {
         width: 100%;
     }
-    .flex-container-two {
-        max-width: 100%;
-    }
     body,
     html {
         overflow-y: visible;
@@ -363,8 +359,6 @@ hr {
         border-radius: 0;
     }
     nav {
-        align-items: center;
-        justify-content: center;
         top: 0;
     }
     footer {
@@ -377,7 +371,7 @@ hr {
         max-height: fit-content;
     }
     #zp-logo-nav {
-        display: none;
+        height: 30px;
     }
     .big-header {
         font-size: 24px;

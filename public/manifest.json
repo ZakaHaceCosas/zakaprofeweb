@@ -4,7 +4,8 @@
     "description": "salvando tus notas",
     "author": "ZakaHaceCosas",
     "developer": {
-        "name": "ZakaHaceCosas"
+        "name": "ZakaHaceCosas",
+        "url": "https://zakaprofe.vercel.app"
     },
     "icons": [
         {
@@ -23,8 +24,10 @@
             "sizes": "512x512"
         }
     ],
-    "start_url": ".",
+    "start_url": "/",
+    "scope": "/",
     "display": "standalone",
+    "orientation": "portrait",
     "theme_color": "#0099FF",
     "background_color": "#0F0F0F",
     "screenshots": [
@@ -39,6 +42,24 @@
             "sizes": "1280x1024",
             "type": "image/png",
             "form_factor": "wide"
+        },
+        {
+            "src": "/ss_m.png",
+            "sizes": "720x1612",
+            "type": "image/png",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/ss_m2.png",
+            "sizes": "720x1612",
+            "type": "image/png",
+            "form_factor": "narrow"
         }
-    ]
+    ],
+    "categories": ["education", "productivity"],
+    "lang": "es",
+    "dir": "ltr",
+    "display_override": ["fullscreen", "standalone"],
+    "related_applications": [],
+    "prefer_related_applications": false
 }

@@ -63,7 +63,7 @@ export default function App() {
             root.style.setProperty("--grey", "#999999");
             root.style.setProperty("--fff25", "#00000025");
             root.style.setProperty("--modal-bg", "#FFFFFF80");
-            root.style.setProperty("--overlay", "#00000099");
+            root.style.setProperty("--overlay", "#000000AA");
         }
 
         document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Lax`;

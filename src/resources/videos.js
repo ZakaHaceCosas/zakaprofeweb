@@ -9,7 +9,7 @@
 const seasonThree = [
     {
         title: "Radicales y logaritmos",
-        thumbnail: "/zp-vd-mat-radicales-4eso.png",
+        thumbnail: "/mat/4eso/radicales.png",
         url: "https://youtube.com/watch?v=uJcdRHFbjE8",
         topic: "Matemáticas",
         level: "4º ESO",
@@ -18,7 +18,7 @@ const seasonThree = [
     },
     {
         title: "Estequiometría",
-        thumbnail: "/zp-vd-fyq-estequio-4eso.png",
+        thumbnail: "/fyq/4eso/estequiometria.png",
         url: "https://youtube.com/watch?v=2NGOxlhb9SQ",
         topic: "Física y Química",
         level: "4º ESO",
@@ -27,7 +27,7 @@ const seasonThree = [
     },
     {
         title: "Revolución Francesa",
-        thumbnail: "/vid_cis_frenchRevolution_4eso.png",
+        thumbnail: "/cis/4eso/french_revolution.png",
         url: "https://youtube.com/watch?v=F0YQWc0RDsg",
         topic: "Ciencias Sociales",
         level: "4º ESO",
@@ -36,7 +36,7 @@ const seasonThree = [
     },
     {
         title: "Ancien Regime",
-        thumbnail: "/vid_cis_ancienRegime_4eso.png",
+        thumbnail: "/cis/4eso/ancien_regime.png",
         url: "https://youtube.com/watch?v=0nDmB7EWZ-8",
         topic: "Ciencias Sociales",
         level: "4º ESO",
@@ -49,7 +49,7 @@ const seasonThree = [
 const seasonTwo = [
     {
         title: "Funciones",
-        thumbnail: "/vid_mate_funciones_3eso.png",
+        thumbnail: "/mat/3eso/funciones.png",
         url: "https://www.youtube.com/watch?v=TcuulLTJ23E",
         topic: "Matemáticas",
         level: "3º ESO",
@@ -58,7 +58,7 @@ const seasonTwo = [
     },
     {
         title: "Sucesiones",
-        thumbnail: "/vid_mate_sucesiones_3eso.png",
+        thumbnail: "/mat/3eso/sucesiones.png",
         url: "https://youtu.be/DB5Njh4gbT0",
         topic: "Matemáticas",
         level: "3º ESO",
@@ -67,7 +67,7 @@ const seasonTwo = [
     },
     {
         title: "Cinemática",
-        thumbnail: "/vid_fyq_cinematica_3eso.png",
+        thumbnail: "/fyq/3eso/cinematica.png",
         url: "https://www.youtube.com/watch?v=tR0KRK6OSGw",
         topic: "Física y Química",
         level: "3º ESO",
@@ -79,7 +79,7 @@ const seasonTwo = [
 const __no_utilizar_bro = [
     {
         title: "Reacciones químicas",
-        thumbnail: "/vid_fyq_reaccionesquimicas_3eso.png",
+        thumbnail: "/fyq/3eso/reacciones.png",
         url: "https://youtu.be/viivXTHioac",
         topic: "Física y Química",
         level: "3º ESO",
@@ -88,7 +88,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "Aparato Excretor",
-        thumbnail: "/vid_byg_apexcretor_3eso.png",
+        thumbnail: "/bio/3eso/ap_excretor.png",
         url: "https://youtu.be/wZWR3jvr9mc",
         topic: "Biología y Geología",
         level: "3º ESO",
@@ -97,7 +97,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "Verbos modales en inglés",
-        thumbnail: "/vid_eng_modalverbs_3eso.png",
+        thumbnail: "/eng/3eso/modals.png",
         url: "https://youtu.be/TSPC_rJzEX4",
         topic: "Inglés",
         level: "3º ESO",
@@ -106,7 +106,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "Sintaxis en Castellano",
-        thumbnail: "/vid_esp_sintaxis_3eso.png",
+        thumbnail: "/esp/3eso/sintaxis.png",
         url: "https://www.youtube.com/watch?v=CHgrGY5NdHU",
         topic: "Lengua Castellana",
         level: "3º ESO",
@@ -115,7 +115,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "El átomo",
-        thumbnail: "/vid_fyq_teoriaatomica_3eso.png",
+        thumbnail: "/fyq/3eso/atomo.png",
         url: "https://www.youtube.com/watch?v=Ouhi9hYIAi4",
         topic: "Física y Química",
         level: "3º ESO",
@@ -124,7 +124,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "La ciudad",
-        thumbnail: "/vid_cis_laciudad_3eso.png",
+        thumbnail: "/cis/3eso/ciudad.png",
         url: "https://www.youtube.com/watch?v=HwObqxE3fgQ",
         topic: "Ciencias Sociales",
         level: "3º ESO",
@@ -133,7 +133,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "La materia y sus propiedades",
-        thumbnail: "/vid_fyq_lamateriaysusprops_3eso.png",
+        thumbnail: "/fyq/3eso/materia.png",
         url: "https://www.youtube.com/watch?v=OgVlCYGptZY",
         topic: "Física y Química",
         level: "3º ESO",
@@ -142,7 +142,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "La organización del ser humano",
-        thumbnail: "/vid_bio_laorgdelserhumano_3eso.png",
+        thumbnail: "/bio/3eso/org_humano.png",
         url: "https://www.youtube.com/watch?v=gYXIwBPD05E",
         topic: "Biología y Geología",
         level: "3º ESO",
@@ -151,7 +151,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "Los números racionales",
-        thumbnail: "/vid_mate_numerosracionales_3eso.png",
+        thumbnail: "/mat/3eso/racionales.png",
         url: "https://www.youtube.com/watch?v=Aaj9n3m-Q-M",
         topic: "Matemáticas",
         level: "3º ESO",
@@ -160,7 +160,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "El Estado",
-        thumbnail: "/vid_cis_elestado_3eso.png",
+        thumbnail: "/cis/3eso/el_estado.png",
         url: "https://www.youtube.com/watch?v=5P6UevN82bQ",
         topic: "Ciencias Sociales",
         level: "3º ESO",
@@ -169,7 +169,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "Teorema de Pitágoras",
-        thumbnail: "/vid_mate_trmapitagoras_3eso.png",
+        thumbnail: "/mat/3eso/pitagoras.png",
         url: "https://www.youtube.com/watch?v=sJ_UhcUBId8",
         topic: "Matemáticas",
         level: "3º ESO",
@@ -178,7 +178,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "Dinámica",
-        thumbnail: "/vid_fyq_dinamica_3eso.png",
+        thumbnail: "/fyq/3eso/dinamica.png",
         url: "https://www.youtube.com/watch?v=27jDsxGWpnc",
         topic: "Física y Química",
         level: "3º ESO",
@@ -187,7 +187,7 @@ const __no_utilizar_bro = [
     },
     {
         title: "Aparato Circulatorio",
-        thumbnail: "/vid_bio_apcirculatorio_3eso.png",
+        thumbnail: "/bio/3eso/ap_circulatorio.png",
         url: "https://youtube.com/watch?v=mNu2JVjy1v4",
         topic: "Biología",
         level: "3º ESO",

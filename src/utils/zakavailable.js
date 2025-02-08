@@ -13,7 +13,7 @@ export default function ZakAvailable() {
             const hour = now.getUTCHours() + 1;
             const minutes = now.getUTCMinutes();
             const fmt = (s) => s.toString().padStart(2, "0");
-            const formattedTime = `${fmt(hour)}:${fmt(minutes)}`;
+            const formattedTime = `${fmt(hour)}:${fmt(minutes)}:${fmt(now.getUTCSeconds())}`;
             setSpanishTime(formattedTime);
             let newStatus = "";
             let newStatusText = "";
@@ -71,27 +71,25 @@ export default function ZakAvailable() {
             setStatusClass(newStatusClass);
         };
 
-        const interval = setInterval(getTimeStatus, 60000); // actualiza cada 60 segundos
+        const interval = setInterval(getTimeStatus, 1000); // actualiza cada 60 segundos
         getTimeStatus();
         return () => clearInterval(interval);
     }, []);
 
     return (
         <div className="flex-container">
-            <div className="flex-container-two">
-                <div className="row-ish">
-                    <div className="one-side">
-                        <div className={`bola ${statusClass}`}></div>
-                        <h2 className={`non-bold-header ${statusClass}`}>
-                            {status} · {currentSpanishTime}{" "}
-                            <span style={{ fontSize: "medium" }}>(UTC+1)</span>
-                        </h2>
-                    </div>
+            <div className="row-ish">
+                <div className="one-side">
+                    <div className={`bola ${statusClass}`}></div>
+                    <h2 className={`non-bold-header ${statusClass}`}>
+                        {status} · {currentSpanishTime}{" "}
+                        <span style={{ fontSize: "medium" }}>(UTC+1)</span>
+                    </h2>
                 </div>
-                <div className="row-ish">
-                    <div className="one-side">
-                        <p style={{ textAlign: "start" }}>{statusText}</p>
-                    </div>
+            </div>
+            <div className="row-ish">
+                <div className="one-side">
+                    <p style={{ textAlign: "start" }}>{statusText}</p>
                 </div>
             </div>
         </div>
