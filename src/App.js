@@ -51,7 +51,7 @@ export default function App() {
             root.style.setProperty("--txt", "#FFFFFF");
             root.style.setProperty("--blk", "#000000");
             root.style.setProperty("--blkSha", "#000000");
-            root.style.setProperty("--grey", "#999999");
+            root.style.setProperty("--grey", "#AAA");
             root.style.setProperty("--fff25", "#FFFFFF25");
             root.style.setProperty("--modal-bg", "#00000080");
             root.style.setProperty("--overlay", "#00000099");
@@ -61,7 +61,7 @@ export default function App() {
             root.style.setProperty("--txt", "#000000");
             root.style.setProperty("--blk", "#FFFFFF");
             root.style.setProperty("--blkSha", "#00000010");
-            root.style.setProperty("--grey", "#999999");
+            root.style.setProperty("--grey", "#777");
             root.style.setProperty("--fff25", "#00000025");
             root.style.setProperty("--modal-bg", "#FFFFFF80");
             root.style.setProperty("--overlay", "#000000AA");

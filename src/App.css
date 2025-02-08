@@ -14,7 +14,7 @@
     outline: none;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    transition-duration: 300ms;
+    transition-duration: 200ms;
     font-family: "Poppins";
     line-height: 100%;
     scrollbar-width: none;
@@ -46,6 +46,9 @@ img {
 }
 .big-header {
     font-size: 35px;
+}
+svg path {
+    fill: var(--txt);
 }
 a {
     color: var(--txt);
@@ -251,6 +254,9 @@ hr {
     gap: 10px;
 }
 @media only screen and (max-width: 1250px) {
+    .overlay {
+        display: none !important; /* no sé arreglarlo en móvil :c */
+    }
     .hero #main {
         display: none;
     }
