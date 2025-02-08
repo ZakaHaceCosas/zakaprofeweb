@@ -16,7 +16,7 @@
     scroll-behavior: smooth;
     transition-duration: 200ms;
     font-family: "Poppins";
-    line-height: 100%;
+    line-height: 110%;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
