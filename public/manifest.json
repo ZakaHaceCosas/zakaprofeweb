@@ -54,6 +54,18 @@
             "sizes": "720x1612",
             "type": "image/png",
             "form_factor": "narrow"
+        },
+        {
+            "src": "/ss_m_light.png",
+            "sizes": "720x1612",
+            "type": "image/png",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/ss_m2_light.png",
+            "sizes": "720x1612",
+            "type": "image/png",
+            "form_factor": "narrow"
         }
     ],
     "categories": ["education", "productivity"],

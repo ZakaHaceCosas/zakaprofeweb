@@ -6,6 +6,7 @@ User-facing updates:
 
 - Now logo shows up in mobile navbar too.
 - Minimal layout & color tweaks.
+- Added Vercel analytics to measure site performance (this doesn't affect users).
 
 Internal (dev) updates:
 

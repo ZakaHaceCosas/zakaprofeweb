@@ -4,6 +4,7 @@ import Home from "./utils/home.js";
 import Estudia from "./utils/estudia.js";
 import Lost from "./utils/lost.js";
 import Footer from "./utils/foot.js";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
     const getPage = () => {
@@ -89,6 +90,7 @@ export default function App() {
             {currentPage.trim().toLowerCase() === "estudia" && <Estudia />}
             {!["home", "estudia"].includes(currentPage.trim().toLowerCase()) && <Lost />}
             <Footer />
+            <Analytics />
         </main>
     );
 }
