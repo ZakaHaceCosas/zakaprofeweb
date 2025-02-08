@@ -1,48 +1,73 @@
-// DEPRECADO (POR AHORA)
-// No borrar por si acaso
 import React, { useState, useEffect } from "react";
 
-function Zakavailable() {
+export default function ZakAvailable() {
     const [status, setStatus] = useState("");
-    const [statusp, setStatusp] = useState("");
+    const [statusText, setStatusText] = useState("");
     const [statusClass, setStatusClass] = useState("");
-    const [spanishtime, setSpanishtime] = useState("");
+    const [currentSpanishTime, setSpanishTime] = useState("");
 
     useEffect(() => {
         const getTimeStatus = () => {
             const now = new Date();
+            const day = now.getUTCDay();
             const hour = now.getUTCHours() + 1;
-            const minutes = now.getMinutes();
-            const formattedTime = `${hour.toString().padStart(2, "0")}:${minutes
-                .toString()
-                .padStart(2, "0")}`;
-            setSpanishtime(formattedTime);
+            const minutes = now.getUTCMinutes();
+            const fmt = (s) => s.toString().padStart(2, "0");
+            const formattedTime = `${fmt(hour)}:${fmt(minutes)}`;
+            setSpanishTime(formattedTime);
             let newStatus = "";
-            let newStatusp = "";
+            let newStatusText = "";
             let newStatusClass = "";
 
-            if (hour >= 13 && hour < 21) {
-                newStatus = "DISPONIBLE";
-                newStatusp =
-                    "Si tienes cualquier duda, pregunta que te responderé.";
-                newStatusClass = "disponible";
-            } else if (hour >= 21 && hour < 22) {
-                newStatus = "MAS O MENOS";
-                newStatusp =
-                    "Si tienes cualquier duda, pregunta que te responderé (igual tardo un poco)";
-                newStatusClass = "maomeno";
-            } else if (hour >= 9 && hour < 13) {
-                newStatus = "EN CLASE";
-                newStatusp = "Estoy en clase.";
-                newStatusClass = "ocupado";
-            } else {
-                newStatus = "OCUPADO";
-                newStatusp = "Esto... soy humano, tengo que dormir XD.";
-                newStatusClass = "ocupado";
+            // LUN-VIE
+            if (day >= 1 && day <= 5) {
+                if (hour >= 8 && hour < 16) {
+                    // 8-15: OCUPADO (clase)
+                    newStatus = "OCUPADO";
+                    newStatusText = "Estoy en clase.";
+                    newStatusClass = "ocupado";
+                } else if (hour >= 16 && hour <= 21) {
+                    // 16-21: DISPONIBLE
+                    newStatus = "DISPONIBLE";
+                    newStatusText = "Si tienes cualquier duda, pregunta que te responderé.";
+                    newStatusClass = "disponible";
+                } else if (hour > 21 && hour <= 23) {
+                    // 21-23: MAS O MENOS
+                    newStatus = "MAS O MENOS";
+                    newStatusText =
+                        "Si tienes cualquier duda, pregunta que te responderé (igual tardo un poco)";
+                    newStatusClass = "mas-o-menos";
+                } else {
+                    // 24-8: OCUPADO (dormir)
+                    newStatus = "OCUPADO";
+                    newStatusText = "Esto... soy humano, tengo que dormir XD.";
+                    newStatusClass = "ocupado";
+                }
+            }
+
+            // SAB, DOM
+            else if (day === 0 || day === 6) {
+                if (hour >= 10 && hour <= 21) {
+                    // 10-21: DISPONIBLE
+                    newStatus = "DISPONIBLE";
+                    newStatusText = "Si tienes cualquier duda, pregunta que te responderé.";
+                    newStatusClass = "disponible";
+                } else if (hour > 21 && hour <= 23) {
+                    // 21-24: MAS O MENOS
+                    newStatus = "MAS O MENOS";
+                    newStatusText =
+                        "Si tienes cualquier duda, pregunta que te responderé (igual tardo un poco)";
+                    newStatusClass = "mas-o-menos";
+                } else {
+                    // 24-10: OCUPADO (dormir)
+                    newStatus = "OCUPADO";
+                    newStatusText = "Esto... soy humano, tengo que dormir XD.";
+                    newStatusClass = "ocupado";
+                }
             }
 
             setStatus(newStatus);
-            setStatusp(newStatusp);
+            setStatusText(newStatusText);
             setStatusClass(newStatusClass);
         };
 
@@ -52,24 +77,23 @@ function Zakavailable() {
     }, []);
 
     return (
-        <>
-            <div className="rowy">
-                <div className="oneside">
-                    <div className={`bola ${statusClass}`}></div>
-                    <h2 className={`nonboldh ${statusClass}`}>{status}</h2>
+        <div className="flex-container">
+            <div className="flex-container-two">
+                <div className="row-ish">
+                    <div className="one-side">
+                        <div className={`bola ${statusClass}`}></div>
+                        <h2 className={`non-bold-header ${statusClass}`}>
+                            {status} · {currentSpanishTime}{" "}
+                            <span style={{ fontSize: "medium" }}>(UTC+1)</span>
+                        </h2>
+                    </div>
                 </div>
-                <p>{statusp}</p>
-            </div>
-            <div className="rowy">
-                <div className="oneside">
-                    <h2 className={`nonboldh ${statusClass}`}>
-                        {spanishtime} (ESP)
-                    </h2>
+                <div className="row-ish">
+                    <div className="one-side">
+                        <p style={{ textAlign: "start" }}>{statusText}</p>
+                    </div>
                 </div>
-                <p>Trato de responder siempre lo antes que puedo.</p>
             </div>
-        </>
+        </div>
     );
 }
-
-export default Zakavailable;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import "../App.css";
 
-function Lost() {
+export default function Lost() {
     return (
         <div
             style={{
@@ -16,17 +16,11 @@ function Lost() {
         >
             <h1>404</h1>
             <p>
-                La <code>/URL</code> especificada no se encontró. ¡Vaya!
+                La página solicitada, <code>{window.location.pathname}</code>, no se encontró.
+                ¡Vaya!
             </p>
             <hr />
-            <a
-                href="https://zakaprofeweb.vercel.app/"
-                rel="noopener noreferrer"
-            >
-                Volver
-            </a>
+            <a href="/">Volver</a>
         </div>
     );
 }
-
-export default Lost;

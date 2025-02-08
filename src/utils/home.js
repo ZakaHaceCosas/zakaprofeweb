@@ -1,44 +1,39 @@
 import React from "react";
 import "../App.css";
-import RandomVideoFeed from "./randomvids.js";
+import RandomVideoFeed from "./random-vids.js";
+import ExternalLink from "../utils/ext-link";
+import ZakAvailable from "./zakavailable.js";
 
-function Home() {
+export default function Home() {
     return (
         <section className="hero">
-            <div className="mobilehero">
+            <div className="mobile-hero">
                 <h1>¡Hola!</h1>
-                <p>
-                    Bienvenido a ZakaProfe. En esta página encontrarás{" "}
-                    <a href="/estudiamas">recursos para estudiar</a>.
-                </p>
+                <p>Soy ZakaProfe, y hago videos para ayudarte a aprobar :].</p>
             </div>
             <section className="side1">
-                <h1 className="bigh">VIDEOS &gt;&gt;&gt;</h1>
-                <div className="bggrad">
-                    <div className="flexcont">
-                        <div className="flexcont2">
-                            <h2 className="nonboldh">ZakaProfe en YouTube</h2>
+                <h1 className="big-header">VIDEOS &gt;&gt;&gt;</h1>
+                <div className="bg-grad">
+                    <div className="flex-container">
+                        <div className="flex-container-two">
+                            <h2 className="non-bold-header">ZakaProfe en YouTube</h2>
                             <RandomVideoFeed />
-                            <a
-                                href="https://youtube.com/@ZakaProfe"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
+                            <ExternalLink url="https://youtube.com/@ZakaProfe">
                                 Ver más en YouTube
-                            </a>
+                            </ExternalLink>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="main">
-                <img
-                    id="zplogo"
-                    src="./logo512.png"
-                    alt="Logotipo de ZakaProfe"
-                />
+                <img id="zp-logo" src="./logo256.png" alt="Logotipo de ZakaProfe" />
+            </section>
+            <section className="side2">
+                <h1 className="big-header">&lt;&lt;&lt; CONTACTO</h1>
+                <div className="bg-grad">
+                    <ZakAvailable />
+                </div>
             </section>
         </section>
     );
 }
-
-export default Home;

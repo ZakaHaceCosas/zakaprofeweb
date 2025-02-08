@@ -1,16 +1,15 @@
 {
     "short_name": "ZakaProfe",
-    "name": "ZakaProfe",
+    "name": "ZakaProfe Web",
     "description": "salvando tus notas",
     "author": "ZakaHaceCosas",
     "developer": {
-        "name": "ZakaHaceCosas",
-        "url": "https://github.com/ZakaHaceCosas/"
+        "name": "ZakaHaceCosas"
     },
     "icons": [
         {
             "src": "favicon.ico",
-            "sizes": "64x64 32x32 24x24 16x16",
+            "sizes": "256x256",
             "type": "image/x-icon"
         },
         {
@@ -27,5 +26,19 @@
     "start_url": ".",
     "display": "standalone",
     "theme_color": "#0099FF",
-    "background_color": "#0F0F0F"
+    "background_color": "#0F0F0F",
+    "screenshots": [
+        {
+            "src": "/ss.png",
+            "sizes": "1280x1024",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/ss_light.png",
+            "sizes": "1280x1024",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ]
 }

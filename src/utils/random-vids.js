@@ -1,56 +1,56 @@
 import React, { useState, useEffect } from "react";
 import items from "../resources/videos";
+import ExternalLink from "../utils/ext-link";
 
-const RandomVideoFeed = () => {
-    const [video1, setVideo1] = useState(null);
-    const [video2, setVideo2] = useState(null);
+export default function RandomVideoFeed() {
+    const [videos, setVideos] = useState({ one: null, two: null });
 
-    const RandomiseVids = () => {
+    const RandomizeVids = () => {
         const randomIndex1 = Math.floor(Math.random() * items.length);
         let randomIndex2 = Math.floor(Math.random() * items.length);
         while (randomIndex2 === randomIndex1) {
             randomIndex2 = Math.floor(Math.random() * items.length);
         }
-        setVideo1(items[randomIndex1]);
-        setVideo2(items[randomIndex2]);
+        setVideos({
+            one: items[randomIndex1],
+            two: items[randomIndex2],
+        });
     };
 
     useEffect(() => {
-        RandomiseVids();
+        RandomizeVids();
     }, []);
 
     return (
         <div className="randoms">
-            {video1 && (
-                <a href={video1.url} target="_blank" rel="noopener noreferrer">
-                    <div className="bggrad">
+            {videos.one && (
+                <ExternalLink url={videos.one.url}>
+                    <div className="bg-grad">
                         <div className="video">
-                            <img src={video1.thumbnail} alt={video1.title} />
+                            <img src={videos.one.thumbnail} alt={videos.one.title} />
                             <div className="overlay">
                                 <p>
-                                    Ver <b>{video1.title}</b> en YouTube
+                                    Ver <b>{videos.one.title}</b> &gt;&gt;&gt;
                                 </p>
                             </div>
                         </div>
                     </div>
-                </a>
+                </ExternalLink>
             )}
-            {video2 && (
-                <a href={video2.url} target="_blank" rel="noopener noreferrer">
-                    <div className="bggrad">
+            {videos.two && (
+                <ExternalLink url={videos.two.url}>
+                    <div className="bg-grad">
                         <div className="video">
-                            <img src={video2.thumbnail} alt={video2.title} />
+                            <img src={videos.two.thumbnail} alt={videos.two.title} />
                             <div className="overlay">
                                 <p>
-                                    Ver <b>{video2.title}</b> en YouTube
+                                    Ver <b>{videos.two.title}</b> &gt;&gt;&gt;
                                 </p>
                             </div>
                         </div>
                     </div>
-                </a>
+                </ExternalLink>
             )}
         </div>
     );
-};
-
-export default RandomVideoFeed;
+}

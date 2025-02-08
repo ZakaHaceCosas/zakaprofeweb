@@ -1,63 +1,50 @@
+// TODO - se cancela esta idea / this idea is cancelled
+// TODO - pensar otra forma de ayudar a estudiar / think of another way to help study
 import React, { useState } from "react";
 import "../App.css";
 import items from "../resources/videos";
+import ExternalLink from "../utils/ext-link";
 
-function Estudia() {
-    const [modalEnabled, setModalEnabled] = useState(false);
+export default function Estudia() {
+    const [searchEnabled, toggleSearch] = useState(false);
 
-    /*const searchpdfs = () => {
-        setModalEnabled(true);
-    };*/
-
-    const exitsearch = () => {
-        setModalEnabled(false);
+    const genKey = (str) => {
+        return str.toLowerCase().trim().normalize("NFC");
     };
 
     return (
-        <section className="bodo">
-            {modalEnabled && (
+        <section className="main-body">
+            {searchEnabled && (
                 <div className="modal">
                     <div className="modal-content">
                         <div className="modal-top">
-                            <h3 className="nonboldh">Lista de documentos</h3>
+                            <h3 className="non-bold-header">Lista de documentos</h3>
                             <button
-                                className="reactbuttonashref"
-                                onClick={exitsearch}
+                                className="react-button-as-href"
+                                onClick={() => {
+                                    toggleSearch(false);
+                                }}
                             >
                                 <b>X</b>
                             </button>
                         </div>
                         <hr />
                         {items.map((item) => (
-                            <div className="item" key={item.id}>
-                                <h2 style={{ fontWeight: 300 }}>
-                                    {item.title}
-                                </h2>
+                            <div className="item" key={genKey(item.title)}>
+                                <h2 style={{ fontWeight: 300 }}>{item.title}</h2>
                                 <p>
-                                    {item.asig} · {item.curso}
+                                    {item.topic} · {item.level}
                                 </p>
                                 <hr />
-                                <div className="itemflex">
-                                    {typeof item.pdfpro === "string" ? (
-                                        <a
-                                            href={item.pdfpro}
-                                            rel="noopener noreferrer"
-                                            target="_blank"
-                                        >
-                                            PDF dinámico
-                                        </a>
+                                <div className="item-flex">
+                                    {typeof item.pdfPro === "string" ? (
+                                        <ExternalLink url={item.pdfPro}>PDF dinámico</ExternalLink>
                                     ) : (
                                         <p>PDF dinámico no disponible</p>
                                     )}
-                                    <p className="itemflexdot">·</p>
-                                    {typeof item.pdfnah === "string" ? (
-                                        <a
-                                            href={item.pdfnah}
-                                            rel="noopener noreferrer"
-                                            target="_blank"
-                                        >
-                                            PDF mínimo
-                                        </a>
+                                    <p className="item-flex-dot">·</p>
+                                    {typeof item.pdfNah === "string" ? (
+                                        <ExternalLink url={item.pdfNah}>PDF mínimo</ExternalLink>
                                     ) : (
                                         <p>PDF mínimo no disponible</p>
                                     )}
@@ -67,25 +54,22 @@ function Estudia() {
                     </div>
                 </div>
             )}
-            <h1 className="bigh">
+            <h1 className="big-header">
                 PONTE A ESTUDIAR &gt;&gt;&gt;
                 <br />
-                <span style={{ fontWeight: 300 }}>
-                    (Tranquilo, que te ayudo)
-                </span>
+                <span style={{ fontWeight: 300 }}>(Tranquilo, que te ayudo)</span>
             </h1>
-            <div className="bggrad">
-                <div className="flexcont flexcontmaxed">
-                    <div className="flexcont2">
-                        <h2 className="nonboldh">
-                            ¿No eres de videos? ¿Prefieres leer?
-                        </h2>
+            <div className="bg-grad">
+                <div className="flex-container flex-container-maxed">
+                    <div className="flex-container-two">
+                        <h2 className="non-bold-header">¿No eres de videos? ¿Prefieres leer?</h2>
                         <p>
-                            Pronto los videos vendrán con un PDF completo, con
-                            la explicación paso a paso y ejercicios prácticos.
-                            {/*Tienen dos versiones, una "dinámica" (más visual) y una versión mínima en blanco y negro para imprimir en hojas DIN A4.*/}
+                            Pronto los videos vendrán con un PDF completo, con la explicación paso a
+                            paso y ejercicios prácticos.
+                            {/* Tienen dos versiones, una "dinámica" (más visual) y una versión mínima
+                            en blanco y negro para imprimir en hojas DIN A4. */}
                         </p>
-                        <button className="boton deshabi" onClick={() => {}}>
+                        <button className="btn btn-disabled" onClick={() => {}}>
                             Ver todos <b>(No disponible todavía)</b>
                         </button>
                     </div>
@@ -94,5 +78,3 @@ function Estudia() {
         </section>
     );
 }
-
-export default Estudia;

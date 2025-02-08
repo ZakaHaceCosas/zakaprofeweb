@@ -16,5 +16,7 @@
             "other": "on"
         },
         "editor.formatOnSave": false
-    }
+    },
+    "cSpell.language": "es-ES,en-US",
+    "cSpell.words": ["zaka", "zakavailable", "zakaprofe"]
 }
