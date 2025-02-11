@@ -1,5 +1,10 @@
 # ZPW Changelog
 
+## 2.1.0
+
+- Add search
+- Make navbar use icons on mobile
+
 ## 2.0.0 (08/02/2025)
 
 - The website is back!

@@ -4,16 +4,26 @@ import ExternalLink from "./ext-link";
 
 export default function Buscador() {
     const [search, setSearch] = useState("");
-    const filteredVideos = items.filter((v) =>
-        v.title.trim().toLowerCase().includes(search.trim().toLowerCase())
+    const filteredVideos = items.filter(
+        (v) =>
+            v.title.trim().toLowerCase().includes(search.trim().toLowerCase()) ||
+            v.topic.trim().toLowerCase().includes(search.trim().toLowerCase())
     );
 
     return (
         <section
             className="hero"
-            style={{ flexDirection: "column", justifyContent: "center", gap: 40 }}
+            style={{ flexDirection: "column", justifyContent: "center", gap: 10 }}
         >
-            <div className="bg-grad">
+            <h1>Buscador de vídeos</h1>
+            <p>
+                Con enlace directo a YouTube. Carga más rápido que el propio buscador de YT, así que
+                te será útil.
+            </p>
+            <br />
+            <hr />
+            <br />
+            <div className="bg-grad" style={{ minWidth: "30vw" }}>
                 <input
                     type="text"
                     placeholder="Busca un video..."
@@ -21,13 +31,18 @@ export default function Buscador() {
                     onChange={(e) => setSearch(e.target.value)}
                 />
             </div>
+            {filteredVideos.length > 2 && filteredVideos.length !== 0 && search.trim() !== "" && (
+                <p style={{ fontSize: "x-small", opacity: 0.45 }}>
+                    (puedes deslizar abajo, hay más)
+                </p>
+            )}
             <div
-                className="row-ish"
+                className="row-ish search-results"
                 style={{
                     flexDirection: "column",
                     alignItems: "start",
                     justifyContent: "start",
-                    maxHeight: "50vh",
+                    maxHeight: "45vh",
                     overflow: "scroll",
                     padding: 5,
                     width: "80vw",
@@ -46,6 +61,7 @@ export default function Buscador() {
                             <div className="result">
                                 <img
                                     src={v.thumbnail}
+                                    alt={`${v.title}, ${v.topic}, ${v.level}`}
                                     style={{ maxWidth: "250px", borderRadius: 10 }}
                                 />
                                 <div
@@ -68,6 +84,9 @@ export default function Buscador() {
                             </div>
                         </div>
                     ))}
+                {filteredVideos.length > 5 &&
+                    filteredVideos.length !== 0 &&
+                    search.trim() !== "" && <p>Cuántos videos, ¿no?</p>}
             </div>
         </section>
     );

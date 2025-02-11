@@ -41,7 +41,7 @@ export default function ZakAvailable() {
                 } else {
                     // 24-8: OCUPADO (dormir)
                     newStatus = "OCUPADO";
-                    newStatusText = "Esto... soy humano, tengo que dormir XD.";
+                    newStatusText = "Ya lo siento, pero tengo que dormir XD.";
                     newStatusClass = "ocupado";
                 }
             }
@@ -62,7 +62,7 @@ export default function ZakAvailable() {
                 } else {
                     // 24-10: OCUPADO (dormir)
                     newStatus = "OCUPADO";
-                    newStatusText = "Esto... soy humano, tengo que dormir XD.";
+                    newStatusText = "Ya lo siento, pero tengo que dormir XD.";
                     newStatusClass = "ocupado";
                 }
             }
