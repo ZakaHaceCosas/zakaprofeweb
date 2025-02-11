@@ -2,73 +2,75 @@
 
 ## 2.1.0
 
-- Add search
-- Make navbar use icons on mobile
+Actualizaciones visibles para el usuario:
+
+- Se añadió un buscador. Es muy simple, pero bastante más rápido que el de YouTube.
+- Se hizo que la barra de navegación use iconos en móvil.
 
 ## 2.0.0 (08/02/2025)
 
-- The website is back!
+- ¡El sitio web ha vuelto!
 
-User-facing updates:
+Actualizaciones visibles para el usuario:
 
-- Updated and brought back the availability component.
-- Now 404 page shows the requested pathname.
-- "Estudia más" page is now unused and unreferenced. It still exists and it's got it's pathname changed to `/estudia`.
-- Improved performance (smaller CSS, less stuff to load, smaller images...).
-- Improved overall styling, tweaked layouts, colors, etc...
-- Now the page is fully supported on mobile, showing all content and the logo in the navbar.
-- Removed support for older browsers.
-- Added Vercel analytics to measure site performance (this doesn't affect users).
-- Small accessibility improvements.
+- Se actualizó y volvió a implementar el componente de disponibilidad.
+- Ahora la página 404 muestra el pathname solicitado.
+- La página "Estudia más" ahora está sin usar y no está referenciada. Aún existe y su pathname ha sido cambiado a `/estudia`.
+- Se mejoró el rendimiento (CSS más pequeño, menos cosas que cargar, imágenes más pequeñas...).
+- Se mejoró el estilo en general, ajustando diseños, colores, etc...
+- Ahora la página es completamente compatible con dispositivos móviles, mostrando todo el contenido y el logo en la barra de navegación.
+- Se eliminó soporte para navegadores viejos.
+- Se añadió Vercel analytics para medir el rendimiento de la web (esto no afecta a los usuarios).
+- Pequeñas mejoras de accesibilidad.
 
-Internal (dev) updates:
+Actualizaciones internas (desarrollo):
 
-- Updated to React 19.
-- Formatted all code.
-- Set `pnpm` as project's default package manager.
-- Improved my years old source code (redundant functions, unused stuff, etc...).
-- Removed some backwards compatible styles (screw users using ancient technologies).
-- Removed redundant CSS classes and markup.
-- Reorganized thumbnail images.
+- Actualizado a React 19.
+- Formateado todo el código.
+- Establecido `pnpm` como el gestor de paquetes predeterminado del proyecto.
+- Mejorado el código fuente de hace años (funciones redundantes, cosas no usadas, etc...).
+- Eliminados algunos estilos compatibles con navegadores antiguos (a los usuarios con tecnologías ancestrales que les den).
+- Eliminadas clases de CSS y tags HTML redundantes.
+- Reorganizadas las miniaturas.
 
 ## 1.1.4
 
 - Rebrand.
-- Added formatting.
+- Añadido formateado.
 
 ## 1.1.3
 
-- Visual improvements.
+- Mejoras visuales.
 
 ## 1.1.2
 
-- Updated `index.js` to match up with React's 18 syntax.
+- Actualizado `index.js` para que coincida con la sintaxis de React 18.
 
 ## 1.1.1
 
-- Added (again) an alert to the new PDF section.
-- Added the version number to the page itself.
-- Fixed some visual errors.
+- Añadido (de nuevo) un aviso a la nueva sección de PDFs.
+- Añadido el número de versión a la propia página.
+- Corregidos algunos errores visuales.
 
 ## 1.1.0
 
-- Own implementation of `/pagination`, to make pages easier to track.
-- Many visual changes, to make the design more responsive.
-- Added a `404` page.
-- Improved the modal layout.
-- Added `id` and `curso` props to items in the `videos.js` array.
-- Other minor changes and fixes.
+- Implementación propia de `/paginación`, para hacer las páginas más fáciles de seguir.
+- Muchos cambios visuales, para hacer el diseño más responsive.
+- Añadida una página de `404`.
+- Mejorado el diseño del modal.
+- Añadidos los props `id` y `curso` a los elementos del array `videos.js`.
+- Otros cambios menores y correcciones.
 
 ## 1.0.2
 
-- Changes to OpenGraph, added Twitter tags...
+- Cambios en OpenGraph, añadidos Twitter tags...
 
 ## 1.0.1
 
-- Add an alert to the new PDF section alerting that PDFs aren't ready yet.
-- Changed *Coming soon* to *Pronto disponible*, as the website is Spanish.
-- Very small visual changes.
+- Añadido un aviso a la nueva sección de PDFs alertando que los PDFs aún no están listos.
+- Cambiado *Coming soon* por *Pronto disponible*, ya que la web está en español.
+- Cambios visuales muy pequeños.
 
 ## 1.0.0
 
-- Stable release!
+- ¡Lanzamiento estable!
