@@ -5,6 +5,7 @@ import Estudia from "./utils/estudia.js";
 import Lost from "./utils/lost.js";
 import Footer from "./utils/foot.js";
 import { Analytics } from "@vercel/analytics/react";
+import Buscador from "./utils/busca.js";
 
 export default function App() {
     const getPage = () => {
@@ -75,20 +76,24 @@ export default function App() {
             <nav>
                 <img src="logo-horizon.png" alt="Logotipo de ZakaProfe" id="zp-logo-nav" />
                 <div className="urls">
-                    {/* <button onClick={() => setCurrentPage("home")} className="react-button-as-href">
+                    <button onClick={() => setCurrentPage("home")} className="react-button-as-href">
                         Inicio
                     </button>
-                    <button onClick={() => changePage("estudia")} className="react-button-as-href">
-                        Estudiar más
-                    </button> */}
+                    <button
+                        onClick={() => setCurrentPage("buscar")}
+                        className="react-button-as-href"
+                    >
+                        Buscador
+                    </button>
                     <button onClick={() => toggleTheme()} className="react-button-as-href">
                         Cambiar tema
                     </button>
                 </div>
             </nav>
             {currentPage.trim().toLowerCase() === "home" && <Home />}
+            {currentPage.trim().toLowerCase() === "buscar" && <Buscador />}
             {currentPage.trim().toLowerCase() === "estudia" && <Estudia />}
-            {!["home", "estudia"].includes(currentPage.trim().toLowerCase()) && <Lost />}
+            {!["home", "estudia", "buscar"].includes(currentPage.trim().toLowerCase()) && <Lost />}
             <Footer />
             <Analytics />
         </main>

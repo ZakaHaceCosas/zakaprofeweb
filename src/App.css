@@ -97,6 +97,28 @@ html {
     height: -moz-fit-content;
     height: fit-content;
 }
+
+.result {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: start;
+    justify-content: start;
+    border-radius: 15px;
+    background-color: var(--blk);
+    padding: 20px;
+}
+input,
+.result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: start;
+    border-radius: 15px;
+    background-color: var(--blk);
+    padding: 20px;
+    color: white;
+}
 section .flex-container {
     display: flex;
     flex-direction: column;
