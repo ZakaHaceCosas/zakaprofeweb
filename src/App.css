@@ -404,11 +404,36 @@ hr {
         gap: 10px;
     }
 }
+@keyframes bola-anim {
+    0% {
+        /* 
+        width: 1px;
+        height: 1px; */
+        opacity: 0;
+    }
+    50% {
+        /* 
+        width: 10px;
+        height: 10px; */
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.bola-wrap {
+    aspect-ratio: 1/1;
+    width: 10px;
+    height: 10px;
+    display: grid;
+    place-items: center;
+}
 .bola {
     width: 10px;
     height: 10px;
     border-radius: 100%;
     aspect-ratio: 1/1;
+    animation: bola-anim 2750ms infinite linear;
 }
 .bola.disponible {
     background-color: var(--zakaProfe);

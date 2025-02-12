@@ -85,10 +85,12 @@ export default function ZakAvailable() {
                 Responderé cuando pueda; aquí tienes un "horario de referencia", por si te sirve.
             </p>
             <div className="row-ish">
-                <div className={`bola ${statusClass}`}></div>
+                <div className="bola-wrap">
+                    <div className={`bola ${statusClass}`}></div>
+                </div>
                 <h2 className={`non-bold-header ${statusClass}`}>
-                    {status} · {currentSpanishTime}{" "}
-                    <span style={{ fontSize: "medium", fontWeight: 600 }}>(UTC+1)</span>
+                    {status} <b>·</b> {currentSpanishTime}{" "}
+                    <span style={{ fontSize: "medium", fontWeight: 600 }}>UTC+1</span>
                 </h2>
             </div>
             <hr />

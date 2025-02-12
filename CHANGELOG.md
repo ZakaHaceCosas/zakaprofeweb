@@ -7,6 +7,7 @@ Actualizaciones visibles para el usuario:
 - Se mejoró significativamente la experiencia de usuario optimizando las imágenes a WEBP (14mb de ahorro).
 - Se añadió un buscador. Es muy simple, pero bastante más rápido que el de YouTube.
 - Se hizo que la barra de navegación use iconos en móvil.
+- Ahora la bola de status tiene una animación simple :)
 
 ## 2.0.0 (08/02/2025)
 
