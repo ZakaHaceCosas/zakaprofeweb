@@ -7,7 +7,12 @@ Actualizaciones visibles para el usuario:
 - Se mejoró significativamente la experiencia de usuario optimizando las imágenes a WEBP (14mb de ahorro).
 - Se añadió un buscador. Es muy simple, pero bastante más rápido que el de YouTube.
 - Se hizo que la barra de navegación use iconos en móvil.
+- Ahora la misma página tiene varias rutas comunes (p ej. `/home` y `/inicio`) válidas.
 - Ahora la bola de status tiene una animación simple :)
+
+Actualizaciones internas (desarrollo):
+
+- Ahora las strings se validan con `string-utils` (nueva dep.) en vez de `.trim().toLowerCase()` para más precision.
 
 ## 2.0.0 (08/02/2025)
 

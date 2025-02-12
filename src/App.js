@@ -6,6 +6,7 @@ import Lost from "./utils/lost.js";
 import Footer from "./utils/foot.js";
 import { Analytics } from "@vercel/analytics/react";
 import Buscador from "./utils/busca.js";
+import { StringUtils } from "@zakahacecosas/string-utils";
 
 export default function App() {
     const getPage = () => {
@@ -71,6 +72,22 @@ export default function App() {
         document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Lax`;
     }, [theme]);
 
+    const pathnames = {
+        home: ["home", "inicio"],
+        search: ["search", "busca", "buscar", "buscador"],
+        estudia: ["estudia"],
+    };
+
+    const validPath = (against) => {
+        return against.includes(StringUtils.normalize(currentPage, true, true));
+    };
+
+    const isLost = [...pathnames.home, ...pathnames.search, ...pathnames.estudia].includes(
+        StringUtils.normalize(currentPage, true, true)
+    )
+        ? false
+        : true;
+
     return (
         <main className="App">
             <nav>
@@ -119,10 +136,10 @@ export default function App() {
                     </button>
                 </div>
             </nav>
-            {currentPage.trim().toLowerCase() === "home" && <Home />}
-            {currentPage.trim().toLowerCase() === "buscar" && <Buscador />}
-            {currentPage.trim().toLowerCase() === "estudia" && <Estudia />}
-            {!["home", "estudia", "buscar"].includes(currentPage.trim().toLowerCase()) && <Lost />}
+            {validPath(pathnames.home) && <Home />}
+            {validPath(pathnames.search) && <Buscador />}
+            {validPath(pathnames.estudia) && <Estudia />}
+            {isLost && <Lost />}
             <Footer />
             <Analytics />
         </main>
