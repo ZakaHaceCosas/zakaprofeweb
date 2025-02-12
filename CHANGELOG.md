@@ -2,6 +2,8 @@
 
 ## 2.1.0
 
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/75761b525181b5244963e83dd67c73cf0fd81103...ca903de99036cbebb0c1164924b098a100aa8512).
+
 Actualizaciones visibles para el usuario:
 
 - Se optimizó un montón la página
