@@ -45,7 +45,6 @@ const seasonThree = [
     },
 ];
 
-/** Only some videos to reach the min of 6 (and go a lil beyond) */
 const seasonTwo = [
     {
         title: "Funciones",

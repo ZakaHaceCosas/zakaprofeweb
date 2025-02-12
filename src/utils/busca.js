@@ -1,28 +1,32 @@
 import { useState } from "react";
 import items from "../resources/videos";
 import ExternalLink from "./ext-link";
+import { StringUtils } from "@zakahacecosas/string-utils";
 
 export default function Buscador() {
     const [search, setSearch] = useState("");
-    const filteredVideos = items.filter(
-        (v) =>
-            v.title.trim().toLowerCase().includes(search.trim().toLowerCase()) ||
-            v.topic.trim().toLowerCase().includes(search.trim().toLowerCase())
-    );
+    const searchTerm = StringUtils.normalize(search, true, true);
+
+    const filteredVideos =
+        searchTerm === ""
+            ? []
+            : items.filter(
+                  (v) =>
+                      StringUtils.normalize(v.title, true, true).includes(searchTerm) ||
+                      StringUtils.normalize(v.topic, true, true).includes(searchTerm)
+              );
 
     return (
         <section
             className="hero"
-            style={{ flexDirection: "column", justifyContent: "center", gap: 10 }}
+            style={{ flexDirection: "column", justifyContent: "center", gap: 15 }}
         >
             <h1>Buscador de vídeos</h1>
             <p>
                 Con enlace directo a YouTube. Carga más rápido que el propio buscador de YT, así que
                 te será útil.
             </p>
-            <br />
             <hr />
-            <br />
             <div className="bg-grad" style={{ minWidth: "30vw" }}>
                 <input
                     type="text"
@@ -31,7 +35,7 @@ export default function Buscador() {
                     onChange={(e) => setSearch(e.target.value)}
                 />
             </div>
-            {filteredVideos.length > 2 && filteredVideos.length !== 0 && search.trim() !== "" && (
+            {filteredVideos.length > 2 && (
                 <p style={{ fontSize: "x-small", opacity: 0.45 }}>
                     (puedes deslizar abajo, hay más)
                 </p>
@@ -48,45 +52,41 @@ export default function Buscador() {
                     width: "80vw",
                 }}
             >
-                {search.trim() !== "" &&
-                    filteredVideos.map((v) => (
-                        <div
-                            style={{
-                                backgroundColor: "var(--fff25)",
-                                borderRadius: 17,
-                                padding: 2,
-                                width: "100%",
-                            }}
-                        >
-                            <div className="result">
-                                <img
-                                    src={v.thumbnail}
-                                    alt={`${v.title}, ${v.topic}, ${v.level}`}
-                                    style={{ maxWidth: "250px", borderRadius: 10 }}
-                                />
-                                <div
-                                    className="result-content"
-                                    style={{
-                                        alignItems: "start",
-                                        justifyContent: "start",
-                                        paddingTop: 0,
-                                    }}
-                                >
-                                    <h3>{v.title}</h3>
-                                    <hr />
-                                    <p style={{ fontSize: "smaller", opacity: 0.5 }}>
-                                        {v.topic} · {v.level}
-                                    </p>
-                                    <ExternalLink key={v.title} url={v.url}>
-                                        Ver en YouTube &gt;
-                                    </ExternalLink>
-                                </div>
+                {filteredVideos.map((v) => (
+                    <div
+                        key={v.title}
+                        style={{
+                            backgroundColor: "var(--fff25)",
+                            borderRadius: 17,
+                            padding: 2,
+                            width: "100%",
+                        }}
+                    >
+                        <div className="result">
+                            <img
+                                src={v.thumbnail}
+                                alt={`${v.title}, ${v.topic}, ${v.level}`}
+                                style={{ maxWidth: "250px", borderRadius: 10 }}
+                            />
+                            <div
+                                className="result-content"
+                                style={{
+                                    alignItems: "start",
+                                    justifyContent: "start",
+                                    paddingTop: 0,
+                                }}
+                            >
+                                <h3>{v.title}</h3>
+                                <hr />
+                                <p style={{ fontSize: "smaller", opacity: 0.5 }}>
+                                    {v.topic} · {v.level}
+                                </p>
+                                <ExternalLink url={v.url}>Ver en YouTube &gt;</ExternalLink>
                             </div>
                         </div>
-                    ))}
-                {filteredVideos.length > 5 &&
-                    filteredVideos.length !== 0 &&
-                    search.trim() !== "" && <p>Cuántos videos, ¿no?</p>}
+                    </div>
+                ))}
+                {filteredVideos.length > 7 && <p>Cuántos videos, ¿no?</p>}
             </div>
         </section>
     );

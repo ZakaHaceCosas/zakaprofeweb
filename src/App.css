@@ -120,7 +120,7 @@ input,
     border-radius: 15px;
     background-color: var(--blk);
     padding: 20px;
-    color: white;
+    color: var(--txt);
 }
 section .flex-container {
     display: flex;
@@ -336,12 +336,11 @@ hr {
     .search-results {
         width: 100% !important;
     }
-    .result {
-        flex-direction: column;
-        gap: 10px;
+    .result h3 {
+        font-size: x-large;
     }
     .result img {
-        max-width: 100% !important;
+        max-width: 50% !important;
         width: 100%;
         aspect-ratio: 16/9;
     }
@@ -393,6 +392,12 @@ hr {
     }
     a[href] {
         text-decoration: underline !important;
+    }
+    .result a {
+        padding: 10px;
+        background-color: var(--fff25);
+        border-radius: 5px;
+        text-decoration: none !important;
     }
     .item {
         padding: 15px;
