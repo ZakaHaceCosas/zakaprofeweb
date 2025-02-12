@@ -33,10 +33,6 @@
     --blkSha: #00000010;
     --grey: #999999;
     --fff25: #00000025;
-    --modal-bg: #ffffff80;
-
-    --alwaysWhite: #fff;
-    --alwaysBlack: #000;
     --zakaProfe: #0099ff;
 }
 img {
@@ -282,7 +278,7 @@ hr {
         width: 100% !important;
     }
     .hero {
-        flex-direction: column;
+        flex-direction: column-reverse;
         height: auto;
         max-height: auto;
         justify-content: start;
@@ -293,36 +289,34 @@ hr {
     }
     .hero .side1,
     .hero .side2,
-    .hero .side1 .bg-grad,
-    .hero .side2 .bg-grad,
     .hero .bg-grad,
     .video,
     .randoms,
     .randoms a,
-    .video .overlay {
-        width: 100%;
-    }
-    .search-results {
+    .video .overlay,
+    .search-results,
+    .result,
+    .result img,
+    .result a,
+    .result-content {
         width: 100% !important;
+    }
+    .result {
+        flex-direction: column;
     }
     .result h3 {
         font-size: x-large;
     }
     .result img {
-        max-width: 50% !important;
-        width: 100%;
         aspect-ratio: 16/9;
+        max-width: 100% !important;
     }
     .result-content {
         padding: 0;
-        width: 100%;
     }
     body,
     html {
         overflow-y: visible;
-    }
-    .result {
-        width: 100%;
     }
     nav,
     footer {
@@ -341,10 +335,6 @@ hr {
     }
     .big-header {
         font-size: 24px;
-    }
-    .modal-content {
-        max-width: 90vw;
-        max-height: 80vh;
     }
     .item .item-flex {
         flex-direction: column;

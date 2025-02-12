@@ -7,10 +7,6 @@ import ZakAvailable from "./zakavailable.js";
 export default function Home() {
     return (
         <section className="hero">
-            <header className="mobile-hero">
-                <h1>¡Hola!</h1>
-                <p>Soy ZakaProfe, y hago videos para ayudarte a aprobar :].</p>
-            </header>
             <section className="side1" aria-labelledby="video-section">
                 <h1 id="video-section">VIDEOS &gt;&gt;&gt;</h1>
                 <div className="bg-grad">
@@ -35,6 +31,10 @@ export default function Home() {
                     <ZakAvailable />
                 </div>
             </section>
+            <header className="mobile-hero">
+                <h1>¡Hola!</h1>
+                <p>Soy ZakaProfe, y hago videos para ayudarte a aprobar :].</p>
+            </header>
         </section>
     );
 }
