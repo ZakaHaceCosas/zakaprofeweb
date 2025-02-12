@@ -1,7 +1,6 @@
 import * as React from "react";
 import "./App.css";
 import Home from "./utils/home.js";
-import Estudia from "./utils/estudia.js";
 import Lost from "./utils/lost.js";
 import Footer from "./utils/foot.js";
 import { Analytics } from "@vercel/analytics/react";
@@ -75,14 +74,13 @@ export default function App() {
     const pathnames = {
         home: ["home", "inicio"],
         search: ["search", "busca", "buscar", "buscador"],
-        estudia: ["estudia"],
     };
 
     const validPath = (against) => {
         return against.includes(StringUtils.normalize(currentPage, true, true));
     };
 
-    const isLost = [...pathnames.home, ...pathnames.search, ...pathnames.estudia].includes(
+    const isLost = [...pathnames.home, ...pathnames.search].includes(
         StringUtils.normalize(currentPage, true, true)
     )
         ? false
@@ -138,7 +136,6 @@ export default function App() {
             </nav>
             {validPath(pathnames.home) && <Home />}
             {validPath(pathnames.search) && <Buscador />}
-            {validPath(pathnames.estudia) && <Estudia />}
             {isLost && <Lost />}
             <Footer />
             <Analytics />

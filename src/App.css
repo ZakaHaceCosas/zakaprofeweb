@@ -2,11 +2,10 @@
 * Prefixed by https://autoprefixer.github.io
 * PostCSS: v8.4.14,
 * Autoprefixer: v10.4.7
-* Browsers: last 2 version,not dead,not op_mini all
+* Browsers: last 3 version,not dead,not op_mini all
 */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100;200;300;400;500;600;700;800;900;1000&display=swap"); */
 * {
     margin: 0;
     padding: 0;
@@ -20,11 +19,10 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
+*::-webkit-scrollbar,
 ::-webkit-scrollbar {
     width: 0;
     height: 0;
-}
-*::-webkit-scrollbar {
     display: none;
 }
 :root {
@@ -44,7 +42,7 @@
 img {
     pointer-events: none !important;
 }
-.big-header {
+h1 {
     font-size: 35px;
 }
 svg path {
@@ -75,16 +73,6 @@ html {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-}
-.main-body {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    width: 100vw;
-    min-height: 100vh;
-    padding-top: 25vh;
-    padding-bottom: 25vh;
 }
 .bg-grad {
     background-image: linear-gradient(to bottom right, var(--txt), var(--ng2));
@@ -268,29 +256,10 @@ footer {
 .react-button-as-href:hover {
     background-color: var(--fff25);
 }
-.btn {
-    padding: 15px;
-    background-color: var(--zakaProfe);
-    border: 2px solid var(--fff25);
-    cursor: pointer;
-    color: var(--alwaysWhite);
-    border-radius: 10px;
-}
-.btn:hover {
-    background-color: var(--alwaysWhite);
-    border: 2px solid var(--zakaProfe);
-    color: var(--zakaProfe);
-}
 hr {
     width: 100%;
     height: 2px;
     border-bottom: 1px solid var(--grey);
-}
-.btn.btn-disabled {
-    background-color: #ffc832;
-    color: var(--alwaysBlack);
-    border: 2px solid var(--fff25);
-    cursor: not-allowed;
 }
 .mobile-hero {
     display: none;
@@ -352,13 +321,6 @@ hr {
     html {
         overflow-y: visible;
     }
-    .main-body {
-        flex-direction: column;
-        overflow-y: scroll;
-        min-height: 100vh;
-        justify-content: center;
-        gap: 40px;
-    }
     .result {
         width: 100%;
     }
@@ -404,17 +366,22 @@ hr {
         gap: 10px;
     }
 }
-@keyframes bola-anim {
+@-webkit-keyframes bola-anim {
     0% {
-        /* 
-        width: 1px;
-        height: 1px; */
         opacity: 0;
     }
     50% {
-        /* 
-        width: 10px;
-        height: 10px; */
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes bola-anim {
+    0% {
+        opacity: 0;
+    }
+    50% {
         opacity: 1;
     }
     100% {
@@ -433,6 +400,7 @@ hr {
     height: 10px;
     border-radius: 100%;
     aspect-ratio: 1/1;
+    -webkit-animation: bola-anim 2750ms infinite linear;
     animation: bola-anim 2750ms infinite linear;
 }
 .bola.disponible {

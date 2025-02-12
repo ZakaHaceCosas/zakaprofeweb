@@ -12,9 +12,7 @@ export default function Home() {
                 <p>Soy ZakaProfe, y hago videos para ayudarte a aprobar :].</p>
             </header>
             <section className="side1" aria-labelledby="video-section">
-                <h1 id="video-section" className="big-header">
-                    VIDEOS &gt;&gt;&gt;
-                </h1>
+                <h1 id="video-section">VIDEOS &gt;&gt;&gt;</h1>
                 <div className="bg-grad">
                     <div className="flex-container">
                         <h2 className="non-bold-header">ZakaProfe en YouTube</h2>
@@ -32,9 +30,7 @@ export default function Home() {
                 <img id="zp-logo" src="./logo256.webp" alt="Logotipo de ZakaProfe" />
             </section>
             <section className="side2" aria-labelledby="contact-section">
-                <h1 id="contact-section" className="big-header">
-                    &lt;&lt;&lt; CONTACTO
-                </h1>
+                <h1 id="contact-section">&lt;&lt;&lt; CONTACTO</h1>
                 <div className="bg-grad">
                     <ZakAvailable />
                 </div>

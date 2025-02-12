@@ -4,11 +4,15 @@
 
 Actualizaciones visibles para el usuario:
 
-- Se mejoró significativamente la experiencia de usuario optimizando las imágenes a WEBP (14mb de ahorro).
+- Se optimizó un montón la página
+  - Todas las imágenes PNG ahora son WEBP (14mb de ahorro).
+  - Se eliminó CSS no usado.
+  - Se eliminó también JS y una página entera no usados.
 - Se añadió un buscador. Es muy simple, pero bastante más rápido que el de YouTube.
 - Se hizo que la barra de navegación use iconos en móvil.
 - Ahora la misma página tiene varias rutas comunes (p ej. `/home` y `/inicio`) válidas.
 - Ahora la bola de status tiene una animación simple :)
+- La página "Estudia más" fue ocultada por completo. El código aún existe, pero es ahora 100% inaccesible y dicho código ya no está en el repositorio.
 
 Actualizaciones internas (desarrollo):
 
