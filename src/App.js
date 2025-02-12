@@ -74,7 +74,7 @@ export default function App() {
     return (
         <main className="App">
             <nav>
-                <img src="logo-horizon.png" alt="Logotipo de ZakaProfe" id="zp-logo-nav" />
+                <img src="logo-horizon.webp" alt="Logotipo de ZakaProfe" id="zp-logo-nav" />
                 <div className="urls">
                     <button onClick={() => setCurrentPage("home")} className="react-button-as-href">
                         <svg

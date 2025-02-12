@@ -15,13 +15,13 @@
             "type": "image/x-icon"
         },
         {
-            "src": "logo192.png",
-            "type": "image/png",
+            "src": "logo192.webp",
+            "type": "image/webp",
             "sizes": "192x192"
         },
         {
-            "src": "logo512.png",
-            "type": "image/png",
+            "src": "logo512.webp",
+            "type": "image/webp",
             "sizes": "512x512"
         }
     ],
@@ -33,39 +33,39 @@
     "background_color": "#0F0F0F",
     "screenshots": [
         {
-            "src": "/ss.png",
+            "src": "/ss.webp",
             "sizes": "1280x1024",
-            "type": "image/png",
+            "type": "image/webp",
             "form_factor": "wide"
         },
         {
-            "src": "/ss_light.png",
+            "src": "/ss_light.webp",
             "sizes": "1280x1024",
-            "type": "image/png",
+            "type": "image/webp",
             "form_factor": "wide"
         },
         {
-            "src": "/ss_m.png",
+            "src": "/ss_m.webp",
             "sizes": "720x1612",
-            "type": "image/png",
+            "type": "image/webp",
             "form_factor": "narrow"
         },
         {
-            "src": "/ss_m2.png",
+            "src": "/ss_m2.webp",
             "sizes": "720x1612",
-            "type": "image/png",
+            "type": "image/webp",
             "form_factor": "narrow"
         },
         {
-            "src": "/ss_m_light.png",
+            "src": "/ss_m_light.webp",
             "sizes": "720x1612",
-            "type": "image/png",
+            "type": "image/webp",
             "form_factor": "narrow"
         },
         {
-            "src": "/ss_m2_light.png",
+            "src": "/ss_m2_light.webp",
             "sizes": "720x1612",
-            "type": "image/png",
+            "type": "image/webp",
             "form_factor": "narrow"
         }
     ],

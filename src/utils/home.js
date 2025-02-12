@@ -29,7 +29,7 @@ export default function Home() {
                 </div>
             </section>
             <section id="main">
-                <img id="zp-logo" src="./logo256.png" alt="Logotipo de ZakaProfe" />
+                <img id="zp-logo" src="./logo256.webp" alt="Logotipo de ZakaProfe" />
             </section>
             <section className="side2" aria-labelledby="contact-section">
                 <h1 id="contact-section" className="big-header">
