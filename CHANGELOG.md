@@ -1,8 +1,16 @@
 # ZPW Changelog
 
+## 2.1.1
+
+[No lanzada]
+
+Actualizaciones visibles para el usuario:
+
+- Se cambiaron ligeramente los estilos (entre otros ajustes ahora son sin degradados).
+
 ## 2.1.0
 
-[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/75761b525181b5244963e83dd67c73cf0fd81103...ca903de99036cbebb0c1164924b098a100aa8512).
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/75761b525181b5244963e83dd67c73cf0fd81103...b1717088db022e6b228dd93e958c746c01354a97).
 
 Actualizaciones visibles para el usuario:
 

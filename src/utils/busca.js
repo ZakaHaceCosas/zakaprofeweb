@@ -27,7 +27,7 @@ export default function Buscador() {
                 te será útil.
             </p>
             <hr />
-            <div className="bg-grad" style={{ minWidth: "30vw" }}>
+            <div style={{ minWidth: "30vw" }}>
                 <input
                     type="text"
                     placeholder="Busca un video..."

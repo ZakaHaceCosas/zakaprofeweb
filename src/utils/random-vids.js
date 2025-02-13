@@ -25,28 +25,24 @@ export default function RandomVideoFeed() {
         <div className="randoms">
             {videos.one && (
                 <ExternalLink url={videos.one.url}>
-                    <div className="bg-grad">
-                        <div className="video">
-                            <img src={videos.one.thumbnail} alt={videos.one.title} />
-                            <div className="overlay">
-                                <p>
-                                    Ver <b>{videos.one.title}</b> &gt;&gt;&gt;
-                                </p>
-                            </div>
+                    <div className="video">
+                        <img src={videos.one.thumbnail} alt={videos.one.title} />
+                        <div className="overlay">
+                            <p>
+                                Ver <b>{videos.one.title}</b> &gt;&gt;&gt;
+                            </p>
                         </div>
                     </div>
                 </ExternalLink>
             )}
             {videos.two && (
                 <ExternalLink url={videos.two.url}>
-                    <div className="bg-grad">
-                        <div className="video">
-                            <img src={videos.two.thumbnail} alt={videos.two.title} />
-                            <div className="overlay">
-                                <p>
-                                    Ver <b>{videos.two.title}</b> &gt;&gt;&gt;
-                                </p>
-                            </div>
+                    <div className="video">
+                        <img src={videos.two.thumbnail} alt={videos.two.title} />
+                        <div className="overlay">
+                            <p>
+                                Ver <b>{videos.two.title}</b> &gt;&gt;&gt;
+                            </p>
                         </div>
                     </div>
                 </ExternalLink>

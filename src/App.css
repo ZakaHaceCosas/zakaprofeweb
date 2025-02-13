@@ -34,6 +34,7 @@
     --grey: #999999;
     --fff25: #00000025;
     --zakaProfe: #0099ff;
+    --border: 2px solid var(--fff25);
 }
 img {
     pointer-events: none !important;
@@ -70,18 +71,6 @@ html {
     height: 100vh;
     overflow: hidden;
 }
-.bg-grad {
-    background-image: linear-gradient(to bottom right, var(--txt), var(--ng2));
-    padding: 2px;
-    border-radius: 17px;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-}
-
 .result {
     display: flex;
     flex-direction: row;
@@ -94,6 +83,7 @@ html {
 }
 input {
     width: 100%;
+    border: var(--border);
 }
 input,
 .result-content {
@@ -107,6 +97,7 @@ input,
     color: var(--txt);
 }
 section .flex-container {
+    border: var(--border);
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -129,16 +120,18 @@ section.side2 {
     gap: 10px;
 }
 .video {
+    border: var(--border);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    width: 350px;
+    position: relative;
+    width: 100%;
     aspect-ratio: 16/9;
 }
 .video .overlay {
-    position: fixed;
-    width: 350px;
+    position: absolute;
+    width: inherit;
     aspect-ratio: 16/9;
     background-color: var(--overlay);
     opacity: 0;
@@ -146,7 +139,7 @@ section.side2 {
     justify-content: center;
     text-align: center;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 12px;
     padding: 10px;
 }
 .video .overlay p {
@@ -189,12 +182,12 @@ section#main {
 }
 nav,
 footer {
+    border: var(--border);
     position: fixed;
     z-index: 999;
     padding: 15px;
     border-radius: 10px;
     background-color: var(--blk);
-    border: 2px solid var(--fff25);
     box-shadow: 0px 0px 15px 0px var(--blkSha);
     max-height: 100px;
 }
@@ -267,9 +260,6 @@ hr {
     nav .urls button p {
         display: none;
     }
-    .overlay {
-        display: none !important; /* no sé arreglarlo en móvil :c */
-    }
     .hero #main {
         display: none;
     }
@@ -289,7 +279,6 @@ hr {
     }
     .hero .side1,
     .hero .side2,
-    .hero .bg-grad,
     .video,
     .randoms,
     .randoms a,
