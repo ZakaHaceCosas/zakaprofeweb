@@ -84,6 +84,19 @@ export default function App() {
         ? false
         : true;
 
+    // nos hacemos los interesantes xd
+    React.useEffect(() => {
+        console.log(
+            "%cZakaProfe%c Salvando tus notas 👍",
+            "color: white; background: #0099ff; padding: 5px 10px; border-radius: 5px; font-size: 16px; font-weight: bold;",
+            "font-size: 15px;"
+        );
+        console.log(
+            "%cNo sé que haces husmeando en la consola, aquí sólo debería entrar yo.\nTu deberías estar suscribiéndose a ZakaProfe @ https://youtube.com/@ZakaProfe y siguiéndome en Instagram @ https://instagram.com/zhc.zakaprofe",
+            "color: white; font-style: italic;"
+        );
+    }, []);
+
     return (
         <main className="App">
             <nav>
