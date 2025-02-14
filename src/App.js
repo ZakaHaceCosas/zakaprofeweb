@@ -117,12 +117,12 @@ export default function App() {
                     <button onClick={() => toggleTheme()} className="react-button-as-href">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="800px"
-                            height="800px"
+                            width="24px"
+                            height="24px"
                             viewBox="0 0 24 24"
                             fill="none"
                         >
-                            <circle cx="12" cy="12" r="9" stroke="#33363F" stroke-width="2" />
+                            <circle cx="12" cy="12" r="9" stroke="#33363F" strokeWidth="2" />
                             <path
                                 d="M18.364 5.63604C16.6761 3.94821 14.3869 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364L12 12L18.364 5.63604Z"
                                 fill="#33363F"

@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import items from "../resources/videos";
 import ExternalLink from "./ext-link";
 import { StringUtils } from "@zakahacecosas/string-utils";
 
 export default function Buscador() {
     const [search, setSearch] = useState("");
-    const searchTerm = StringUtils.normalize(search, true, true);
+    const searchTerm = useMemo(() => StringUtils.normalize(search, true), [search]);
 
-    const filteredVideos =
-        searchTerm === ""
-            ? []
-            : items.filter(
-                  (v) =>
-                      StringUtils.normalize(v.title, true, true).includes(searchTerm) ||
-                      StringUtils.normalize(v.topic, true, true).includes(searchTerm)
-              );
+    const filteredVideos = useMemo(() => {
+        if (!StringUtils.validate(searchTerm) || searchTerm.length < 3) return [];
+
+        return items.filter(
+            (v) =>
+                StringUtils.normalize(v.title, true, true).includes(searchTerm) ||
+                StringUtils.normalize(v.topic, true, true).includes(searchTerm)
+        );
+    }, [searchTerm]);
 
     return (
         <section
@@ -23,70 +24,67 @@ export default function Buscador() {
         >
             <h1>Buscador de vídeos</h1>
             <p>
-                Con enlace directo a YouTube. Carga más rápido que el propio buscador de YT, así que
-                te será útil.
+                Es más rápido que el propio buscador de YouTube y tiene enlace directo a cada video,
+                por lo que te será útil.
             </p>
             <hr />
-            <div style={{ minWidth: "30vw" }}>
+            <div
+                style={{
+                    minWidth: "50vw",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 10,
+                }}
+            >
                 <input
                     type="text"
                     placeholder="Busca un video..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
+                    aria-label="Buscar videos"
                 />
+                <p style={{ fontSize: "small", opacity: 0.65, minWidth: "15%" }} aria-live="polite">
+                    Mostrando
+                    <br />
+                    <b>{filteredVideos.length}</b> videos
+                </p>
             </div>
             {filteredVideos.length > 2 && (
                 <p style={{ fontSize: "x-small", opacity: 0.45 }}>
                     (puedes deslizar abajo, hay más)
                 </p>
             )}
-            <div
-                className="row-ish search-results"
-                style={{
-                    flexDirection: "column",
-                    alignItems: "start",
-                    justifyContent: "start",
-                    maxHeight: "45vh",
-                    overflow: "scroll",
-                    padding: 5,
-                    width: "80vw",
-                }}
-            >
-                {filteredVideos.map((v) => (
-                    <div
-                        key={v.title}
-                        style={{
-                            backgroundColor: "var(--fff25)",
-                            borderRadius: 17,
-                            padding: 2,
-                            width: "100%",
-                        }}
-                    >
-                        <div className="result">
-                            <img
-                                src={v.thumbnail}
-                                alt={`${v.title}, ${v.topic}, ${v.level}`}
-                                style={{ maxWidth: "250px", borderRadius: 10 }}
-                            />
-                            <div
-                                className="result-content"
-                                style={{
-                                    alignItems: "start",
-                                    justifyContent: "start",
-                                    paddingTop: 0,
-                                }}
-                            >
+            <div className="search-results">
+                {searchTerm.length > 3 &&
+                    filteredVideos.map((v) => (
+                        <div className="result" key={v.title}>
+                            <img src={v.thumbnail} alt={`${v.title}, ${v.topic}, ${v.level}`} />
+                            <div className="result-content">
                                 <h3>{v.title}</h3>
                                 <hr />
                                 <p style={{ fontSize: "smaller", opacity: 0.5 }}>
                                     {v.topic} · {v.level}
                                 </p>
-                                <ExternalLink url={v.url}>Ver en YouTube &gt;</ExternalLink>
+                                <div className="react-button-as-href">
+                                    <ExternalLink url={v.url}>Ver en YouTube &gt;</ExternalLink>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
                 {filteredVideos.length > 7 && <p>Cuántos videos, ¿no?</p>}
+                {filteredVideos.length === 0 &&
+                    searchTerm.length > 3 &&
+                    searchTerm !== "voyaaprobar" && (
+                        <p>
+                            No se han encontrado resultados para <b>{search}</b>.
+                        </p>
+                    )}
+                {searchTerm === "voyaaprobar" && <p>Di que sí campeón</p>}
+                {searchTerm.length !== 0 && searchTerm.length < 3 && (
+                    <p>Mínimo {3} letras para buscar.</p>
+                )}
             </div>
         </section>
     );

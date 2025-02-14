@@ -6,7 +6,13 @@
 
 Actualizaciones visibles para el usuario:
 
-- Se cambiaron ligeramente los estilos (entre otros ajustes ahora son sin degradados).
+- Se cambiaron ligeramente los estilos (ahora son sin degradados + se arregló el overlay de los videos en móvil + otros ajustes menores).
+- Se mejoró el buscador, ahora luce mejor, valida mejor la entrada, y rinde mejor.
+- Se optimizó un poco más la página eliminando estilos CSS no usados.
+
+Actualizaciones internas (desarrollo):
+
+- Eliminado `pdfPro` y `pdfNah` del array de videos.
 
 ## 2.1.0
 
@@ -29,6 +35,8 @@ Actualizaciones internas (desarrollo):
 - Ahora las strings se validan con `string-utils` (nueva dep.) en vez de `.trim().toLowerCase()` para más precision.
 
 ## 2.0.0 (08/02/2025)
+
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/5457f06689b7b1510067c6a3d077bcb6fb17bc34...75761b525181b5244963e83dd67c73cf0fd81103).
 
 - ¡El sitio web ha vuelto!
 
