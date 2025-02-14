@@ -1,8 +1,8 @@
 # ZPW Changelog
 
-## 2.1.1
+## 2.1.1 (14/02/2025)
 
-[No lanzada]
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/b1717088db022e6b228dd93e958c746c01354a97...1575d528d7be86d800a2ff11e253fd05c6bcc075)
 
 Actualizaciones visibles para el usuario:
 
@@ -14,7 +14,7 @@ Actualizaciones internas (desarrollo):
 
 - Eliminado `pdfPro` y `pdfNah` del array de videos.
 
-## 2.1.0
+## 2.1.0 (12/02/2025)
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/75761b525181b5244963e83dd67c73cf0fd81103...b1717088db022e6b228dd93e958c746c01354a97).
 
