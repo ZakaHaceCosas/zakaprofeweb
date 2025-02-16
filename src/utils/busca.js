@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
 import items from "../resources/videos";
-import ExternalLink from "./ext-link";
 import { StringUtils } from "@zakahacecosas/string-utils";
 
 export default function Buscador() {
@@ -13,7 +12,8 @@ export default function Buscador() {
         return items.filter(
             (v) =>
                 StringUtils.normalize(v.title, true, true).includes(searchTerm) ||
-                StringUtils.normalize(v.topic, true, true).includes(searchTerm)
+                StringUtils.normalize(v.topic, true, true).includes(searchTerm) ||
+                StringUtils.normalize(v.level, true, true).includes(searchTerm)
         );
     }, [searchTerm]);
 
@@ -28,54 +28,44 @@ export default function Buscador() {
                 por lo que te será útil.
             </p>
             <hr />
-            <div
-                style={{
-                    minWidth: "50vw",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 10,
-                }}
-            >
-                <input
-                    type="text"
-                    placeholder="Busca un video..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    aria-label="Buscar videos"
-                />
-                <p style={{ fontSize: "small", opacity: 0.65, minWidth: "15%" }} aria-live="polite">
-                    Mostrando
-                    <br />
-                    <b>{filteredVideos.length}</b> videos
-                </p>
-            </div>
-            {filteredVideos.length > 2 && (
-                <p style={{ fontSize: "x-small", opacity: 0.45 }}>
-                    (puedes deslizar abajo, hay más)
-                </p>
-            )}
+            <input
+                type="text"
+                placeholder="Busca un video..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                aria-label="Buscar videos"
+            />
+            <p className="disclaimer" aria-live="polite">
+                {StringUtils.pluralOrNot("Encontrado", filteredVideos.length)}{" "}
+                <b>{filteredVideos.length}</b>{" "}
+                {StringUtils.pluralOrNot("video", filteredVideos.length)}.
+                {filteredVideos.length > 2 && " Puedes deslizar abajo, hay más."}
+            </p>
             <div className="search-results">
-                {searchTerm.length > 3 &&
+                {searchTerm.length > 2 &&
                     filteredVideos.map((v) => (
                         <div className="result" key={v.title}>
                             <img src={v.thumbnail} alt={`${v.title}, ${v.topic}, ${v.level}`} />
                             <div className="result-content">
-                                <h3>{v.title}</h3>
+                                <h2>{v.title}</h2>
                                 <hr />
-                                <p style={{ fontSize: "smaller", opacity: 0.5 }}>
-                                    {v.topic} · {v.level}
+                                <p className="disclaimer">
+                                    {v.topic} · {v.level} · S{v.season}
                                 </p>
-                                <div className="react-button-as-href">
-                                    <ExternalLink url={v.url}>Ver en YouTube &gt;</ExternalLink>
-                                </div>
+                                <a
+                                    className="btn"
+                                    href={v.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Ver en YouTube &gt;
+                                </a>
                             </div>
                         </div>
                     ))}
-                {filteredVideos.length > 7 && <p>Cuántos videos, ¿no?</p>}
+                {filteredVideos.length > 7 && <p className="disclaimer">Cuántos videos, ¿no?</p>}
                 {filteredVideos.length === 0 &&
-                    searchTerm.length > 3 &&
+                    searchTerm.length > 2 &&
                     searchTerm !== "voyaaprobar" && (
                         <p>
                             No se han encontrado resultados para <b>{search}</b>.

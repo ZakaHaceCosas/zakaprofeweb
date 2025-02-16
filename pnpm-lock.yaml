@@ -21,8 +21,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(react@19.0.0)
       '@zakahacecosas/string-utils':
-        specifier: npm:@jsr/zakahacecosas__string-utils@^1.7.1
-        version: '@jsr/zakahacecosas__string-utils@1.7.1'
+        specifier: npm:@jsr/zakahacecosas__string-utils@^1.9.0
+        version: '@jsr/zakahacecosas__string-utils@1.9.0'
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -986,8 +986,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@jsr/zakahacecosas__string-utils@1.7.1':
-    resolution: {integrity: sha512-CB8Bsg/LaZeH9jqWQ2VLGHq6YqP1MuNZPpQkhaRHkpSRjcMhGvqwef6H6KPsdnso6b5FSdx0Tq0BbatXqd1x4Q==, tarball: https://npm.jsr.io/~/11/@jsr/zakahacecosas__string-utils/1.7.1.tgz}
+  '@jsr/zakahacecosas__string-utils@1.9.0':
+    resolution: {integrity: sha512-W56a2/UyHYR6O1bz0XyZ1MBom9J4u8bdBS3QWeKozVXtZguZUBiEq0smkRq2qZnQcyX0OmMPrExhCj4x7RCuIw==, tarball: https://npm.jsr.io/~/11/@jsr/zakahacecosas__string-utils/1.9.0.tgz}
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -6799,7 +6799,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@jsr/zakahacecosas__string-utils@1.7.1': {}
+  '@jsr/zakahacecosas__string-utils@1.9.0': {}
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 

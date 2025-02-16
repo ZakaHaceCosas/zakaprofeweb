@@ -59,9 +59,6 @@ const seasonTwo = [
         topic: "Física y Química",
         level: "3º ESO",
     },
-];
-
-const __no_utilizar_bro = [
     {
         title: "Reacciones químicas",
         thumbnail: "/fyq/3eso/reacciones.webp",
@@ -77,17 +74,41 @@ const __no_utilizar_bro = [
         level: "3º ESO",
     },
     {
-        title: "Verbos modales en inglés",
-        thumbnail: "/eng/3eso/modals.webp",
-        url: "https://youtu.be/TSPC_rJzEX4",
-        topic: "Inglés",
-        level: "3º ESO",
-    },
-    {
         title: "Sintaxis en Castellano",
         thumbnail: "/esp/3eso/sintaxis.webp",
         url: "https://www.youtube.com/watch?v=CHgrGY5NdHU",
         topic: "Lengua Castellana",
+        level: "3º ESO",
+    },
+    {
+        title: "Teorema de Pitágoras",
+        thumbnail: "/mat/3eso/pitagoras.webp",
+        url: "https://www.youtube.com/watch?v=sJ_UhcUBId8",
+        topic: "Matemáticas",
+        level: "3º ESO",
+    },
+    {
+        title: "Dinámica",
+        thumbnail: "/fyq/3eso/dinamica.webp",
+        url: "https://www.youtube.com/watch?v=27jDsxGWpnc",
+        topic: "Física y Química",
+        level: "3º ESO",
+    },
+    {
+        title: "Aparato Circulatorio",
+        thumbnail: "/bio/3eso/ap_circulatorio.webp",
+        url: "https://youtube.com/watch?v=mNu2JVjy1v4",
+        topic: "Biología",
+        level: "3º ESO",
+    },
+];
+
+const seasonOne = [
+    {
+        title: "Verbos modales en inglés",
+        thumbnail: "/eng/3eso/modals.webp",
+        url: "https://youtu.be/TSPC_rJzEX4",
+        topic: "Inglés",
         level: "3º ESO",
     },
     {
@@ -104,6 +125,9 @@ const __no_utilizar_bro = [
         topic: "Ciencias Sociales",
         level: "3º ESO",
     },
+];
+
+const seasonZero = [
     {
         title: "La materia y sus propiedades",
         thumbnail: "/fyq/3eso/materia.webp",
@@ -132,34 +156,26 @@ const __no_utilizar_bro = [
         topic: "Ciencias Sociales",
         level: "3º ESO",
     },
-    {
-        title: "Teorema de Pitágoras",
-        thumbnail: "/mat/3eso/pitagoras.webp",
-        url: "https://www.youtube.com/watch?v=sJ_UhcUBId8",
-        topic: "Matemáticas",
-        level: "3º ESO",
-    },
-    {
-        title: "Dinámica",
-        thumbnail: "/fyq/3eso/dinamica.webp",
-        url: "https://www.youtube.com/watch?v=27jDsxGWpnc",
-        topic: "Física y Química",
-        level: "3º ESO",
-    },
-    {
-        title: "Aparato Circulatorio",
-        thumbnail: "/bio/3eso/ap_circulatorio.webp",
-        url: "https://youtube.com/watch?v=mNu2JVjy1v4",
-        topic: "Biología",
-        level: "3º ESO",
-    },
 ];
 
+function addSeason(vidArray, season) {
+    return vidArray.map(({ title, thumbnail, url, topic, level }) => {
+        return {
+            title,
+            thumbnail,
+            url,
+            topic,
+            level,
+            season,
+        };
+    });
+}
+
 const items = [
-    ...seasonThree,
-    ...seasonTwo,
-    // de momento se usarán todos los videos de todos modos
-    ...__no_utilizar_bro,
+    ...addSeason(seasonThree, "3"),
+    ...addSeason(seasonTwo, "1"),
+    ...addSeason(seasonOne, "2"),
+    ...addSeason(seasonZero, "0"),
 ];
 
 export default items;

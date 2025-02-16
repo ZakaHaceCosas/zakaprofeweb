@@ -1,5 +1,20 @@
 # ZPW Changelog
 
+## 2.1.2
+
+[No lanzada]
+
+Actualizaciones visibles para el usuario:
+
+- Se mejoró el buscador.
+  - Se ve visualmente mejor.
+  - Valida mejor la entrada, y ahora acepta nivel ("3º eso" o "4º eso" para buscar).
+  - Se corrigió "encontrados 1 videos".
+
+Actualizaciones internas (desarrollo):
+
+- Agrupados correctamente los videos por temporadas.
+
 ## 2.1.1 (14/02/2025)
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/b1717088db022e6b228dd93e958c746c01354a97...1575d528d7be86d800a2ff11e253fd05c6bcc075)
