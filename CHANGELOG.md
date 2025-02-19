@@ -1,8 +1,8 @@
 # ZPW Changelog
 
-## 2.1.2
+## 2.1.2 (19/02/2025)
 
-[No lanzada]
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/1575d528d7be86d800a2ff11e253fd05c6bcc075...61a89ebb62a0eb0f75d005ce7e6dbf51e750885b)
 
 Actualizaciones visibles para el usuario:
 
