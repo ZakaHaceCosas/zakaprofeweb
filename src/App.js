@@ -35,7 +35,7 @@ export default function App() {
 
     const [theme, setTheme] = React.useState(() => {
         const savedTheme = document.cookie.split("; ").find((row) => row.startsWith("theme="));
-        return savedTheme ? savedTheme.split("=")[1] : "light";
+        return savedTheme ? savedTheme.split("=")[1] : "dark";
     });
 
     const toggleTheme = () => {

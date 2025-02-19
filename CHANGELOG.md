@@ -10,6 +10,7 @@ Actualizaciones visibles para el usuario:
   - Se ve visualmente mejor.
   - Valida mejor la entrada, y ahora acepta nivel ("3º eso" o "4º eso" para buscar).
   - Se corrigió "encontrados 1 videos".
+- Ahora el tema por defecto es el oscuro, para que no te exploten los ojos.
 
 Actualizaciones internas (desarrollo):
 
