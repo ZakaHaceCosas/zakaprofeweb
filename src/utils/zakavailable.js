@@ -80,9 +80,8 @@ export default function ZakAvailable() {
     return (
         <div className="flex-container">
             <p>
-                Puedes preguntarme tus dudas por un mensaje de Instagram cuando quieras.
-                <br /> <br />
-                Responderé cuando pueda; aquí tienes un "horario de referencia", por si te sirve.
+                Puedes preguntar dudas cuando quieras y responderé cuanto antes; aquí tienes mi
+                "horario", por si te sirve.
             </p>
             <div className="row-ish">
                 <div className="bola-wrap">
