@@ -8,6 +8,13 @@
 
 const seasonThree = [
     {
+        title: "Cinemática",
+        thumbnail: "/fyq/4eso/cinematica.webp",
+        url: "https://youtube.com/watch?v=dPH94Xst8Vw",
+        topic: "Física y Química",
+        level: "4º ESO",
+    },
+    {
         title: "Radicales y logaritmos",
         thumbnail: "/mat/4eso/radicales.webp",
         url: "https://youtube.com/watch?v=uJcdRHFbjE8",
