@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
-import items from "../resources/videos";
-import ExternalLink from "../utils/ext-link";
+import { useState, useEffect } from "react";
+import items, { IVideo } from "../resources/videos.ts";
+import ExternalLink from "./ext-link.tsx";
 
 export default function RandomVideoFeed() {
-    const [videos, setVideos] = useState({ one: null, two: null });
+    const [videos, setVideos] = useState<{ one: null | IVideo; two: null | IVideo }>({
+        one: null,
+        two: null,
+    });
 
     const RandomizeVids = () => {
         const randomIndex1 = Math.floor(Math.random() * items.length);

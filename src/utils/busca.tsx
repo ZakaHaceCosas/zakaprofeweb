@@ -1,19 +1,19 @@
 import { useState, useMemo } from "react";
-import items from "../resources/videos";
+import items from "../resources/videos.ts";
 import { StringUtils } from "@zakahacecosas/string-utils";
 
 export default function Buscador() {
     const [search, setSearch] = useState("");
-    const searchTerm = useMemo(() => StringUtils.normalize(search, true), [search]);
+    const searchTerm = useMemo(() => StringUtils.normalize(search, { strict: true }), [search]);
 
     const filteredVideos = useMemo(() => {
         if (!StringUtils.validate(searchTerm) || searchTerm.length < 3) return [];
 
         return items.filter(
             (v) =>
-                StringUtils.normalize(v.title, true, true).includes(searchTerm) ||
-                StringUtils.normalize(v.topic, true, true).includes(searchTerm) ||
-                StringUtils.normalize(v.level, true, true).includes(searchTerm)
+                StringUtils.normalize(v.title, { strict: true }).includes(searchTerm) ||
+                StringUtils.normalize(v.topic, { strict: true }).includes(searchTerm) ||
+                StringUtils.normalize(v.level, { strict: true }).includes(searchTerm)
         );
     }, [searchTerm]);
 

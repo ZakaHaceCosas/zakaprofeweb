@@ -1,6 +1,4 @@
-import React from "react";
-import "../App.css";
-const { version } = require("../../package.json");
+import { version } from "../../package.json";
 
 export default function Footer() {
     return (

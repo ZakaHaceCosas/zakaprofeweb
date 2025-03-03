@@ -1,8 +1,6 @@
-import React from "react";
-import "../App.css";
-import RandomVideoFeed from "./random-vids.js";
-import ExternalLink from "../utils/ext-link";
-import ZakAvailable from "./zakavailable.js";
+import RandomVideoFeed from "./random-vids.tsx";
+import ExternalLink from "./ext-link.tsx";
+import ZakAvailable from "./zakavailable.tsx";
 
 export default function Home() {
     return (
@@ -13,7 +11,7 @@ export default function Home() {
                     <h2 className="non-bold-header">ZakaProfe en YouTube</h2>
                     <RandomVideoFeed />
                     <ExternalLink
-                        url="https://youtube.com/@ZakaProfe/"
+                        url="https://www.youtube.com/@ZakaProfe/"
                         aria-label="Visita el canal de ZakaProfe en YouTube"
                     >
                         Ver más en YouTube &gt;&gt;&gt;

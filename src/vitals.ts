@@ -3,13 +3,15 @@ const vitalsUrl = "https://vitals.vercel-analytics.com/v1/vitals";
 function getConnectionSpeed() {
     return "connection" in navigator &&
         navigator["connection"] &&
+        // @ts-expect-error (MOD)
         "effectiveType" in navigator["connection"]
         ? navigator["connection"]["effectiveType"]
         : "";
 }
 
-export function sendToVercelAnalytics(metric) {
-    const analyticsId = process.env.REACT_APP_VERCEL_ANALYTICS_ID;
+// MOD
+export function sendToVercelAnalytics(metric: { id: string; name: string; value: any }) {
+    const analyticsId = import.meta.env.VITE_VERCEL_ANALYTICS_ID;
     if (!analyticsId) {
         return;
     }
@@ -21,7 +23,8 @@ export function sendToVercelAnalytics(metric) {
         href: window.location.href,
         event_name: metric.name,
         value: metric.value.toString(),
-        speed: getConnectionSpeed(),
+        // MOD
+        speed: getConnectionSpeed() as string,
     };
 
     const blob = new Blob([new URLSearchParams(body).toString()], {

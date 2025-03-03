@@ -1,10 +1,9 @@
 import * as React from "react";
-import "./App.css";
-import Home from "./utils/home.js";
-import Lost from "./utils/lost.js";
-import Footer from "./utils/foot.js";
+import Home from "./utils/home.tsx";
+import Lost from "./utils/lost.tsx";
+import Footer from "./utils/foot.tsx";
 import { Analytics } from "@vercel/analytics/react";
-import Buscador from "./utils/busca.js";
+import Buscador from "./utils/busca.tsx";
 import { StringUtils } from "@zakahacecosas/string-utils";
 
 export default function App() {
@@ -74,12 +73,22 @@ export default function App() {
         search: ["search", "busca", "buscar", "buscador"],
     };
 
-    const validPath = (against) => {
-        return against.includes(StringUtils.normalize(currentPage, true, true));
+    const validPath = (against: string[]) => {
+        return against.includes(
+            StringUtils.normalize(currentPage, {
+                strict: true,
+                stripCliColors: true,
+                preserveCase: false,
+            })
+        );
     };
 
     const isLost = [...pathnames.home, ...pathnames.search].includes(
-        StringUtils.normalize(currentPage, true, true)
+        StringUtils.normalize(currentPage, {
+            strict: true,
+            stripCliColors: true,
+            preserveCase: false,
+        })
     )
         ? false
         : true;
@@ -92,7 +101,7 @@ export default function App() {
             "font-size: 15px;"
         );
         console.log(
-            "%cNo sé que haces husmeando en la consola, aquí sólo debería entrar yo.\nTu deberías estar suscribiéndose a ZakaProfe @ https://youtube.com/@ZakaProfe y siguiéndome en Instagram @ https://instagram.com/zhc.zakaprofe",
+            "%cNo sé que haces husmeando en la consola, aquí sólo debería entrar yo.\nTu deberías estar suscribiéndose a ZakaProfe @ https://www.youtube.com/@ZakaProfe y siguiéndome en Instagram @ https://instagram.com/zhc.zakaprofe",
             "color: white; font-style: italic;"
         );
     }, []);

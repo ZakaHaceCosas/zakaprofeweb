@@ -1,4 +1,6 @@
-export default function ExternalLink({ url, children }) {
+import { ReactNode } from "react";
+
+export default function ExternalLink({ url, children }: { url: string; children: ReactNode }) {
     return (
         <a
             style={{ display: "flex", alignItems: "center", gap: 5 }}

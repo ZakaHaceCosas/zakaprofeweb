@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ExternalLink from "./ext-link";
+import { useState, useEffect } from "react";
+import ExternalLink from "./ext-link.tsx";
 
 export default function ZakAvailable() {
     const [status, setStatus] = useState("");
@@ -13,7 +13,7 @@ export default function ZakAvailable() {
             const day = now.getUTCDay();
             const hour = now.getUTCHours() + 1;
             const minutes = now.getUTCMinutes();
-            const fmt = (s) => s.toString().padStart(2, "0");
+            const fmt = (s: number) => s.toString().padStart(2, "0");
             const formattedTime = `${fmt(hour)}:${fmt(minutes)}:${fmt(now.getUTCSeconds())}`;
             setSpanishTime(formattedTime);
             let newStatus = "";

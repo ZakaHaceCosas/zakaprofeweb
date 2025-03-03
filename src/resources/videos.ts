@@ -6,45 +6,62 @@
  * - si hay videos extraordinariamente buenos, añadirlos sin importar la temporada
  */
 
-const seasonThree = [
+export interface IVideo {
+    title: string;
+    thumbnail: string;
+    url: `https://www.youtube.com/watch?v=${string}`;
+    topic:
+        | "Física y Química"
+        | "Matemáticas"
+        | "Ciencias Sociales"
+        | "Biología y Geología"
+        | "Lengua Castellana"
+        | "Inglés";
+    level: "4º ESO" | "3º ESO";
+    season: "0" | "1" | "2" | "3";
+}
+
+type IVideoBase = Omit<IVideo, "season">;
+
+const seasonThree: IVideoBase[] = [
     {
         title: "Cinemática",
         thumbnail: "/fyq/4eso/cinematica.webp",
-        url: "https://youtube.com/watch?v=dPH94Xst8Vw",
+        url: "https://www.youtube.com/watch?v=dPH94Xst8Vw",
         topic: "Física y Química",
         level: "4º ESO",
     },
     {
         title: "Radicales y logaritmos",
         thumbnail: "/mat/4eso/radicales.webp",
-        url: "https://youtube.com/watch?v=uJcdRHFbjE8",
+        url: "https://www.youtube.com/watch?v=uJcdRHFbjE8",
         topic: "Matemáticas",
         level: "4º ESO",
     },
     {
         title: "Estequiometría",
         thumbnail: "/fyq/4eso/estequiometria.webp",
-        url: "https://youtube.com/watch?v=2NGOxlhb9SQ",
+        url: "https://www.youtube.com/watch?v=2NGOxlhb9SQ",
         topic: "Física y Química",
         level: "4º ESO",
     },
     {
         title: "Revolución Francesa",
         thumbnail: "/cis/4eso/french_revolution.webp",
-        url: "https://youtube.com/watch?v=F0YQWc0RDsg",
+        url: "https://www.youtube.com/watch?v=F0YQWc0RDsg",
         topic: "Ciencias Sociales",
         level: "4º ESO",
     },
     {
         title: "Ancien Regime",
         thumbnail: "/cis/4eso/ancien_regime.webp",
-        url: "https://youtube.com/watch?v=0nDmB7EWZ-8",
+        url: "https://www.youtube.com/watch?v=0nDmB7EWZ-8",
         topic: "Ciencias Sociales",
         level: "4º ESO",
     },
 ];
 
-const seasonTwo = [
+const seasonTwo: IVideoBase[] = [
     {
         title: "Funciones",
         thumbnail: "/mat/3eso/funciones.webp",
@@ -55,7 +72,7 @@ const seasonTwo = [
     {
         title: "Sucesiones",
         thumbnail: "/mat/3eso/sucesiones.webp",
-        url: "https://youtu.be/DB5Njh4gbT0",
+        url: "https://www.youtube.com/watch?v=DB5Njh4gbT0",
         topic: "Matemáticas",
         level: "3º ESO",
     },
@@ -69,14 +86,14 @@ const seasonTwo = [
     {
         title: "Reacciones químicas",
         thumbnail: "/fyq/3eso/reacciones.webp",
-        url: "https://youtu.be/viivXTHioac",
+        url: "https://www.youtube.com/watch?v=viivXTHioac",
         topic: "Física y Química",
         level: "3º ESO",
     },
     {
         title: "Aparato Excretor",
         thumbnail: "/bio/3eso/ap_excretor.webp",
-        url: "https://youtu.be/wZWR3jvr9mc",
+        url: "https://www.youtube.com/watch?v=wZWR3jvr9mc",
         topic: "Biología y Geología",
         level: "3º ESO",
     },
@@ -104,17 +121,17 @@ const seasonTwo = [
     {
         title: "Aparato Circulatorio",
         thumbnail: "/bio/3eso/ap_circulatorio.webp",
-        url: "https://youtube.com/watch?v=mNu2JVjy1v4",
-        topic: "Biología",
+        url: "https://www.youtube.com/watch?v=mNu2JVjy1v4",
+        topic: "Biología y Geología",
         level: "3º ESO",
     },
 ];
 
-const seasonOne = [
+const seasonOne: IVideoBase[] = [
     {
         title: "Verbos modales en inglés",
         thumbnail: "/eng/3eso/modals.webp",
-        url: "https://youtu.be/TSPC_rJzEX4",
+        url: "https://www.youtube.com/watch?v=TSPC_rJzEX4",
         topic: "Inglés",
         level: "3º ESO",
     },
@@ -134,7 +151,7 @@ const seasonOne = [
     },
 ];
 
-const seasonZero = [
+const seasonZero: IVideoBase[] = [
     {
         title: "La materia y sus propiedades",
         thumbnail: "/fyq/3eso/materia.webp",
@@ -165,7 +182,7 @@ const seasonZero = [
     },
 ];
 
-function addSeason(vidArray, season) {
+function addSeason(vidArray: IVideoBase[], season: "0" | "1" | "2" | "3"): IVideo[] {
     return vidArray.map(({ title, thumbnail, url, topic, level }) => {
         return {
             title,
@@ -178,7 +195,7 @@ function addSeason(vidArray, season) {
     });
 }
 
-const items = [
+const items: IVideo[] = [
     ...addSeason(seasonThree, "3"),
     ...addSeason(seasonTwo, "1"),
     ...addSeason(seasonOne, "2"),

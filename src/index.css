@@ -1,1 +1,423 @@
-@import 'App.css'
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 3 version,not dead,not op_mini all
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    transition-duration: 200ms;
+    font-family: "Poppins";
+    line-height: 110%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+*::-webkit-scrollbar,
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+:root {
+    --ng1: #f0f0f0;
+    --ng2: #fefefe;
+    --txt: #000000;
+    --blk: #ffffff;
+    --blkSha: #00000010;
+    --grey: #999999;
+    --fff25: #00000025;
+    --zakaProfe: #0099ff;
+    --border: 2px solid var(--fff25);
+}
+img {
+    pointer-events: none !important;
+}
+h1 {
+    font-size: 35px;
+}
+svg path {
+    fill: var(--txt);
+}
+a {
+    color: var(--txt);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--zakaProfe);
+    text-decoration: underline;
+}
+a:hover svg path {
+    fill: var(--zakaProfe);
+}
+body,
+html {
+    background-color: var(--ng1);
+    color: var(--txt);
+    overflow-x: hidden;
+}
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+.result {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: start;
+    justify-content: start;
+    border-radius: 15px;
+    background-color: var(--blk);
+    padding: 20px;
+    width: 100%;
+    border: var(--border);
+}
+input {
+    border: var(--border);
+    padding: 20px;
+    max-width: 70vw;
+}
+input,
+.result-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+    justify-content: start;
+    border-radius: 15px;
+    background-color: var(--blk);
+    color: var(--txt);
+}
+section .flex-container {
+    border: var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: start;
+    border-radius: 15px;
+    background-color: var(--blk);
+    padding: 20px;
+}
+section.side1 {
+    justify-content: start;
+}
+section.side2 {
+    justify-content: end;
+}
+.randoms {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+}
+.video {
+    border: var(--border);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+.video .overlay {
+    position: absolute;
+    width: inherit;
+    aspect-ratio: 16/9;
+    background-color: var(--overlay);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 12px;
+    padding: 10px;
+}
+.video .overlay p {
+    color: #fff;
+}
+.video:hover .overlay {
+    opacity: 1;
+}
+.video img {
+    border-radius: 10px;
+    aspect-ratio: 16/9;
+    width: 100%;
+}
+#zp-logo {
+    width: 100%;
+    height: auto;
+    object-fit: scale-down;
+}
+#zp-logo-nav {
+    height: 35px;
+    width: auto;
+    object-fit: scale-down;
+}
+section.side1,
+section.side2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 27.5%;
+}
+section#main {
+    width: 10%;
+    display: grid;
+    place-items: center;
+}
+.non-bold-header {
+    font-weight: 400;
+}
+.row-ish {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+nav,
+footer {
+    border: var(--border);
+    position: fixed;
+    z-index: 999;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: var(--blk);
+    box-shadow: 0px 0px 15px 0px var(--blkSha);
+    max-height: 100px;
+}
+nav {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+nav .urls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: end;
+}
+nav .urls button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+nav .urls button svg {
+    width: 25px;
+    height: 25px;
+    object-fit: scale-down;
+}
+.disclaimer {
+    font-size: small;
+    opacity: 0.65;
+}
+footer {
+    bottom: 20px;
+    left: 120px;
+    right: 120px;
+    text-align: center;
+    font-size: small;
+    color: var(--grey);
+    font-weight: 500;
+    font-style: italic;
+}
+.react-button-as-href {
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--txt);
+}
+.react-button-as-href:hover {
+    background-color: var(--fff25);
+}
+hr {
+    width: 100%;
+    height: 2px;
+    border-bottom: 1px solid var(--grey);
+}
+.mobile-hero {
+    display: none;
+    flex-direction: column;
+    max-width: 70vw;
+    gap: 10px;
+}
+.search-results {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    max-height: 50vh;
+    overflow: scroll;
+    padding: 5px;
+    gap: 10px;
+    width: 80vw;
+}
+.result img {
+    border: var(--border);
+    aspect-ratio: 16/9;
+    max-width: 270px;
+    border-radius: 10px;
+}
+.result .react-button-as-href,
+.result .react-button-as-href a {
+    width: 100%;
+    text-decoration: none !important;
+}
+@media only screen and (max-width: 1100px) {
+    nav .urls button p {
+        display: none;
+    }
+    .hero #main {
+        display: none;
+    }
+    .hero .mobile-hero {
+        display: flex;
+        width: 100% !important;
+    }
+    .hero {
+        flex-direction: column-reverse;
+        height: auto;
+        max-height: auto;
+        justify-content: start;
+        gap: 40px;
+        padding: 110px 20px;
+        align-items: start;
+        overflow: visible;
+    }
+    .hero .side1,
+    .hero .side2,
+    .video,
+    .randoms,
+    .randoms a,
+    .video .overlay,
+    .search-results,
+    .result,
+    .result img,
+    .result-content {
+        width: 100% !important;
+    }
+    .result {
+        flex-direction: column;
+    }
+    .result h3 {
+        font-size: x-large;
+    }
+    .result img {
+        max-width: 100%;
+    }
+    .result-content {
+        padding: 0;
+    }
+    body,
+    html {
+        overflow-y: visible;
+    }
+    nav,
+    footer {
+        left: 0;
+        right: 0;
+        border-radius: 0;
+    }
+    nav {
+        top: 0;
+    }
+    footer {
+        bottom: 0;
+    }
+    a[href] {
+        text-decoration: underline;
+    }
+}
+@-webkit-keyframes bola-anim {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes bola-anim {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.bola-wrap {
+    aspect-ratio: 1/1;
+    width: 10px;
+    height: 10px;
+    display: grid;
+    place-items: center;
+}
+.bola {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    aspect-ratio: 1/1;
+    -webkit-animation: bola-anim 2750ms infinite linear;
+    animation: bola-anim 2750ms infinite linear;
+}
+.bola.disponible {
+    background-color: var(--zakaProfe);
+}
+.bola.mas-o-menos {
+    background-color: #ff8032;
+}
+.bola.ocupado {
+    background-color: #ff3232;
+}
+h2.disponible {
+    color: var(--zakaProfe);
+}
+h2.mas-o-menos {
+    color: #ff8032;
+}
+h2.ocupado {
+    color: #ff3232;
+}
+a.btn {
+    text-decoration: none !important;
+}
+.btn {
+    padding: 15px;
+    background-color: var(--zakaProfe);
+    border: 2px solid var(--fff25);
+    cursor: pointer;
+    color: #fff;
+    border-radius: 10px;
+}
+.btn:hover {
+    background-color: var(--blk);
+    color: var(--zakaProfe);
+}

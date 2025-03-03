@@ -1,5 +1,9 @@
 # ZPW Changelog
 
+## 2.2.0 (03/03/2025)
+
+- Migrado a Vite.
+
 ## 2.1.2 (19/02/2025)
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/1575d528d7be86d800a2ff11e253fd05c6bcc075...61a89ebb62a0eb0f75d005ce7e6dbf51e750885b)
