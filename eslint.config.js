@@ -15,7 +15,7 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "quotes": ["error", "double"],
-      "max-len": ["error", { "code": 100 }],
+      "max-len": ["error", { "code": 80 }],
       "comma-dangle": ["error", "always-multiline"],
     },
   },
