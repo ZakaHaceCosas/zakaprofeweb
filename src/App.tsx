@@ -9,7 +9,7 @@ import { StringUtils } from "@zakahacecosas/string-utils";
 export default function App() {
     const getPage = () => {
         const path = window.location.pathname.substring(1);
-        return path || "home";
+        return StringUtils.normalize(path) || "home";
     };
 
     const [currentPage, setCurrentPage] = React.useState(getPage());
@@ -75,20 +75,12 @@ export default function App() {
 
     const validPath = (against: string[]) => {
         return against.includes(
-            StringUtils.normalize(currentPage, {
-                strict: true,
-                stripCliColors: true,
-                preserveCase: false,
-            })
+            StringUtils.normalize(currentPage)
         );
     };
 
     const isLost = [...pathnames.home, ...pathnames.search].includes(
-        StringUtils.normalize(currentPage, {
-            strict: true,
-            stripCliColors: true,
-            preserveCase: false,
-        })
+        currentPage
     )
         ? false
         : true;
