@@ -20,7 +20,9 @@ export default function Buscador() {
     return (
         <section
             className="hero"
-            style={{ flexDirection: "column", justifyContent: "center", gap: 15 }}
+            style={{
+                flexDirection: "column", justifyContent: "center", gap: 15
+            }}
         >
             <h1>Buscador de vídeos</h1>
             <p>
@@ -63,7 +65,6 @@ export default function Buscador() {
                             </div>
                         </div>
                     ))}
-                {filteredVideos.length > 7 && <p className="disclaimer">Cuántos videos, ¿no?</p>}
                 {filteredVideos.length === 0 &&
                     searchTerm.length > 2 &&
                     searchTerm !== "voyaaprobar" && (
@@ -73,7 +74,7 @@ export default function Buscador() {
                     )}
                 {searchTerm === "voyaaprobar" && <p>Di que sí campeón</p>}
                 {searchTerm.length !== 0 && searchTerm.length < 3 && (
-                    <p>Mínimo {3} letras para buscar.</p>
+                    <p>Mínimo 3 letras para buscar.</p>
                 )}
             </div>
         </section>
