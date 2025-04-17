@@ -1,8 +1,31 @@
+<!-- markdownlint-disable md007 -->
+
 # ZPW Changelog
+
+## 2.3.0 (17/04/2025)
+
+Actualizaciones visibles para el usuario:
+
+- Añadida una calculadora de notas.
+- Hechos algunos cambios visuales.
+
+Actualizaciones internas (desarrollo):
+
+- Eliminados archivos innecesarios.
+- Configurado Prettier.
 
 ## 2.2.0 (03/03/2025)
 
-- Migrado a Vite.
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/61a89ebb62a0eb0f75d005ce7e6dbf51e750885b...afb17008372c6916cae4e7e68eba8c6100e0c3b1)
+
+Actualizaciones visibles para el usuario:
+
+- Algún ajuste visual.
+
+Actualizaciones internas (desarrollo):
+
+- Migrado de CRA a Vite.
+- Migrado de JavaScript a TypeScript.
 
 ## 2.1.2 (19/02/2025)
 
@@ -11,9 +34,9 @@
 Actualizaciones visibles para el usuario:
 
 - Se mejoró el buscador.
-  - Se ve visualmente mejor.
-  - Valida mejor la entrada, y ahora acepta nivel ("3º eso" o "4º eso" para buscar).
-  - Se corrigió "encontrados 1 videos".
+    - Se ve visualmente mejor.
+    - Valida mejor la entrada, y ahora acepta nivel ("3º eso" o "4º eso" para buscar).
+    - Se corrigió "encontrados 1 videos".
 - Ahora el tema por defecto es el oscuro, para que no te exploten los ojos.
 
 Actualizaciones internas (desarrollo):
@@ -41,9 +64,9 @@ Actualizaciones internas (desarrollo):
 Actualizaciones visibles para el usuario:
 
 - Se optimizó un montón la página
-  - Todas las imágenes PNG ahora son WEBP (14mb de ahorro).
-  - Se eliminó CSS no usado.
-  - Se eliminó también JS y una página entera no usados.
+    - Todas las imágenes PNG ahora son WEBP (14mb de ahorro).
+    - Se eliminó CSS no usado.
+    - Se eliminó también JS y una página entera no usados.
 - Se añadió un buscador. Es muy simple, pero bastante más rápido que el de YouTube.
 - Se hizo que la barra de navegación use iconos en móvil.
 - Ahora la misma página tiene varias rutas comunes (p ej. `/home` y `/inicio`) válidas.
@@ -117,7 +140,7 @@ Actualizaciones internas (desarrollo):
 ## 1.0.1
 
 - Añadido un aviso a la nueva sección de PDFs alertando que los PDFs aún no están listos.
-- Cambiado *Coming soon* por *Pronto disponible*, ya que la web está en español.
+- Cambiado _Coming soon_ por _Pronto disponible_, ya que la web está en español.
 - Cambios visuales muy pequeños.
 
 ## 1.0.0

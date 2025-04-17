@@ -1,9 +1,7 @@
 {
-    "editor.indentSize": 4,
-    "editor.fontSize": 15,
+    "editor.fontSize": 16,
     "editor.wordWrap": "on",
     "editor.fontFamily": "Roboto Mono, Consolas, 'Courier New', monospace",
-    "prettier.tabWidth": 4,
     "editor.formatOnSave": true,
     "[markdown]": {
         "editor.unicodeHighlight.ambiguousCharacters": false,

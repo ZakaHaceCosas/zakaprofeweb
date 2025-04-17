@@ -3,7 +3,10 @@ import items, { IVideo } from "../resources/videos.ts";
 import ExternalLink from "./ext-link.tsx";
 
 export default function RandomVideoFeed() {
-    const [videos, setVideos] = useState<{ one: null | IVideo; two: null | IVideo }>({
+    const [videos, setVideos] = useState<{
+        one: null | IVideo;
+        two: null | IVideo;
+    }>({
         one: null,
         two: null,
     });

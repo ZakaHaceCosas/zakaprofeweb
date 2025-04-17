@@ -35,6 +35,8 @@
     --fff25: #00000025;
     --zakaProfe: #0099ff;
     --border: 2px solid var(--fff25);
+
+    --real-height: calc(100vh - 140px);
 }
 img {
     pointer-events: none !important;
@@ -68,7 +70,7 @@ html {
     align-items: center;
     justify-content: space-around;
     width: 100vw;
-    height: 100vh;
+    height: var(--real-height);
     overflow: hidden;
 }
 .result {
@@ -192,22 +194,27 @@ section#main {
 nav,
 footer {
     border: var(--border);
-    position: fixed;
-    z-index: 999;
     padding: 15px;
-    border-radius: 10px;
     background-color: var(--blk);
     box-shadow: 0px 0px 15px 0px var(--blkSha);
-    max-height: 100px;
-}
-nav {
-    top: 20px;
-    left: 20px;
-    right: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+nav {
+    height: 80px;
+    max-height: 80px !important;
     justify-content: space-between;
+}
+footer {
+    height: 60px;
+    max-height: 60px !important;
+    justify-content: center;
+    text-align: center;
+    font-size: small;
+    color: var(--grey);
+    font-weight: 500;
+    font-style: italic;
 }
 nav .urls {
     width: 100%;
@@ -232,16 +239,6 @@ nav .urls button svg {
 .disclaimer {
     font-size: small;
     opacity: 0.65;
-}
-footer {
-    bottom: 20px;
-    left: 120px;
-    right: 120px;
-    text-align: center;
-    font-size: small;
-    color: var(--grey);
-    font-weight: 500;
-    font-style: italic;
 }
 .react-button-as-href {
     background-color: transparent;
@@ -335,18 +332,6 @@ hr {
     html {
         overflow-y: visible;
     }
-    nav,
-    footer {
-        left: 0;
-        right: 0;
-        border-radius: 0;
-    }
-    nav {
-        top: 0;
-    }
-    footer {
-        bottom: 0;
-    }
     a[href] {
         text-decoration: underline;
     }
@@ -420,4 +405,13 @@ a.btn {
 .btn:hover {
     background-color: var(--blk);
     color: var(--zakaProfe);
+}
+.notas {
+    display: flex;
+    flex-direction: column;
+    min-height: var(--real-height);
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 40px;
+    gap: 20px;
 }

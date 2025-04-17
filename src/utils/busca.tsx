@@ -11,9 +11,9 @@ export default function Buscador() {
 
         return items.filter(
             (v) =>
-                StringUtils.normalize(v.title, { strict: true }).includes(searchTerm) ||
-                StringUtils.normalize(v.topic, { strict: true }).includes(searchTerm) ||
-                StringUtils.normalize(v.level, { strict: true }).includes(searchTerm)
+                StringUtils.normalize(v.title, { strict: true }).includes(searchTerm)
+                || StringUtils.normalize(v.topic, { strict: true }).includes(searchTerm)
+                || StringUtils.normalize(v.level, { strict: true }).includes(searchTerm),
         );
     }, [searchTerm]);
 
@@ -21,7 +21,9 @@ export default function Buscador() {
         <section
             className="hero"
             style={{
-                flexDirection: "column", justifyContent: "center", gap: 15
+                flexDirection: "column",
+                justifyContent: "center",
+                gap: 15,
             }}
         >
             <h1>Buscador de vídeos</h1>
@@ -44,8 +46,8 @@ export default function Buscador() {
                 {filteredVideos.length > 2 && " Puedes deslizar abajo, hay más."}
             </p>
             <div className="search-results">
-                {searchTerm.length > 2 &&
-                    filteredVideos.map((v) => (
+                {searchTerm.length > 2
+                    && filteredVideos.map((v) => (
                         <div className="result" key={v.title}>
                             <img src={v.thumbnail} alt={`${v.title}, ${v.topic}, ${v.level}`} />
                             <div className="result-content">
@@ -65,14 +67,11 @@ export default function Buscador() {
                             </div>
                         </div>
                     ))}
-                {filteredVideos.length === 0 &&
-                    searchTerm.length > 2 &&
-                    searchTerm !== "voyaaprobar" && (
-                        <p>
-                            No se han encontrado resultados para <b>{search}</b>.
-                        </p>
-                    )}
-                {searchTerm === "voyaaprobar" && <p>Di que sí campeón</p>}
+                {filteredVideos.length === 0 && searchTerm.length > 2 && (
+                    <p>
+                        No se han encontrado resultados para <b>{search}</b>.
+                    </p>
+                )}
                 {searchTerm.length !== 0 && searchTerm.length < 3 && (
                     <p>Mínimo 3 letras para buscar.</p>
                 )}

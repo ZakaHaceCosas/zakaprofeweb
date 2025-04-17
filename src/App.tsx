@@ -5,6 +5,7 @@ import Footer from "./utils/foot.tsx";
 import { Analytics } from "@vercel/analytics/react";
 import Buscador from "./utils/busca.tsx";
 import { StringUtils } from "@zakahacecosas/string-utils";
+import Notas from "./utils/notas.tsx";
 
 export default function App() {
     const getPage = () => {
@@ -71,16 +72,15 @@ export default function App() {
     const pathnames = {
         home: ["home", "inicio"],
         search: ["search", "busca", "buscar", "buscador"],
+        grades: ["nota", "notas", "calificaciones", "grade", "grades"],
     };
 
     const validPath = (against: string[]) => {
-        return against.includes(
-            StringUtils.normalize(currentPage)
-        );
+        return against.includes(StringUtils.normalize(currentPage));
     };
 
-    const isLost = [...pathnames.home, ...pathnames.search].includes(
-        currentPage
+    const isLost = [...pathnames.home, ...pathnames.search, ...pathnames.grades].includes(
+        currentPage,
     )
         ? false
         : true;
@@ -90,11 +90,11 @@ export default function App() {
         console.log(
             "%cZakaProfe%c Salvando tus notas 👍",
             "color: white; background: #0099ff; padding: 5px 10px; border-radius: 5px; font-size: 16px; font-weight: bold;",
-            "font-size: 15px;"
+            "font-size: 15px;",
         );
         console.log(
             "%cNo sé que haces husmeando en la consola, aquí sólo debería entrar yo.\nTu deberías estar suscribiéndose a ZakaProfe @ https://www.youtube.com/@ZakaProfe y siguiéndome en Instagram @ https://instagram.com/zhc.zakaprofe",
-            "color: white; font-style: italic;"
+            "color: white; font-style: italic;",
         );
     }, []);
 
@@ -128,6 +128,24 @@ export default function App() {
                         </svg>
                         <p>Buscador</p>
                     </button>
+                    <button
+                        onClick={() => setCurrentPage("notas")}
+                        className="react-button-as-href"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="30px"
+                            height="30px"
+                            viewBox="0 0 90 86"
+                            fill="none"
+                        >
+                            <path
+                                d="M43.1534 1.43986C43.8365 -0.202726 46.1635 -0.202728 46.8466 1.43986L57.756 27.6692C58.0441 28.3617 58.6953 28.8348 59.4429 28.8947L87.7596 31.1649C89.5329 31.307 90.252 33.5201 88.9009 34.6774L67.3265 53.1582C66.7569 53.6461 66.5082 54.4116 66.6822 55.1411L73.2735 82.7735C73.6863 84.5039 71.8038 85.8717 70.2856 84.9444L46.0425 70.1368C45.4025 69.7458 44.5975 69.7458 43.9575 70.1368L19.7144 84.9444C18.1962 85.8717 16.3137 84.504 16.7265 82.7735L23.3178 55.1411C23.4918 54.4116 23.2431 53.6461 22.6735 53.1582L1.09909 34.6774C-0.251987 33.5201 0.467064 31.307 2.24037 31.1649L30.5571 28.8947C31.3047 28.8348 31.9559 28.3617 32.244 27.6692L43.1534 1.43986Z"
+                                fill="white"
+                            />
+                        </svg>
+                        <p>Calculadora de notas</p>
+                    </button>
                     <button onClick={() => toggleTheme()} className="react-button-as-href">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -148,6 +166,7 @@ export default function App() {
             </nav>
             {validPath(pathnames.home) && <Home />}
             {validPath(pathnames.search) && <Buscador />}
+            {validPath(pathnames.grades) && <Notas />}
             {isLost && <Lost />}
             <Footer />
             <Analytics />

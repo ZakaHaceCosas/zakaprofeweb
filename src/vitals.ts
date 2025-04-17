@@ -1,10 +1,10 @@
 const vitalsUrl = "https://vitals.vercel-analytics.com/v1/vitals";
 
 function getConnectionSpeed() {
-    return "connection" in navigator &&
-        navigator["connection"] &&
+    return "connection" in navigator
+        && navigator["connection"]
         // @ts-expect-error (MOD)
-        "effectiveType" in navigator["connection"]
+        && "effectiveType" in navigator["connection"]
         ? navigator["connection"]["effectiveType"]
         : "";
 }
