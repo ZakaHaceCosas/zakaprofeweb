@@ -4,6 +4,8 @@
 
 ## 2.3.0 (17/04/2025)
 
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/afb17008372c6916cae4e7e68eba8c6100e0c3b1...fad2abd7ae05e61b2f5ad8a16cf9701aaded1115)
+
 Actualizaciones visibles para el usuario:
 
 - Añadida una calculadora de notas.
