@@ -19,9 +19,10 @@ export default function ZakAvailable() {
             let newStatus = "";
             let newStatusText = "";
             let newStatusClass = "";
+            const isOnVacation = true;
 
-            // LUN-VIE
-            if (day >= 1 && day <= 5) {
+            if (day >= 1 && day <= 5 && !isOnVacation) {
+                // LUN-VIE
                 if (hour >= 8 && hour < 16) {
                     // 8-15: OCUPADO (clase)
                     newStatus = "OCUPADO";
@@ -44,10 +45,8 @@ export default function ZakAvailable() {
                     newStatusText = "Ya lo siento, pero tengo que dormir XD.";
                     newStatusClass = "ocupado";
                 }
-            }
-
-            // SAB, DOM
-            else if (day === 0 || day === 6) {
+            } else {
+                // SAB, DOM
                 if (hour >= 10 && hour <= 21) {
                     // 10-21: DISPONIBLE
                     newStatus = "DISPONIBLE";

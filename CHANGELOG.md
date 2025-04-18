@@ -2,6 +2,14 @@
 
 # ZPW Changelog
 
+## 2.3.1 (18/04/2025)
+
+Actualizaciones visibles para el usuario:
+
+- Optimizadas las imágenes para que la pág. cargue más rápido.
+- Mejorados los colores y hechas varas mejoras visuales.
+- Ahora hay que presionar el footer para ver el texto de derechos de autor; así se ve mejor en móvil y molesta menos.
+
 ## 2.3.0 (17/04/2025)
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/afb17008372c6916cae4e7e68eba8c6100e0c3b1...fad2abd7ae05e61b2f5ad8a16cf9701aaded1115)

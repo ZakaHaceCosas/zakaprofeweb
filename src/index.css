@@ -36,7 +36,7 @@
     --zakaProfe: #0099ff;
     --border: 2px solid var(--fff25);
 
-    --real-height: calc(100vh - 140px);
+    --real-height: calc(100vh - 120px);
 }
 img {
     pointer-events: none !important;
@@ -165,7 +165,7 @@ section.side2 {
     object-fit: scale-down;
 }
 #zp-logo-nav {
-    height: 35px;
+    height: 30px;
     width: auto;
     object-fit: scale-down;
 }
@@ -193,22 +193,21 @@ section#main {
 }
 nav,
 footer {
-    border: var(--border);
     padding: 15px;
     background-color: var(--blk);
     box-shadow: 0px 0px 15px 0px var(--blkSha);
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 60px;
+    max-height: 60px !important;
 }
 nav {
-    height: 80px;
-    max-height: 80px !important;
+    border-bottom: var(--border);
     justify-content: space-between;
 }
 footer {
-    height: 60px;
-    max-height: 60px !important;
+    border-top: var(--border);
     justify-content: center;
     text-align: center;
     font-size: small;
@@ -266,7 +265,7 @@ hr {
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    max-height: 50vh;
+    max-height: 55vh;
     overflow: scroll;
     padding: 5px;
     gap: 10px;
@@ -283,9 +282,38 @@ hr {
     width: 100%;
     text-decoration: none !important;
 }
-@media only screen and (max-width: 1100px) {
+.nota_wrapper {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.nota_wrapper .nota_input,
+.nota_wrapper .ponder_input {
+    width: 100% !important;
+}
+.nota_wrapper .nota_input {
+    flex: 3;
+}
+.nota_wrapper .ponder_input {
+    flex: 1;
+}
+@media only screen and (max-width: 900px) {
     nav .urls button p {
         display: none;
+    }
+    nav {
+        flex-direction: column;
+        height: 140px;
+        gap: 10px;
+        max-height: 140px !important;
+        align-items: center;
+        justify-content: center;
+    }
+    nav .urls {
+        justify-content: center;
     }
     .hero #main {
         display: none;
@@ -335,27 +363,31 @@ hr {
     a[href] {
         text-decoration: underline;
     }
+    .nota_wrapper {
+        flex-direction: column;
+    }
+    .nota_wrapper .nota_input,
+    .nota_wrapper .ponder_input {
+        flex: 1 !important;
+    }
+    .nota_wrapper button {
+        width: 100% !important;
+    }
 }
 @-webkit-keyframes bola-anim {
     0% {
         opacity: 0;
     }
-    50% {
-        opacity: 1;
-    }
     100% {
-        opacity: 0;
+        opacity: 1;
     }
 }
 @keyframes bola-anim {
     0% {
         opacity: 0;
     }
-    50% {
-        opacity: 1;
-    }
     100% {
-        opacity: 0;
+        opacity: 1;
     }
 }
 .bola-wrap {
@@ -370,8 +402,8 @@ hr {
     height: 10px;
     border-radius: 100%;
     aspect-ratio: 1/1;
-    -webkit-animation: bola-anim 2750ms infinite linear;
-    animation: bola-anim 2750ms infinite linear;
+    -webkit-animation: bola-anim 1750ms infinite linear;
+    animation: bola-anim 1750ms infinite linear;
 }
 .bola.disponible {
     background-color: var(--zakaProfe);
@@ -412,6 +444,6 @@ a.btn {
     min-height: var(--real-height);
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 40px;
+    padding: 20px;
     gap: 20px;
 }

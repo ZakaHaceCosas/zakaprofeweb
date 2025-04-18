@@ -71,33 +71,24 @@ export default function Notas(): ReactElement {
 
     return (
         <div className="notas">
-            <h1>Calculadora de Notas</h1>
+            <h1>Calculadora de Notas Medias</h1>
             <p>
                 Calculadora básica para promediar notas.
                 <br />
                 <br />
-                Funciona así: da un valor de entre 0 y 1 a cada ponderación y pon la nota que
-                deseas. Luego dale a "Calcular promedio" y obtendrás tu media.
-                <br />
+                Dale un valor de entre 0 y 1 a cada ponderación y pon la nota que deseas. Luego dale
+                a "Calcular promedio" y obtendrás tu media.
                 <br />
                 Por ejemplo, en exámenes, si dos exámenes valían un 40% de la nota final y un
-                tercero valía un 20%, pondrías las tres notas con ponderaciones 0.4, 0.4, y 0.2.
+                tercero valía un 20%, pondrías como ponderaciones 0.4, 0.4, y 0.2.
                 <br />
                 <br />
                 Las ponderaciones deberían sumar siempre 1, a menos que pongas "1" a <i>todas</i> -
                 caso en el que se asume que todas las notas valen lo mismo.
             </p>
             {notas.map((nota, index) => (
-                <div
-                    key={index}
-                    style={{
-                        marginBottom: "10px",
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: 10,
-                        width: "100%",
-                    }}
-                >
+                <div key={index} className="nota_wrapper">
+                    <p className="nota_lbl">Nota {index + 1}</p>
                     <input
                         type="number"
                         name="nota"
@@ -105,11 +96,11 @@ export default function Notas(): ReactElement {
                         onChange={(e) => handleInputChange(index, e)}
                         placeholder="Nota"
                         required
-                        style={{ flex: 3 }}
+                        className="nota_input"
                     />
                     <input
+                        className="ponder_input"
                         style={{
-                            flex: 1,
                             backgroundColor:
                                 parseFloat(nota.pondering) <= 0
                                     ? "#FF3232"

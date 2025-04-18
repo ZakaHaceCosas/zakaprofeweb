@@ -50,7 +50,7 @@ export default function App() {
             root.style.setProperty("--ng1", "#0F0F0F");
             root.style.setProperty("--ng2", "#1F1F1F");
             root.style.setProperty("--txt", "#FFFFFF");
-            root.style.setProperty("--blk", "#000000");
+            root.style.setProperty("--blk", "#1F1F1F");
             root.style.setProperty("--blkSha", "#000000");
             root.style.setProperty("--grey", "#AAA");
             root.style.setProperty("--fff25", "#FFFFFF25");
@@ -95,6 +95,11 @@ export default function App() {
         console.log(
             "%cNo sé que haces husmeando en la consola, aquí sólo debería entrar yo.\nTu deberías estar suscribiéndose a ZakaProfe @ https://www.youtube.com/@ZakaProfe y siguiéndome en Instagram @ https://instagram.com/zhc.zakaprofe",
             "color: white; font-style: italic;",
+        );
+        console.info(
+            "%cSi por lo que sea sabes bien lo que haces, podrías contribuir a esta web en GitHub :D %c(github.com/ZakaHaceCosas/zakaprofeweb).",
+            "color: white; font-style: italic;",
+            "color: lightgreen; font-style: italic;",
         );
     }, []);
 
