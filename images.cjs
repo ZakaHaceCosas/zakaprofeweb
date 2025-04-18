@@ -10,7 +10,7 @@ function optimizeImages(dir) {
         } else if (dirent.isFile() && path.extname(dirent.name).toLowerCase() === ".png") {
             const fileName = path.basename(dirent.name, ".png");
             const outputWebp = path.join(dir, `${fileName}.webp`);
-            const command = `cwebp -q 85 "${fullPath}" -o "${outputWebp}"`;
+            const command = `cwebp -q 65 "${fullPath}" -o "${outputWebp}"`;
             exec(command, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error con ${fullPath}:`, stderr);
