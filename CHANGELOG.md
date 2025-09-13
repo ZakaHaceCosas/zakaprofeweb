@@ -6,6 +6,7 @@
 
 - La navegación (`/pag1`, `/pag2`) ya no debería dar errores.
 - La app en general debería cargar más rápido (migrado React a Preact y optimizado más bruscamente las imágenes).
+- Corregido el reloj de contacto (marcaba una hora menos, pero no soy canario, jeje).
 
 ## 2.3.1 (18/04/2025)
 

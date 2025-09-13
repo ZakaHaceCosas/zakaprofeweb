@@ -9,17 +9,28 @@ export default function ZakAvailable() {
 
     useEffect(() => {
         const getTimeStatus = () => {
+            const formatter = new Intl.DateTimeFormat("es-ES", {
+                timeZone: "Europe/Madrid",
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+            });
             const now = new Date();
-            const day = now.getUTCDay();
-            const hour = now.getUTCHours() + 1;
-            const minutes = now.getUTCMinutes();
+            const parts = formatter.formatToParts(now);
+            const day = Number(parts.find((p) => p.type === "day")?.value);
+            const hour = Number(parts.find((p) => p.type === "hour")?.value);
+            const minutes = Number(parts.find((p) => p.type === "minute")?.value);
+            const second = Number(parts.find((p) => p.type === "second")?.value);
             const fmt = (s: number) => s.toString().padStart(2, "0");
-            const formattedTime = `${fmt(hour)}:${fmt(minutes)}:${fmt(now.getUTCSeconds())}`;
+            const formattedTime = `${fmt(hour)}:${fmt(minutes)}:${fmt(second)}`;
             setSpanishTime(formattedTime);
             let newStatus = "";
             let newStatusText = "";
             let newStatusClass = "";
-            const isOnVacation = true;
+            const isOnVacation = false;
 
             if (day >= 1 && day <= 5 && !isOnVacation) {
                 // LUN-VIE
