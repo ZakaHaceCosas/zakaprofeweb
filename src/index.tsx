@@ -1,15 +1,14 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import reportWebVitals from "./reportWebVitals.ts";
 import { sendToVercelAnalytics } from "./vitals.ts";
+import { createRoot } from "preact/compat/client";
+import { StrictMode } from "preact/compat";
 
-const root = createRoot(document.getElementById("root")!);
-root.render(
-    <React.StrictMode>
+createRoot(document.getElementById("root")!).render(
+    <StrictMode>
         <App />
-    </React.StrictMode>,
+    </StrictMode>,
 );
 
 reportWebVitals(sendToVercelAnalytics);

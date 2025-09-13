@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "preact/hooks";
 import items, { IVideo } from "../resources/videos.ts";
 import ExternalLink from "./ext-link.tsx";
 

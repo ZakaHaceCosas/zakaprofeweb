@@ -1,4 +1,5 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import { ChangeEvent } from "preact/compat";
+import { useEffect, useState } from "preact/hooks";
 
 // Definir los tipos de las propiedades de cada nota
 interface Nota {
@@ -6,13 +7,13 @@ interface Nota {
     pondering: string;
 }
 
-export default function Notas(): ReactElement {
+export default function Notas() {
     const [notas, setNotas] = useState<Nota[]>([{ nota: "", pondering: "" }]);
     const [average, setAverage] = useState<number | null>(null);
     const [isPonderingOne, setIsPonderingOne] = useState<boolean>(false);
 
     // manage changes to grades (notas)
-    const handleInputChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         const updatedNotas = [...notas];
         updatedNotas[index][name as keyof Nota] = value;
@@ -105,8 +106,8 @@ export default function Notas(): ReactElement {
                                 parseFloat(nota.pondering) <= 0
                                     ? "#FF3232"
                                     : parseFloat(nota.pondering) > 1
-                                        ? "#FFc832"
-                                        : "",
+                                      ? "#FFc832"
+                                      : "",
                         }}
                         type="number"
                         name="pondering"

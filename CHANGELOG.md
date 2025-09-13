@@ -2,6 +2,11 @@
 
 # ZPW Changelog
 
+## 2.3.2 (13/09/2025)
+
+- La navegación (`/pag1`, `/pag2`) ya no debería dar errores.
+- La app en general debería cargar más rápido (migrado React a Preact y optimizado más bruscamente las imágenes).
+
 ## 2.3.1 (18/04/2025)
 
 Actualizaciones visibles para el usuario:

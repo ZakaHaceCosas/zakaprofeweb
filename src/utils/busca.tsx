@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo } from "preact/hooks";
 import items from "../resources/videos.ts";
 import { StringUtils } from "@zakahacecosas/string-utils";
 
@@ -36,7 +36,7 @@ export default function Buscador() {
                 type="text"
                 placeholder="Busca un video..."
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.currentTarget.value)}
                 aria-label="Buscar videos"
             />
             <p className="disclaimer" aria-live="polite">

@@ -1,39 +1,16 @@
-import * as React from "react";
+import { useLocation, Route, Switch } from "wouter-preact";
 import Home from "./utils/home.tsx";
 import Lost from "./utils/lost.tsx";
 import Footer from "./utils/foot.tsx";
 import { Analytics } from "@vercel/analytics/react";
 import Buscador from "./utils/busca.tsx";
-import { StringUtils } from "@zakahacecosas/string-utils";
 import Notas from "./utils/notas.tsx";
+import { useEffect, useState } from "preact/hooks";
 
 export default function App() {
-    const getPage = () => {
-        const path = window.location.pathname.substring(1);
-        return StringUtils.normalize(path) || "home";
-    };
+    const [_, navigate] = useLocation();
 
-    const [currentPage, setCurrentPage] = React.useState(getPage());
-
-    React.useEffect(() => {
-        const handlePopState = () => {
-            setCurrentPage(getPage());
-        };
-
-        window.addEventListener("popstate", handlePopState);
-
-        return () => {
-            window.removeEventListener("popstate", handlePopState);
-        };
-    }, []);
-
-    React.useEffect(() => {
-        if (currentPage) {
-            window.history.pushState(null, "", `/${currentPage}`);
-        }
-    }, [currentPage]);
-
-    const [theme, setTheme] = React.useState(() => {
+    const [theme, setTheme] = useState(() => {
         const savedTheme = document.cookie.split("; ").find((row) => row.startsWith("theme="));
         return savedTheme ? savedTheme.split("=")[1] : "dark";
     });
@@ -43,8 +20,8 @@ export default function App() {
     };
 
     // Intenté hacer que mostrara el logo blanco o el negro según el tema, pero no hay manera XD
-    // let imageSrc = React.useRef(null);
-    React.useEffect(() => {
+    // let imageSrc = useRef(null);
+    useEffect(() => {
         const root = document.documentElement;
         if (theme === "dark") {
             root.style.setProperty("--ng1", "#0F0F0F");
@@ -69,24 +46,8 @@ export default function App() {
         document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Lax`;
     }, [theme]);
 
-    const pathnames = {
-        home: ["home", "inicio"],
-        search: ["search", "busca", "buscar", "buscador"],
-        grades: ["nota", "notas", "calificaciones", "grade", "grades"],
-    };
-
-    const validPath = (against: string[]) => {
-        return against.includes(StringUtils.normalize(currentPage));
-    };
-
-    const isLost = [...pathnames.home, ...pathnames.search, ...pathnames.grades].includes(
-        currentPage,
-    )
-        ? false
-        : true;
-
     // nos hacemos los interesantes xd
-    React.useEffect(() => {
+    useEffect(() => {
         console.log(
             "%cZakaProfe%c Salvando tus notas 👍",
             "color: white; background: #0099ff; padding: 5px 10px; border-radius: 5px; font-size: 16px; font-weight: bold;",
@@ -108,7 +69,7 @@ export default function App() {
             <nav>
                 <img src="logo-horizon.webp" alt="Logotipo de ZakaProfe" id="zp-logo-nav" />
                 <div className="urls">
-                    <button onClick={() => setCurrentPage("home")} className="react-button-as-href">
+                    <button onClick={() => navigate("home")} className="react-button-as-href">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 30 30"
@@ -119,10 +80,7 @@ export default function App() {
                         </svg>
                         <p>Inicio</p>
                     </button>
-                    <button
-                        onClick={() => setCurrentPage("buscar")}
-                        className="react-button-as-href"
-                    >
+                    <button onClick={() => navigate("search")} className="react-button-as-href">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 30 30"
@@ -133,10 +91,7 @@ export default function App() {
                         </svg>
                         <p>Buscador</p>
                     </button>
-                    <button
-                        onClick={() => setCurrentPage("notas")}
-                        className="react-button-as-href"
-                    >
+                    <button onClick={() => navigate("grades")} className="react-button-as-href">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="30px"
@@ -169,10 +124,23 @@ export default function App() {
                     </button>
                 </div>
             </nav>
-            {validPath(pathnames.home) && <Home />}
-            {validPath(pathnames.search) && <Buscador />}
-            {validPath(pathnames.grades) && <Notas />}
-            {isLost && <Lost />}
+            <Switch>
+                <Route path="/">
+                    <Home />
+                </Route>
+                <Route path="home">
+                    <Home />
+                </Route>
+                <Route path="search">
+                    <Buscador />
+                </Route>
+                <Route path="grades">
+                    <Notas />
+                </Route>
+                <Route>
+                    <Lost />
+                </Route>
+            </Switch>
             <Footer />
             <Analytics />
         </main>

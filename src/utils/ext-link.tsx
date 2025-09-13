@@ -1,6 +1,12 @@
-import { ReactNode } from "react";
+import { ComponentChildren } from "preact";
 
-export default function ExternalLink({ url, children }: { url: string; children: ReactNode }) {
+export default function ExternalLink({
+    url,
+    children,
+}: {
+    url: string;
+    children: ComponentChildren;
+}) {
     return (
         <a
             style={{ display: "flex", alignItems: "center", gap: 5 }}

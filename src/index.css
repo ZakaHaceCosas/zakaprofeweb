@@ -241,6 +241,7 @@ nav .urls button svg {
 }
 .react-button-as-href {
     background-color: transparent;
+    text-decoration: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;

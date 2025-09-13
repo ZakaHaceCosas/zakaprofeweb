@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "preact/hooks";
 import ExternalLink from "./ext-link.tsx";
 
 export default function ZakAvailable() {
