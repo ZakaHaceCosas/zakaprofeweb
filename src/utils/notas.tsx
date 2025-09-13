@@ -14,7 +14,7 @@ export default function Notas() {
 
     // manage changes to grades (notas)
     const handleInputChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const { name, value } = e.currentTarget;
         const updatedNotas = [...notas];
         updatedNotas[index][name as keyof Nota] = value;
         setNotas(updatedNotas);
