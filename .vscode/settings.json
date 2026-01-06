@@ -1,7 +1,5 @@
 {
-    "editor.fontSize": 16,
     "editor.wordWrap": "on",
-    "editor.fontFamily": "Roboto Mono, Consolas, 'Courier New', monospace",
     "editor.formatOnSave": true,
     "[markdown]": {
         "editor.unicodeHighlight.ambiguousCharacters": false,
@@ -16,5 +14,18 @@
         "editor.formatOnSave": false
     },
     "cSpell.language": "es-ES,en-US",
-    "cSpell.words": ["fullscreen", "webp", "zaka", "zakahacecosas", "zakaprofe", "zakavailable"]
+    "cSpell.words": [
+        "fullscreen",
+        "webp",
+        "zaka",
+        "zakahacecosas",
+        "zakaprofe",
+        "zakavailable",
+        "Asig",
+        "paraglide",
+        "teka",
+        "zakateka",
+        "ZPVDs",
+        "ZTVDs"
+    ]
 }

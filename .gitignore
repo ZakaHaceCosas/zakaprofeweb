@@ -18,6 +18,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.svelte-kit
+.directory
 
 npm-debug.log*
 yarn-debug.log*
@@ -28,3 +30,4 @@ yarn-error.log*
 .env.build
 .vercel
 no/**
+project_id
