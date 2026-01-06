@@ -1,15 +1,14 @@
 {
-    "files": [],
-    "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+    "extends": "./.svelte-kit/tsconfig.json",
     "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
         "skipLibCheck": true,
-        "baseUrl": "./",
-        "paths": {
-            "react": ["./node_modules/preact/compat/"],
-            "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
-            "react-dom": ["./node_modules/preact/compat/"],
-            "react-dom/*": ["./node_modules/preact/compat/*"]
-        },
-        "types": ["vite/client", "preact"]
+        "sourceMap": true,
+        "strict": true,
+        "moduleResolution": "bundler"
     }
 }

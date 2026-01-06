@@ -1,0 +1,8 @@
+lintScript: lint
+prettyScript: format
+destroy:
+    intensities: "*"
+    targets:
+        - ./project.inlang/cache/plugins
+launchCmd:
+    - $;;dev

@@ -3,14 +3,23 @@
     "tabWidth": 4,
     "singleQuote": false,
     "arrowParens": "always",
-    "trailingComma": "all",
     "bracketSpacing": true,
     "bracketSameLine": false,
     "experimentalOperatorPosition": "start",
     "htmlWhitespaceSensitivity": "css",
-    "jsxSingleQuote": false,
     "objectWrap": "preserve",
     "quoteProps": "consistent",
     "semi": true,
-    "useTabs": false
+    "useTabs": false,
+    "trailingComma": "es5",
+    "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+    "overrides": [
+        {
+            "files": "*.svelte",
+            "options": {
+                "parser": "svelte"
+            }
+        }
+    ],
+    "tailwindStylesheet": "./src/app.css"
 }
