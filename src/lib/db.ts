@@ -17,7 +17,8 @@ type Asig =
     | "Lengua Castellana"
     | "Inglés"
     | "Desarrollo web"
-    | "Programación";
+    | "Programación"
+    | "Sistemas Operativos";
 
 type Curso = "4º ESO" | "3º ESO" | "(SMR | DAM | DAW | ASIR)";
 
@@ -253,6 +254,15 @@ const ZTVDs: IVideo[] = [
         topic: "Desarrollo web",
         url: "https://www.youtube.com/watch?v=_EQB3Rq8bUo",
     },
+    {
+        channel: "ZakaTeka",
+        level: "(SMR | DAM | DAW | ASIR)",
+        season: "4",
+        thumbnail: "/teka/vbox-basic.webp",
+        title: "Básicos de VirtualBox",
+        topic: "Sistemas Operativos",
+        url: "https://www.youtube.com/watch?v=1gkU5kU5WPE"
+    }
 ];
 
 const ALL_VDs = [...ZPVDs, ...ZTVDs];

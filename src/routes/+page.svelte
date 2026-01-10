@@ -9,9 +9,9 @@
     <h1><span style="color: var(--ZakaProfe)">ZakaProfe</span>, salvando tus notas.</h1>
     <br />
     <p style="max-width: 75%;">
-        ¡Hola! Soy <b>Zaka</b>, más conocido como ZakaProfe o ZakaTeka.<br /><br />
+        ¡Hola! Soy <b>Zaka</b>ria, más conocido como ZakaProfe o ZakaTeka.<br /><br />
         De vez en cuando hago videos educativos (de carácter general para <i>ZakaProfe</i> y
-        centrados en informática para <i>ZakaTeka</i>), además de ofrecer clases particulares.
+        centrados en informática para <i>ZakaTeka</i>)<!--, además de ofrecer clases particulares-->.
     </p>
     <hr />
     <div class="flex flex-col gap-2 md:flex-row">
