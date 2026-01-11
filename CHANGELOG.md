@@ -1,6 +1,24 @@
 <!-- markdownlint-disable md007 -->
 
-# ZPW Changelog
+# ZakaProfe WEB · Registro de cambios
+
+## 3.0.1 (11/01/2025)
+
+Actualizaciones visibles para el usuario:
+
+- Corregido el icono de la web.
+- Actualizadas las imágenes de escritorio en el instalador de la Aplicación Web Progresiva.
+- `/grades` ahora es `/calculadora-notas`.
+
+## 3.0.0
+
+Actualizaciones visibles para el usuario:
+
+- Renovado la web por COMPLETO. Muchos cambios.
+
+Actualizaciones internas (desarrollo):
+
+- Reescrito la web en Svelte en lugar de React.
 
 ## 2.3.2 (13/09/2025)
 

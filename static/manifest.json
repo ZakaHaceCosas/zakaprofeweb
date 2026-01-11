@@ -11,7 +11,7 @@
     "icons": [
         {
             "src": "favicon.ico",
-            "sizes": "256x256",
+            "sizes": "48x48",
             "type": "image/x-icon"
         },
         {
@@ -33,26 +33,38 @@
     "background_color": "#0F0F0F",
     "screenshots": [
         {
-            "src": "/ss_desk_home.webp",
-            "sizes": "1280x1024",
+            "src": "/ss_desk1.webp",
+            "sizes": "1919x1079",
             "type": "image/webp",
             "form_factor": "wide"
         },
         {
-            "src": "/ss_desk_search.webp",
-            "sizes": "1280x1024",
+            "src": "/ss_desk2.webp",
+            "sizes": "1919x1079",
             "type": "image/webp",
             "form_factor": "wide"
         },
         {
-            "src": "/ss_desk_home2.webp",
-            "sizes": "1280x1024",
+            "src": "/ss_desk3.webp",
+            "sizes": "1919x1079",
             "type": "image/webp",
             "form_factor": "wide"
         },
         {
-            "src": "/ss_desk_search2.webp",
-            "sizes": "1280x1024",
+            "src": "/ss_desk4.webp",
+            "sizes": "1919x1079",
+            "type": "image/webp",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/ss_desk5.webp",
+            "sizes": "1919x1079",
+            "type": "image/webp",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/ss_desk6.webp",
+            "sizes": "1919x1079",
             "type": "image/webp",
             "form_factor": "wide"
         },

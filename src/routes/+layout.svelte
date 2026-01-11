@@ -96,7 +96,7 @@
             </svg>
             <p>Buscador</p>
         </button>
-        <button onclick={() => goto("/grades")} class="react-button-as-href">
+        <button onclick={() => goto("/calculadora-notas")} class="react-button-as-href">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30px"

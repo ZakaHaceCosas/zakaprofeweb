@@ -261,8 +261,8 @@ const ZTVDs: IVideo[] = [
         thumbnail: "/teka/vbox-basic.webp",
         title: "Básicos de VirtualBox",
         topic: "Sistemas Operativos",
-        url: "https://www.youtube.com/watch?v=1gkU5kU5WPE"
-    }
+        url: "https://www.youtube.com/watch?v=1gkU5kU5WPE",
+    },
 ];
 
 const ALL_VDs = [...ZPVDs, ...ZTVDs];
