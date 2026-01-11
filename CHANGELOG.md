@@ -6,9 +6,15 @@
 
 Actualizaciones visibles para el usuario:
 
+- Ahora la calculadora de medias permite compartir las notas.
+- Dicha calculadora ahora usa números del 0 al 100 en vez de decimales del 0 al 1 para las ponderaciones.
 - Corregido el icono de la web.
 - Actualizadas las imágenes de escritorio en el instalador de la Aplicación Web Progresiva.
 - `/grades` ahora es `/calculadora-notas`.
+
+Actualizaciones internas (desarrollo):
+
+- Arreglado Prettier.
 
 ## 3.0.0
 

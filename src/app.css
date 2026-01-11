@@ -467,3 +467,12 @@ a.btn-zt {
 .btn-zt:hover {
     color: var(--ZakaTeka);
 }
+
+.popover {
+    position: absolute;
+    margin-top: 80vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: var(--border);
+}

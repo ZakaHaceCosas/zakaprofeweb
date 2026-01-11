@@ -9,6 +9,7 @@
 
     let { branch } = $props();
 
+    // svelte-ignore state_referenced_locally (false positive)
     const list = branch === "PROFE" ? ZPVDs : ZTVDs;
 
     $effect(() => {
