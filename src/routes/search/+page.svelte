@@ -15,6 +15,8 @@
                 || normalize(v.level, { strict: true }).includes(search)
         ).sort((a, b) => similarity(a.title, search) - similarity(b.title, search));
     });
+
+    export const prerender = true;
 </script>
 
 <main>

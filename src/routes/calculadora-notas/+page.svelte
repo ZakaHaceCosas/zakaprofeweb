@@ -86,6 +86,8 @@
             `https://profe.zhc.es/calculadora-notas?${notas.map((v, i) => `${i + 1}=${v.nota},${v.pondering}`).join("&")}`
         );
     }
+
+    export const prerender = true;
 </script>
 
 <main>

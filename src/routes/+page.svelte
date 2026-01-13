@@ -3,6 +3,8 @@
 
     // import { m } from '$lib/paraglide/messages.js';
     import RandomVideoFeed from "../lib/videos.svelte";
+
+    export const prerender = true;
 </script>
 
 <main>
