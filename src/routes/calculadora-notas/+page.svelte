@@ -88,7 +88,7 @@
     }
 </script>
 
-<div class="main-layout">
+<main>
     <h1>Calculadora de notas medias (aritmética y ponderada)</h1>
     <br />
     <p>
@@ -178,4 +178,4 @@
             <p>(nada que no se pueda remontar)</p>
         {/if}
     {/if}
-</div>
+</main>

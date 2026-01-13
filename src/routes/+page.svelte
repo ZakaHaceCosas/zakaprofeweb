@@ -5,7 +5,7 @@
     import RandomVideoFeed from "../lib/videos.svelte";
 </script>
 
-<div class="main-layout">
+<main>
     <h1><span style="color: var(--ZakaProfe)">ZakaProfe</span>, salvando tus notas.</h1>
     <br />
     <p style="max-width: 75%;">
@@ -81,4 +81,4 @@
             <br /><br /><b>Pronto disponible.</b>
         </div>
     </section> -->
-</div>
+</main>

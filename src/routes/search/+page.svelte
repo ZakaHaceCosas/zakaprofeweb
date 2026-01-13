@@ -17,7 +17,7 @@
     });
 </script>
 
-<div class="main-layout">
+<main>
     <h1>Buscador de vídeos</h1>
     <br />
     <p>
@@ -77,4 +77,4 @@
         <br />
         <p>Escribe al menos 3 caracteres y dale a ENTER para buscar.</p>
     {/if}
-</div>
+</main>
