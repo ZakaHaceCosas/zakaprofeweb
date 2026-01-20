@@ -2,12 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://profe.zhc.es/</loc>
-        <lastmod>2026-01-13</lastmod>
+        <lastmod>2026-01-20</lastmod>
     </url>    <url>
-        <loc>https://profe.zhc.es/calculadora-notas</loc>
-        <lastmod>2026-01-13</lastmod>
+        <loc>https://profe.zhc.es/apps/calculadora-notas</loc>
+        <lastmod>2026-01-20</lastmod>
+    </url>    <url>
+        <loc>https://profe.zhc.es/apps/contador-palabras</loc>
+        <lastmod>2026-01-20</lastmod>
     </url>    <url>
         <loc>https://profe.zhc.es/search</loc>
-        <lastmod>2026-01-13</lastmod>
+        <lastmod>2026-01-20</lastmod>
     </url>
 </urlset>
