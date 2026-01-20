@@ -94,13 +94,15 @@ main {
     border: var(--border);
 }
 
-input {
+input,
+textarea {
     border: var(--border);
     padding: 20px;
 }
 
 input,
-.result-content {
+.result-content,
+textarea {
     display: flex;
     width: 100%;
     flex-direction: column;

@@ -2,7 +2,20 @@
 
 # ZakaProfe WEB · Registro de cambios
 
-## 3.0.1 (11/01/2025)
+## 3.1.0 (20/01/2026)
+
+Actualizaciones visibles para el usuario:
+
+- Añadido un contador de palabras como nueva app.
+- Añadido mención a un futuro plan, clases particulares.
+- Mejorado algún detalle visual.
+- Corregido errores de redacción.
+
+Actualizaciones internas (desarrollo):
+
+- Añadidas descripciones SEO, con suerte así el sitio indexará mejor en Google.
+
+## 3.0.1 (11/01/2026)
 
 Actualizaciones visibles para el usuario:
 
@@ -30,7 +43,7 @@ Actualizaciones internas (desarrollo):
 
 - La navegación (`/pag1`, `/pag2`) ya no debería dar errores.
 - La app en general debería cargar más rápido (migrado React a Preact y optimizado más bruscamente las imágenes).
-- Corregido el reloj de contacto (marcaba una hora menos, pero no soy canario, jeje).
+- Corregido el reloj de contacto (marcaba una hora menos, pero no soy canario, je je).
 
 ## 2.3.1 (18/04/2025)
 
@@ -75,8 +88,8 @@ Actualizaciones visibles para el usuario:
 
 - Se mejoró el buscador.
     - Se ve visualmente mejor.
-    - Valida mejor la entrada, y ahora acepta nivel ("3º eso" o "4º eso" para buscar).
-    - Se corrigió "encontrados 1 videos".
+    - Valida mejor la entrada, y ahora acepta nivel («3º eso» o «4º eso» para buscar).
+    - Se corrigió «encontrados 1 videos».
 - Ahora el tema por defecto es el oscuro, para que no te exploten los ojos.
 
 Actualizaciones internas (desarrollo):
@@ -111,7 +124,7 @@ Actualizaciones visibles para el usuario:
 - Se hizo que la barra de navegación use iconos en móvil.
 - Ahora la misma página tiene varias rutas comunes (p ej. `/home` y `/inicio`) válidas.
 - Ahora la bola de status tiene una animación simple :)
-- La página "Estudia más" fue ocultada por completo. El código aún existe, pero es ahora 100% inaccesible y dicho código ya no está en el repositorio.
+- La página «Estudia más» fue ocultada por completo. El código aún existe, pero es ahora 100% inaccesible y dicho código ya no está en el repositorio.
 
 Actualizaciones internas (desarrollo):
 
@@ -127,7 +140,7 @@ Actualizaciones visibles para el usuario:
 
 - Se actualizó y volvió a implementar el componente de disponibilidad.
 - Ahora la página 404 muestra el pathname solicitado.
-- La página "Estudia más" ahora está sin usar y no está referenciada. Aún existe y su pathname ha sido cambiado a `/estudia`.
+- La página «Estudia más» ahora está sin usar y no está referenciada. Aún existe y su pathname ha sido cambiado a `/estudia`.
 - Se mejoró el rendimiento (CSS más pequeño, menos cosas que cargar, imágenes más pequeñas...).
 - Se mejoró el estilo en general, ajustando diseños, colores, etc...
 - Ahora la página es completamente compatible con dispositivos móviles, mostrando todo el contenido y el logo en la barra de navegación.

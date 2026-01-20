@@ -72,14 +72,13 @@
     });
 </script>
 
-<svelte:head>
-    <title>ZakaProfe & ZakaTeka</title>
-    <!-- <link rel="icon" href={favicon} /> -->
-</svelte:head>
-
 <nav>
     <a href="/">
-        <img src="logo-horizon.webp" alt="ZakaProfe" height="30" />
+        <img
+            src="/logo-horizon.webp"
+            alt="ZakaProfe"
+            style="height: 50px; object-fit: scale-down;"
+        />
     </a>
     <div class="urls">
         <button onclick={() => goto("/")} class="react-button-as-href">
@@ -98,7 +97,7 @@
             </svg>
             <p>Buscador</p>
         </button>
-        <button onclick={() => goto("/calculadora-notas")} class="react-button-as-href">
+        <button onclick={() => goto("/apps/calculadora-notas")} class="react-button-as-href">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30px"
@@ -112,6 +111,25 @@
                 />
             </svg>
             <p>Calculadora de notas</p>
+        </button>
+        <button onclick={() => goto("/apps/contador-palabras")} class="react-button-as-href">
+            <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <rect width="20" height="2" fill="black" />
+                <rect y="14" width="20" height="2" fill="black" />
+                <rect y="21" width="20" height="2" fill="black" />
+                <rect x="10" y="7" width="20" height="2" fill="black" />
+                <rect x="10" y="28" width="20" height="2" fill="black" />
+                <rect x="22" width="8" height="2" fill="black" />
+                <rect x="22" y="14" width="8" height="2" fill="black" />
+                <rect y="28" width="8" height="2" fill="black" />
+            </svg>
+            <p>Contador de palabras</p>
         </button>
         <button
             onclick={() => {
@@ -143,7 +161,7 @@
 <footer>
     <p>
         &copy; <b>ZakaProfe 2023-2026.</b><br />Todos los elementos de marca y otros diseños de
-        "ZakaProfe", "ZakaTeka", y derivados, son propiedad intelectual. Se reservan todos los
+        «ZakaProfe», «ZakaTeka», y derivados, son propiedad intelectual. Se reservan todos los
         derechos de autor, queda prohibida la reutilización, modificación, o redistribución de estos
         y otros materiales asociados sin autorización expresa.
     </p>

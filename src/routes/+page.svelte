@@ -7,6 +7,14 @@
     export const prerender = true;
 </script>
 
+<svelte:head>
+    <title>ZakaProfe & ZakaTeka</title>
+    <meta
+        name="description"
+        content="La web oficial de ZakaProfe y de ZakaTeka, dos canales de YouTube mediante los cuales doy clases :)."
+    />
+</svelte:head>
+
 <main>
     <h1><span style="color: var(--ZakaProfe)">ZakaProfe</span>, salvando tus notas.</h1>
     <br />
@@ -14,7 +22,7 @@
         ¡Hola! Soy <b>Zaka</b>ria, más conocido como ZakaProfe o ZakaTeka.<br /><br />
         De vez en cuando hago videos educativos (de carácter general para <i>ZakaProfe</i> y
         centrados en informática para
-        <i>ZakaTeka</i>)<!--, además de ofrecer clases particulares-->.
+        <i>ZakaTeka</i>), además de ofrecer clases particulares.
     </p>
     <hr />
     <div class="flex flex-col gap-2 md:flex-row">
@@ -69,18 +77,26 @@
         <br />
         <ZakAvailable />
     </section>
-    <!-- <hr />
+    <hr />
     <section aria-labelledby="classes-section" class="w-full">
         <h1 id="classes-section">CLASES PARTICULARES &gt;&gt;&gt;</h1>
         <br />
-        <p><b>&gt;&gt;&gt;</b> SÓLO ZAKATEKA <b>&lt;&lt;&lt;</b></p>
-        <br />
         <div class="flex-container">
-            Exclusivamente para ZakaTeka (es decir, para el ámbito de la informática), doy clases
-            particulares y personalizadas.<br /><br />Son por videollamada, de pago, con mínimo de
-            clases por modalidad (extensible) y los días que consideres oportuno.<br /><br />Precios
-            a negociar, pero puedes esperarlos de entre los más asequibles del sector.
-            <br /><br /><b>Pronto disponible.</b>
+            <p>
+                Clases particulares y personalizadas, por videollamada y con ejercicios prácticos.
+                Son de pago, aunque puedes esperarte precios MUY bajos. (aún están por determinar).<br
+                /><br />Como si de una página de cursos se tratase, habrá un catálogo de
+                clases/temas concretos a elegir.
+            </p>
+            <div class="row-ish" style="justify-content: start">
+                <div class="bola-wrap">
+                    <div class="bola mas-o-menos"></div>
+                </div>
+                <h2 class="non-bold-header mas-o-menos" style="font-size: 1.5em">
+                    Aún no disponibles
+                    <span style="font-size: medium; font-weight: 600">(próximamente)</span>
+                </h2>
+            </div>
         </div>
-    </section> -->
+    </section>
 </main>

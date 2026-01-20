@@ -83,12 +83,20 @@
 
     function share() {
         navigator.clipboard.writeText(
-            `https://profe.zhc.es/calculadora-notas?${notas.map((v, i) => `${i + 1}=${v.nota},${v.pondering}`).join("&")}`
+            `https://profe.zhc.es/apps/calculadora-notas?${notas.map((v, i) => `${i + 1}=${v.nota},${v.pondering}`).join("&")}`
         );
     }
 
     export const prerender = true;
 </script>
+
+<svelte:head>
+    <title>Calculadora de notas</title>
+    <meta
+        name="description"
+        content="Una calculadora de notas medias, tanto aritméticas (simples) como ponderadas (con peso)."
+    />
+</svelte:head>
 
 <main>
     <h1>Calculadora de notas medias (aritmética y ponderada)</h1>

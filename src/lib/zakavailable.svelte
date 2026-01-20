@@ -87,8 +87,8 @@
 <div class="flex-container w-full flex-1">
     <p>
         <strong>Puedes preguntar dudas cuando quieras</strong> usando los medios de contacto de
-        abajo <strong>y responderé cuanto antes</strong>.<br />Aquí tienes mi "horario", por si te
-        sirve de referencia (se actualiza en tiempo real y todo).
+        abajo <strong>y responderé cuanto antes</strong>.<br />Aquí tienes mi «horario», por si te
+        sirve de referencia (se actualiza en tiempo real y todo, fíjate que guapo).
     </p>
     <div class="row-ish" style="justify-content: start">
         <div class="bola-wrap">
@@ -100,9 +100,7 @@
             <span style="font-size: medium; font-weight: 600">UTC+1</span>
         </h2>
     </div>
-    <p>
-        <i>{statusText}</i>
-    </p>
+    <p style="opacity: 0.75">{statusText}</p>
     <hr style="margin: 0" />
     <div class="row-ish">
         <ExternalLink url={"https://instagram.com/zhc.zakaprofe/"}>

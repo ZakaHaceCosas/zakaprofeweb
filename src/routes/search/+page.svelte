@@ -19,6 +19,10 @@
     export const prerender = true;
 </script>
 
+<svelte:head>
+    <title>Buscador de vídeos</title>
+</svelte:head>
+
 <main>
     <h1>Buscador de vídeos</h1>
     <br />
