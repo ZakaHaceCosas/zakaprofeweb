@@ -2,6 +2,15 @@
 
 # ZakaProfe WEB · Registro de cambios
 
+## 3.2.0 (23/01/2026)
+
+Actualizaciones visibles para el usuario:
+
+- Ahora las apps están concentradas en una página dedicada.
+- Añadidas dos apps (de ZakaTeka esta vez), para calcular IPs y números hexadecimales/binarios.
+- Ahora el contador de palabras también mide el tiempo de lectura (de forma muy aproximada).
+- Hecho algún ajuste visual menor.
+
 ## 3.1.0 (20/01/2026)
 
 Actualizaciones visibles para el usuario:

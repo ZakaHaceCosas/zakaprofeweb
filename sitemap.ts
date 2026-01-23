@@ -5,7 +5,10 @@ const _pages: [string, undefined][] = [
     ["/", undefined],
     ["/apps/calculadora-notas", undefined],
     ["/apps/contador-palabras", undefined],
+    ["/apps/calcular-ip-cidr", undefined],
+    ["/apps/convertir-binario-decimal-hexadecimal", undefined],
     ["/search", undefined],
+    ["/apps", undefined],
 ];
 
 const PAGES = _pages.map((p) => {

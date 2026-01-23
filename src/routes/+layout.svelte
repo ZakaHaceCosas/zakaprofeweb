@@ -37,18 +37,18 @@
         const root = document.documentElement;
         if (loadTheme === "dark") {
             root.style.setProperty("--ng1", "#0F0F0F");
-            root.style.setProperty("--ng2", "#1F1F1F");
             root.style.setProperty("--txt", "#FFFFFF");
             root.style.setProperty("--blk", "#1F1F1F");
+            root.style.setProperty("--blk-hov", "#2F2F2F");
             root.style.setProperty("--blkSha", "#000000");
             root.style.setProperty("--grey", "#AAA");
             root.style.setProperty("--fff25", "#FFFFFF25");
             root.style.setProperty("--overlay", "#00000099");
         } else {
             root.style.setProperty("--ng1", "#F0F0F0");
-            root.style.setProperty("--ng2", "#FEFEFE");
             root.style.setProperty("--txt", "#000000");
             root.style.setProperty("--blk", "#FFFFFF");
+            root.style.setProperty("--blk-hov", "#DFDFDF");
             root.style.setProperty("--blkSha", "#00000010");
             root.style.setProperty("--grey", "#777");
             root.style.setProperty("--fff25", "#00000025");
@@ -97,39 +97,20 @@
             </svg>
             <p>Buscador</p>
         </button>
-        <button onclick={() => goto("/apps/calculadora-notas")} class="react-button-as-href">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30px"
-                height="30px"
-                viewBox="0 0 90 86"
-                fill="none"
-            >
-                <path
-                    d="M43.1534 1.43986C43.8365 -0.202726 46.1635 -0.202728 46.8466 1.43986L57.756 27.6692C58.0441 28.3617 58.6953 28.8348 59.4429 28.8947L87.7596 31.1649C89.5329 31.307 90.252 33.5201 88.9009 34.6774L67.3265 53.1582C66.7569 53.6461 66.5082 54.4116 66.6822 55.1411L73.2735 82.7735C73.6863 84.5039 71.8038 85.8717 70.2856 84.9444L46.0425 70.1368C45.4025 69.7458 44.5975 69.7458 43.9575 70.1368L19.7144 84.9444C18.1962 85.8717 16.3137 84.504 16.7265 82.7735L23.3178 55.1411C23.4918 54.4116 23.2431 53.6461 22.6735 53.1582L1.09909 34.6774C-0.251987 33.5201 0.467064 31.307 2.24037 31.1649L30.5571 28.8947C31.3047 28.8348 31.9559 28.3617 32.244 27.6692L43.1534 1.43986Z"
-                    fill="white"
-                />
-            </svg>
-            <p>Calculadora de notas</p>
-        </button>
-        <button onclick={() => goto("/apps/contador-palabras")} class="react-button-as-href">
+        <button onclick={() => goto("/apps")} class="react-button-as-href">
             <svg
                 width="30"
                 height="30"
-                viewBox="0 0 30 30"
+                viewBox="0 0 44 44"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <rect width="20" height="2" fill="black" />
-                <rect y="14" width="20" height="2" fill="black" />
-                <rect y="21" width="20" height="2" fill="black" />
-                <rect x="10" y="7" width="20" height="2" fill="black" />
-                <rect x="10" y="28" width="20" height="2" fill="black" />
-                <rect x="22" width="8" height="2" fill="black" />
-                <rect x="22" y="14" width="8" height="2" fill="black" />
-                <rect y="28" width="8" height="2" fill="black" />
+                <path d="M0 6.10352e-05H20V20.0001H0V6.10352e-05Z" fill="black" />
+                <path d="M24 10L34 0L44 10L34 20L24 10Z" fill="black" />
+                <path d="M0 24.0001H20V44.0001H0V24.0001Z" fill="black" />
+                <path d="M24 24.0001H44V44.0001H24V24.0001Z" fill="black" />
             </svg>
-            <p>Contador de palabras</p>
+            <p>Aplicaciones</p>
         </button>
         <button
             onclick={() => {
@@ -151,7 +132,7 @@
                     fill="#33363F"
                 />
             </svg>
-            <p>Cambiar tema</p>
+            <p>Tema</p>
         </button>
     </div>
 </nav>
@@ -165,5 +146,5 @@
         derechos de autor, queda prohibida la reutilización, modificación, o redistribución de estos
         y otros materiales asociados sin autorización expresa.
     </p>
-    <p class="text-end"><b>ZakaProfe WEBv3.0</b>.1</p>
+    <p class="text-end"><b>ZakaProfe WEBv3.2.0</b></p>
 </footer>

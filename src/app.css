@@ -21,9 +21,9 @@ a {
 
 :root {
     --ng1: #0f0f0f;
-    --ng2: #1f1f1f;
     --txt: #ffffff;
     --blk: #1f1f1f;
+    --blk-hov: #2f2f2f;
     --blkSha: #000000;
     --grey: #aaa;
     --fff25: #ffffff25;
@@ -31,7 +31,7 @@ a {
     --ZakaProfe: #0099ff;
     --ZakaTeka: #ff9900;
     --border: 2px solid var(--fff25);
-    scrollbar-gutter: stable both-edges;
+    /* magic: scrollbar-gutter: stable both-edges; */
 }
 
 img {
@@ -471,4 +471,21 @@ a.btn-zt {
     margin-right: auto;
     padding: 20px;
     border: var(--border);
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    border: var(--border);
+}
+
+td,
+th {
+    padding: 20px;
+}
+
+th {
+    background-color: var(--blk);
 }

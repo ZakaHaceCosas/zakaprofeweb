@@ -1,11 +1,5 @@
 <script lang="ts">
     import { normalize } from "strings-utils";
-    import { onMount } from "svelte";
-
-    onMount(() => {
-        console.log(window.location.search);
-        if (!window.location.search) return;
-    });
 
     let text = "";
 
@@ -26,7 +20,6 @@
         caracteres, y párrafos por ti. Solo pega aquí tu texto (o empieza a escribir) y baja abajo
         del todo, se muestra al instante sin clicar nada.<br /><br />
     </p>
-    <code>Texto aquí</code>
 
     <textarea
         name="texto"
@@ -62,6 +55,10 @@
             <li>
                 <b>{text.split("\n").length}</b> párrafos usando un solo salto de línea (recuerda usar
                 dos)
+            </li>
+            <li>
+                <b>{normalize(text).split(" ").length / 200} minutos</b> de lectura (aproximado, estimado
+                para español promedio)
             </li>
         </ul>
     {/if}

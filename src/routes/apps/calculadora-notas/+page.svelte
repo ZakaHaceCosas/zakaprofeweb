@@ -157,7 +157,7 @@
         </button>
     </div>
     <div id="share-popover" class="popover" popover>
-        ¡Enlace copiado al portapapeles! Incluye todas las notas que tienes escritas aquí.
+        ¡Enlace copiado al portapapeles! Incluye todas las notas que tengas escritas aquí.
     </div>
 
     {#if isPonderingOne}
