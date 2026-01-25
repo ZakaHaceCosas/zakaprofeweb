@@ -26,7 +26,7 @@ ${PAGES.map(
         <loc>https://profe.zhc.es${page[0]}</loc>
         <lastmod>${page[1].trim()}</lastmod>
     </url>`
-).join("")}
+).join("\n")}
 </urlset>
 `;
 
