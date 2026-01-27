@@ -2,6 +2,7 @@
     import { countOccurrences, isValidIP, validateAgainst } from "strings-utils";
     import { onMount } from "svelte";
     import { isBetween } from "numeric-utils";
+    import Button from "../../../components/Button.svelte";
 
     let ipAddress = "";
     let val: null | {
@@ -136,17 +137,15 @@
         }}
         placeholder="192.168.0.1/28"
         required
-        class="nota_input"
+        class="w-full! flex-1 sm:flex-3"
     />
 
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <button class="btn" on:click={calculateIp} style="flex: 1;"
-            ><b>&starf;</b> Calcular IP</button
+        <Button callback={calculateIp} channel="ZakaTeka"><b>&starf;</b> Calcular IP</Button>
+        <Button callback={share} popovertarget="share-popover" channel="ZakaTeka"
+            ><b>&nearr;</b> Compartir</Button
         >
-        <button class="btn" on:click={share} style="flex: 1;" popovertarget="share-popover"
-            ><b>&nearr;</b> Compartir
-        </button>
     </div>
     <div id="share-popover" class="popover" popover>¡Enlace copiado al portapapeles!</div>
 

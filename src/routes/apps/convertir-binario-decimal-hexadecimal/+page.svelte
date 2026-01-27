@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import Button from "../../../components/Button.svelte";
 
     let bin = "";
     let dec = "";
@@ -67,7 +68,7 @@
             on:input={(e) => handleInputChange(1, e.currentTarget.value)}
             placeholder="Binario"
             required
-            class="nota_input"
+            class="w-full! flex-1 sm:flex-3"
         />
         <input
             type="number"
@@ -76,7 +77,7 @@
             on:input={(e) => handleInputChange(2, e.currentTarget.value)}
             placeholder="Decimal"
             required
-            class="nota_input"
+            class="w-full! flex-1 sm:flex-3"
         />
         <input
             type="text"
@@ -85,7 +86,7 @@
             on:input={(e) => handleInputChange(3, e.currentTarget.value)}
             placeholder="Hexadecimal"
             required
-            class="nota_input"
+            class="w-full! flex-1 sm:flex-3"
         />
     </div>
     <div id="share-popover" class="popover" popover>¡Enlace copiado al portapapeles!</div>
@@ -129,8 +130,8 @@
     {/if}
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <button class="btn" on:click={share} style="flex: 1;" popovertarget="share-popover"
+        <Button callback={share} popovertarget="share-popover" channel="ZakaTeka"
             ><b>&nearr;</b> Compartir
-        </button>
+        </Button>
     </div>
 </main>

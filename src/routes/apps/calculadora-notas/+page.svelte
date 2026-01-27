@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import Button from "../../../components/Button.svelte";
 
     interface Nota {
         nota: string;
@@ -113,7 +114,7 @@
         mismo).<br /><br />
     </p>
     {#each notas as nota, index}
-        <div class="nota_wrapper">
+        <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
             <code>Nota {index + 1}</code>
 
             <input
@@ -123,11 +124,11 @@
                 on:input={(e) => handleInputChange(index, "nota", e.currentTarget.value)}
                 placeholder="Nota"
                 required
-                class="nota_input"
+                class="w-full! flex-1 sm:flex-3"
             />
 
             <input
-                class="ponder_input"
+                class="w-full flex-1"
                 style="
                     background-color: {nota.pondering !== ''
                 && (parseFloat(nota.pondering) <= 0 || parseFloat(nota.pondering) > 100)
@@ -143,18 +144,22 @@
                 required
             />
 
-            <button class="btn" on:click={() => deleteNota(index)}>Eliminar</button>
+            <Button
+                tail="sm:w-inherit! w-auto!"
+                callback={() => deleteNota(index)}
+                channel="ZakaProfe">Eliminar</Button
+            >
         </div>
     {/each}
 
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <button class="btn" on:click={addNota} style="flex: 1;"><b>+</b> Agregar Nota</button>
-        <button class="btn" on:click={calculateAverage} style="flex: 1;"
-            ><b>&starf;</b> Calcular Promedio</button
+        <Button callback={addNota} channel="ZakaProfe"><b>+</b> Agregar Nota</Button>
+        <Button callback={calculateAverage} channel="ZakaProfe"
+            ><b>&starf;</b> Calcular Promedio</Button
         >
-        <button class="btn" on:click={share} style="flex: 1;" popovertarget="share-popover"
-            ><b>&nearr;</b> Compartir
-        </button>
+        <Button callback={share} channel="ZakaProfe" popovertarget="share-popover"
+            ><b>&nearr;</b> Compartir</Button
+        >
     </div>
     <div id="share-popover" class="popover" popover>
         ¡Enlace copiado al portapapeles! Incluye todas las notas que tengas escritas aquí.

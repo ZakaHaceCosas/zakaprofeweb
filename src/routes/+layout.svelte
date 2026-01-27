@@ -75,8 +75,9 @@
 <nav>
     <a href="/">
         <img
+            class="pointer-events-none!"
             src="/logo-horizon.webp"
-            alt="ZakaProfe"
+            alt="Logotipo de ZakaProfe"
             style="height: 50px; object-fit: scale-down;"
         />
     </a>
@@ -146,5 +147,5 @@
         derechos de autor, queda prohibida la reutilización, modificación, o redistribución de estos
         y otros materiales asociados sin autorización expresa.
     </p>
-    <p class="text-end"><b>ZakaProfe WEBv3.2.0</b></p>
+    <p class="text-end"><b>ZakaProfe WEBv3.3.0</b></p>
 </footer>

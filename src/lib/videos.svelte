@@ -29,7 +29,11 @@
     {#if videos.one}
         <ExternalLink url={videos.one.url}>
             <div class="video">
-                <img src={videos.one.thumbnail} alt={videos.one.title} />
+                <img
+                    class="pointer-events-none!"
+                    src={videos.one.thumbnail}
+                    alt={videos.one.title}
+                />
                 <div class="overlay">
                     <p>
                         <b>{videos.one.title}</b> &gt;&gt;&gt;
@@ -41,7 +45,11 @@
     {#if videos.two}
         <ExternalLink url={videos.two.url}>
             <div class="video">
-                <img src={videos.two.thumbnail} alt={videos.two.title} />
+                <img
+                    class="pointer-events-none!"
+                    src={videos.two.thumbnail}
+                    alt={videos.two.title}
+                />
                 <div class="overlay">
                     <p>
                         <b>{videos.two.title}</b> &gt;&gt;&gt;

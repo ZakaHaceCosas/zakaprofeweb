@@ -2,6 +2,18 @@
 
 # ZakaProfe WEB · Registro de cambios
 
+## 3.3.0 (27/01/2026)
+
+Actualizaciones visibles para el usuario:
+
+- Añadida otra app de ZakaTeka, para calcular VLSM en IPs.
+- Organizadas las apps por categorías.
+- Arreglado un error histórico, la navegación accesible / por tabulador es invisible, volviéndose inaccesible.
+
+Actualizaciones internas (desarrollo):
+
+- Migrado algunos componentes a Tailwind, reduciendo el CSS que se tiene que cargar. Gradualmente se pasará todo a Tailwind para mejorar rendimiento.
+
 ## 3.2.0 (23/01/2026)
 
 Actualizaciones visibles para el usuario:

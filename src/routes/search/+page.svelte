@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Button from "../../components/Button.svelte";
     import { ALL_VDs, type IVideo } from "../../lib/db";
     import { validate, normalize, pluralOrNot, similarity } from "strings-utils";
 
@@ -51,7 +52,11 @@
         {#if results && results.length != 0}
             {#each results as v}
                 <div class="result">
-                    <img src={v.thumbnail} alt={`${v.title}, ${v.topic}, ${v.level}`} />
+                    <img
+                        class="pointer-events-none!"
+                        src={v.thumbnail}
+                        alt={`${v.title}, ${v.topic}, ${v.level}`}
+                    />
                     <div class="result-content">
                         <h2 class="text-3xl">{v.title}</h2>
                         <hr style="margin: 0px;" />
@@ -64,14 +69,7 @@
                                 similarity(v.title, search) * 100
                             ).toPrecision(4)}%.
                         </p>
-                        <a
-                            class={v.channel === "ZakaTeka" ? "btn-zt" : "btn"}
-                            href={v.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Ver en YouTube &gt;
-                        </a>
+                        <Button channel={v.channel} href={v.url}>Ver en YouTube &gt;</Button>
                     </div>
                 </div>
                 <br />

@@ -2,10 +2,6 @@
 @import "tailwindcss";
 
 * {
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
     box-sizing: border-box;
     scroll-behavior: smooth;
     transition-duration: 0.2s;
@@ -31,11 +27,6 @@ a {
     --ZakaProfe: #0099ff;
     --ZakaTeka: #ff9900;
     --border: 2px solid var(--fff25);
-    /* magic: scrollbar-gutter: stable both-edges; */
-}
-
-img {
-    pointer-events: none !important;
 }
 
 h1 {
@@ -208,14 +199,10 @@ footer {
 
 nav {
     border-bottom: var(--border);
-    border-right: var(--border);
-    border-left: var(--border);
 }
 
 footer {
     border-top: var(--border);
-    border-right: var(--border);
-    border-left: var(--border);
     font-size: small;
     color: var(--grey);
     font-weight: 500;
@@ -292,28 +279,6 @@ hr {
     text-decoration: none !important;
 }
 
-.nota_wrapper {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-.nota_wrapper .nota_input,
-.nota_wrapper .ponder_input {
-    width: 100% !important;
-}
-
-.nota_wrapper .nota_input {
-    flex: 3;
-}
-
-.nota_wrapper .ponder_input {
-    flex: 1;
-}
-
 @media only screen and (max-width: 900px) {
     nav .urls button p {
         display: none;
@@ -365,19 +330,6 @@ hr {
 
     a[href] {
         text-decoration: underline;
-    }
-
-    .nota_wrapper {
-        flex-direction: column;
-    }
-
-    .nota_wrapper .nota_input,
-    .nota_wrapper .ponder_input {
-        flex: 1 !important;
-    }
-
-    .nota_wrapper button {
-        width: 100% !important;
     }
 }
 
@@ -436,34 +388,6 @@ h2.ocupado {
     color: #ff3232;
 }
 
-a.btn,
-a.btn-zt {
-    text-decoration: none !important;
-}
-
-.btn,
-.btn-zt {
-    padding: 15px;
-    background-color: var(--ZakaProfe);
-    border: 2px solid var(--fff25);
-    cursor: pointer;
-    color: #fff;
-}
-
-.btn-zt:hover,
-.btn:hover {
-    background-color: var(--blk);
-    color: var(--ZakaProfe);
-}
-
-.btn-zt {
-    color: var(--blk);
-    background-color: var(--ZakaTeka);
-}
-.btn-zt:hover {
-    color: var(--ZakaTeka);
-}
-
 .popover {
     position: absolute;
     margin-top: 80vh;
@@ -479,13 +403,25 @@ table {
 
 tr {
     border: var(--border);
+    width: 100%;
 }
 
 td,
 th {
     padding: 20px;
+    width: 50%;
 }
 
 th {
     background-color: var(--blk);
+    text-align: left;
+    font-weight: 500;
+}
+
+tr td:nth-of-type(2) {
+    color: var(--ZakaProfe);
+}
+*:focus-visible {
+    outline: 2px solid var(--ZakaProfe);
+    outline-offset: 2px;
 }
