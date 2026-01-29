@@ -18,7 +18,7 @@
         Por algún motivo no todos los editores de documentos tienen un contador de palabras, dato
         que te interesará saber para entregar trabajos.<br /><br />Este contador mide palabras,
         caracteres, y párrafos por ti. Solo pega aquí tu texto (o empieza a escribir) y baja abajo
-        del todo, se muestra al instante sin clicar nada.<br /><br />
+        del todo, se muestra al instante sin ningún clic.<br /><br />
     </p>
 
     <textarea

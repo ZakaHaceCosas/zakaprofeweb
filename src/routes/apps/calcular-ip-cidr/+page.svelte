@@ -3,6 +3,8 @@
     import { onMount } from "svelte";
     import { isBetween } from "numeric-utils";
     import Button from "../../../components/Button.svelte";
+    import Input from "../../../components/Input.svelte";
+    import Table from "../../../components/Table.svelte";
 
     let ipAddress = "";
     let val: null | {
@@ -122,96 +124,68 @@
         Escribe una IP con CIDR y dale a calcular. Te dará todo lo que podrías necesitar (máscara,
         dirección de red, dirección de broadcast...)<br /><br />
     </p>
-    <input
+    <Input
         type="text"
         name="ip"
         bind:value={ipAddress}
-        on:input={(e) => {
+        oninput={(e) => {
             ipAddress = e.currentTarget.value;
             const newParams = `?ip=${encodeURIComponent(e.currentTarget.value)}`;
             history.replaceState(null, "", newParams);
         }}
-        on:keydown={(e) => {
+        onkeydown={(e) => {
             if (e.key !== "Enter") return;
             calculateIp();
         }}
-        placeholder="192.168.0.1/28"
+        title="Introduce una IP con el CIDR, como 192.168.0.1/28"
         required
-        class="w-full! flex-1 sm:flex-3"
+        tail="w-full! flex-1 sm:flex-3"
+        channel="ZakaTeka"
     />
 
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button callback={calculateIp} channel="ZakaTeka"><b>&starf;</b> Calcular IP</Button>
-        <Button callback={share} popovertarget="share-popover" channel="ZakaTeka"
-            ><b>&nearr;</b> Compartir</Button
+        <Button callback={calculateIp} channel="ZakaTeka" title="Calcular la IP."
+            ><b>&starf;</b> Calcular IP</Button
+        >
+        <Button
+            callback={share}
+            popovertarget="share-popover"
+            channel="ZakaTeka"
+            title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button
         >
     </div>
-    <div id="share-popover" class="popover" popover>¡Enlace copiado al portapapeles!</div>
+    <div
+        id="share-popover"
+        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
+        popover
+    >
+        ¡Enlace copiado al portapapeles!
+    </div>
 
     {#if val !== null}
         <br />
-        <table>
-            <thead>
-                <tr>
-                    <th>Propiedad</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dirección de red</td>
-                    <td>{val.networkAddress}</td>
-                </tr>
-                <tr>
-                    <td>Dirección de broadcast</td>
-                    <td>{val.broadcastAddress}</td>
-                </tr>
-                <tr>
-                    <td>Dirección de gateway</td>
-                    <td>{val.gatewayAddress}</td>
-                </tr>
-                <tr>
-                    <td>IP en formato binario</td>
-                    <td>{val.binIp}</td>
-                </tr>
-                <tr>
-                    <td>Máscara de red</td>
-                    <td>{val.mask}</td>
-                </tr>
-                <tr>
-                    <td>Wildcard</td>
-                    <td>{val.wildcard}</td>
-                </tr>
-                <tr>
-                    <td>Rango utilizable</td>
-                    <td>{val.usable[0]} &mdash; {val.usable[1]}</td>
-                </tr>
-                <tr>
-                    <td>Número de hosts útiles</td>
-                    <td>{val.usableHosts[0]} ({val.usableHosts[1]} - 2)</td>
-                </tr>
-                <tr>
-                    <td>Número de hosts en total</td>
-                    <td>{val.usableHosts[0] + 2} ({val.usableHosts[1]})</td>
-                </tr>
-                <tr>
-                    <td>Octeto crítico</td>
-                    <td
-                        >{val.critical
-                            ? `${val.critical[0]} (posición ${val.critical[1]} en la IP, ${val.critical[2]} bits críticos [${val.critical[4]}] y núm. base ${val.critical[3]})`
-                            : "No hay"}</td
-                    >
-                </tr>
-                <tr>
-                    <td>Bits de red</td>
-                    <td>{val.netBits}</td>
-                </tr>
-                <tr>
-                    <td>Bits de host</td>
-                    <td>{val.hostBits}</td>
-                </tr>
-            </tbody>
-        </table>
+        <Table
+            channel="ZakaTeka"
+            table={[
+                ["Dirección de red", val.networkAddress],
+                ["Dirección de broadcast", val.broadcastAddress],
+                ["Dirección de gateway", val.gatewayAddress],
+                ["IP en formato binario", val.binIp],
+                ["Máscara de red", val.mask],
+                ["Wildcard", val.wildcard],
+                ["Rango utilizable", `${val.usable[0]} — ${val.usable[1]}`],
+                ["Número de hosts útiles", `${val.usableHosts[0]} (${val.usableHosts[1]} - 2)`],
+                ["Número de hosts en total", `${val.usableHosts[0] + 2} (${val.usableHosts[1]})`],
+                [
+                    "Octeto crítico",
+                    val.critical
+                        ? `${val.critical[0]} (posición ${val.critical[1]} en la IP, ${val.critical[2]} bits críticos [${val.critical[4]}] y núm. base ${val.critical[3]})`
+                        : "No hay",
+                ],
+                ["Bits de red", val.netBits],
+                ["Bits de host", val.hostBits],
+            ]}
+        />
     {/if}
 </main>

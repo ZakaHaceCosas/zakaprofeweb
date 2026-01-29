@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Button from "../../../components/Button.svelte";
+    import Input from "../../../components/Input.svelte";
 
     interface Nota {
         nota: string;
@@ -115,36 +116,37 @@
     </p>
     {#each notas as nota, index}
         <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
-            <code>Nota {index + 1}</code>
+            <code class="font-mono!">Nota {index + 1}</code>
 
-            <input
+            <Input
                 type="number"
                 name="nota"
                 bind:value={nota.nota}
-                on:input={(e) => handleInputChange(index, "nota", e.currentTarget.value)}
-                placeholder="Nota"
+                oninput={(e) => handleInputChange(index, "nota", e.currentTarget.value)}
+                title="Introduce aquí la nota"
                 required
-                class="w-full! flex-1 sm:flex-3"
+                tail="w-full! flex-1 sm:flex-3"
+                channel="ZakaProfe"
             />
 
-            <input
-                class="w-full flex-1"
-                style="
-                    background-color: {nota.pondering !== ''
+            <Input
+                channel="ZakaProfe"
+                tail="w-full flex-1"
+                style="background-color: {nota.pondering !== ''
                 && (parseFloat(nota.pondering) <= 0 || parseFloat(nota.pondering) > 100)
                     ? '#FFc832'
-                    : ''};
-                "
+                    : ''};"
                 type="number"
                 name="pondering"
                 id={"ponder_" + index}
                 bind:value={nota.pondering}
-                on:input={(e) => handleInputChange(index, "pondering", e.currentTarget.value)}
-                placeholder="Ponderación (0 - 100)"
+                oninput={(e) => handleInputChange(index, "pondering", e.currentTarget.value)}
+                title="Ponderación (0 - 100)"
                 required
             />
 
             <Button
+                title="Eliminar esta nota"
                 tail="sm:w-inherit! w-auto!"
                 callback={() => deleteNota(index)}
                 channel="ZakaProfe">Eliminar</Button
@@ -153,15 +155,29 @@
     {/each}
 
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button callback={addNota} channel="ZakaProfe"><b>+</b> Agregar Nota</Button>
-        <Button callback={calculateAverage} channel="ZakaProfe"
+        <Button
+            callback={addNota}
+            channel="ZakaProfe"
+            title="Añadir una nota más con la que mediar."><b>+</b> Agregar Nota</Button
+        >
+        <Button
+            callback={calculateAverage}
+            channel="ZakaProfe"
+            title="Calcular la media de las notas que has introducido."
             ><b>&starf;</b> Calcular Promedio</Button
         >
-        <Button callback={share} channel="ZakaProfe" popovertarget="share-popover"
-            ><b>&nearr;</b> Compartir</Button
+        <Button
+            callback={share}
+            channel="ZakaProfe"
+            popovertarget="share-popover"
+            title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button
         >
     </div>
-    <div id="share-popover" class="popover" popover>
+    <div
+        id="share-popover"
+        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
+        popover
+    >
         ¡Enlace copiado al portapapeles! Incluye todas las notas que tengas escritas aquí.
     </div>
 

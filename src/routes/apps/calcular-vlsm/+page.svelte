@@ -2,6 +2,8 @@
     import { isValidIP } from "strings-utils";
     import { onMount } from "svelte";
     import Button from "../../../components/Button.svelte";
+    import Input from "../../../components/Input.svelte";
+    import Table from "../../../components/Table.svelte";
 
     let ipAddress = "";
     let val:
@@ -71,9 +73,10 @@
             val = [];
 
             ranges
-                .map((r, i) => ({ r: Number(r), i }))
+                .map((r, i) => ({ r: Number(r) + 2, i }))
                 .sort((a, b) => b.r - a.r)
                 .forEach(({ r, i }) => {
+                    console.log(r, i);
                     if (isNaN(r) || r < 2) throw `El rango ${i + 1} es inválido.`;
 
                     let pow = 0;
@@ -155,91 +158,95 @@
         calcular. Usará VLSM para dividir la red por tí. No introduzcas el CIDR en la IP que
         proveas.<br /><br />
     </p>
-    <input
+    <Input
         type="text"
         name="ip"
         bind:value={ipAddress}
-        on:input={(e) => (ipAddress = e.currentTarget.value)}
-        on:keydown={(e) => {
+        oninput={(e) => (ipAddress = e.currentTarget.value)}
+        onkeydown={(e) => {
             if (e.key !== "Enter") return;
             calculateVLSM();
         }}
-        placeholder="192.168.0.1"
+        title="Introduce una IPv4, como 192.168.0.1"
         required
-        class="w-full! flex-1 sm:flex-3"
+        channel="ZakaTeka"
+        tail="w-full!"
     />
     <br />
     {#each ranges as range, index}
         <div class="mb-3 flex w-full flex-row items-center gap-3">
-            <code>Rango {index + 1}</code>
+            <code class="font-mono!">Rango {index + 1}</code>
 
-            <input
+            <Input
                 type="number"
                 name="range"
                 bind:value={range}
-                on:input={(e) => handleInputChange(index, e.currentTarget.value)}
-                on:keydown={(e) => {
+                oninput={(e) => handleInputChange(index, e.currentTarget.value)}
+                onkeydown={(e) => {
                     if (e.key !== "Enter") return;
                     calculateVLSM();
                 }}
-                placeholder="Introduce un número de dispositivos para este rango"
+                title="Introduce un número de dispositivos para este rango"
                 required
-                class="w-full! flex-1 sm:flex-3"
+                tail="w-full! flex-1 sm:flex-6"
+                channel="ZakaTeka"
             />
 
-            <Button channel="ZakaTeka" callback={() => deleteRange(index)}>Eliminar</Button>
+            <Button
+                title="Eliminar este rango."
+                tail="flex-1!"
+                channel="ZakaTeka"
+                callback={() => deleteRange(index)}>Eliminar</Button
+            >
         </div>
     {/each}
 
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button callback={addRange} channel="ZakaTeka"><b>+</b> Agregar Rango</Button>
-        <Button callback={calculateVLSM} channel="ZakaTeka"><b>&starf;</b> Calcular IP</Button>
-        <Button callback={share} channel="ZakaTeka" popovertarget="share-popover"
+        <Button callback={addRange} channel="ZakaTeka" title="Agregar un nuevo rango a la lista."
+            ><b>+</b> Agregar Rango</Button
+        >
+        <Button callback={calculateVLSM} channel="ZakaTeka" title="Calcular el VLSM."
+            ><b>&starf;</b> Calcular VLSM</Button
+        >
+        <Button
+            callback={share}
+            channel="ZakaTeka"
+            popovertarget="share-popover"
+            title="Generar un enlace para compartir el resultado."
             ><b>&nearr;</b> Compartir
         </Button>
     </div>
-    <div id="share-popover" class="popover" popover>¡Enlace copiado al portapapeles!</div>
+    <div
+        id="share-popover"
+        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
+        popover
+    >
+        ¡Enlace copiado al portapapeles!
+    </div>
 
     {#if val !== null}
         <br />
         {#each val as range}
             <h2 class="text-xl">Rango {range.rangeIdx}</h2>
             <br />
-            <table>
-                <thead>
-                    <tr>
-                        <th>Propiedad</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Dirección de red</td>
-                        <td>{range.networkAddress}</td>
-                    </tr>
-                    <tr>
-                        <td>Dirección de broadcast</td>
-                        <td>{range.broadcastAddress}</td>
-                    </tr>
-                    <tr>
-                        <td>Máscara de red</td>
-                        <td>{range.mask}</td>
-                    </tr>
-                    <tr>
-                        <td>Rango utilizable</td>
-                        <td>{range.usable[0]} &mdash; {range.usable[1]}</td>
-                    </tr>
-                    <tr>
-                        <td>Número de hosts útiles</td>
-                        <td>{range.usableHosts[0]} ({range.usableHosts[1]} - 2)</td>
-                    </tr>
-                    <tr>
-                        <td>Número de hosts en total</td>
-                        <td>{range.usableHosts[0] + 2} ({range.usableHosts[1]})</td>
-                    </tr>
-                </tbody>
-            </table>
+            <Table
+                channel="ZakaTeka"
+                table={[
+                    ["Dirección de red", range.networkAddress],
+                    ["Dirección de broadcast", range.broadcastAddress],
+                    ["Máscara de red", range.mask],
+                    ["Rango utilizable", `${range.usable[0]} — ${range.usable[1]}`],
+                    [
+                        "Número de hosts útiles",
+                        `${range.usableHosts[0]} (${range.usableHosts[1]} - 2)`,
+                    ],
+                    [
+                        "Número de hosts en total",
+                        `${range.usableHosts[0] + 2} (${range.usableHosts[1]})`,
+                    ],
+                ]}
+            />
             <br />
         {/each}
     {/if}

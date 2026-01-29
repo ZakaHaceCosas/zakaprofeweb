@@ -1,5 +1,6 @@
 <script lang="ts">
     import Button from "../../components/Button.svelte";
+    import Input from "../../components/Input.svelte";
     import { ALL_VDs, type IVideo } from "../../lib/db";
     import { validate, normalize, pluralOrNot, similarity } from "strings-utils";
 
@@ -32,13 +33,14 @@
         que te será útil.
     </p>
     <hr />
-    <input
+    <Input
         type="text"
-        placeholder="Busca un video..."
-        onchange={(e) => {
+        name="query"
+        title="Busca un video..."
+        oninput={(e) => {
             search = normalize(e.currentTarget.value, { strict: true });
         }}
-        aria-label="Buscar videos"
+        channel="ZakaProfe"
     />
 
     {#if search.length > 2}
@@ -51,25 +53,33 @@
         <br />
         {#if results && results.length != 0}
             {#each results as v}
-                <div class="result">
+                <div
+                    class="flex w-full flex-col items-start justify-start gap-3 border-2 border-(--fff25) bg-(--blk) p-3 sm:flex-row"
+                >
                     <img
-                        class="pointer-events-none!"
+                        class="pointer-events-none! aspect-video w-full border-2 border-(--fff25) sm:max-w-60 lg:max-w-80"
                         src={v.thumbnail}
                         alt={`${v.title}, ${v.topic}, ${v.level}`}
                     />
-                    <div class="result-content">
+                    <div class="flex flex-col gap-2">
                         <h2 class="text-3xl">{v.title}</h2>
-                        <hr style="margin: 0px;" />
-                        <p class="disclaimer">
-                            {v.topic} · {v.level} ·
-                            <span
-                                title="La S indica la temporada a la que pertenece el video; cada cambio significativo en la calidad de producción se sube el número, básicamente. Siendo 0 mis primeros videos y 4 los más nuevos."
-                                >S{v.season}</span
-                            ><br />Parecido a lo que has buscado en un {(
-                                similarity(v.title, search) * 100
-                            ).toPrecision(4)}%.
+                        <p>
+                            {v.topic} · {v.level} · S{v.season}
                         </p>
-                        <Button channel={v.channel} href={v.url}>Ver en YouTube &gt;</Button>
+                        <p class="text-sm opacity-50">
+                            La S indica la temporada a la que pertenece el video; cada cambio
+                            significativo en la calidad de producción se sube el número,
+                            básicamente. Va desde el 0 (mis primeros videos) hasta el 4 (los más
+                            nuevos).
+                        </p>
+                        <Button
+                            channel={v.channel}
+                            href={v.url}
+                            title="Redirigir a YouTube para ver este video."
+                            tail="w-auto mt-auto"
+                        >
+                            Ver en YouTube &gt;
+                        </Button>
                     </div>
                 </div>
                 <br />

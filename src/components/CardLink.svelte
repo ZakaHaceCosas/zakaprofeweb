@@ -4,6 +4,14 @@
     export let title: string;
     export let body: string;
     export let target: string;
+    export let channel: "ZakaProfe" | "ZakaTeka";
+
+    const className =
+        "no-underline! " + channel === "ZakaProfe"
+            ? "hover:text-(--ZakaProfe)"
+            : "hover:text-(--ZakaTeka)";
+
+    export const prerender = true;
 </script>
 
 <a
@@ -12,7 +20,7 @@
         goto(target);
     }}
     href={`https://profe.zhc.es/${target}`}
-    class="no-underline!"
+    class={className}
     {title}
 >
     <div

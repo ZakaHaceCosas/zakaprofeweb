@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Button from "../../../components/Button.svelte";
+    import Input from "../../../components/Input.svelte";
 
     let bin = "";
     let dec = "";
@@ -13,7 +14,7 @@
         const params = new URLSearchParams(window.location.search);
         const val = params.get("val") ?? "";
 
-        if (isNaN(Number(val))) return;
+        if (val === "" || isNaN(Number(val))) return;
 
         handleInputChange(2, val);
     });
@@ -44,52 +45,76 @@
 </script>
 
 <svelte:head>
-    <title>Conversor entre binario, decimal, y hexadecimal</title>
+    <title>Convertidor entre binario, decimal, y hexadecimal</title>
     <meta
         name="description"
-        content="Un conversor entre binario, decimal, y hexadecimal. Escribes en un formato y automáticamente recibes el resultado en los otros dos."
+        content="Un convertidor entre binario, decimal, y hexadecimal. Escribes en un formato y automáticamente recibes el resultado en los otros dos."
     />
 </svelte:head>
 
 <main>
-    <h1>Conversor entre binario, decimal, y hexadecimal</h1>
+    <h1>Convertidor entre binario, decimal, y hexadecimal</h1>
     <br />
     <p>
         Escribe un número en cualquiera de las tres cajas (una para bin., otra para dec., y otra
         para hex.) y te muestra dicho número en los tres formatos.<br /><br />
     </p>
     <div class="flex w-full flex-row gap-2">
-        <input
+        <Input
             type="number"
             pattern="[10]*"
             inputmode="numeric"
             name="bin"
             bind:value={bin}
-            on:input={(e) => handleInputChange(1, e.currentTarget.value)}
-            placeholder="Binario"
+            oninput={(e) => {
+                handleInputChange(1, e.currentTarget.value);
+                const newParams = `?val=${dec}`;
+                history.replaceState(null, "", newParams);
+            }}
+            title="Número binario"
             required
-            class="w-full! flex-1 sm:flex-3"
+            channel="ZakaTeka"
+            tail="w-full! flex-1 sm:flex-3"
+            label="Binario"
         />
-        <input
+        <Input
             type="number"
             name="dec"
             bind:value={dec}
-            on:input={(e) => handleInputChange(2, e.currentTarget.value)}
-            placeholder="Decimal"
+            oninput={(e) => {
+                handleInputChange(2, e.currentTarget.value);
+                const newParams = `?val=${dec}`;
+                history.replaceState(null, "", newParams);
+            }}
+            title="Número decimal"
             required
-            class="w-full! flex-1 sm:flex-3"
+            tail="w-full! flex-1 sm:flex-3"
+            channel="ZakaTeka"
+            label="Decimal"
         />
-        <input
+        <Input
             type="text"
             name="hex"
             bind:value={hex}
-            on:input={(e) => handleInputChange(3, e.currentTarget.value)}
-            placeholder="Hexadecimal"
+            oninput={(e) => {
+                handleInputChange(3, e.currentTarget.value);
+                const newParams = `?val=${dec}`;
+                history.replaceState(null, "", newParams);
+            }}
+            title="Número hexadecimal"
             required
-            class="w-full! flex-1 sm:flex-3"
+            channel="ZakaTeka"
+            tail="w-full! flex-1 sm:flex-3"
+            label="Hexadecimal"
         />
     </div>
-    <div id="share-popover" class="popover" popover>¡Enlace copiado al portapapeles!</div>
+    <div
+        id="share-popover"
+        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
+        popover
+    >
+        ¡Enlace copiado al portapapeles!
+    </div>
 
     {#if !(bin === "" || dec === "" || hex === "")}
         <br />
@@ -105,32 +130,27 @@
             </p>
             <br />
         {/if}
-        <div class="flex w-full flex-row items-center justify-center gap-2">
-            <h3>
-                Binario
-                <span style={`font-size: xx-large; font-weight: 700; color: var(--ZakaProfe)"};`}>
-                    {bin}
-                </span>
-            </h3>
-            ·
-            <h3>
-                Decimal
-                <span style={`font-size: xx-large; font-weight: 700; color: var(--ZakaProfe)"};`}>
-                    {dec}
-                </span>
-            </h3>
-            ·
-            <h3>
-                Hexadecimal
-                <span style={`font-size: xx-large; font-weight: 700; color: var(--ZakaProfe)"};`}>
-                    {hex.toUpperCase()}
-                </span>
-            </h3>
+        <div class="flex w-full flex-row items-center justify-center gap-10">
+            <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+                {bin}
+            </span>
+            <b>·</b>
+            <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+                {dec}
+            </span>
+            <b>·</b>
+            <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+                {hex.toUpperCase()}
+            </span>
         </div>
     {/if}
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button callback={share} popovertarget="share-popover" channel="ZakaTeka"
+        <Button
+            callback={share}
+            popovertarget="share-popover"
+            channel="ZakaTeka"
+            title="Generar un enlace para compartir el resultado."
             ><b>&nearr;</b> Compartir
         </Button>
     </div>

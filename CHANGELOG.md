@@ -2,6 +2,17 @@
 
 # ZakaProfe WEB · Registro de cambios
 
+## 3.3.1 (29/01/2026)
+
+Actualizaciones visibles para el usuario:
+
+- Corregido algún pequeño error de lógica en algunas apps de ZakaTeka.
+
+Actualizaciones internas (desarrollo):
+
+- Migrados aún más componentes a Tailwind.
+- Eliminada la lógica inútil de las traducciones, reduciendo así consumo y trabajo de carga.
+
 ## 3.3.0 (27/01/2026)
 
 Actualizaciones visibles para el usuario:

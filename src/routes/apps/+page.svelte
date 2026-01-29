@@ -1,6 +1,7 @@
 <script lang="ts">
     import { normalize } from "strings-utils";
     import CardLink from "../../components/CardLink.svelte";
+    import Link from "../../components/Link.svelte";
 
     export const prerender = true;
 </script>
@@ -21,8 +22,11 @@
         Hechas a mano por ZakaProfe.<br /><br />Igual que con los dos canales de YouTube, algunas
         servirán a más gente y otras solo a informáticos.<br /><br />Acepto sugerencias de
         aplicaciones, mándamelas por uno de los medios de contacto mostrados
-        <a href="/#contact-section" style="text-decoration: underline!important;"
-            >en la página de inicio</a
+        <Link
+            href="/#contact-section"
+            channel="ZakaProfe"
+            title="Ir a la sección de contacto de la página de inicio"
+            >en la página de inicio (<b>clic aquí</b>)</Link
         >
         ;)<br /><br />
     </p>
@@ -32,6 +36,7 @@
     </div>
     <div class="grid w-full grid-cols-2 gap-4">
         <CardLink
+            channel="ZakaProfe"
             target="apps/calculadora-notas"
             title="Calculadora de notas"
             body="Una calculadora de notas medias, tanto aritméticas (simples) como ponderadas (con peso)."
@@ -50,6 +55,7 @@
             </svg>
         </CardLink>
         <CardLink
+            channel="ZakaProfe"
             target="apps/contador-palabras"
             title="Contador de palabras"
             body="Un contador de palabras, letras, y párrafos."
@@ -78,6 +84,7 @@
     </div>
     <div class="grid w-full grid-cols-2 gap-4">
         <CardLink
+            channel="ZakaTeka"
             target="apps/convertir-binario-decimal-hexadecimal"
             title="Conversor binario &hArr; hexadecimal &hArr; decimal"
             body="Convierte entre binario, decimal, y hexadecimal."
@@ -104,6 +111,7 @@
             </svg>
         </CardLink>
         <CardLink
+            channel="ZakaTeka"
             target="apps/calcular-ip-cidr"
             title="Calculadora de IPs con CIDR"
             body="Escribes una IP con CIDR y recibes toda la información de esa IP."
@@ -134,6 +142,7 @@
             </svg>
         </CardLink>
         <CardLink
+            channel="ZakaTeka"
             target="apps/calcular-vlsm"
             title="Calculadora de VLSM para IPs"
             body="Escribes una IP y varios rangos de dispositivos, y divide todo con VLSM por ti."

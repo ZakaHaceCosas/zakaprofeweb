@@ -6,12 +6,6 @@
     scroll-behavior: smooth;
     transition-duration: 0.2s;
     line-height: 110%;
-}
-
-body,
-button,
-input,
-a {
     font-family: Poppins;
 }
 
@@ -26,7 +20,6 @@ a {
     --overlay: #00000099;
     --ZakaProfe: #0099ff;
     --ZakaTeka: #ff9900;
-    --border: 2px solid var(--fff25);
 }
 
 h1 {
@@ -35,20 +28,6 @@ h1 {
 
 svg path {
     fill: var(--txt);
-}
-
-a {
-    color: var(--txt);
-    text-decoration: none;
-}
-
-a:hover {
-    color: var(--ZakaProfe);
-    text-decoration: underline;
-}
-
-a:hover svg path {
-    fill: var(--ZakaProfe);
 }
 
 body,
@@ -71,87 +50,6 @@ main {
     justify-content: start;
     flex: 1;
     padding: 40px;
-}
-
-.result {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    align-items: start;
-    justify-content: start;
-    background-color: var(--blk);
-    padding: 20px;
-    width: 100%;
-    border: var(--border);
-}
-
-input,
-textarea {
-    border: var(--border);
-    padding: 20px;
-}
-
-input,
-.result-content,
-textarea {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
-    align-items: start;
-    justify-content: start;
-    background-color: var(--blk);
-    color: var(--txt);
-}
-
-section .flex-container {
-    border: var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: start;
-    background-color: var(--blk);
-    padding: 15px;
-}
-
-.randoms {
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: start;
-    gap: 10px;
-}
-
-.video {
-    border: var(--border);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    flex: 1;
-    aspect-ratio: 16/9;
-}
-
-.video .overlay {
-    position: absolute;
-    width: inherit;
-    aspect-ratio: 16/9;
-    background-color: var(--overlay);
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    padding: 10px;
-}
-
-.video .overlay p {
-    color: #fff;
-}
-
-.video:hover .overlay {
-    opacity: 1;
 }
 
 .video img {
@@ -196,13 +94,7 @@ footer {
     min-height: 60px;
     justify-content: space-between;
 }
-
-nav {
-    border-bottom: var(--border);
-}
-
 footer {
-    border-top: var(--border);
     font-size: small;
     color: var(--grey);
     font-weight: 500;
@@ -243,11 +135,6 @@ nav .urls button svg {
     object-fit: scale-down;
 }
 
-.disclaimer {
-    font-size: small;
-    opacity: 0.65;
-}
-
 .react-button-as-href {
     background-color: transparent;
     text-decoration: none;
@@ -267,18 +154,6 @@ hr {
     margin: 20px 0px;
 }
 
-.result img {
-    border: var(--border);
-    aspect-ratio: 16/9;
-    max-width: 270px;
-}
-
-.result .react-button-as-href,
-.result .react-button-as-href a {
-    width: 100%;
-    text-decoration: none !important;
-}
-
 @media only screen and (max-width: 900px) {
     nav .urls button p {
         display: none;
@@ -295,32 +170,6 @@ hr {
 
     nav .urls {
         justify-content: center;
-    }
-
-    .video,
-    .randoms,
-    .randoms a,
-    .video .overlay,
-    .result,
-    .result img,
-    .result-content {
-        width: 100% !important;
-    }
-
-    .result {
-        flex-direction: column;
-    }
-
-    .result h3 {
-        font-size: x-large;
-    }
-
-    .result img {
-        max-width: 100%;
-    }
-
-    .result-content {
-        padding: 0;
     }
 
     body,
@@ -388,40 +237,7 @@ h2.ocupado {
     color: #ff3232;
 }
 
-.popover {
-    position: absolute;
-    margin-top: 80vh;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    border: var(--border);
-}
-
-table {
-    width: 100%;
-}
-
-tr {
-    border: var(--border);
-    width: 100%;
-}
-
-td,
-th {
-    padding: 20px;
-    width: 50%;
-}
-
-th {
-    background-color: var(--blk);
-    text-align: left;
-    font-weight: 500;
-}
-
-tr td:nth-of-type(2) {
-    color: var(--ZakaProfe);
-}
 *:focus-visible {
-    outline: 2px solid var(--ZakaProfe);
+    outline: 2px solid;
     outline-offset: 2px;
 }

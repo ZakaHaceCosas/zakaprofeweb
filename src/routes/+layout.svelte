@@ -3,7 +3,6 @@
     // import favicon from "$lib/assets/favicon.svg";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
-    // import { setLocale } from "$lib/paraglide/runtime";
 
     let { children } = $props();
 
@@ -72,7 +71,7 @@
     });
 </script>
 
-<nav>
+<nav class="border-b-2 border-b-(--fff25)">
     <a href="/">
         <img
             class="pointer-events-none!"
@@ -140,12 +139,12 @@
 
 {@render children?.()}
 
-<footer>
+<footer class="border-t-2 border-t-(--fff25)">
     <p>
         &copy; <b>ZakaProfe 2023-2026.</b><br />Todos los elementos de marca y otros diseños de
         «ZakaProfe», «ZakaTeka», y derivados, son propiedad intelectual. Se reservan todos los
         derechos de autor, queda prohibida la reutilización, modificación, o redistribución de estos
         y otros materiales asociados sin autorización expresa.
     </p>
-    <p class="text-end"><b>ZakaProfe WEBv3.3.0</b></p>
+    <p class="text-end"><b>ZakaProfe WEBv3.3.1</b></p>
 </footer>

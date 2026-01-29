@@ -1,6 +1,6 @@
 <script lang="ts">
+    import VideoCard from "../components/VideoCard.svelte";
     import { ZPVDs, ZTVDs, type IVideo } from "./db";
-    import ExternalLink from "./ext.svelte";
 
     let videos = $state<{ one: null | IVideo; two: null | IVideo }>({
         one: null,
@@ -25,37 +25,11 @@
     });
 </script>
 
-<div class="randoms">
+<div class="grid grid-cols-2 gap-4">
     {#if videos.one}
-        <ExternalLink url={videos.one.url}>
-            <div class="video">
-                <img
-                    class="pointer-events-none!"
-                    src={videos.one.thumbnail}
-                    alt={videos.one.title}
-                />
-                <div class="overlay">
-                    <p>
-                        <b>{videos.one.title}</b> &gt;&gt;&gt;
-                    </p>
-                </div>
-            </div>
-        </ExternalLink>
+        <VideoCard video={videos.one} />
     {/if}
     {#if videos.two}
-        <ExternalLink url={videos.two.url}>
-            <div class="video">
-                <img
-                    class="pointer-events-none!"
-                    src={videos.two.thumbnail}
-                    alt={videos.two.title}
-                />
-                <div class="overlay">
-                    <p>
-                        <b>{videos.two.title}</b> &gt;&gt;&gt;
-                    </p>
-                </div>
-            </div>
-        </ExternalLink>
+        <VideoCard video={videos.two} />
     {/if}
 </div>

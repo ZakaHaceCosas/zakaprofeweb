@@ -1,7 +1,6 @@
 <script lang="ts">
     import ZakAvailable from "$lib/zakavailable.svelte";
-
-    // import { m } from '$lib/paraglide/messages.js';
+    import Link from "../components/Link.svelte";
     import RandomVideoFeed from "../lib/videos.svelte";
 
     export const prerender = true;
@@ -31,21 +30,19 @@
                 VIDEOS <span style="color: var(--ZakaProfe)">ZAKAPROFE</span> &gt;&gt;&gt;
             </h1>
             <br />
-            <div class="flex-container">
+            <div class="flex flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4">
                 <h3>
                     Videos de carácter general, para todo el mundo.<br />Aquí se muestran dos
                     elegidos al azar.
                 </h3>
                 <RandomVideoFeed branch="PROFE" />
-                <a
-                    style="display: flex; alignItems: center, gap: 5"
+                <Link
                     href="https://www.youtube.com/@ZakaProfe/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Visita el canal de ZakaProfe en YouTube"
+                    title="Visita el canal de ZakaProfe en YouTube"
+                    channel="ZakaProfe"
                 >
                     Ver más en YouTube &gt;&gt;&gt;
-                </a>
+                </Link>
             </div>
         </section>
         <section class="flex-1" aria-labelledby="video-section-2">
@@ -53,21 +50,19 @@
                 VIDEOS <span style="color: var(--ZakaTeka)">ZAKATEKA</span> &gt;&gt;&gt;
             </h1>
             <br />
-            <div class="flex-container">
+            <div class="flex flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4">
                 <h3>
                     Videos centrados en informática, mi especialidad personal.<br />Aquí se muestran
                     dos elegidos al azar.
                 </h3>
                 <RandomVideoFeed branch="TEKA" />
-                <a
-                    style="display: flex; alignItems: center, gap: 5"
+                <Link
                     href="https://www.youtube.com/@ZakaTeka/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Visita el canal de ZakaTeka en YouTube"
+                    title="Visita el canal de ZakaTeka en YouTube"
+                    channel="ZakaTeka"
                 >
                     Ver más en YouTube &gt;&gt;&gt;
-                </a>
+                </Link>
             </div>
         </section>
     </div>
@@ -81,7 +76,7 @@
     <section aria-labelledby="classes-section" class="w-full">
         <h1 id="classes-section">CLASES PARTICULARES &gt;&gt;&gt;</h1>
         <br />
-        <div class="flex-container">
+        <div class="flex flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4">
             <p>
                 Clases particulares y personalizadas, por videollamada y con ejercicios prácticos.
                 Son de pago, aunque puedes esperarte precios MUY bajos. (aún están por determinar).<br
