@@ -1,13 +1,31 @@
 <script lang="ts">
     import { normalize } from "strings-utils";
+    import Textarea from "../../../components/Textarea.svelte";
+    import Button from "../../../components/Button.svelte";
+    import { onMount } from "svelte";
 
     let text = "";
+    function share() {
+        navigator.clipboard.writeText(
+            `https://profe.zhc.es/apps/contador-palabras?txt=${encodeURIComponent(btoa(text))}`
+        );
+    }
+
+    onMount(() => {
+        if (!window.location.search) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const val = params.get("txt") ?? "";
+
+        if (val === "") return;
+        text = atob(decodeURIComponent(val));
+    });
 
     export const prerender = true;
 </script>
 
 <svelte:head>
-    <title>Calculadora de notas</title>
+    <title>Contador de palabras</title>
     <meta name="description" content="Un contador de palabras, letras, y párrafos." />
 </svelte:head>
 
@@ -21,14 +39,33 @@
         del todo, se muestra al instante sin ningún clic.<br /><br />
     </p>
 
-    <textarea
+    <Textarea
         name="texto"
-        bind:value={text}
-        on:input={(e) => (text = e.currentTarget.value)}
-        placeholder="Pega aquí tu texto"
+        value={text}
+        oninput={(e) => {
+            text = e.currentTarget.value;
+            const newParams = `?txt=${encodeURIComponent(btoa(text))}`;
+            history.replaceState(null, "", newParams);
+        }}
+        title="Pega o escribe aquí tu texto"
         required
-        rows="15"
-    ></textarea>
+        rows={15}
+        channel="ZakaProfe"
+    />
+
+    <Button
+        callback={share}
+        channel="ZakaProfe"
+        popovertarget="share-popover"
+        title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button
+    >
+    <div
+        id="share-popover"
+        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
+        popover
+    >
+        ¡Enlace copiado al portapapeles! Incluye todo el texto que tengas escrito aquí.
+    </div>
 
     {#if text.trim() !== ""}
         <br />
@@ -57,8 +94,8 @@
                 dos)
             </li>
             <li>
-                <b>{normalize(text).split(" ").length / 200} minutos</b> de lectura (aproximado, estimado
-                para español promedio)
+                <b>{(normalize(text).split(" ").length / 200).toFixed(2)} minutos</b> de lectura (aproximado,
+                estimado para español promedio)
             </li>
         </ul>
     {/if}

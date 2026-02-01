@@ -5,7 +5,7 @@
     export let title: string;
 
     const className =
-        "cursor-pointer text-(--txt) hover:underline flex flex-row items-center justify-center gap-2 group"
+        "cursor-pointer text-(--txt) hover:underline group"
         + (channel === "ZakaProfe" ? " hover:text-(--ZakaProfe) " : " hover:text-(--ZakaTeka) ")
         + (channel === "ZakaProfe"
             ? " focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe) "

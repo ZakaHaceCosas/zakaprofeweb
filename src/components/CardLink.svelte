@@ -7,9 +7,8 @@
     export let channel: "ZakaProfe" | "ZakaTeka";
 
     const className =
-        "no-underline! " + channel === "ZakaProfe"
-            ? "hover:text-(--ZakaProfe)"
-            : "hover:text-(--ZakaTeka)";
+        "no-underline! group "
+        + (channel === "ZakaProfe" ? "hover:text-(--ZakaProfe)" : "hover:text-(--ZakaTeka)");
 
     export const prerender = true;
 </script>
@@ -24,10 +23,16 @@
     {title}
 >
     <div
-        class="flex flex-col gap-4 border-2! border-(--fff25)! bg-(--blk) p-4! hover:bg-(--blk-hov)"
+        class="flex flex-col gap-4 border-2! border-(--fff25)! bg-(--blk) p-4! group-hover:bg-(--blk-hov)"
     >
         <div class="flex flex-row items-center gap-2">
-            <slot name="svg" />
+            <span
+                class={channel === "ZakaProfe"
+                    ? "group-hover:fill-(--ZakaProfe)!"
+                    : "group-hover:fill-(--ZakaTeka)!"}
+            >
+                <slot name="svg" />
+            </span>
             <h3 class="text-xl leading-[100%]">{title}</h3>
         </div>
         <p>{body}</p>

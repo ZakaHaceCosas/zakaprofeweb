@@ -64,7 +64,7 @@
                     <div class="flex flex-col gap-2">
                         <h2 class="text-3xl">{v.title}</h2>
                         <p>
-                            {v.topic} · {v.level} · S{v.season}
+                            {v.topic} · {v.level} · <b>S{v.season}</b>
                         </p>
                         <p class="text-sm opacity-50">
                             La S indica la temporada a la que pertenece el video; cada cambio
@@ -89,6 +89,6 @@
         {/if}
     {:else}
         <br />
-        <p>Escribe al menos 3 caracteres y dale a ENTER para buscar.</p>
+        <p>Escribe al menos 3 caracteres y buscará automáticamente.</p>
     {/if}
 </main>

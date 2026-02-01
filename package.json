@@ -1,7 +1,7 @@
 {
     "name": "zakaprofe",
     "description": "Salvando tus notas",
-    "version": "3.3.1",
+    "version": "3.3.2",
     "private": true,
     "type": "module",
     "scripts": {

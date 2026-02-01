@@ -26,10 +26,6 @@ h1 {
     font-size: 2em;
 }
 
-svg path {
-    fill: var(--txt);
-}
-
 body,
 html {
     background-color: var(--ng1);
@@ -150,7 +146,9 @@ nav .urls button svg {
 hr {
     width: 100%;
     height: 2px;
+    background-color: transparent;
     border-bottom: 1px solid var(--fff25);
+    border-top: 1px solid var(--fff25);
     margin: 20px 0px;
 }
 

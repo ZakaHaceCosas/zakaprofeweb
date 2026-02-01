@@ -2,6 +2,13 @@
 
 # ZakaProfe WEB · Registro de cambios
 
+## 3.3.2 (01/02/2026)
+
+Actualizaciones visibles para el usuario:
+
+- Arreglados varios fallos visual, alguno de ellos grave.
+- Ahora el texto del contador de palabras también se puede compartir.
+
 ## 3.3.1 (29/01/2026)
 
 Actualizaciones visibles para el usuario:
