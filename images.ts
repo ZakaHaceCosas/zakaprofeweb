@@ -2,9 +2,7 @@ import { exec } from "child_process";
 import { readdirSync, rmSync } from "fs";
 import { join, basename, extname } from "path";
 
-const do_we_need_to_optimize_the_webp_files_again = false;
-
-const EXT_ARRAY = do_we_need_to_optimize_the_webp_files_again ? [".png", ".webp"] : [".png"];
+const EXT_ARRAY = [".png", ".webp"];
 
 async function optimizeImages(dir: string) {
     const files: [string, string][] = [];
@@ -14,27 +12,27 @@ async function optimizeImages(dir: string) {
         if (dirent.isDirectory()) {
             optimizeImages(fullPath);
         } else if (dirent.isFile() && EXT_ARRAY.includes(extname(dirent.name))) {
-            if (dirent.name.endsWith(".webp.webp")) {
+            if (dirent.name.endsWith(".webp.webp") || dirent.name.endsWith(".avif.avif")) {
                 rmSync(join(dir, dirent.name));
             } else if (dirent.name.includes("favicon-")) return;
             else {
                 const fileName = basename(dirent.name, ".png");
-                const outputWebp = join(
+                const outputAvif = join(
                     dir,
-                    fileName.endsWith(".webp") ? fileName : `${fileName}.webp`
+                    fileName.endsWith(".avif") ? fileName : `${fileName}.avif`
                 );
-                files.push([fullPath, outputWebp]);
+                files.push([fullPath, outputAvif]);
             }
         }
     });
 
     await Promise.all(
-        files.map(([fullPath, outputWebp]) => {
-            exec(`cwebp -q 60 ${fullPath} -o ${outputWebp}`, (error, _, stderr) => {
+        files.map(([fullPath, outputAvif]) => {
+            exec(`avifenc ${fullPath} -o ${outputAvif}`, (error, _, stderr) => {
                 if (error) {
                     console.error(`Error optimizando ${fullPath}:`, stderr);
                 } else {
-                    console.log(`Optimizado ${fullPath} -> ${outputWebp}`);
+                    console.log(`Optimizado ${fullPath} -> ${outputAvif}`);
                 }
             });
             exec(
