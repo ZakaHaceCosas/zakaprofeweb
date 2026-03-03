@@ -116,7 +116,7 @@
     </p>
     {#each notas as nota, index}
         <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
-            <code class="font-mono!">Nota {index + 1}</code>
+            <code class="font-mono!">#{index}</code>
 
             <Input
                 type="number"
@@ -125,8 +125,18 @@
                 oninput={(e) => handleInputChange(index, "nota", e.currentTarget.value)}
                 title="Introduce aquí la nota"
                 required
+                id={"nota_" + index}
                 tail="w-full! flex-1 sm:flex-3"
                 channel="ZakaProfe"
+                onkeydown={(e) => {
+                    if (e.key !== "Enter") return;
+                    if (e.shiftKey) calculateAverage();
+                    else {
+                        setTimeout(() => {
+                            document.getElementById(`ponder_${index}`)?.focus();
+                        }, 100);
+                    }
+                }}
             />
 
             <Input
@@ -143,6 +153,16 @@
                 oninput={(e) => handleInputChange(index, "pondering", e.currentTarget.value)}
                 title="Ponderación (0 - 100)"
                 required
+                onkeydown={(e) => {
+                    if (e.key !== "Enter") return;
+                    if (e.shiftKey) calculateAverage();
+                    else {
+                        if (index + 1 == notas.length) addNota();
+                        setTimeout(() => {
+                            document.getElementById(`nota_${index + 1}`)?.focus();
+                        }, 100);
+                    }
+                }}
             />
 
             <Button
@@ -153,7 +173,16 @@
             >
         </div>
     {/each}
-
+    <br />
+    <code class="text-sm opacity-50"
+        ><kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para pasar a la siguiente entrada (añadirá
+        otro rango si hace falta) ·
+        <kbd class="bg-gray-600 px-1.5 py-1">SHIFT</kbd>
+        +
+        <kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para calcular</code
+    >
+    <br />
+    <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
         <Button
             callback={addNota}

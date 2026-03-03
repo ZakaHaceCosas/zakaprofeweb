@@ -2,6 +2,17 @@
 
 # ZakaProfe WEB · Registro de cambios
 
+## 3.4.0 (WIP)
+
+Actualizaciones visibles para el usuario:
+
+- Añadida una calculadora de FLSM para redes.
+- Mejorada la calculadora de notas; faltaban cosas básicas como darle a Entrar para que calcule.
+
+Actualizaciones internas (desarrollo):
+
+- Ahora la web no se desplegará con cada confirmación que se sube al repositorio, por lo que el repositorio refleja ahora el futuro de la página y no el estado actual.
+
 ## 3.3.2 (01/02/2026)
 
 Actualizaciones visibles para el usuario:

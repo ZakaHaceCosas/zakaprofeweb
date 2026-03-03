@@ -19,7 +19,7 @@
     export let label: string | undefined = undefined;
 
     const className =
-        "p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 "
+        "font-mono! p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 "
         + (channel === "ZakaProfe"
             ? " focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe) "
             : " focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka) ")

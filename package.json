@@ -1,7 +1,7 @@
 {
     "name": "zakaprofe",
     "description": "Salvando tus notas",
-    "version": "3.3.2",
+    "version": "3.4.0",
     "private": true,
     "type": "module",
     "scripts": {
@@ -26,6 +26,8 @@
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-svelte": "^3.14.0",
         "globals": "^16.5.0",
+        "oxfmt": "^0.35.0",
+        "oxlint": "^1.50.0",
         "prettier": "^3.8.1",
         "prettier-plugin-svelte": "^3.4.1",
         "prettier-plugin-tailwindcss": "^0.7.2",

@@ -9,7 +9,7 @@
     let val:
         | null
         | {
-              rangeIdx: number;
+              target: number;
               ipAddress: string;
               mask: string;
               cidr: string;
@@ -45,6 +45,7 @@
 
     function addRange() {
         ranges = [...ranges, ""];
+        prepare();
     }
 
     function deleteRange(index: number) {
@@ -53,6 +54,7 @@
         console.log("rem");
         ranges.splice(index, 1);
         ranges = [...ranges];
+        prepare();
     }
 
     function nextIpFromBroadcast(broadcast: string[]): string {
@@ -65,22 +67,33 @@
         return ip.join(".");
     }
 
+    function prepare() {
+        if (!ipAddress || !ranges[0]) throw "Faltan una IP y al menos un rango válidos.";
+        if (!isValidIP(ipAddress)) throw "La IP no está bien escrita o no es válida.";
+        history.replaceState(
+            null,
+            "",
+            `?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges.join(",")}`
+        );
+        return true;
+    }
+
     function calculateVLSM() {
         try {
-            if (!isValidIP(ipAddress)) throw "La IP no está bien escrita o no es válida.";
+            prepare();
 
             let originalIpAddress = ipAddress;
             val = [];
 
             ranges
-                .map((r, i) => ({ r: Number(r) + 2, i }))
-                .sort((a, b) => b.r - a.r)
-                .forEach(({ r, i }) => {
-                    console.log(r, i);
-                    if (isNaN(r) || r < 2) throw `El rango ${i + 1} es inválido.`;
+                .map((r) => Number(r) + 2)
+                .sort((a, b) => b - a)
+                .forEach((range, idx) => {
+                    console.log(range, idx);
+                    if (isNaN(range) || range < 2) throw `El rango ${idx} es inválido.`;
 
                     let pow = 0;
-                    while (Math.pow(2, pow) < r) pow++;
+                    while (Math.pow(2, pow) < range) pow++;
 
                     const newCidr = 32 - pow;
                     const maskBin = "1".repeat(newCidr) + "0".repeat(32 - newCidr);
@@ -111,7 +124,7 @@
                     }
 
                     val!.push({
-                        rangeIdx: i + 1,
+                        target: range - 2,
                         ipAddress: networkAddress.join("."),
                         cidr: newCidr.toString(),
                         networkAddress: networkAddress.join("."),
@@ -165,7 +178,7 @@
         oninput={(e) => (ipAddress = e.currentTarget.value)}
         onkeydown={(e) => {
             if (e.key !== "Enter") return;
-            calculateVLSM();
+            document.getElementById("rng-inp-0")?.focus();
         }}
         title="Introduce una IPv4, como 192.168.0.1"
         required
@@ -175,16 +188,23 @@
     <br />
     {#each ranges as range, index}
         <div class="mb-3 flex w-full flex-row items-center gap-3">
-            <code class="font-mono!">Rango {index + 1}</code>
+            <code class="font-mono!">#{index}</code>
 
             <Input
+                id={`rng-inp-${index}`}
                 type="number"
                 name="range"
                 bind:value={range}
                 oninput={(e) => handleInputChange(index, e.currentTarget.value)}
                 onkeydown={(e) => {
                     if (e.key !== "Enter") return;
-                    calculateVLSM();
+                    if (e.shiftKey) calculateVLSM();
+                    else {
+                        if (index + 1 == ranges.length) addRange();
+                        setTimeout(() => {
+                            document.getElementById(`rng-inp-${index + 1}`)?.focus();
+                        }, 100);
+                    }
                 }}
                 title="Introduce un número de dispositivos para este rango"
                 required
@@ -200,7 +220,14 @@
             >
         </div>
     {/each}
-
+    <code class="text-sm opacity-50"
+        ><kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para pasar a la siguiente entrada (añadirá
+        otro rango si hace falta) ·
+        <kbd class="bg-gray-600 px-1.5 py-1">SHIFT</kbd>
+        +
+        <kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para calcular</code
+    >
+    <br />
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
         <Button callback={addRange} channel="ZakaTeka" title="Agregar un nuevo rango a la lista."
@@ -227,8 +254,11 @@
 
     {#if val !== null}
         <br />
-        {#each val as range}
-            <h2 class="text-xl">Rango {range.rangeIdx}</h2>
+        {#each val as range, idx}
+            <h2 class="font-mono! text-xl">
+                Rango {idx}
+                <span class="text-lg opacity-70">{range.target} dispositivos</span>
+            </h2>
             <br />
             <Table
                 channel="ZakaTeka"
