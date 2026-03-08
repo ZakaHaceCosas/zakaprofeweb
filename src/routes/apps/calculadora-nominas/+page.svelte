@@ -88,6 +88,7 @@
         bccc: number;
         bccp: number;
         totalRobado: number;
+        grupoCot: keyof typeof basesCotContingenciasComunes;
     } = null;
 
     onMount(() => {
@@ -110,117 +111,123 @@
     });
 
     function calculateWage() {
-        const newParams = `?nomina=${encodeURIComponent(btoa(JSON.stringify(devengo)))}`;
-        history.replaceState(null, "", newParams);
+        try {
+            const newParams = `?nomina=${encodeURIComponent(btoa(JSON.stringify(devengo)))}`;
+            history.replaceState(null, "", newParams);
 
-        const num = (v: string) => {
-            const n = Number(v);
-            return isNaN(n) ? 0 : n;
-        };
+            const num = (v: string) => {
+                const n = Number(v);
+                return isNaN(n) ? 0 : n;
+            };
 
-        const base = num(devengo.base);
-        const especie = num(devengo.especie);
-        const extrasCnt = num(devengo.extras[0]);
-        const extrasVal = num(devengo.extras[1]);
-        const grupoCot = num(devengo.grupo_cot);
-        const t = bcDiaria(grupoCot) ? num(devengo.jornadaDias) : 30;
-        const horasAdicionales = num(devengo.hex[1]);
-        const horasForzosas = num(devengo.hex[0]);
-        const pluses: [number, number, boolean][] = devengo.pluses.map((v) => [
-            num(v[0]),
-            num(v[1]),
-            v[2],
-        ]);
-        const longevidad = devengo.longevidad
-            .map((v) => [num(v[0]), num(v[1])])
-            .filter((v) => v[0] <= num(devengo.anos));
-        const irpf = num(devengo.irpf);
+            const base = num(devengo.base);
+            const especie = num(devengo.especie);
+            const extrasCnt = num(devengo.extras[0]);
+            const extrasVal = num(devengo.extras[1]);
+            const grupoCot = num(devengo.grupo_cot) as 1;
+            const t = bcDiaria(grupoCot) ? num(devengo.jornadaDias) : 30;
+            const horasAdicionales = num(devengo.hex[1]);
+            const horasForzosas = num(devengo.hex[0]);
+            const pluses: [number, number, boolean][] = devengo.pluses.map((v) => [
+                num(v[0]),
+                num(v[1]),
+                v[2],
+            ]);
+            const longevidad = devengo.longevidad
+                .map((v) => [num(v[0]), num(v[1])])
+                .filter((v) => v[0] <= num(devengo.anos));
+            const irpf = num(devengo.irpf);
 
-        if (!base) {
-            alert("El salario base es obligatorio");
-            return;
-        }
+            if (!base) throw "El salario base es obligatorio";
 
-        if (!bcDiaria(grupoCot) && !bcMensual(grupoCot)) {
-            alert("Tienes que especificar un grupo de cotización válido.");
-            return;
-        }
+            if (!bcDiaria(grupoCot) && !bcMensual(grupoCot))
+                throw "Tienes que especificar un grupo de cotización válido.";
 
-        let salarioPeriodo = 0;
+            if (extrasCnt < 2)
+                throw "Oye, que por ley te corresponden al menos dos pagas extras. Pusiste menos.";
+            if (extrasVal < base)
+                throw "Oye, que por ley las pagas extras deben ser, al menos, iguales al sueldo base.";
+            if (irpf == 0) throw "Tienes que especificar el porcentaje de IRPF a pagar.";
 
-        if (bcMensual(grupoCot)) salarioPeriodo = base;
-        else salarioPeriodo = base * t;
+            let salarioPeriodo = 0;
 
-        let prorrateoExtras = 0;
+            if (bcMensual(grupoCot)) salarioPeriodo = base;
+            else salarioPeriodo = base * t;
 
-        if (extrasCnt > 0 && extrasVal > 0) {
-            const totalExtrasAnual = extrasCnt * extrasVal;
-            prorrateoExtras = totalExtrasAnual / (bcMensual(grupoCot) ? 12 : 365);
-        }
+            let prorrateoExtras = 0;
 
-        let sumLongevidad = 0;
-
-        const anos = num(devengo.anos);
-        longevidad.forEach((v) => {
-            for (let i = v[0]; i <= anos; i += v[0]) {
-                if (v[0] <= 0) {
-                    console.warn("Incremento de longevidad inválido:", v[0]);
-                    break;
-                }
-                sumLongevidad += p(salarioPeriodo, v[1]);
+            if (extrasCnt > 0 && extrasVal > 0) {
+                const totalExtrasAnual = extrasCnt * extrasVal;
+                prorrateoExtras = totalExtrasAnual / (bcMensual(grupoCot) ? 12 : 365);
             }
-        });
 
-        const plusesCotizados = sumArray(pluses.filter((v) => v[2] == false).map((v) => v[0]));
-        const plusesNoCotizados = sumArray(pluses.filter((v) => v[2] == true).map((v) => v[0]));
+            let sumLongevidad = 0;
 
-        const computable = salarioPeriodo + plusesCotizados;
-        const bccc = computable + prorrateoExtras + sumLongevidad;
-        const bccp = bccc + horasAdicionales + horasForzosas;
+            const anos = num(devengo.anos);
+            longevidad.forEach((v) => {
+                for (let i = v[0]; i <= anos; i += v[0]) {
+                    if (v[0] <= 0) {
+                        console.warn("Incremento de longevidad inválido:", v[0]);
+                        break;
+                    }
+                    sumLongevidad += p(salarioPeriodo, v[1]);
+                }
+            });
 
-        function p(numero: number, porcentaje: number) {
-            return (numero * porcentaje) / 100;
+            const plusesCotizados = sumArray(pluses.filter((v) => v[2] == false).map((v) => v[0]));
+            const plusesNoCotizados = sumArray(pluses.filter((v) => v[2] == true).map((v) => v[0]));
+
+            const computable = salarioPeriodo + plusesCotizados;
+            const bccc = computable + prorrateoExtras + sumLongevidad;
+            const bccp = bccc + horasAdicionales + horasForzosas;
+
+            function p(numero: number, porcentaje: number) {
+                return (numero * porcentaje) / 100;
+            }
+
+            const robo = {
+                contingencias: p(bccc, 4.7),
+                desempleo: p(bccp, 1.55), // TODO: 1.60 en contratos de duración determinada o tiempo parcial
+                mei: p(bccc, 0.15),
+                fp: p(bccp, 0.1),
+                hefm: p(horasForzosas, 2),
+                rhe: p(horasAdicionales, 4.7),
+                irpf: p(computable, irpf),
+            };
+
+            const totalDevengado =
+                bccc
+                + especie
+                + horasAdicionales
+                + horasForzosas
+                + plusesNoCotizados
+                - (devengo.noProrratear ? prorrateoExtras : 0);
+            const totalRobado = Object.values(robo).reduce((prev, curr) => (prev += curr));
+
+            resultado = {
+                salarioPeriodo,
+                prorrateoExtras,
+                salarioEspecie: especie,
+                totalDevengado,
+                robo,
+                totalRobado,
+                plusesCotizados,
+                plusesNoCotizados,
+                longevidad: sumLongevidad,
+                horasForzosas,
+                horasAdicionales,
+                neto: totalDevengado - totalRobado,
+                bccc,
+                bccp,
+                grupoCot,
+            };
+
+            console.log(devengo, resultado);
+
+            return;
+        } catch (e) {
+            alert("Error: " + e);
         }
-
-        const robo = {
-            contingencias: p(bccc, 4.7),
-            desempleo: p(bccp, 1.55), // TODO: 1.60 en contratos de duración determinada o tiempo parcial
-            mei: p(bccc, 0.15),
-            fp: p(bccp, 0.1),
-            hefm: p(horasForzosas, 2),
-            rhe: p(horasAdicionales, 4.7),
-            irpf: p(computable, irpf),
-        };
-
-        const totalDevengado =
-            bccc
-            + especie
-            + horasAdicionales
-            + horasForzosas
-            + plusesNoCotizados
-            - (devengo.noProrratear ? prorrateoExtras : 0);
-        const totalRobado = Object.values(robo).reduce((prev, curr) => (prev += curr));
-
-        resultado = {
-            salarioPeriodo,
-            prorrateoExtras,
-            salarioEspecie: especie,
-            totalDevengado,
-            robo,
-            totalRobado,
-            plusesCotizados,
-            plusesNoCotizados,
-            longevidad: sumLongevidad,
-            horasForzosas,
-            horasAdicionales,
-            neto: totalDevengado - totalRobado,
-            bccc,
-            bccp,
-        };
-
-        console.log(devengo, resultado);
-
-        return;
     }
 
     function share() {
@@ -251,8 +258,7 @@
         Lo estoy trabajando poco a poco.<br /><br />
         Los campos opcionales se pueden dejar en blanco, no hace falta poner un cero. No están explícitamente
         señalados, pero se sobrentienden (el salario base no es opcional, el plus de nocturnidad sí, por
-        ejemplo)<br /><br />Esta calculadora se toma la libertad de asumir que vas a prorratear las
-        pagas extras.<br /><br />
+        ejemplo)<br /><br />
     </p>
     <div class="mb-1 flex w-full flex-col items-center gap-3 sm:flex-row">
         <code class="flex-none font-mono! whitespace-nowrap">Salario base</code>
@@ -281,10 +287,11 @@
             >Puedes poner el salario base en euros por día o por mes; en función de lo que diga tu
             contrato.</b
         >
-        <br />Para que entiendas, si tienes un contrato indefinido a tiempo completo, pondrás aquí
-        tu sueldo mensual, y se asumirá que te están pagando por 30 días de trabajo (tenga el mes
-        28, 29, 30 o 31 días).<br />En otros casos, puede que tengas un sueldo por días (grupos
-        profesionales del 8 al 11); por lo que tendrás que especificar los días que has cobrado.
+        <br />Para que entiendas, si cobras mensualmente (lo normal), pon aquí tu sueldo mensual, y
+        se asumirá que te están pagando por 30 días de trabajo (tenga el mes 28, 29, 30 o 31 días).<br
+        />Si cobras por días (grupos de cotización del 8 al 11), pon aquí el sueldo diario. Abajo,
+        cuando elijas el grupo de cotización, aparecerá una entrada para indicar los días
+        trabajados.
     </p>
 
     <div class="mb-1 flex w-full flex-col items-center gap-3 sm:flex-row">
@@ -333,8 +340,8 @@
         />
     </div>
     <p class="mb-3">
-        Pon en las dos entradas de arriba cuanto has cobrado por las horas extraordinarias
-        convencionales y por las de fuerza mayor.
+        Pon en las dos entradas de arriba cuánto has cobrado por las horas extraordinarias
+        convencionales y por las de fuerza mayor. Déjalo vacío si no has cobrado horas extra.
     </p>
 
     <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
@@ -613,11 +620,11 @@
 
     <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
         <code class="flex-none font-mono! whitespace-nowrap"
-            ><abbr
+            >Grupo de cot. (<abbr
                 title="Base de Cotización de las Contingencias Comunes (BCCC) de la seguridad social"
             >
                 BCCC
-            </abbr></code
+            </abbr>)</code
         >
 
         <select
@@ -705,10 +712,12 @@
         class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
         popover
     >
-        ¡Enlace copiado al portapapeles! Incluye todas las notas que tengas escritas aquí.
+        ¡Enlace copiado al portapapeles! Incluye todos los números que has añadido aquí.
     </div>
     {#if resultado}
+        <br />
         <p>DEVENGO</p>
+        <br />
         <Table
             channel="ZakaProfe"
             table={[
@@ -723,10 +732,12 @@
                 ],
                 ["Horas extraordinarias de fuerza mayor", resultado.horasForzosas],
                 ["Horas extra adicionales", resultado.horasAdicionales],
-                ["=> SALARIO BRUTO", "=> " + resultado.totalDevengado],
+                ["SALARIO BRUTO", resultado.totalDevengado],
             ]}
         />
+        <br />
         <p><s>ME ROBAN</s> DEDUZCO</p>
+        <br />
         <Table
             channel="ZakaProfe"
             table={[
@@ -737,10 +748,12 @@
                 ["Horas extraordinarias de fuerza mayor", resultado.robo.hefm],
                 ["Horas extra adicionales", resultado.robo.rhe],
                 ["Impuesto a la Renta de las Personas Físicas", resultado.robo.irpf],
-                ["=> TOTAL APORTACIONES A LA SEGURIDAD SOCIAL", "=> " + resultado.totalRobado],
+                ["TOTAL APORTACIONES A LA SEGURIDAD SOCIAL", resultado.totalRobado],
             ]}
         />
+        <br />
         <p>BASES DE COTIZACIÓN</p>
+        <br />
         <Table
             channel="ZakaProfe"
             table={[
@@ -749,7 +762,209 @@
                 ["HE (proveído por usted)", resultado.horasForzosas],
             ]}
         />
+        <br />
         <p>INGRESO NETO</p>
-        <Table channel="ZakaProfe" table={[["=> LÍQUIDO A PERCIBIR", "=> " + resultado.neto]]} />
+        <br />
+        <Table channel="ZakaProfe" table={[["LÍQUIDO A PERCIBIR", resultado.neto]]} />
+        <br />
+        <h1>¿Cómo se ha calculado esto?</h1>
+        <hr />
+
+        <h2 class="text-xl">Lo que devengo</h2>
+        <br />
+
+        <p>
+            - El sueldo base {#if bcMensual(resultado.grupoCot)}
+                es fijo (<span class="font-serif">{devengo.base}</span>)
+            {:else}
+                se obtiene multiplicando la base {devengo.base} por los días {devengo.jornadaDias} (<span
+                    class="font-serif"
+                    >{devengo.base} ✕ {devengo.jornadaDias} =
+                    <b>{resultado.salarioPeriodo}</b></span
+                >).
+            {/if}
+        </p>
+
+        {#if resultado.plusesCotizados > 0}
+            <p>
+                - Los pluses cotizables suman <b>{resultado.plusesCotizados}</b>. Se añaden al
+                sueldo base para calcular la base computable (<span class="font-serif"
+                    >{resultado.salarioPeriodo} + {resultado.plusesCotizados} =
+                    <b>{resultado.salarioPeriodo + resultado.plusesCotizados}</b></span
+                >).
+            </p>
+        {/if}
+
+        {#if resultado.prorrateoExtras > 0}
+            <p>
+                - Tienes {devengo.extras[0]} pagas extras de {devengo.extras[1]} cada una, lo que supone
+                <span class="font-serif"
+                    >{devengo.extras[0]} ✕ {devengo.extras[1]} = {Number(devengo.extras[0])
+                        * Number(devengo.extras[1])}</span
+                >
+                al año. Prorrateado {#if bcMensual(resultado.grupoCot)}entre 12 meses{:else}entre
+                    365 días{/if}, corresponden <b>{resultado.prorrateoExtras}</b> por período.
+                {#if devengo.noProrratear}
+                    Como has indicado que las extras <em>no</em> se prorratean en nómina, este
+                    importe
+                    <b>se resta del devengado</b> (se abonará en el mes correspondiente).
+                {/if}
+            </p>
+        {/if}
+
+        {#if resultado.longevidad > 0}
+            <p>
+                - Por antigüedad ({devengo.anos} años en la empresa), se añaden
+                <b>{resultado.longevidad}</b> al período.
+            </p>
+        {/if}
+
+        {#if resultado.horasForzosas > 0}
+            <p>
+                - Horas extra forzosas: <b>{resultado.horasForzosas}</b>.
+            </p>
+        {/if}
+
+        {#if resultado.horasAdicionales > 0}
+            <p>
+                - Horas extra adicionales (voluntarias): <b>{resultado.horasAdicionales}</b>.
+            </p>
+        {/if}
+
+        {#if resultado.salarioEspecie > 0}
+            <p>
+                - Retribución en especie: <b>{resultado.salarioEspecie}</b>. Computa en el devengado
+                pero
+                <em>no</em> entra en las bases de cotización.
+            </p>
+        {/if}
+
+        {#if resultado.plusesNoCotizados > 0}
+            <p>
+                - Los pluses no cotizables suman <b>{resultado.plusesNoCotizados}</b>. Forman parte
+                del devengado pero <em>no</em> cotizan a la Seguridad Social.
+            </p>
+        {/if}
+
+        <br />
+        <h2 class="text-xl">Las bases de cotización</h2>
+        <br />
+
+        <p>
+            - La <b>base computable</b> es el sueldo base más los pluses cotizables:
+            <span class="font-serif"
+                >{resultado.salarioPeriodo} + {resultado.plusesCotizados} =
+                <b>{resultado.salarioPeriodo + resultado.plusesCotizados}</b></span
+            >.
+        </p>
+
+        <p>
+            - La <b>base de cotización por contingencias comunes (BCCC)</b> añade a la base
+            computable el prorrateo de extras y la antigüedad:
+            <span class="font-serif"
+                >{resultado.salarioPeriodo + resultado.plusesCotizados} + {resultado.prorrateoExtras}
+                +
+                {resultado.longevidad} = <b>{resultado.bccc}</b></span
+            >.
+        </p>
+
+        <p>
+            - La <b>base de cotización por contingencias profesionales (BCCP)</b> añade además las
+            horas extra:
+            <span class="font-serif"
+                >{resultado.bccc} + {resultado.horasForzosas} + {resultado.horasAdicionales} =
+                <b>{resultado.bccp}</b></span
+            >.
+        </p>
+
+        <br />
+        <h2 class="text-xl">Lo que <s>me roban</s> cobra el Estado</h2>
+        <br />
+
+        <p>
+            - <b>Contingencias comunes</b>: el 4,70 % de la BCCC (<span class="font-serif"
+                >{resultado.bccc} ✕ 4,70 % = <b>{resultado.robo.contingencias.toFixed(2)}</b></span
+            >).
+        </p>
+
+        <p>
+            - <b>Desempleo</b>: en contratos indefinidos, el 1,55 % de la BCCP (<span
+                class="font-serif"
+                >{resultado.bccp} ✕ 1,55 % = <b>{resultado.robo.desempleo.toFixed(2)}</b></span
+            >).
+        </p>
+
+        <p>
+            - <b>Mecanismo de Equidad Intergeneracional (MEI)</b>: el 0,15 % de la BCCC (<span
+                class="font-serif"
+                >{resultado.bccc} ✕ 0,15 % = <b>{resultado.robo.mei.toFixed(2)}</b></span
+            >).
+        </p>
+
+        <p>
+            - <b>Formación Profesional</b>: el 0,10 % de la BCCP (<span class="font-serif"
+                >{resultado.bccp} ✕ 0,10 % = <b>{resultado.robo.fp.toFixed(2)}</b></span
+            >).
+        </p>
+
+        {#if resultado.horasForzosas > 0}
+            <p>
+                - <b>Horas extra forzosas</b>: el 2 % sobre {resultado.horasForzosas} (<span
+                    class="font-serif"
+                    >{resultado.horasForzosas} ✕ 2 % = <b>{resultado.robo.hefm.toFixed(2)}</b></span
+                >).
+            </p>
+        {/if}
+
+        {#if resultado.horasAdicionales > 0}
+            <p>
+                - <b>Horas extra voluntarias</b>: el 4,70 % sobre {resultado.horasAdicionales} (<span
+                    class="font-serif"
+                    >{resultado.horasAdicionales} ✕ 4,70 % =
+                    <b>{resultado.robo.rhe.toFixed(2)}</b></span
+                >).
+            </p>
+        {/if}
+
+        <p>
+            - <b>IRPF</b>: el {devengo.irpf} % sobre la base computable ({resultado.salarioPeriodo
+                + resultado.plusesCotizados}) (<span class="font-serif"
+                >{resultado.salarioPeriodo + resultado.plusesCotizados} ✕ {devengo.irpf} % =
+                <b>{resultado.robo.irpf.toFixed(2)}</b></span
+            >).
+        </p>
+
+        <br />
+        <h2 class="text-xl">El resultado</h2>
+        <br />
+
+        <p>
+            - <b>Total devengado</b>: {resultado.bccc}
+            {#if resultado.salarioEspecie > 0}+ {resultado.salarioEspecie} (especie){/if}
+            {#if resultado.horasAdicionales > 0}+ {resultado.horasAdicionales} (h. extra voluntarias){/if}
+            {#if resultado.horasForzosas > 0}+ {resultado.horasForzosas} (h. extra forzosas){/if}
+            {#if resultado.plusesNoCotizados > 0}+ {resultado.plusesNoCotizados} (pluses no cotizables){/if}
+            {#if devengo.noProrratear && resultado.prorrateoExtras > 0}
+                − {resultado.prorrateoExtras} (extras no prorrateadas)
+            {/if}
+            = <b>{resultado.totalDevengado.toFixed(2)}</b>.
+        </p>
+
+        <p>
+            - <b>Total de deducciones</b>: {resultado.robo.contingencias.toFixed(2)} + {resultado.robo.desempleo.toFixed(
+                2
+            )}
+            + {resultado.robo.mei.toFixed(2)} + {resultado.robo.fp.toFixed(2)}
+            {#if resultado.horasForzosas > 0}+ {resultado.robo.hefm.toFixed(2)}{/if}
+            {#if resultado.horasAdicionales > 0}+ {resultado.robo.rhe.toFixed(2)}{/if}
+            + {resultado.robo.irpf.toFixed(2)} = <b>{resultado.totalRobado.toFixed(2)}</b>.
+        </p>
+
+        <p>
+            - <b>Salario neto</b>: {resultado.totalDevengado.toFixed(2)} - {resultado.totalRobado.toFixed(
+                2
+            )}
+            = <b>{resultado.neto.toFixed(2)}</b>.
+        </p>
     {/if}
 </main>
