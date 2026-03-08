@@ -132,7 +132,7 @@
 <footer class="border-t-2 border-t-(--fff25)">
     <p>
         &copy; <b>ZakaProfe 2023-2026.</b><br />Todos los elementos de marca y otros diseños de
-        «ZakaProfe», «ZakaTeka», y derivados, son propiedad intelectual. Se reservan todos los
+        «ZakaProfe», «ZakaTeka», y derivados, son propiedad intelectual.<br />Se reservan todos los
         derechos de autor, queda prohibida la reutilización, modificación, o redistribución de estos
         y otros materiales asociados sin autorización expresa.
     </p>

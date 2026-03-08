@@ -6,8 +6,10 @@
 
 Actualizaciones visibles para el usuario:
 
+- Añadida una calculadora de nóminas para IPE. La ley española es compleja; aún no soporta todas las casuísticas e irá evolucionando con el tiempo.
 - Añadida una calculadora de FLSM para redes.
 - Mejorada la calculadora de notas; faltaban cosas básicas como darle a Entrar para que calcule.
+- Cambiada la tipografía a Roboto (Flex y Mono), que es la tipografía oficial de ZakaProfe. Además, se ve mejor.
 
 Actualizaciones internas (desarrollo):
 

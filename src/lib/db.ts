@@ -263,6 +263,15 @@ const ZTVDs: IVideo[] = [
         topic: "Sistemas Operativos",
         url: "https://www.youtube.com/watch?v=1gkU5kU5WPE",
     },
+    {
+        channel: "ZakaTeka",
+        level: "(SMR | DAM | DAW | ASIR)",
+        season: "4",
+        thumbnail: "/teka/cmd-basic.avif",
+        title: "Básicos de Windows CMD y rutas de archivo",
+        topic: "Sistemas Operativos",
+        url: "https://www.youtube.com/watch?v=ex70z2-sZqQ",
+    },
 ];
 
 const ALL_VDs = [...ZPVDs, ...ZTVDs];

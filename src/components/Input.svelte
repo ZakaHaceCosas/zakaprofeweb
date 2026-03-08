@@ -17,13 +17,15 @@
     export let style: string | undefined = undefined;
     export let id: string | undefined = undefined;
     export let label: string | undefined = undefined;
+    export let disabled: boolean | undefined = undefined;
 
     const className =
         "font-mono! p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 "
         + (channel === "ZakaProfe"
             ? " focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe) "
             : " focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka) ")
-        + tail;
+        + tail
+        + (disabled ? " opacity-50 cursor-not-allowed" : "");
 </script>
 
 <div class="w-full">
@@ -46,5 +48,6 @@
         {required}
         on:input={oninput}
         on:keydown={onkeydown}
+        {disabled}
     />
 </div>

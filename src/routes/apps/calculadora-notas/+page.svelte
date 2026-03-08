@@ -17,7 +17,7 @@
 
         const params = new URLSearchParams(window.location.search);
         let modified = false;
-        for (const [_, value] of params) {
+        for (const value of params.values()) {
             const [nota, ponder] = value.split(",").map((i) => parseFloat(i));
 
             if (isNaN(nota) || isNaN(ponder)) continue;

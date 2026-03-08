@@ -17,7 +17,7 @@
                 <td
                     class={"w-1/2 p-4 text-left font-mono! "
                         + (channel === "ZakaProfe" ? "text-(--ZakaProfe)" : "text-(--ZakaTeka)")}
-                    >{val[1]}</td
+                    >{typeof val[1] === "number" ? val[1].toFixed(2) : val[1]}</td
                 >
             </tr>{/each}
     </tbody>
