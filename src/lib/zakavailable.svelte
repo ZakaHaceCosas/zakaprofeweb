@@ -9,23 +9,22 @@
     const getTimeStatus = () => {
         const formatter = new Intl.DateTimeFormat("es-ES", {
             timeZone: "Europe/Madrid",
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
+            weekday: "narrow",
             hour: "2-digit",
             minute: "2-digit",
             second: "2-digit",
         });
         const now = new Date();
         const parts = formatter.formatToParts(now);
-        const day = Number(parts.find((p) => p.type === "day")?.value);
         const hour = Number(parts.find((p) => p.type === "hour")?.value);
         let newStatus = "";
         let newStatusText = "";
         let newStatusClass = "";
         const isOnVacation = false;
+        const weekday = now.getDay(); // 0=Dom, 1=Lun, ..., 5=Vie, 6=Sáb
+        const isWeekday = weekday >= 1 && weekday <= 5;
 
-        if (day >= 1 && day <= 5 && !isOnVacation) {
+        if (isWeekday && !isOnVacation) {
             if (hour >= 8 && hour < 16) {
                 // 8-16: OCUPADO (clase)
                 newStatus = "OCUPADO";

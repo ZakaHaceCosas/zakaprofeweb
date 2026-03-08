@@ -2,7 +2,7 @@
 
 # ZakaProfe WEB · Registro de cambios
 
-## 3.4.0 (WIP)
+## 3.4.0 (08/03/2026)
 
 Actualizaciones visibles para el usuario:
 
@@ -10,6 +10,7 @@ Actualizaciones visibles para el usuario:
 - Añadida una calculadora de FLSM para redes.
 - Mejorada la calculadora de notas; faltaban cosas básicas como darle a Entrar para que calcule.
 - Cambiada la tipografía a Roboto (Flex y Mono), que es la tipografía oficial de ZakaProfe. Además, se ve mejor.
+- Corregido (espero) el widget de contacto mostrando estados incoherentes.
 
 Actualizaciones internas (desarrollo):
 
