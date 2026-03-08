@@ -945,7 +945,7 @@
             {#if resultado.horasForzosas > 0}+ {resultado.horasForzosas} (h. extra forzosas){/if}
             {#if resultado.plusesNoCotizados > 0}+ {resultado.plusesNoCotizados} (pluses no cotizables){/if}
             {#if devengo.noProrratear && resultado.prorrateoExtras > 0}
-                − {resultado.prorrateoExtras} (extras no prorrateadas)
+                - {resultado.prorrateoExtras} (extras no prorrateadas)
             {/if}
             = <b>{resultado.totalDevengado.toFixed(2)}</b>.
         </p>

@@ -3,12 +3,15 @@ import { execSync } from "child_process";
 
 const _pages: [string, undefined][] = [
     ["/", undefined],
-    ["/apps/calculadora-notas", undefined],
-    ["/apps/contador-palabras", undefined],
-    ["/apps/calcular-ip-cidr", undefined],
-    ["/apps/convertir-binario-decimal-hexadecimal", undefined],
     ["/search", undefined],
     ["/apps", undefined],
+    ["/apps/calculadora-notas", undefined],
+    ["/apps/contador-palabras", undefined],
+    ["/apps/calculadora-nominas", undefined],
+    ["/apps/calcular-ip-cidr", undefined],
+    ["/apps/calcular-vlsm", undefined],
+    ["/apps/calcular-flsm", undefined],
+    ["/apps/convertir-binario-decimal-hexadecimal", undefined],
 ];
 
 const PAGES = _pages.map((p) => {
