@@ -87,7 +87,7 @@
         <div class="bola-wrap">
             <div class={`bola ${statusClass}`}></div>
         </div>
-        <h2 class={`non-bold-header ${statusClass}`} style="font-size: 1.5em">
+        <h2 class={`non-bold-header ${statusClass}`}>
             {status} <b>·</b>
             {currentSpanishTime}{" "}
             <span style="font-size: medium; font-weight: 600">UTC+1</span>

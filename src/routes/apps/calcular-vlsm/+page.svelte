@@ -255,7 +255,7 @@
     {#if val !== null}
         <br />
         {#each val as range, idx}
-            <h2 class="font-mono! text-xl">
+            <h2 class="font-mono!">
                 Rango {idx}
                 <span class="text-lg opacity-70">{range.target} dispositivos</span>
             </h2>

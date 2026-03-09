@@ -2,6 +2,19 @@
 
 # ZakaProfe WEB · Registro de cambios
 
+## 3.4.1 (En progreso)
+
+Actualizaciones visibles para el usuario:
+
+- Mejorada la calculadora de nóminas:
+    - Ahora valida la base que proveas contra el S.M.I.
+    - Ahora permite especificar si el contrato es temporal (afecta al cálculo).
+    - Si para las pagas extra tienes un contrato con una cantidad "mas la antigüedad", ahora puedes hacer que se sume la prorrata calculada.
+    - Redondeados los números en la explicación del cálculo.
+    - Está mejor diseñada en general.
+- Corregidos fallos visuales menores.
+- Ajustado los tamaños de texto para mejor legibilidad.
+
 ## 3.4.0 (08/03/2026)
 
 Actualizaciones visibles para el usuario:

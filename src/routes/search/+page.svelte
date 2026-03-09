@@ -62,7 +62,7 @@
                         alt={`${v.title}, ${v.topic}, ${v.level}`}
                     />
                     <div class="flex flex-col gap-2">
-                        <h2 class="text-3xl">{v.title}</h2>
+                        <h2>{v.title}</h2>
                         <p>
                             {v.topic} · {v.level} · <b>S{v.season}</b>
                         </p>

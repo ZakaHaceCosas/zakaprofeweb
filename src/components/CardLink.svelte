@@ -23,7 +23,7 @@
     {title}
 >
     <div
-        class="flex flex-col gap-4 border-2! border-(--fff25)! bg-(--blk) p-4! group-hover:bg-(--blk-hov)"
+        class="flex flex-col gap-2 border-2! border-(--fff25)! bg-(--blk) p-4! group-hover:bg-(--blk-hov)"
     >
         <div class="flex flex-row items-center gap-2">
             <span
@@ -33,7 +33,7 @@
             >
                 <slot name="svg" />
             </span>
-            <h3 class="text-xl leading-[100%]">{title}</h3>
+            <h3 class="leading-[100%]">{title}</h3>
         </div>
         <p>{body}</p>
     </div>

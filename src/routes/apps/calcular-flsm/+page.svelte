@@ -215,7 +215,7 @@
     {#if val !== null}
         <br />
         {#each val as range, rangeIdx}
-            <h2 class="text-xl">Rango #{rangeIdx}</h2>
+            <h2>Rango #{rangeIdx}</h2>
             <br />
             <Table
                 channel="ZakaTeka"

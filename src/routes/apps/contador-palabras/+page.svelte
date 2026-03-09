@@ -53,12 +53,14 @@
         channel="ZakaProfe"
     />
 
-    <Button
-        callback={share}
-        channel="ZakaProfe"
-        popovertarget="share-popover"
-        title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button
-    >
+    <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
+        <Button
+            callback={share}
+            channel="ZakaProfe"
+            popovertarget="share-popover"
+            title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button
+        >
+    </div>
     <div
         id="share-popover"
         class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"

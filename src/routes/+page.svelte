@@ -87,7 +87,7 @@
                 <div class="bola-wrap">
                     <div class="bola mas-o-menos"></div>
                 </div>
-                <h2 class="non-bold-header mas-o-menos" style="font-size: 1.5em">
+                <h2 class="non-bold-header mas-o-menos">
                     Aún no disponibles
                     <span style="font-size: medium; font-weight: 600">(próximamente)</span>
                 </h2>

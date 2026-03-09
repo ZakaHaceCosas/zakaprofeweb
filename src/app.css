@@ -28,7 +28,13 @@
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2.5em;
+}
+h2 {
+    font-size: 1.95em;
+}
+h3 {
+    font-size: 1.5em;
 }
 
 body,

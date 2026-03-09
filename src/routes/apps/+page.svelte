@@ -36,7 +36,7 @@
         </p>
         <hr />
     </div>
-    <div class="grid w-full grid-cols-2 gap-4">
+    <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
         <CardLink
             channel="ZakaProfe"
             target="apps/calculadora-notas"
@@ -81,11 +81,10 @@
     <div class="flex w-full flex-row items-center gap-4">
         <p class="whitespace-nowrap">
             <span class="text-(--ZakaProfe)">ZakaProfe</span> · Itinerario Personal para la Empleabilidad
-            (antes Formación y Orientación Laboral)
         </p>
         <hr />
     </div>
-    <div class="grid w-full grid-cols-1 gap-4">
+    <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
         <CardLink
             channel="ZakaProfe"
             target="apps/calculadora-nominas"
@@ -112,7 +111,7 @@
         </p>
         <hr />
     </div>
-    <div class="grid w-full grid-cols-2 gap-4">
+    <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
         <CardLink
             channel="ZakaTeka"
             target="apps/convertir-binario-decimal-hexadecimal"

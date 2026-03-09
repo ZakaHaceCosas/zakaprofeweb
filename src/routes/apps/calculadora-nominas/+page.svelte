@@ -5,6 +5,7 @@
     import Button from "../../../components/Button.svelte";
     import Input from "../../../components/Input.svelte";
     import Table from "../../../components/Table.svelte";
+    import Checkbox from "../../../components/Checkbox.svelte";
 
     const basesCotContingenciasComunes = {
         1: [
@@ -51,6 +52,8 @@
         jornadaDias: string;
         irpf: string;
         noProrratear: boolean;
+        sumarProrrataAPagaExtra: boolean;
+        esTemporal: boolean;
     } = {
         base: "",
         extras: ["", ""],
@@ -63,6 +66,8 @@
         jornadaDias: "",
         irpf: "",
         noProrratear: false,
+        sumarProrrataAPagaExtra: false,
+        esTemporal: false,
     };
 
     let resultado: null | {
@@ -110,15 +115,15 @@
         }
     });
 
+    const num = (v: string) => {
+        const n = Number(v);
+        return isNaN(n) ? 0 : n;
+    };
+
     function calculateWage() {
         try {
             const newParams = `?nomina=${encodeURIComponent(btoa(JSON.stringify(devengo)))}`;
             history.replaceState(null, "", newParams);
-
-            const num = (v: string) => {
-                const n = Number(v);
-                return isNaN(n) ? 0 : n;
-            };
 
             const base = num(devengo.base);
             const especie = num(devengo.especie);
@@ -138,28 +143,23 @@
                 .filter((v) => v[0] <= num(devengo.anos));
             const irpf = num(devengo.irpf);
 
-            if (!base) throw "El salario base es obligatorio";
+            if (!base) throw "El salario base es obligatorio.";
+
+            if (base < 1221) throw "El salario base no puede ser menor al S.M.I. de 1221 euros.";
 
             if (!bcDiaria(grupoCot) && !bcMensual(grupoCot))
                 throw "Tienes que especificar un grupo de cotización válido.";
 
             if (extrasCnt < 2)
-                throw "Oye, que por ley te corresponden al menos dos pagas extras. Pusiste menos.";
+                throw "Por ley te corresponden al menos dos pagas extras. Pusiste menos.";
             if (extrasVal < base)
-                throw "Oye, que por ley las pagas extras deben ser, al menos, iguales al sueldo base.";
+                throw "Las pagas extras deben ser, al menos, iguales al sueldo base.";
             if (irpf == 0) throw "Tienes que especificar el porcentaje de IRPF a pagar.";
 
             let salarioPeriodo = 0;
 
             if (bcMensual(grupoCot)) salarioPeriodo = base;
             else salarioPeriodo = base * t;
-
-            let prorrateoExtras = 0;
-
-            if (extrasCnt > 0 && extrasVal > 0) {
-                const totalExtrasAnual = extrasCnt * extrasVal;
-                prorrateoExtras = totalExtrasAnual / (bcMensual(grupoCot) ? 12 : 365);
-            }
 
             let sumLongevidad = 0;
 
@@ -174,6 +174,14 @@
                 }
             });
 
+            let prorrateoExtras = 0;
+
+            if (extrasCnt > 0 && extrasVal > 0) {
+                const totalExtrasAnual =
+                    extrasCnt * (extrasVal + (devengo.sumarProrrataAPagaExtra ? sumLongevidad : 0));
+                prorrateoExtras = totalExtrasAnual / (bcMensual(grupoCot) ? 12 : 365);
+            }
+
             const plusesCotizados = sumArray(pluses.filter((v) => v[2] == false).map((v) => v[0]));
             const plusesNoCotizados = sumArray(pluses.filter((v) => v[2] == true).map((v) => v[0]));
 
@@ -187,7 +195,7 @@
 
             const robo = {
                 contingencias: p(bccc, 4.7),
-                desempleo: p(bccp, 1.55), // TODO: 1.60 en contratos de duración determinada o tiempo parcial
+                desempleo: p(bccp, devengo.esTemporal ? 1.6 : 1.55),
                 mei: p(bccc, 0.15),
                 fp: p(bccp, 0.1),
                 hefm: p(horasForzosas, 2),
@@ -251,17 +259,115 @@
         Una calculadora de nóminas salariales. Trata de mantenerse actualiza con la legislación
         vigente y de tomar en cuenta todas las variables posibles para la mayor precisión.<br
         />Contacte conmigo para reportar errores, contenido desactualizado y demás.
-        <b
-            >Nota: Aún faltan cosas (además de que el diseño es mejorable) y ya soy consciente de
-            ello.</b
-        >
+        <b>Nota: Aún faltan algunas cosas y ya soy consciente de ello.</b>
         Lo estoy trabajando poco a poco.<br /><br />
         Los campos opcionales se pueden dejar en blanco, no hace falta poner un cero. No están explícitamente
         señalados, pero se sobrentienden (el salario base no es opcional, el plus de nocturnidad sí, por
         ejemplo)<br /><br />
     </p>
+    <h2>Información del contrato</h2>
+    <br />
+    <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+        <code class="flex-none font-mono! whitespace-nowrap"
+            >Grupo de cot. (<abbr
+                title="Base de Cotización de las Contingencias Comunes (BCCC) de la seguridad social"
+            >
+                BCCC
+            </abbr>)</code
+        >
+
+        <select
+            class="w-full"
+            name="grupo_cot"
+            id="grupo_cot"
+            bind:value={devengo.grupo_cot}
+            onchange={(e) => {
+                devengo.grupo_cot = e.currentTarget.value;
+            }}
+            title="Grupo profesional"
+            required
+            onkeydown={(e) => {
+                if (e.key !== "Enter") return;
+                if (e.shiftKey) calculateWage();
+            }}
+        >
+            <option value="" disabled>(Elige algo)</option>
+            {#each Object.entries(basesCotContingenciasComunes) as [idx, base]}
+                <option value={idx}
+                    >[GRUPO {idx}, {bcDiaria(Number(idx)) ? "COT. DIARIA]" : "COT. MENSUAL]"}
+                    {base[0]}
+                </option>
+            {/each}
+        </select>
+    </div>
+    {#if bcDiaria(Number(devengo.grupo_cot))}
+        <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+            <code class="flex-none font-mono! whitespace-nowrap">Dias cobrados</code>
+
+            <Input
+                channel="ZakaProfe"
+                type="number"
+                name="jornada_d"
+                id="jornada_d"
+                bind:value={devengo.jornadaDias}
+                oninput={(e) => (devengo.jornadaDias = e.currentTarget.value)}
+                title="Días que vas a cobrar"
+                required
+                onkeydown={(e) => {
+                    if (e.key !== "Enter") return;
+                    if (e.shiftKey) calculateWage();
+                    else {
+                        document.getElementById("irpf_i")!.focus();
+                    }
+                }}
+            />
+        </div>{/if}
+    <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+        <code class="flex-none font-mono! whitespace-nowrap"
+            ><abbr title="Impuesto a la Renta de las Personas Físicas">I.R.P.F.</abbr></code
+        >
+
+        <Input
+            tail="w-full flex-1"
+            channel="ZakaProfe"
+            type="number"
+            name="irpf_i"
+            id="irpf_i"
+            bind:value={devengo.irpf}
+            oninput={(e) => (devengo.irpf = e.currentTarget.value)}
+            title="Porcentaje de IRPF a desgravar"
+            required
+            onkeydown={(e) => {
+                if (e.key !== "Enter") return;
+                if (e.shiftKey) calculateWage();
+                else {
+                    document.getElementById("sal_base")!.focus();
+                }
+            }}
+        />
+    </div>
+    <Checkbox
+        tail="mb-3"
+        id={"is_temp"}
+        checked={devengo.esTemporal}
+        onchange={(e) => {
+            devengo.esTemporal = e.currentTarget.checked;
+        }}
+        onkeydown={(e) => {
+            if (e.key !== "Enter") return;
+            if (e.shiftKey) calculateWage();
+            else {
+                document.getElementById("sal_base")?.focus();
+            }
+        }}>¿Es un contrato temporal/de duración definida?</Checkbox
+    >
+    <hr />
+    <h2>Cuánto te quieren pagar</h2>
+    <br />
     <div class="mb-1 flex w-full flex-col items-center gap-3 sm:flex-row">
-        <code class="flex-none font-mono! whitespace-nowrap">Salario base</code>
+        <code class="flex-none font-mono! whitespace-nowrap"
+            >Salario base {bcMensual(num(devengo.grupo_cot)) ? "mensual" : "diario"}</code
+        >
 
         <Input
             tail="w-full flex-1"
@@ -282,20 +388,11 @@
             }}
         />
     </div>
-    <p class="mb-3">
-        <b
-            >Puedes poner el salario base en euros por día o por mes; en función de lo que diga tu
-            contrato.</b
-        >
-        <br />Para que entiendas, si cobras mensualmente (lo normal), pon aquí tu sueldo mensual, y
-        se asumirá que te están pagando por 30 días de trabajo (tenga el mes 28, 29, 30 o 31 días).<br
-        />Si cobras por días (grupos de cotización del 8 al 11), pon aquí el sueldo diario. Abajo,
-        cuando elijas el grupo de cotización, aparecerá una entrada para indicar los días
-        trabajados.
-    </p>
 
     <div class="mb-1 flex w-full flex-col items-center gap-3 sm:flex-row">
-        <code class="flex-none font-mono! whitespace-nowrap">Horas forzadas</code>
+        <code class="flex-none font-mono! whitespace-nowrap"
+            ><abbr title="Horas Extraordinarias de Fuerza Mayor">HE de FM</abbr></code
+        >
 
         <Input
             tail="w-full flex-1"
@@ -315,10 +412,10 @@
                 }
             }}
         />
-    </div>
 
-    <div class="mb-1 flex w-full flex-col items-center gap-3 sm:flex-row">
-        <code class="flex-none font-mono! whitespace-nowrap">Horas extraordinarias</code>
+        <code class="flex-none font-mono! whitespace-nowrap"
+            ><abbr title="Horas Extraordinarias Convencionales">HEC</abbr></code
+        >
 
         <Input
             tail="w-full flex-1"
@@ -340,8 +437,7 @@
         />
     </div>
     <p class="mb-3">
-        Pon en las dos entradas de arriba cuánto has cobrado por las horas extraordinarias
-        convencionales y por las de fuerza mayor. Déjalo vacío si no has cobrado horas extra.
+        Horas Extraordinarias <b>de Fuerza Mayor</b> y <b>Convencionales</b>, respectivamente.
     </p>
 
     <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
@@ -408,27 +504,20 @@
             }}
         />
 
-        <div class="flex flex-row gap-2">
-            <input
-                type="checkbox"
-                name={"no_pro"}
-                id={"no_pro"}
-                bind:checked={devengo.noProrratear}
-                onchange={(e) => {
-                    devengo.noProrratear = e.currentTarget.checked;
-                }}
-                onkeydown={(e) => {
-                    if (e.key !== "Enter") return;
-                    if (e.shiftKey) calculateWage();
-                    else {
-                        document.getElementById("long_t_0")?.focus();
-                    }
-                }}
-            />
-            <label class="whitespace-nowrap" for={"no_pro"}
-                >¿Excluir prorrata del sueldo bruto?</label
-            >
-        </div>
+        <Checkbox
+            id={"no_pro"}
+            checked={devengo.noProrratear}
+            onchange={(e) => {
+                devengo.noProrratear = e.currentTarget.checked;
+            }}
+            onkeydown={(e) => {
+                if (e.key !== "Enter") return;
+                if (e.shiftKey) calculateWage();
+                else {
+                    document.getElementById("long_t_0")?.focus();
+                }
+            }}>¿Excluir prorrata del sueldo bruto?</Checkbox
+        >
     </div>
 
     {#each devengo.longevidad as plus, index}
@@ -499,7 +588,7 @@
                         if (e.key !== "Enter") return;
                         if (e.shiftKey) calculateWage();
                         else {
-                            document.getElementById("plus_imp_0")?.focus();
+                            document.getElementById("sumar_pro_pe")?.focus();
                             /* setTimeout(() => {
                                 document.getElementById(`long_t_${index + 1}`)?.focus();
                             }, 100); */
@@ -520,6 +609,22 @@
             {/if}
         </div>
     {/each}
+
+    <Checkbox
+        tail="mb-3"
+        id={"sumar_pro_pe"}
+        checked={devengo.sumarProrrataAPagaExtra}
+        onchange={(e) => {
+            devengo.sumarProrrataAPagaExtra = e.currentTarget.checked;
+        }}
+        onkeydown={(e) => {
+            if (e.key !== "Enter") return;
+            if (e.shiftKey) calculateWage();
+            else {
+                document.getElementById("plus_imp_0")?.focus();
+            }
+        }}>¿Sumar las prorratas a la paga extra?</Checkbox
+    >
 
     {#each devengo.pluses as plus, index}
         <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
@@ -562,34 +667,30 @@
                 }}
             />
 
-            <div class="flex flex-row gap-2">
-                <input
-                    type="checkbox"
-                    name={"plus_exc_" + index}
-                    id={"plus_exc_" + index}
-                    bind:checked={plus[2]}
-                    onchange={(e) => {
-                        devengo.pluses[index][2] = e.currentTarget.checked;
-                    }}
-                    onkeydown={(e) => {
-                        if (e.key !== "Enter") return;
-                        if (e.shiftKey) calculateWage();
-                        else {
-                            if (index + 1 == devengo.pluses.length) {
-                                devengo.pluses = [...devengo.pluses, ["", "", false]];
-                            }
-                            setTimeout(() => {
-                                document.getElementById(`plus_imp_${index + 1}`)?.focus();
-                            }, 100);
+            <Checkbox
+                id={"plus_exc_" + index}
+                checked={plus[2]}
+                onchange={(e) => {
+                    devengo.pluses[index][2] = e.currentTarget.checked;
+                }}
+                onkeydown={(e) => {
+                    if (e.key !== "Enter") return;
+
+                    if (e.shiftKey) calculateWage();
+                    else {
+                        if (index + 1 == devengo.pluses.length) {
+                            devengo.pluses = [...devengo.pluses, ["", "", false]];
                         }
-                    }}
-                />
-                <label class="whitespace-nowrap" for={"plus_exc_" + index}
-                    >¿Excluir del <abbr title="Impuesto a la Renta de las Personas Físicas"
-                        >I.R.P.F.</abbr
-                    >?</label
-                >
-            </div>
+
+                        setTimeout(() => {
+                            document.getElementById(`plus_imp_${index + 1}`)?.focus();
+                        }, 100);
+                    }
+                }}
+                >¿Excluir del <abbr title="Impuesto a la Renta de las Personas Físicas"
+                    >I.R.P.F.</abbr
+                >?</Checkbox
+            >
 
             <Button
                 title="Eliminar este plus salarial"
@@ -616,82 +717,6 @@
         </div>
     {/each}
 
-    <hr />
-
-    <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
-        <code class="flex-none font-mono! whitespace-nowrap"
-            >Grupo de cot. (<abbr
-                title="Base de Cotización de las Contingencias Comunes (BCCC) de la seguridad social"
-            >
-                BCCC
-            </abbr>)</code
-        >
-
-        <select
-            class="w-full"
-            name="grupo_cot"
-            id="grupo_cot"
-            bind:value={devengo.grupo_cot}
-            onchange={(e) => {
-                devengo.grupo_cot = e.currentTarget.value;
-            }}
-            title="Grupo profesional"
-            required
-            onkeydown={(e) => {
-                if (e.key !== "Enter") return;
-                if (e.shiftKey) calculateWage();
-            }}
-        >
-            <option value="" disabled>(Elige algo)</option>
-            {#each Object.entries(basesCotContingenciasComunes) as [idx, base]}
-                <option value={idx}
-                    >{base[0]}
-                    {bcDiaria(Number(idx)) ? "[COT. DIARIA]" : "[COT. MENSUAL]"} [GRUPO {idx}]</option
-                >
-            {/each}
-        </select>
-    </div>
-    {#if bcDiaria(Number(devengo.grupo_cot))}
-        <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
-            <code class="flex-none font-mono! whitespace-nowrap">Dias cobrados</code>
-
-            <Input
-                channel="ZakaProfe"
-                type="number"
-                name="jornada_d"
-                id="jornada_d"
-                bind:value={devengo.jornadaDias}
-                oninput={(e) => (devengo.jornadaDias = e.currentTarget.value)}
-                title="Días que vas a cobrar"
-                required
-                onkeydown={(e) => {
-                    if (e.key !== "Enter") return;
-                    if (e.shiftKey) calculateWage();
-                    else {
-                        document.getElementById("irpf_i")!.focus();
-                    }
-                }}
-            />
-        </div>{/if}
-    <div class="mb-1 flex w-full flex-col items-center gap-3 sm:flex-row">
-        <code class="flex-none font-mono! whitespace-nowrap">I.R.P.F.</code>
-
-        <Input
-            tail="w-full flex-1"
-            channel="ZakaProfe"
-            type="number"
-            name="irpf_i"
-            id="irpf_i"
-            bind:value={devengo.irpf}
-            oninput={(e) => (devengo.irpf = e.currentTarget.value)}
-            title="Porcentaje de IRPF a desgravar"
-            required
-            onkeydown={(e) => {
-                if (e.key !== "Enter") return;
-                calculateWage();
-            }}
-        />
-    </div>
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
         <Button
@@ -716,7 +741,8 @@
     </div>
     {#if resultado}
         <br />
-        <p>DEVENGO</p>
+        <h2>Resultados de la nómina</h2>
+        <h3>DEVENGO</h3>
         <br />
         <Table
             channel="ZakaProfe"
@@ -736,7 +762,7 @@
             ]}
         />
         <br />
-        <p><s>ME ROBAN</s> DEDUZCO</p>
+        <h3><s>ME ROBAN</s> DEDUZCO</h3>
         <br />
         <Table
             channel="ZakaProfe"
@@ -752,7 +778,7 @@
             ]}
         />
         <br />
-        <p>BASES DE COTIZACIÓN</p>
+        <h3>BASES DE COTIZACIÓN</h3>
         <br />
         <Table
             channel="ZakaProfe"
@@ -763,14 +789,14 @@
             ]}
         />
         <br />
-        <p>INGRESO NETO</p>
+        <h3>INGRESO NETO</h3>
         <br />
         <Table channel="ZakaProfe" table={[["LÍQUIDO A PERCIBIR", resultado.neto]]} />
         <br />
-        <h1>¿Cómo se ha calculado esto?</h1>
         <hr />
-
-        <h2 class="text-xl">Lo que devengo</h2>
+        <h2>¿Cómo se ha calculado esto?</h2>
+        <br />
+        <h3>Lo que devengo</h3>
         <br />
 
         <p>
@@ -803,7 +829,8 @@
                         * Number(devengo.extras[1])}</span
                 >
                 al año. Prorrateado {#if bcMensual(resultado.grupoCot)}entre 12 meses{:else}entre
-                    365 días{/if}, corresponden <b>{resultado.prorrateoExtras}</b> por período.
+                    365 días{/if}, corresponden <b>{resultado.prorrateoExtras.toFixed(2)}</b> por
+                período.
                 {#if devengo.noProrratear}
                     Como has indicado que las extras <em>no</em> se prorratean en nómina, este
                     importe
@@ -847,14 +874,14 @@
         {/if}
 
         <br />
-        <h2 class="text-xl">Las bases de cotización</h2>
+        <h3>Las bases de cotización</h3>
         <br />
 
         <p>
             - La <b>base computable</b> es el sueldo base más los pluses cotizables:
             <span class="font-serif"
-                >{resultado.salarioPeriodo} + {resultado.plusesCotizados} =
-                <b>{resultado.salarioPeriodo + resultado.plusesCotizados}</b></span
+                >{resultado.salarioPeriodo.toFixed(2)} + {resultado.plusesCotizados.toFixed(2)} =
+                <b>{(resultado.salarioPeriodo + resultado.plusesCotizados).toFixed(2)}</b></span
             >.
         </p>
 
@@ -862,9 +889,11 @@
             - La <b>base de cotización por contingencias comunes (BCCC)</b> añade a la base
             computable el prorrateo de extras y la antigüedad:
             <span class="font-serif"
-                >{resultado.salarioPeriodo + resultado.plusesCotizados} + {resultado.prorrateoExtras}
+                >{(resultado.salarioPeriodo + resultado.plusesCotizados).toFixed(2)} + {resultado.prorrateoExtras.toFixed(
+                    2
+                )}
                 +
-                {resultado.longevidad} = <b>{resultado.bccc}</b></span
+                {resultado.longevidad.toFixed(2)} = <b>{resultado.bccc.toFixed(2)}</b></span
             >.
         </p>
 
@@ -872,38 +901,42 @@
             - La <b>base de cotización por contingencias profesionales (BCCP)</b> añade además las
             horas extra:
             <span class="font-serif"
-                >{resultado.bccc} + {resultado.horasForzosas} + {resultado.horasAdicionales} =
-                <b>{resultado.bccp}</b></span
+                >{resultado.bccc.toFixed(2)} + {resultado.horasForzosas} + {resultado.horasAdicionales}
+                =
+                <b>{resultado.bccp.toFixed(2)}</b></span
             >.
         </p>
 
         <br />
-        <h2 class="text-xl">Lo que <s>me roban</s> cobra el Estado</h2>
+        <h3>Lo que <s>me roban</s> cobra el Estado</h3>
         <br />
 
         <p>
             - <b>Contingencias comunes</b>: el 4,70 % de la BCCC (<span class="font-serif"
-                >{resultado.bccc} ✕ 4,70 % = <b>{resultado.robo.contingencias.toFixed(2)}</b></span
+                >{resultado.bccc.toFixed(2)} ✕ 4,70 % =
+                <b>{resultado.robo.contingencias.toFixed(2)}</b></span
             >).
         </p>
 
         <p>
-            - <b>Desempleo</b>: en contratos indefinidos, el 1,55 % de la BCCP (<span
-                class="font-serif"
-                >{resultado.bccp} ✕ 1,55 % = <b>{resultado.robo.desempleo.toFixed(2)}</b></span
+            - <b>Desempleo</b>: en contratos {devengo.esTemporal
+                ? "temporales, el 1,60 %"
+                : "indefinidos, el 1,55 %"}, el 1,55 % de la BCCP (<span class="font-serif"
+                >{resultado.bccp.toFixed(2)} ✕ {devengo.esTemporal ? "1,60" : "1,55"} % =
+                <b>{resultado.robo.desempleo.toFixed(2)}</b></span
             >).
         </p>
 
         <p>
             - <b>Mecanismo de Equidad Intergeneracional (MEI)</b>: el 0,15 % de la BCCC (<span
                 class="font-serif"
-                >{resultado.bccc} ✕ 0,15 % = <b>{resultado.robo.mei.toFixed(2)}</b></span
+                >{resultado.bccc.toFixed(2)} ✕ 0,15 % = <b>{resultado.robo.mei.toFixed(2)}</b></span
             >).
         </p>
 
         <p>
             - <b>Formación Profesional</b>: el 0,10 % de la BCCP (<span class="font-serif"
-                >{resultado.bccp} ✕ 0,10 % = <b>{resultado.robo.fp.toFixed(2)}</b></span
+                >{resultado.bccp.toFixed(2)} ✕ 0,10 % = <b>{resultado.robo.fp.toFixed(2)}</b></span
             >).
         </p>
 
@@ -935,11 +968,11 @@
         </p>
 
         <br />
-        <h2 class="text-xl">El resultado</h2>
+        <h3>El resultado</h3>
         <br />
 
         <p>
-            - <b>Total devengado</b>: {resultado.bccc}
+            - <b>Total devengado</b>: {resultado.bccc.toFixed(2)}
             {#if resultado.salarioEspecie > 0}+ {resultado.salarioEspecie} (especie){/if}
             {#if resultado.horasAdicionales > 0}+ {resultado.horasAdicionales} (h. extra voluntarias){/if}
             {#if resultado.horasForzosas > 0}+ {resultado.horasForzosas} (h. extra forzosas){/if}
