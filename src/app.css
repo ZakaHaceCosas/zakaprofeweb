@@ -34,7 +34,7 @@ h2 {
     font-size: 1.95em;
 }
 h3 {
-    font-size: 1.5em;
+    font-size: 1.65em;
 }
 
 body,
@@ -144,4 +144,53 @@ h2.ocupado {
     outline-width: 2px;
     outline-style: solid;
     outline-offset: 2px;
+}
+
+.rotating-words {
+    display: inline-block;
+    overflow: hidden;
+    height: 1.2em;
+    vertical-align: bottom;
+    position: relative;
+}
+
+.word {
+    display: block;
+    position: absolute;
+    white-space: nowrap;
+    /* animation: slideUp 20s infinite;*/
+}
+
+/** ¿a que mola? lo hice para otro proyecto (konbini) y lo he copiado aquí para nada
+  * amo programar (luego quito esto)
+ */
+@keyframes slideUp {
+    0%,
+    14% {
+        transform: translateY(0%);
+    }
+    15%,
+    29% {
+        transform: translateY(-100%);
+    }
+    30%,
+    43% {
+        transform: translateY(-200%);
+    }
+    44%,
+    57% {
+        transform: translateY(-300%);
+    }
+    58%,
+    71% {
+        transform: translateY(-400%);
+    }
+    72%,
+    85% {
+        transform: translateY(-500%);
+    }
+    86%,
+    100% {
+        transform: translateY(-600%);
+    }
 }

@@ -6,6 +6,7 @@
 
 Actualizaciones visibles para el usuario:
 
+- Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mejor.
 - Ahora se puede ver el registro de cambios desde la propia web.
 - Añadido soporte para «comentarios» en la web; no se publican hasta pasar moderación y se usan para reportar fallas (sin tener que encontrar el repositorio, registrarse en el control de versiones y hacer un reporte ahí, o usar un «bug tracker» que es mucho trabajo para una web tan sencilla). Con el poco tráfico que recibe la web parecen un poco inútiles (y por ahora lo son), pero en verano pretendo promocionarla todo lo posible, así que vienen bien.
 - Mejorada la calculadora de nóminas:

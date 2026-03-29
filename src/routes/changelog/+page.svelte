@@ -35,6 +35,10 @@
     <h2>3.5.0 (En progreso)</h2>
     <h3>Actualizaciones visibles para el usuario:</h3>
     <ul>
+        <li>
+            Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir
+            mejor.
+        </li>
         <li>Ahora se puede ver el registro de cambios desde la propia web.</li>
         <li>
             Añadido soporte para «comentarios» en la web; no se publican hasta pasar moderación y se
