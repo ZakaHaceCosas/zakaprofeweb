@@ -5,6 +5,7 @@
     "": {
       "name": "zakaprofe",
       "dependencies": {
+        "@2toad/profanity": "^3.3.0",
         "@supabase/supabase-js": "^2.100.1",
         "@sveltejs/adapter-vercel": "^6.3.3",
         "numeric-utils": "^2.1.1",
@@ -39,6 +40,8 @@
     },
   },
   "packages": {
+    "@2toad/profanity": ["@2toad/profanity@3.3.0", "", {}, "sha512-hBptHbB6Regs5AgtHiLr/WfgHRh6ZGdA9EexOWU14n2eNjQekvK9/gg18iFUYvL2WrNb4X3Ci0bzgzJXhzmpNQ=="],
+
     "@bytecodealliance/preview2-shim": ["@bytecodealliance/preview2-shim@0.17.6", "", {}, "sha512-n3cM88gTen5980UOBAD6xDcNNL3ocTK8keab21bpx1ONdA+ARj7uD1qoFxOWCyKlkpSi195FH+GeAut7Oc6zZw=="],
 
     "@edge-runtime/format": ["@edge-runtime/format@2.2.1", "", {}, "sha512-JQTRVuiusQLNNLe2W9tnzBlV/GvSVcozLl4XZHk5swnRZ/v6jp8TqR8P7sqmJsQqblDZ3EztcWmLDbhRje/+8g=="],

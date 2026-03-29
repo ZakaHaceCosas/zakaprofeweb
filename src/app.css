@@ -250,3 +250,8 @@ h2.ocupado {
     outline: 2px solid;
     outline-offset: 2px;
 }
+
+code {
+    font-weight: 900;
+    color: rgb(5, 135, 35);
+}
