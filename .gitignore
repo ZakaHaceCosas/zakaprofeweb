@@ -32,3 +32,6 @@ yarn-error.log*
 no/**
 project_id
 .env*.local
+
+# No listo para prod
+**/apps/dev/**
