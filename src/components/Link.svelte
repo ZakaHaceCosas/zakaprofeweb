@@ -16,7 +16,7 @@
     }>();
 
     const className = $derived(
-        `cursor-pointer text-(--txt) hover:underline group ${channel === "ZakaProfe" ? "hover:text-(--ZakaProfe) focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe)" : "hover:text-(--ZakaTeka) focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka)"} ${tail}`
+        `cursor-pointer text-(--txt) hover:underline group ${channel === "ZakaProfe" ? "hover:text-(--ZakaProfe) focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe)" : "hover:text-(--ZakaTeka) focus-visible:text-(--ZakaTeka) outline-(--ZakaTeka)"} ${tail}`
     );
 </script>
 

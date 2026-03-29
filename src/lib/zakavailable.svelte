@@ -83,11 +83,11 @@
         abajo y responderé cuanto antes.<!--<br />Aquí tienes mi «horario», por si te
         sirve de referencia (se actualiza en tiempo real y todo, fíjate que guapo).-->
     </p>
-    <!--<div class="row-ish" style="justify-content: start">
+    <!--<div class="flex w-full flex-1 flex-row items-center justify-start gap-1">
         <div class="bola-wrap">
             <div class={`bola ${statusClass}`}></div>
         </div>
-        <h2 class={`non-bold-header ${statusClass}`}>
+        <h2 class={`font-normal ${statusClass}`}>
             {status} <b>·</b>
             {currentSpanishTime}{" "}
             <span style="font-size: medium; font-weight: 600">UTC+1</span>
@@ -95,7 +95,7 @@
     </div>
     <p style="opacity: 0.75">{statusText}</p>
     <hr style="margin: 0" />-->
-    <!--<div class="row-ish">-->
+    <!--<div class="flex w-full flex-1 flex-row items-center justify-center gap-1">-->
     <div class="flex flex-col gap-2">
         <Link
             href={"https://instagram.com/zhc.zakaprofe/"}

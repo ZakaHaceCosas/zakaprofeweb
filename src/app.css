@@ -59,99 +59,10 @@ main {
     padding: 40px;
 }
 
-.video img {
-    aspect-ratio: 16/9;
-    width: 100%;
-}
-
-#zp-logo {
-    width: 100%;
-    height: auto;
-    object-fit: scale-down;
-}
-
 section#main {
     width: 10%;
     display: grid;
     place-items: center;
-}
-
-.non-bold-header {
-    font-weight: 400;
-}
-
-.row-ish {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    width: 100%;
-}
-
-nav,
-footer {
-    padding: 15px;
-    background-color: var(--blk);
-    box-shadow: 0 0 15px 0 var(--blkSha);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    min-height: 60px;
-    justify-content: space-between;
-}
-footer {
-    font-size: small;
-    color: var(--grey);
-    font-weight: 500;
-}
-
-footer p {
-    flex: 3;
-}
-
-footer p.text-end {
-    flex: 2;
-}
-
-footer p b {
-    font-weight: 600;
-}
-
-nav .urls {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    justify-content: end;
-}
-
-nav .urls button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-nav .urls button svg {
-    width: 25px;
-    height: 25px;
-    object-fit: scale-down;
-}
-
-.react-button-as-href {
-    background-color: transparent;
-    text-decoration: none;
-    padding: 10px;
-    cursor: pointer;
-    color: var(--txt);
-}
-
-.react-button-as-href:hover {
-    background-color: var(--fff25);
 }
 
 hr {
@@ -164,23 +75,6 @@ hr {
 }
 
 @media only screen and (max-width: 900px) {
-    nav .urls button p {
-        display: none;
-    }
-
-    nav {
-        flex-direction: column;
-        height: 140px;
-        gap: 10px;
-        max-height: 140px !important;
-        align-items: center;
-        justify-content: center;
-    }
-
-    nav .urls {
-        justify-content: center;
-    }
-
     body,
     html {
         overflow-y: visible;
@@ -247,11 +141,7 @@ h2.ocupado {
 }
 
 *:focus-visible {
-    outline: 2px solid;
+    outline-width: 2px;
+    outline-style: solid;
     outline-offset: 2px;
-}
-
-code {
-    font-weight: 900;
-    color: rgb(5, 135, 35);
 }

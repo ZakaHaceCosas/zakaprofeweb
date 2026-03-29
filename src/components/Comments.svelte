@@ -111,7 +111,7 @@
                 </div>
             {/if}
             {#if c.admin_res}
-                <div class="mt-2 border-l-4 border-(--ZakaProfe) bg-gray-100 p-2 text-gray-800">
+                <div class="mt-2 border-l-4 border-(--ZakaProfe) bg-(--ng1) p-2 text-(--txt)">
                     Zaka:
                     {c.admin_res}
                 </div>

@@ -30,12 +30,14 @@ await codeFile.write(newLines.join("\n"));
 const footerFile = file("src/routes/+layout.svelte");
 const footerFileLines = (await footerFile.text()).split("\n");
 const footerLineStartIdx = footerFileLines.findIndex((s) =>
-    s.trim().startsWith('<p class="text-end">')
+    s.trim().startsWith('<p class="sm:flex-2 sm:text-end">')
 );
 const ver = JSON.parse(await file("package.json").text())["version"];
 const newFooterLines = [
     ...footerFileLines.slice(0, footerLineStartIdx),
-    `<p class="text-end"><b>ZakaProfe WEB v${ver}</b> · <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a> · <a href="/bugs" class="underline">Reportar un fallo</a></p>`,
+    `<p class="sm:flex-2 sm:text-end"><b>ZakaProfe WEB v${ver}</b> · <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a> · <a href="/bugs" class="underline">Reportar un fallo</a></p>`,
     ...footerFileLines.slice(footerLineStartIdx + 5),
 ];
 await footerFile.write(newFooterLines.join("\n"));
+
+await $`bun prettier --w .`.then(() => console.log("¡OK!"));

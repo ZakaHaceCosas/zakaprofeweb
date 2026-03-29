@@ -1,6 +1,10 @@
 <svelte:head>
     <title>Registro de cambios</title>
     <style>
+        code {
+            font-weight: 900;
+            color: rgb(5, 135, 35);
+        }
         /** Source - https://stackoverflow.com/a/11737351 & Retrieved 2026-03-29, License - CC BY-SA 3.0 */
         ul {
             list-style-type: square;
@@ -73,6 +77,7 @@
         </li>
         <li>Quitados varios <code>console.log</code> innecesarios.</li>
         <li>Ahora en teoría el predenderizado de Svelte debería ir.</li>
+        <li>Quitados algunos estilos CSS innecesarios, debería mejorar un pelín el rendimiento.</li>
     </ul>
     <hr />
     <h2>3.4.0 (08/03/2026)</h2>

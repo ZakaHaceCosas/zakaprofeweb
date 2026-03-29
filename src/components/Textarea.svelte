@@ -28,10 +28,8 @@
     }>();
 
     const className = $derived(
-        `p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 ${
-            channel === "ZakaProfe"
-                ? "focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe)"
-                : "focus-visible:text-(--ZakaTeka) outline-(--ZakaTeka)"
+        `p-4 border-2 border-(--fff25) w-full text-(--txt) font-mono bg-(--blk) gap-3 ${
+            channel === "ZakaProfe" ? "outline-(--ZakaProfe)" : "outline-(--ZakaTeka)"
         } ${tail}`
     );
 </script>

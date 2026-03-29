@@ -24,6 +24,7 @@ Actualizaciones internas (desarrollo):
 - Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
 - Quitados varios `console.log` innecesarios.
 - Ahora en teoría el predenderizado de Svelte debería ir.
+- Quitados algunos estilos CSS innecesarios, debería mejorar un pelín el rendimiento.
 
 ## 3.4.0 (08/03/2026)
 

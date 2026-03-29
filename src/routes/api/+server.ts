@@ -6,7 +6,6 @@ import { Profanity } from "@2toad/profanity";
 const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!);
 
 const MAX_REQ_POR_MINUTO = 2;
-const URL_REGEX = /(https?:\/\/[^\s]+)/;
 // no sé desde cuando esto existe (Emoji_presentation como regex)
 // pensé que chatgpt estaba alucinando, pero funciona
 const EMOJI_REGEX = /(\p{Emoji_Presentation}|\p{Emoji}\uFE0F)/gu;

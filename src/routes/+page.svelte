@@ -83,11 +83,11 @@
                 /><br />Como si de una página de cursos se tratase, habrá un catálogo de
                 clases/temas concretos a elegir.
             </p>
-            <div class="row-ish" style="justify-content: start">
+            <div class="flex w-full flex-1 flex-row items-center justify-start gap-1">
                 <div class="bola-wrap">
                     <div class="bola mas-o-menos"></div>
                 </div>
-                <h2 class="non-bold-header mas-o-menos">
+                <h2 class="mas-o-menos font-normal">
                     Aún no disponibles
                     <span style="font-size: medium; font-weight: 600">(próximamente)</span>
                 </h2>

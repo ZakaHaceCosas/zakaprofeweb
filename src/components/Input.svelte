@@ -34,10 +34,8 @@
     }>();
 
     const className = $derived(
-        `font-mono! p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 ${
-            channel === "ZakaProfe"
-                ? "focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe)"
-                : "focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka)"
+        `font-mono p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 ${
+            channel === "ZakaProfe" ? "outline-(--ZakaProfe)" : "outline-(--ZakaTeka)"
         } ${tail} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`
     );
 </script>
