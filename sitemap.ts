@@ -1,25 +1,28 @@
 import { writeFileSync } from "fs";
 import { execSync } from "child_process";
 
-const _pages: [string, undefined][] = [
-    ["/", undefined],
-    ["/search", undefined],
-    ["/apps", undefined],
-    ["/apps/calculadora-notas", undefined],
-    ["/apps/contador-palabras", undefined],
-    ["/apps/calculadora-nominas", undefined],
-    ["/apps/calcular-ip-cidr", undefined],
-    ["/apps/calcular-vlsm", undefined],
-    ["/apps/calcular-flsm", undefined],
-    ["/apps/convertir-binario-decimal-hexadecimal", undefined],
+const _pages: string[] = [
+    "/",
+    "/search",
+    "/changelog",
+    "/bugs",
+    "/apps",
+    "/apps/calculadora-notas",
+    "/apps/contador-palabras",
+    "/apps/calculadora-nominas",
+    "/apps/calcular-ip-cidr",
+    "/apps/calcular-vlsm",
+    "/apps/calcular-flsm",
+    "/apps/convertir-binario-decimal-hexadecimal",
+    "/apps/windows-cmd-parser",
 ];
 
-const PAGES = _pages.map((p) => {
-    const cmd = `git log -1 --format=%cs -- src/routes${p[0] === "/" ? "" : p[0]}/+page.svelte`;
+const PAGES: [string, string][] = _pages.map((p) => {
+    const cmd = `git log -1 --format=%cs -- src/routes${p === "/" ? "" : p}/+page.svelte`;
     console.log(cmd);
     const out = execSync(cmd);
     console.log(out.toString("utf8"));
-    return [p[0], out.toString("utf-8")];
+    return [p, out.toString("utf-8")];
 });
 
 const body = `<?xml version="1.0" encoding="UTF-8"?>
