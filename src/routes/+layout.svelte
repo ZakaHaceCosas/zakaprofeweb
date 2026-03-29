@@ -136,5 +136,8 @@
         derechos de autor, queda prohibida la reutilización, modificación, o redistribución de estos
         y otros materiales asociados sin autorización expresa.
     </p>
-    <p class="text-end"><b>ZakaProfe WEBv3.4.0</b></p>
+    <p class="text-end">
+        <b>ZakaProfe WEB v3.5.0</b> ·
+        <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a>
+    </p>
 </footer>
