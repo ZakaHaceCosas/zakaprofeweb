@@ -1,9 +1,9 @@
+<svelte:options runes={true} />
+
 <script lang="ts">
     import ZakAvailable from "$lib/zakavailable.svelte";
     import Link from "../components/Link.svelte";
     import RandomVideoFeed from "../lib/videos.svelte";
-
-    export const prerender = true;
 </script>
 
 <svelte:head>

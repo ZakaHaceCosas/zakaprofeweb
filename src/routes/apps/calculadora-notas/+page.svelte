@@ -12,7 +12,6 @@
     let average: number | null = null;
 
     onMount(() => {
-        console.log(window.location.search);
         if (!window.location.search) return;
 
         const params = new URLSearchParams(window.location.search);
@@ -88,8 +87,6 @@
             `https://profe.zhc.es/apps/calculadora-notas?${notas.map((v, i) => `${i + 1}=${v.nota},${v.pondering}`).join("&")}`
         );
     }
-
-    export const prerender = true;
 </script>
 
 <svelte:head>

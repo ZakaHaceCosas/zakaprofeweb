@@ -22,7 +22,6 @@
     let ranges: string[] = [""];
 
     onMount(() => {
-        console.log(window.location.search);
         if (!window.location.search) return;
 
         const params = new URLSearchParams(window.location.search);
@@ -49,9 +48,7 @@
     }
 
     function deleteRange(index: number) {
-        console.log(ranges[index]);
         if (!ranges[index] && ranges[index] !== "") return;
-        console.log("rem");
         ranges.splice(index, 1);
         ranges = [...ranges];
         prepare();
@@ -89,7 +86,6 @@
                 .map((r) => Number(r) + 2)
                 .sort((a, b) => b - a)
                 .forEach((range, idx) => {
-                    console.log(range, idx);
                     if (isNaN(range) || range < 2) throw `El rango ${idx} es inválido.`;
 
                     let pow = 0;
@@ -151,8 +147,6 @@
             `https://profe.zhc.es/apps/calcular-vlsm?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges.join(",")}`
         );
     }
-
-    export const prerender = true;
 </script>
 
 <svelte:head>

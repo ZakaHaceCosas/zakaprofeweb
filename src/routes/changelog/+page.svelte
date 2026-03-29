@@ -72,6 +72,7 @@
             Runes.
         </li>
         <li>Quitados varios <code>console.log</code> innecesarios.</li>
+        <li>Ahora en teoría el predenderizado de Svelte debería ir.</li>
     </ul>
     <hr />
     <h2>3.4.0 (08/03/2026)</h2>

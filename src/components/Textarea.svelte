@@ -1,27 +1,39 @@
 <script lang="ts">
-    export let oninput: ((e: Event & { currentTarget: HTMLTextAreaElement }) => void) | undefined =
-        undefined;
-    export let onkeydown:
-        | ((e: KeyboardEvent & { currentTarget: HTMLTextAreaElement }) => void)
-        | undefined = undefined;
+    let {
+        oninput = undefined,
+        onkeydown = undefined,
+        channel,
+        tail = "",
+        title,
+        rows = 10,
+        name,
+        value = $bindable(""),
+        required = false,
+        style = undefined,
+        id = undefined,
+        label = undefined,
+    } = $props<{
+        oninput?: (e: Event & { currentTarget: HTMLTextAreaElement }) => void;
+        onkeydown?: (e: KeyboardEvent & { currentTarget: HTMLTextAreaElement }) => void;
+        channel: "ZakaProfe" | "ZakaTeka";
+        tail?: string;
+        title: string;
+        rows?: number;
+        name: string;
+        value?: string | number;
+        required?: boolean;
+        style?: string;
+        id?: string;
+        label?: string;
+    }>();
 
-    export let channel: "ZakaProfe" | "ZakaTeka";
-    export let tail: string = "";
-    export let title: string;
-    export let rows: number = 10;
-    export let name: string;
-    export let value: string | number = "";
-    export let required: boolean = false;
-    export let style: string | undefined = undefined;
-    export let id: string | undefined = undefined;
-    export let label: string | undefined = undefined;
-
-    const className =
-        "p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 "
-        + (channel === "ZakaProfe"
-            ? " focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe) "
-            : " focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka) ")
-        + tail;
+    const className = $derived(
+        `p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 ${
+            channel === "ZakaProfe"
+                ? "focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe)"
+                : "focus-visible:text-(--ZakaTeka) outline-(--ZakaTeka)"
+        } ${tail}`
+    );
 </script>
 
 <div class="w-full">
@@ -39,8 +51,8 @@
         bind:value
         placeholder={title}
         {required}
-        on:input={oninput}
-        on:keydown={onkeydown}
+        {oninput}
+        {onkeydown}
         {rows}
     ></textarea>
 </div>

@@ -1,31 +1,45 @@
 <script lang="ts">
-    export let oninput: ((e: Event & { currentTarget: HTMLInputElement }) => void) | undefined =
-        undefined;
-    export let onkeydown:
-        | ((e: KeyboardEvent & { currentTarget: HTMLInputElement }) => void)
-        | undefined = undefined;
+    let {
+        oninput,
+        onkeydown,
+        channel,
+        tail = "",
+        title,
+        type,
+        name,
+        value = $bindable(""),
+        required = false,
+        pattern,
+        inputmode,
+        style,
+        id,
+        label,
+        disabled,
+    } = $props<{
+        oninput?: (e: Event & { currentTarget: HTMLInputElement }) => void;
+        onkeydown?: (e: KeyboardEvent & { currentTarget: HTMLInputElement }) => void;
+        channel: "ZakaProfe" | "ZakaTeka";
+        tail?: string;
+        title: string;
+        type: string;
+        name: string;
+        value: string | number;
+        required: boolean;
+        pattern?: string;
+        inputmode?: "numeric";
+        style?: string;
+        id?: string;
+        label?: string;
+        disabled?: boolean;
+    }>();
 
-    export let channel: "ZakaProfe" | "ZakaTeka";
-    export let tail: string = "";
-    export let title: string;
-    export let type: string;
-    export let name: string;
-    export let value: string | number = "";
-    export let required: boolean = false;
-    export let pattern: string | undefined = undefined;
-    export let inputmode: "numeric" | undefined = undefined;
-    export let style: string | undefined = undefined;
-    export let id: string | undefined = undefined;
-    export let label: string | undefined = undefined;
-    export let disabled: boolean | undefined = undefined;
-
-    const className =
-        "font-mono! p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 "
-        + (channel === "ZakaProfe"
-            ? " focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe) "
-            : " focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka) ")
-        + tail
-        + (disabled ? " opacity-50 cursor-not-allowed" : "");
+    const className = $derived(
+        `font-mono! p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 ${
+            channel === "ZakaProfe"
+                ? "focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe)"
+                : "focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka)"
+        } ${tail} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`
+    );
 </script>
 
 <div class="w-full">
@@ -46,8 +60,8 @@
         bind:value
         placeholder={title}
         {required}
-        on:input={oninput}
-        on:keydown={onkeydown}
+        {oninput}
+        {onkeydown}
         {disabled}
     />
 </div>

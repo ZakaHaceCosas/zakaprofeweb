@@ -8,7 +8,6 @@
     let hex = "";
 
     onMount(() => {
-        console.log(window.location.search);
         if (!window.location.search) return;
 
         const params = new URLSearchParams(window.location.search);
@@ -40,8 +39,6 @@
             `https://profe.zhc.es/apps/convertir-binario-decimal-hexadecimal?val=${dec}`
         );
     }
-
-    export const prerender = true;
 </script>
 
 <svelte:head>

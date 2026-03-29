@@ -1,6 +1,8 @@
 <script lang="ts">
-    export let table: [string, string | number][];
-    export let channel: "ZakaProfe" | "ZakaTeka";
+    const { table, channel } = $props<{
+        table: [string, string | number][];
+        channel: "ZakaProfe" | "ZakaTeka";
+    }>();
 </script>
 
 <table class="w-full">

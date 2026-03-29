@@ -2,10 +2,12 @@
 
 # ZakaProfe WEB · Registro de cambios
 
-## 3.4.1 (En progreso)
+## 3.5.0 (En progreso)
 
 Actualizaciones visibles para el usuario:
 
+- Ahora se puede ver el registro de cambios desde la propia web.
+- Añadido soporte para «comentarios» en la web; no se publican hasta pasar moderación y se usan para reportar fallas (sin tener que encontrar el repositorio, registrarse en el control de versiones y hacer un reporte ahí, o usar un «bug tracker» que es mucho trabajo para una web tan sencilla). Con el poco tráfico que recibe la web parecen un poco inútiles (y por ahora lo son), pero en verano pretendo promocionarla todo lo posible, así que vienen bien.
 - Mejorada la calculadora de nóminas:
     - Ahora valida la base que proveas contra el S.M.I.
     - Ahora permite especificar si el contrato es temporal (afecta al cálculo).
@@ -14,6 +16,14 @@ Actualizaciones visibles para el usuario:
     - Está mejor diseñada en general.
 - Corregidos fallos visuales menores.
 - Ajustado los tamaños de texto para mejor legibilidad.
+- Quitado el horario de la sección de contacto, no soy una empresa y no tengo porqué creerme tanto. Contacta cuando quieras, supongo.
+- Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de PowerShell por alguna razón; no tiene sentido pero es más fácil).
+
+Actualizaciones internas (desarrollo):
+
+- Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
+- Quitados varios `console.log` innecesarios.
+- Ahora en teoría el predenderizado de Svelte debería ir.
 
 ## 3.4.0 (08/03/2026)
 
@@ -245,7 +255,7 @@ Actualizaciones internas (desarrollo):
 
 ## 1.1.0
 
-- Implementación propia de `/paginación`, para hacer las páginas más fáciles de seguir.
+- Implementación propia de `/paginado`, para hacer las páginas más fáciles de seguir.
 - Muchos cambios visuales, para hacer el diseño más responsive.
 - Añadida una página de `404`.
 - Mejorado el diseño del modal.

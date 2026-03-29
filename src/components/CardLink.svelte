@@ -1,20 +1,23 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import type { Snippet } from "svelte";
 
-    export let title: string;
-    export let body: string;
-    export let target: string;
-    export let channel: "ZakaProfe" | "ZakaTeka";
+    let { title, body, target, channel, svg } = $props<{
+        title: string;
+        body: string;
+        target: string;
+        svg?: Snippet;
+        channel: "ZakaProfe" | "ZakaTeka";
+    }>();
 
-    const className =
+    const className = $derived(
         "no-underline! group "
-        + (channel === "ZakaProfe" ? "hover:text-(--ZakaProfe)" : "hover:text-(--ZakaTeka)");
-
-    export const prerender = true;
+            + (channel === "ZakaProfe" ? "hover:text-(--ZakaProfe)" : "hover:text-(--ZakaTeka)")
+    );
 </script>
 
 <a
-    on:click={(e) => {
+    onclick={(e) => {
         e.preventDefault();
         goto(target);
     }}
@@ -31,7 +34,7 @@
                     ? "group-hover:fill-(--ZakaProfe)!"
                     : "group-hover:fill-(--ZakaTeka)!"}
             >
-                <slot name="svg" />
+                {@render svg?.()}
             </span>
             <h3 class="leading-[100%]">{title}</h3>
         </div>

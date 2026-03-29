@@ -105,8 +105,6 @@
             `https://profe.zhc.es/apps/calcular-ip-cidr?ip=${encodeURIComponent(ipAddress)}`
         );
     }
-
-    export const prerender = true;
 </script>
 
 <svelte:head>

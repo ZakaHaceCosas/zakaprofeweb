@@ -139,5 +139,6 @@
     <p class="text-end">
         <b>ZakaProfe WEB v3.5.0</b> ·
         <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a>
+        · <a href="/bugs" class="underline">Reportar un fallo</a>
     </p>
 </footer>

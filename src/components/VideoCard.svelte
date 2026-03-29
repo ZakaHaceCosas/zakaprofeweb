@@ -2,7 +2,7 @@
     import type { IVideo } from "$lib/db";
     import Link from "./Link.svelte";
 
-    export let video: IVideo;
+    const { video } = $props<{ video: IVideo }>();
 </script>
 
 <Link

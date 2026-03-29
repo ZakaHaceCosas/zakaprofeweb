@@ -4,6 +4,7 @@
     import Button from "../../../components/Button.svelte";
     import Input from "../../../components/Input.svelte";
     import Table from "../../../components/Table.svelte";
+    // @ts-ignore
     import { isBetween } from "numeric-utils";
 
     let ipAddress = "";
@@ -21,7 +22,6 @@
     let ranges: string = "";
 
     onMount(() => {
-        console.log(window.location.search);
         if (!window.location.search) return;
 
         const params = new URLSearchParams(window.location.search);
@@ -121,8 +121,6 @@
             `https://profe.zhc.es/apps/calcular-flsm?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges}`
         );
     }
-
-    export const prerender = true;
 </script>
 
 <svelte:head>

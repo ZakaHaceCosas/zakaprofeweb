@@ -1,20 +1,24 @@
 <script lang="ts">
-    export let checked: boolean;
-    export let onchange: (
-        e: Event & {
-            currentTarget: EventTarget & HTMLInputElement;
-        }
-    ) => void;
-    export let onkeydown: (
-        e: KeyboardEvent & {
-            currentTarget: EventTarget & HTMLInputElement;
-        }
-    ) => void;
-    export let id: string;
-    export let children;
-    export let tail: string | undefined = undefined;
+    import type { Snippet } from "svelte";
 
-    const className = "flex flex-row gap-2 " + tail;
+    let { checked, onchange, onkeydown, id, children, tail } = $props<{
+        checked: boolean;
+        onchange: (
+            e: Event & {
+                currentTarget: EventTarget & HTMLInputElement;
+            }
+        ) => void;
+        onkeydown: (
+            e: KeyboardEvent & {
+                currentTarget: EventTarget & HTMLInputElement;
+            }
+        ) => void;
+        id: string;
+        children: Snippet;
+        tail?: string;
+    }>();
+
+    const className = $derived("flex flex-row gap-2 " + tail);
 </script>
 
 <div class={className}>

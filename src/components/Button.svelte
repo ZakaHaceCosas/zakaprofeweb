@@ -1,20 +1,30 @@
 <script lang="ts">
-    export let href: string | undefined = undefined;
-    export let callback: (() => any) | undefined = undefined;
-    export let channel: "ZakaProfe" | "ZakaTeka";
-    export let popovertarget: string | undefined = undefined;
-    export let tail: string = "";
-    export let title: string;
+    import type { Snippet } from "svelte";
 
-    const className =
-        "flex-1 w-full p-4 cursor-pointer border-2 border-(--fff25) p-3 hover:bg-(--blk) focus-visible:bg-(--blk) no-underline text-center"
-        + (channel === "ZakaProfe" ? " bg-(--ZakaProfe) " : " bg-(--ZakaTeka) ")
-        + (channel === "ZakaProfe" ? " hover:text-(--ZakaProfe) " : " hover:text-(--ZakaTeka) ")
-        + (channel === "ZakaProfe"
-            ? " focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe) "
-            : " focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka) ")
-        + (channel === "ZakaProfe" ? " text-white " : " text-(--blk) ")
-        + tail;
+    let {
+        href,
+        callback,
+        channel,
+        tail = "",
+        popovertarget,
+        title,
+        disabled = false,
+        children,
+    } = $props<{
+        href?: string;
+        callback?: () => any;
+        channel: "ZakaProfe" | "ZakaTeka";
+        tail?: string;
+        popovertarget?: string;
+        title: string;
+        disabled?: boolean;
+        children: Snippet;
+    }>();
+
+    const className = $derived(
+        `flex-1 w-full p-4 cursor-pointer border-2 border-(--fff25) p-3 hover:bg-(--blk) focus-visible:bg-(--blk) no-underline text-center"
+            ${channel === "ZakaProfe" ? "hover:text-(--ZakaProfe) bg-(--ZakaProfe) text-white focus-visible:text-(--ZakaProfe) outline-(--ZakaProfe)" : " bg-(--ZakaTeka) focus-visible:text-(--ZakaTeka)  outline-(--ZakaTeka) hover:text-(--ZakaTeka)  text-(--blk)"} ${tail}`
+    );
 </script>
 
 {#if href}
@@ -26,10 +36,17 @@
         {title}
         aria-label={title}
     >
-        <slot />
+        {@render children?.()}
     </a>
 {:else}
-    <button on:click={callback} class={className} {popovertarget} {title} aria-label={title}>
-        <slot />
+    <button
+        onclick={callback}
+        class={className}
+        {popovertarget}
+        {title}
+        aria-label={title}
+        {disabled}
+    >
+        {@render children?.()}
     </button>
 {/if}

@@ -17,8 +17,6 @@
                 || normalize(v.level, { strict: true }).includes(search)
         ).sort((a, b) => similarity(a.title, search) - similarity(b.title, search));
     });
-
-    export const prerender = true;
 </script>
 
 <svelte:head>
@@ -34,6 +32,8 @@
     </p>
     <hr />
     <Input
+        required
+        value={""}
         type="text"
         name="query"
         title="Busca un video..."
@@ -66,12 +66,7 @@
                         <p>
                             {v.topic} · {v.level} · <b>S{v.season}</b>
                         </p>
-                        <p class="text-sm opacity-50">
-                            La S indica la temporada a la que pertenece el video; cada cambio
-                            significativo en la calidad de producción se sube el número,
-                            básicamente. Va desde el 0 (mis primeros videos) hasta el 4 (los más
-                            nuevos).
-                        </p>
+                        <br />
                         <Button
                             channel={v.channel}
                             href={v.url}
@@ -80,6 +75,12 @@
                         >
                             Ver en YouTube &gt;
                         </Button>
+                        <p class="text-sm opacity-50">
+                            La S indica la temporada a la que pertenece el video; cada cambio
+                            significativo en la calidad de producción se sube el número,
+                            básicamente. Va desde el 0 (mis primeros videos) hasta el 4 (los más
+                            nuevos).
+                        </p>
                     </div>
                 </div>
                 <br />

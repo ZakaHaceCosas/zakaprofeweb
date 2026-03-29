@@ -20,8 +20,6 @@
         if (val === "") return;
         text = atob(decodeURIComponent(val));
     });
-
-    export const prerender = true;
 </script>
 
 <svelte:head>

@@ -85,8 +85,8 @@
             desempleo: number;
             mei: number;
             fp: number;
-            hefm: number;
-            rhe: number;
+            horasExtraFuerzaMayor: number;
+            restoHorasExtra: number;
             irpf: number;
         };
         neto: number;
@@ -106,11 +106,8 @@
         }
 
         try {
-            const decoded = decodeURIComponent(atob(nominaParam));
-            console.log(decoded);
-            devengo = JSON.parse(decoded);
+            devengo = JSON.parse(decodeURIComponent(atob(nominaParam)));
         } catch (error) {
-            console.error("Error parsing nomina parameter:", error);
             history.replaceState(null, "", window.location.pathname);
         }
     });
@@ -166,10 +163,7 @@
             const anos = num(devengo.anos);
             longevidad.forEach((v) => {
                 for (let i = v[0]; i <= anos; i += v[0]) {
-                    if (v[0] <= 0) {
-                        console.warn("Incremento de longevidad inválido:", v[0]);
-                        break;
-                    }
+                    if (v[0] <= 0) break;
                     sumLongevidad += p(salarioPeriodo, v[1]);
                 }
             });
@@ -198,8 +192,8 @@
                 desempleo: p(bccp, devengo.esTemporal ? 1.6 : 1.55),
                 mei: p(bccc, 0.15),
                 fp: p(bccp, 0.1),
-                hefm: p(horasForzosas, 2),
-                rhe: p(horasAdicionales, 4.7),
+                horasExtraFuerzaMayor: p(horasForzosas, 2),
+                restoHorasExtra: p(horasAdicionales, 4.7),
                 irpf: p(computable, irpf),
             };
 
@@ -230,8 +224,6 @@
                 grupoCot,
             };
 
-            console.log(devengo, resultado);
-
             return;
         } catch (e) {
             alert("Error: " + e);
@@ -243,8 +235,6 @@
             `https://profe.zhc.es/apps/calculadora-nominas?nomina=${encodeURIComponent(btoa(JSON.stringify(devengo)))}`
         );
     }
-
-    export const prerender = true;
 </script>
 
 <svelte:head>
@@ -771,8 +761,8 @@
                 ["Desempleo", resultado.robo.desempleo],
                 ["Formación Profesional", resultado.robo.fp],
                 ["Mecanismo de Equidad Intergeneracional", resultado.robo.mei],
-                ["Horas extraordinarias de fuerza mayor", resultado.robo.hefm],
-                ["Horas extra adicionales", resultado.robo.rhe],
+                ["Horas extraordinarias de fuerza mayor", resultado.robo.horasExtraFuerzaMayor],
+                ["Horas extra adicionales", resultado.robo.restoHorasExtra],
                 ["Impuesto a la Renta de las Personas Físicas", resultado.robo.irpf],
                 ["TOTAL APORTACIONES A LA SEGURIDAD SOCIAL", resultado.totalRobado],
             ]}
@@ -944,7 +934,8 @@
             <p>
                 - <b>Horas extra forzosas</b>: el 2 % sobre {resultado.horasForzosas} (<span
                     class="font-serif"
-                    >{resultado.horasForzosas} ✕ 2 % = <b>{resultado.robo.hefm.toFixed(2)}</b></span
+                    >{resultado.horasForzosas} ✕ 2 % =
+                    <b>{resultado.robo.horasExtraFuerzaMayor.toFixed(2)}</b></span
                 >).
             </p>
         {/if}
@@ -954,7 +945,7 @@
                 - <b>Horas extra voluntarias</b>: el 4,70 % sobre {resultado.horasAdicionales} (<span
                     class="font-serif"
                     >{resultado.horasAdicionales} ✕ 4,70 % =
-                    <b>{resultado.robo.rhe.toFixed(2)}</b></span
+                    <b>{resultado.robo.restoHorasExtra.toFixed(2)}</b></span
                 >).
             </p>
         {/if}
@@ -988,8 +979,10 @@
                 2
             )}
             + {resultado.robo.mei.toFixed(2)} + {resultado.robo.fp.toFixed(2)}
-            {#if resultado.horasForzosas > 0}+ {resultado.robo.hefm.toFixed(2)}{/if}
-            {#if resultado.horasAdicionales > 0}+ {resultado.robo.rhe.toFixed(2)}{/if}
+            {#if resultado.horasForzosas > 0}+ {resultado.robo.horasExtraFuerzaMayor.toFixed(
+                    2
+                )}{/if}
+            {#if resultado.horasAdicionales > 0}+ {resultado.robo.restoHorasExtra.toFixed(2)}{/if}
             + {resultado.robo.irpf.toFixed(2)} = <b>{resultado.totalRobado.toFixed(2)}</b>.
         </p>
 
