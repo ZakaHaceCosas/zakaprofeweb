@@ -247,7 +247,7 @@
     </div>
     <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
         <CardLink
-            channel="ZakaProfe"
+            channel="ZakaTeka"
             target="apps/windows-cmd-parser"
             title="Analizador sintáctico de Windows CMD"
             body="Te permite escribir secuencias de comandos, analizarlas y predecir su salida."
