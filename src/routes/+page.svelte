@@ -6,6 +6,7 @@
     import { onMount } from "svelte";
     import Link from "../components/Link.svelte";
     import RandomVideoFeed from "../lib/videos.svelte";
+    import Bola from "../components/Bola.svelte";
 
     let container: HTMLDivElement;
     let words: HTMLDivElement[] = [];
@@ -67,13 +68,28 @@
 <main>
     <h1>
         <b>
-            <div class="rotating-words" bind:this={container}>
-                <div class="word text-(--ZakaProfe)" bind:this={words[0]}>Salvando tus notas</div>
-                <div class="word" bind:this={words[1]}>Explicando en condiciones</div>
-                <div class="word" bind:this={words[2]}>Dando clases que sí molan</div>
-                <div class="word" bind:this={words[3]}>Ayudándote a aprobar</div>
-            </div></b
-        > desde 2023.
+            <div
+                class="relative hidden h-[1.2em] overflow-hidden align-bottom sm:inline-block"
+                bind:this={container}
+            >
+                <div
+                    class="absolute block whitespace-nowrap text-(--ZakaProfe)"
+                    bind:this={words[0]}
+                >
+                    Salvando tus notas
+                </div>
+                <div class="absolute block whitespace-nowrap" bind:this={words[1]}>
+                    Explicando en condiciones
+                </div>
+                <div class="absolute block whitespace-nowrap" bind:this={words[2]}>
+                    Dando clases que sí molan
+                </div>
+                <div class="absolute block whitespace-nowrap" bind:this={words[3]}>
+                    Ayudándote a aprobar
+                </div>
+            </div>
+            <div class="sm:hidden">Salvando tus notas</div>
+        </b> desde 2023.
     </h1>
     <br />
     <p class="text-lg">
@@ -163,12 +179,12 @@
         ><br />
         <p>Demos algo de contexto, por si te apetece leer un poco:</p>
         <br />
-        <div class="flex w-full flex-col gap-2 sm:flex-row">
+        <div class="flex w-full flex-col gap-2 md:flex-row">
             <div class="flex-1 bg-(--ZakaProfe) p-4">
                 <p class="text-white">
                     Acerca de <b>ZakaProfe, el que «salva tus notas»</b>. Con ese eslogan empecé en
                     2023 a hacer videos. Nació como una forma de ayudar a mis compañeros y nada más,
-                    pero ha crecido hasta las 400 visitas en algún video.
+                    pero ha crecido hasta más de 300 visitas en algún video.
                     <br /><br />
                     <b>Este canal tiene videos para secundaria</b>, de múltiples asignaturas típicas
                     (mates, lengua, física...) y lo caracteriza
@@ -233,15 +249,7 @@
                 clases/temas concretos a elegir.<br /><br />Para esto aún queda mucho tiempo, puedes
                 ignorarlo de momento.
             </p>
-            <div class="flex w-full flex-1 flex-row items-center justify-start gap-1">
-                <div class="bola-wrap">
-                    <div class="bola mas-o-menos"></div>
-                </div>
-                <h2 class="mas-o-menos font-normal">
-                    Aún no disponibles
-                    <span style="font-size: medium; font-weight: 600">(próximamente)</span>
-                </h2>
-            </div>
+            <Bola color="mas-o-menos" text="Aún no disponibles" small="próximamente" />
         </div>
     </section>
 </main>

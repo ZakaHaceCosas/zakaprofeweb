@@ -33,21 +33,43 @@
     <!--ESTO SE INYECTA MEDIANTE UN SCRIPT, NO HACE FALTA TOCAR A MANO-->
     <!--#CHG-->
     <h2>3.5.0 (En progreso)</h2>
-    <h3>Actualizaciones visibles para el usuario:</h3>
+    <hr />
+    <h2>Actualizaciones visibles para el usuario</h2>
+    <h3>Mejoras significativas</h3>
     <ul>
         <li>
             Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir
-            mejor.
+            mucho mejor.
+        </li>
+        <li>Mejorada bastante la adaptabilidad móvil.</li>
+        <li>
+            Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla.
+            Además, ahora muestra algún dato más (como las visitas de cada video).
+        </li>
+    </ul>
+    <h3>Nuevas aplicaciones</h3>
+    <ul>
+        <li>
+            Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de
+            sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de
+            PowerShell por alguna razón; no tiene sentido pero es más fácil).
         </li>
         <li>Ahora se puede ver el registro de cambios desde la propia web.</li>
         <li>
-            Añadido soporte para «comentarios» en la web; no se publican hasta pasar moderación y se
-            usan para reportar fallas (sin tener que encontrar el repositorio, registrarse en el
-            control de versiones y hacer un reporte ahí, o usar un «bug tracker» que es mucho
-            trabajo para una web tan sencilla). Con el poco tráfico que recibe la web parecen un
-            poco inútiles (y por ahora lo son), pero en verano pretendo promocionarla todo lo
-            posible, así que vienen bien.
+            Añadido soporte para «comentarios» en la web; se usan para reportar fallas y sugerir
+            mejoras de forma rápida. Se envían de inmediato, pero no aparecen en público hasta que
+            yo los revise (y opcionalmente responda).
+            <ul>
+                <li>
+                    (Con el poco tráfico que recibe la web parecen un poco inútiles (y por ahora lo
+                    son), pero en verano pretendo promocionarla todo lo posible, así que vienen
+                    bien.)
+                </li>
+            </ul>
         </li>
+    </ul>
+    <h3>Cambios en las aplicaciones</h3>
+    <ul>
         <li>
             Mejorada la calculadora de nóminas:
             <ul>
@@ -61,19 +83,18 @@
                 <li>Está mejor diseñada en general.</li>
             </ul>
         </li>
+    </ul>
+    <h3>Otros cambios</h3>
+    <ul>
         <li>Corregidos fallos visuales menores.</li>
         <li>Ajustado los tamaños de texto para mejor legibilidad.</li>
         <li>
             Quitado el horario de la sección de contacto, no soy una empresa y no tengo porqué
             creerme tanto. Contacta cuando quieras, supongo.
         </li>
-        <li>
-            Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de
-            sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de
-            PowerShell por alguna razón; no tiene sentido pero es más fácil).
-        </li>
     </ul>
-    <h3>Actualizaciones internas (desarrollo):</h3>
+    <hr />
+    <h2>Actualizaciones internas (desarrollo)</h2>
     <ul>
         <li>
             Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte

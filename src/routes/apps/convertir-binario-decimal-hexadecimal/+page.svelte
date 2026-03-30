@@ -71,7 +71,7 @@
             title="Número binario"
             required
             channel="ZakaTeka"
-            tail="w-full! flex-1 sm:flex-3"
+            tail="w-full! flex-1 md:flex-3"
             label="Binario"
         />
         <Input
@@ -85,7 +85,7 @@
             }}
             title="Número decimal"
             required
-            tail="w-full! flex-1 sm:flex-3"
+            tail="w-full! flex-1 md:flex-3"
             channel="ZakaTeka"
             label="Decimal"
         />
@@ -101,7 +101,7 @@
             title="Número hexadecimal"
             required
             channel="ZakaTeka"
-            tail="w-full! flex-1 sm:flex-3"
+            tail="w-full! flex-1 md:flex-3"
             label="Hexadecimal"
         />
     </div>

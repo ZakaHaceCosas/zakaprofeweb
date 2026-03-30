@@ -98,99 +98,12 @@ hr {
 
     100% {
         opacity: 0;
-        transform: scale(1);
+        transform: scale(1.5);
     }
-}
-
-.bola-wrap {
-    height: 24px;
-    aspect-ratio: 1/1;
-    display: grid;
-    place-items: center;
-}
-
-.bola {
-    height: 100%;
-    aspect-ratio: 1/1;
-    animation: bola-anim 2s infinite linear;
-    rotate: 45deg;
-}
-
-.bola.disponible {
-    background-color: var(--ZakaProfe);
-}
-
-.bola.mas-o-menos {
-    background-color: #ff8032;
-}
-
-.bola.ocupado {
-    background-color: #ff3232;
-}
-
-h2.disponible {
-    color: var(--ZakaProfe);
-}
-
-h2.mas-o-menos {
-    color: #ff8032;
-}
-
-h2.ocupado {
-    color: #ff3232;
 }
 
 *:focus-visible {
     outline-width: 2px;
     outline-style: solid;
     outline-offset: 2px;
-}
-
-.rotating-words {
-    display: inline-block;
-    overflow: hidden;
-    height: 1.2em;
-    vertical-align: bottom;
-    position: relative;
-}
-
-.word {
-    display: block;
-    position: absolute;
-    white-space: nowrap;
-    /* animation: slideUp 20s infinite;*/
-}
-
-/** ¿a que mola? lo hice para otro proyecto (konbini) y lo he copiado aquí para nada
-  * amo programar (luego quito esto)
- */
-@keyframes slideUp {
-    0%,
-    14% {
-        transform: translateY(0%);
-    }
-    15%,
-    29% {
-        transform: translateY(-100%);
-    }
-    30%,
-    43% {
-        transform: translateY(-200%);
-    }
-    44%,
-    57% {
-        transform: translateY(-300%);
-    }
-    58%,
-    71% {
-        transform: translateY(-400%);
-    }
-    72%,
-    85% {
-        transform: translateY(-500%);
-    }
-    86%,
-    100% {
-        transform: translateY(-600%);
-    }
 }

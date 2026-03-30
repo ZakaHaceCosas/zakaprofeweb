@@ -257,7 +257,7 @@
     </p>
     <h2>Información del contrato</h2>
     <br />
-    <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+    <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
         <code class="flex-none font-mono! whitespace-nowrap"
             >Grupo de cot. (<abbr
                 title="Base de Cotización de las Contingencias Comunes (BCCC) de la seguridad social"
@@ -291,7 +291,7 @@
         </select>
     </div>
     {#if bcDiaria(Number(devengo.grupo_cot))}
-        <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+        <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
             <code class="flex-none font-mono! whitespace-nowrap">Dias cobrados</code>
 
             <Input
@@ -312,7 +312,7 @@
                 }}
             />
         </div>{/if}
-    <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+    <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
         <code class="flex-none font-mono! whitespace-nowrap"
             ><abbr title="Impuesto a la Renta de las Personas Físicas">I.R.P.F.</abbr></code
         >
@@ -354,7 +354,7 @@
     <hr />
     <h2>Cuánto te quieren pagar</h2>
     <br />
-    <div class="mb-1 flex w-full flex-col items-center gap-3 sm:flex-row">
+    <div class="mb-1 flex w-full flex-col items-center gap-3 md:flex-row">
         <code class="flex-none font-mono! whitespace-nowrap"
             >Salario base {bcMensual(num(devengo.grupo_cot)) ? "mensual" : "diario"}</code
         >
@@ -379,7 +379,7 @@
         />
     </div>
 
-    <div class="mb-1 flex w-full flex-col items-center gap-3 sm:flex-row">
+    <div class="mb-1 flex w-full flex-col items-center gap-3 md:flex-row">
         <code class="flex-none font-mono! whitespace-nowrap"
             ><abbr title="Horas Extraordinarias de Fuerza Mayor">HE de FM</abbr></code
         >
@@ -430,7 +430,7 @@
         Horas Extraordinarias <b>de Fuerza Mayor</b> y <b>Convencionales</b>, respectivamente.
     </p>
 
-    <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+    <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
         <code class="flex-none font-mono! whitespace-nowrap">Salario en especie</code>
 
         <Input
@@ -453,7 +453,7 @@
         />
     </div>
 
-    <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+    <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
         <code class="flex-none font-mono! whitespace-nowrap">Pagas extra</code>
 
         <Input
@@ -511,7 +511,7 @@
     </div>
 
     {#each devengo.longevidad as plus, index}
-        <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+        <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
             <code class="font-mono! whitespace-nowrap">Plus longevidad #{index + 1}</code>
 
             <Input
@@ -522,7 +522,7 @@
                 required
                 name={"long_t_" + index}
                 id={"long_t_" + index}
-                tail="w-full! flex-1 sm:flex-3"
+                tail="w-full! flex-1 md:flex-3"
                 channel="ZakaProfe"
                 onkeydown={(e) => {
                     if (e.key !== "Enter") return;
@@ -554,7 +554,7 @@
 
             <Button
                 title="Eliminar este plus de longevidad"
-                tail="sm:w-inherit! w-auto!"
+                tail="md:w-inherit! w-auto!"
                 callback={() => {
                     devengo.longevidad.splice(index, 1);
                     devengo.longevidad = [...devengo.longevidad];
@@ -572,7 +572,7 @@
                     required
                     name={"anos"}
                     id={"anos"}
-                    tail="w-full! flex-1 sm:flex-3"
+                    tail="w-full! flex-1 md:flex-3"
                     channel="ZakaProfe"
                     onkeydown={(e) => {
                         if (e.key !== "Enter") return;
@@ -586,7 +586,7 @@
                     }}
                 />
                 <Button
-                    tail={"sm:w-inherit! w-auto!"
+                    tail={"md:w-inherit! w-auto!"
                         + (index == devengo.longevidad.length - 1 && devengo.longevidad.length > 1
                             ? " opacity-50 cursor-not-allowed! pointer-events-none"
                             : "")}
@@ -617,7 +617,7 @@
     >
 
     {#each devengo.pluses as plus, index}
-        <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+        <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
             <code class="font-mono! whitespace-nowrap">Añadir plus #{index + 1}</code>
 
             <Input
@@ -628,7 +628,7 @@
                 required
                 name={"plus_imp_" + index}
                 id={"plus_imp_" + index}
-                tail="w-full! flex-1 sm:flex-3"
+                tail="w-full! flex-1 md:flex-3"
                 channel="ZakaProfe"
                 onkeydown={(e) => {
                     if (e.key !== "Enter") return;
@@ -684,7 +684,7 @@
 
             <Button
                 title="Eliminar este plus salarial"
-                tail="sm:w-inherit! w-auto!"
+                tail="md:w-inherit! w-auto!"
                 callback={() => {
                     devengo.pluses.splice(index, 1);
                     devengo.pluses = [...devengo.pluses];
@@ -693,7 +693,7 @@
             >
             {#if index == 0}
                 <Button
-                    tail={"sm:w-inherit! w-auto!"
+                    tail={"md:w-inherit! w-auto!"
                         + (index == devengo.pluses.length - 1 && devengo.pluses.length > 1
                             ? " opacity-50 cursor-not-allowed! pointer-events-none"
                             : "")}

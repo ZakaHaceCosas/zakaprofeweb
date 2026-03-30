@@ -25,7 +25,7 @@
     });
 </script>
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
     {#if videos.one}
         <VideoCard video={videos.one} />
     {/if}

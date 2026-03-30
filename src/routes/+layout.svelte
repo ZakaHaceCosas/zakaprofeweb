@@ -8,7 +8,7 @@
 
     // nos hacemos los interesantes
     console.log(
-        "%cZakaProfe%c, Salvando tus notas 👍 <=> %cZakaTeka%c, Teknología que entiendes 👍",
+        "%cZakaProfe%c, Salvando tus notas 👍 & %cZakaTeka%c, Teknología que entiendes 👍",
         "color: white; background: #0099ff; padding: 5px 10px; font-size: 16px; font-weight: bold;",
         "font-size: 15px;",
         "color: black; background: #feb100; padding: 5px 10px; font-size: 16px; font-weight: bold;",
@@ -16,17 +16,16 @@
     );
     console.log(
         [
-            "%cNo sé que haces husmeando en la consola, aquí sólo debería entrar yo.",
+            "No sé que haces husmeando en la consola, aquí sólo debería entrar yo.",
             "Tu deberías estar suscribiéndose a ZakaProfe: https://www.youtube.com/@ZakaProfe,",
             "deberías estar suscribiéndose a ZakaTeka: https://www.youtube.com/@ZakaTeka",
             "y deberías estar siguiéndome en Instagram: https://instagram.com/zhc.zakaprofe",
-        ].join("\n"),
-        "color: black; background-color: white; font-style: italic;"
+        ].join("\n")
     );
     console.info(
         "%cSi por lo que sea sabes bien lo que haces, podrías contribuir a esta web en GitHub :D %c(github.com/ZakaHaceCosas/zakaprofeweb).",
-        "color: black; background-color: white; font-style: italic;",
-        "color: green; font-style: italic;"
+        "font-weight: 700;",
+        "color: lightgreen; background-color: black;"
     );
 
     // esto no es lo mejor, pero no sé svelte, déjame en paz
@@ -72,17 +71,17 @@
 </script>
 
 <nav
-    class="flex flex-col items-center justify-between border-b-2 border-b-(--fff25) bg-(--blk) p-4 shadow-[0px_0px_15px_10px_var(--blkSha)] sm:flex-row"
+    class="flex flex-col items-center justify-between border-b-2 border-b-(--fff25) bg-(--blk) p-4 shadow-[0px_0px_15px_10px_var(--blkSha)] md:flex-row"
 >
     <a href="/">
         <img
             class="pointer-events-none!"
-            src="/logo-horizon.webp"
+            src="/logo_horizon.avif"
             alt="Logotipo de ZakaProfe"
             style="height: 50px; object-fit: scale-down;"
         />
     </a>
-    <div class="flex w-full flex-row items-center justify-center gap-2.5 sm:justify-end">
+    <div class="flex w-full flex-row items-center justify-center gap-2.5 md:justify-end">
         <button
             onclick={() => goto("/")}
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
@@ -93,7 +92,7 @@
                     fill="currentColor"
                 />
             </svg>
-            <p class="hidden sm:block">Inicio</p>
+            <p class="hidden md:block">Inicio</p>
         </button>
         <button
             onclick={() => goto("/search")}
@@ -105,7 +104,7 @@
                     fill="currentColor"
                 />
             </svg>
-            <p class="hidden sm:block">Buscador</p>
+            <p class="hidden md:block">Buscador</p>
         </button>
         <button
             onclick={() => goto("/apps")}
@@ -117,7 +116,7 @@
                 <path d="M0 24.0001H20V44.0001H0V24.0001Z" fill="currentColor" />
                 <path d="M24 24.0001H44V44.0001H24V24.0001Z" fill="currentColor" />
             </svg>
-            <p class="hidden sm:block">Aplicaciones</p>
+            <p class="hidden md:block">Aplicaciones</p>
         </button>
         <button
             onclick={() => {
@@ -133,7 +132,7 @@
                     fill="#FFF"
                 />
             </svg>
-            <p class="hidden sm:block">Tema</p>
+            <p class="hidden md:block">Tema</p>
         </button>
     </div>
 </nav>
@@ -141,16 +140,16 @@
 {@render children?.()}
 
 <footer
-    class="flex flex-col items-center justify-between gap-4 border-t-2 border-t-(--fff25) bg-(--blk) p-4 text-sm font-medium text-(--grey) shadow-[0px_0px_-15px_10px_var(--blkSha)] sm:flex-row sm:gap-0"
+    class="flex flex-col items-center justify-between gap-4 border-t-2 border-t-(--fff25) bg-(--blk) p-4 text-sm font-medium text-(--grey) shadow-[0px_0px_-15px_10px_var(--blkSha)] md:flex-row md:gap-0"
 >
-    <p class="sm:flex-3">
+    <p class="md:flex-3">
         &copy; <b>ZakaProfe 2023-2026.</b><br />Todos los elementos de marca y otros diseños de
         «ZakaProfe», «ZakaTeka», y derivados, son propiedad intelectual.<br />Se reservan todos los
         derechos de autor, queda prohibida la reutilización, modificación, o redistribución de estos
         y otros materiales asociados sin autorización expresa.
     </p>
-    <p class="sm:flex-2 sm:text-end">
-        <b>ZakaProfe WEB v3.5.0</b> ·
+    <p class="md:flex-2 md:text-end">
+        <b>ZakaProfe WEB v3.5.0 (En progreso)</b> ·
         <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a>
         · <a href="/bugs" class="underline">Reportar un fallo</a>
     </p>

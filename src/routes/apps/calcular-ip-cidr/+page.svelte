@@ -136,7 +136,7 @@
         }}
         title="Introduce una IP con el CIDR, como 192.168.0.1/28"
         required
-        tail="w-full! flex-1 sm:flex-3"
+        tail="w-full! flex-1 md:flex-3"
         channel="ZakaTeka"
     />
 

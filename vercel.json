@@ -1,0 +1,9 @@
+{
+    "redirects": [
+        {
+            "source": "/calculadora-notas",
+            "destination": "/apps/calculadora-notas",
+            "status": 301
+        }
+    ]
+}

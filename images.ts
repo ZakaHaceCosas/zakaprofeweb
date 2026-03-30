@@ -31,20 +31,20 @@ async function optimizeImages(dir: string) {
             exec(`avifenc ${fullPath} -o ${outputAvif}`, (error, _, stderr) => {
                 if (error) {
                     console.error(`Error optimizando ${fullPath}:`, stderr);
-                } else {
-                    console.log(`Optimizado ${fullPath} -> ${outputAvif}`);
+                    return;
                 }
-            });
-            exec(
-                `${process.platform === "win32" ? "powershell Remove-Item" : "rm"} ${fullPath}`,
-                (error, _, stderr) => {
-                    if (error) {
-                        console.error(`Error borrando ${fullPath}:`, stderr);
-                    } else {
+                console.log(`Optimizado ${fullPath} -> ${outputAvif}`);
+                exec(
+                    `${process.platform === "win32" ? "powershell Remove-Item" : "rm"} ${fullPath}`,
+                    (error, _, stderr) => {
+                        if (error) {
+                            console.error(`Error borrando ${fullPath}:`, stderr);
+                            return;
+                        }
                         console.log(`Borrado ${fullPath}`);
                     }
-                }
-            );
+                );
+            });
         })
     );
 }

@@ -202,7 +202,7 @@
                 }}
                 title="Introduce un número de dispositivos para este rango"
                 required
-                tail="w-full! flex-1 sm:flex-6"
+                tail="w-full! flex-1 md:flex-6"
                 channel="ZakaTeka"
             />
 

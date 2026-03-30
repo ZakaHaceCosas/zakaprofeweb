@@ -112,7 +112,7 @@
         mismo).<br /><br />
     </p>
     {#each notas as nota, index}
-        <div class="mb-3 flex w-full flex-col items-center gap-3 sm:flex-row">
+        <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
             <code class="font-mono!">#{index}</code>
 
             <Input
@@ -123,7 +123,7 @@
                 title="Introduce aquí la nota"
                 required
                 id={"nota_" + index}
-                tail="w-full! flex-1 sm:flex-3"
+                tail="w-full! flex-1 md:flex-3"
                 channel="ZakaProfe"
                 onkeydown={(e) => {
                     if (e.key !== "Enter") return;
@@ -164,7 +164,7 @@
 
             <Button
                 title="Eliminar esta nota"
-                tail="sm:w-inherit! w-auto!"
+                tail="md:w-inherit! w-auto!"
                 callback={() => deleteNota(index)}
                 channel="ZakaProfe">Eliminar</Button
             >

@@ -13,6 +13,9 @@
         },
         "editor.formatOnSave": false
     },
+    "files.associations": {
+        "*.zakache": "json"
+    },
     "cSpell.language": "es-ES,en-US",
     "cSpell.words": [
         "Asig",
@@ -24,6 +27,8 @@
         "flsm",
         "fullscreen",
         "irpf",
+        "oxfmt",
+        "oxlint",
         "popovertarget",
         "supabase",
         "tailwindcss",
@@ -32,13 +37,12 @@
         "vlsm",
         "webp",
         "zaka",
+        "zakache",
         "zakahacecosas",
         "zakaprofe",
         "zakateka",
         "zakavailable",
         "ZPVDs",
-        "ZTVDs",
-        "oxfmt",
-        "oxlint"
+        "ZTVDs"
     ]
 }

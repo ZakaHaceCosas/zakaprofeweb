@@ -4,28 +4,44 @@
 
 ## 3.5.0 (En progreso)
 
-Actualizaciones visibles para el usuario:
+## Actualizaciones visibles para el usuario
 
-- Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mejor.
+### Mejoras significativas
+
+- Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mucho mejor.
+- Mejorada bastante la adaptabilidad móvil.
+- Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla. Además, ahora muestra algún dato más (como las visitas de cada video).
+
+### Nuevas aplicaciones
+
+- Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de PowerShell por alguna razón; no tiene sentido pero es más fácil).
 - Ahora se puede ver el registro de cambios desde la propia web.
-- Añadido soporte para «comentarios» en la web; no se publican hasta pasar moderación y se usan para reportar fallas (sin tener que encontrar el repositorio, registrarse en el control de versiones y hacer un reporte ahí, o usar un «bug tracker» que es mucho trabajo para una web tan sencilla). Con el poco tráfico que recibe la web parecen un poco inútiles (y por ahora lo son), pero en verano pretendo promocionarla todo lo posible, así que vienen bien.
+- Añadido soporte para «comentarios» en la web; se usan para reportar fallas y sugerir mejoras de forma rápida. Se envían de inmediato, pero no aparecen en público hasta que yo los revise (y opcionalmente responda).
+    - (Con el poco tráfico que recibe la web parecen un poco inútiles (y por ahora lo son), pero en verano pretendo promocionarla todo lo posible, así que vienen bien.)
+
+### Cambios en las aplicaciones
+
 - Mejorada la calculadora de nóminas:
     - Ahora valida la base que proveas contra el S.M.I.
     - Ahora permite especificar si el contrato es temporal (afecta al cálculo).
     - Si para las pagas extra tienes un contrato con una cantidad "mas la antigüedad", ahora puedes hacer que se sume la prorrata calculada.
     - Redondeados los números en la explicación del cálculo.
     - Está mejor diseñada en general.
+
+### Otros cambios
+
 - Corregidos fallos visuales menores.
 - Ajustado los tamaños de texto para mejor legibilidad.
 - Quitado el horario de la sección de contacto, no soy una empresa y no tengo porqué creerme tanto. Contacta cuando quieras, supongo.
-- Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de PowerShell por alguna razón; no tiene sentido pero es más fácil).
+- Semi-automatizadas las actualizaciones de datos para el buscador y demás.
 
-Actualizaciones internas (desarrollo):
+## Actualizaciones internas (desarrollo)
 
 - Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
 - Quitados varios `console.log` innecesarios.
 - Ahora en teoría el predenderizado de Svelte debería ir.
 - Quitados algunos estilos CSS innecesarios, debería mejorar un pelín el rendimiento.
+- Optimizadas la mayoría de imágenes, de WebP a AVIF, deberían cargar mejor.
 
 ## 3.4.0 (08/03/2026)
 
