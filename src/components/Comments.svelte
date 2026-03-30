@@ -30,7 +30,6 @@
         loading = true;
         const res = await fetch(`/api?comments=${pageId}`);
         comments = await res.json();
-        console.log(comments);
         loading = false;
     }
 

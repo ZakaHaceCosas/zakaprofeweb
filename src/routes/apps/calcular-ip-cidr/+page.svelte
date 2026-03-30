@@ -22,7 +22,6 @@
     } = null;
 
     onMount(() => {
-        console.log(window.location.search);
         if (!window.location.search) return;
 
         const params = new URLSearchParams(window.location.search);
