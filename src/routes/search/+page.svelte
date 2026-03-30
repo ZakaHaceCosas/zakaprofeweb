@@ -10,7 +10,6 @@
     $effect(() => {
         if (!validate(search) || search.length < 3) return;
 
-        // @ts-ignore
         results = [...ZPVDs, ...ZTVDs]
             .map((v) => {
                 const normalizedTitle = normalize(v.title, { strict: true });
@@ -52,7 +51,7 @@
     <hr />
     <Input
         required
-        value={""}
+        value={search}
         type="text"
         name="query"
         title="Busca un video..."
@@ -65,14 +64,13 @@
     {#if search.length > 2}
         <br />
         <p class="disclaimer" aria-live="polite">
-            {pluralOrNot("Encontrado", results.length)}{" "}
-            <b>{results.length}</b>{" "}
+            {pluralOrNot("Encontrado", results.length)} <b>{results.length}</b>
             {pluralOrNot("video", results.length)}.
         </p>
         <br />
         {#if results && results.length != 0}
             <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-                {#each results as v}
+                {#each results as v (v.url)}
                     <div class="flex flex-col gap-3 border-2 border-(--fff25) bg-(--blk) p-3">
                         <img
                             class="pointer-events-none! aspect-video w-full border-2 border-(--fff25)"
@@ -95,9 +93,10 @@
                                 Ver en YouTube &gt;
                             </Button>
                             <p class="text-sm opacity-50">
-                                <b>{v.seen}</b> visualizaciones y <b>{v.likes}</b> «me gusta»<br
-                                />Se parece en un <b>{v.similarity.toFixed(2)}</b>% a lo que
-                                escribiste.
+                                <b>{v.duration}</b><br /><b>{v.seen}</b> visualizaciones y
+                                <b>{v.likes}</b>
+                                «me gusta»<br />Se parece en un <b>{v.similarity.toFixed(2)}</b>% a
+                                lo que escribiste.
                             </p>
                         </div>
                     </div>

@@ -1,20 +1,22 @@
-// TODO:
-// actualizar los videos en youtube de zakateka para seguir un formato consistente
-// acto seguido venir aqui, comprobar que funciona todo bien, y actualizar datos
-// ah y PD, usar lo de parsearDuraciónISO que de momento no se usa bro
 import { normalize } from "strings-utils";
 
 const API_KEY = process.env["YOUTUBE"]!;
 const BASE = "https://www.googleapis.com/youtube/v3";
+type apiContent = {
+    nextPageToken: string | null;
+    items: { contentDetails: { videoId: string } }[];
+};
 
 function parserDuraciónISO(iso: string) {
     const match = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
 
-    return {
-        hours: Number(match?.[1] || 0),
-        minutes: Number(match?.[2] || 0),
-        seconds: Number(match?.[3] || 0),
-    };
+    return `${Number(match?.[1] || 0)
+        .toString()
+        .padStart(2, "0")}:${Number(match?.[1] || 0)
+        .toString()
+        .padStart(2, "0")}:${Number(match?.[3] || 0)
+        .toString()
+        .padStart(2, "0")}`;
 }
 
 type Video = {
@@ -51,7 +53,7 @@ async function playlists(channelId: string) {
     const map = new Map();
 
     // fetch helper
-    async function get(url: string, params: Record<string, string>) {
+    async function get(url: string, params: Record<string, string | null>) {
         const u = new URL(url);
         Object.entries(params).forEach(([k, v]) => {
             if (v) u.searchParams.set(k, v);
@@ -85,7 +87,7 @@ async function playlists(channelId: string) {
         const videos = [];
 
         do {
-            const data = await get(`${BASE}/playlistItems`, {
+            const data: apiContent = await get(`${BASE}/playlistItems`, {
                 part: "contentDetails",
                 playlistId,
                 maxResults: "50",
@@ -93,7 +95,7 @@ async function playlists(channelId: string) {
                 key: API_KEY,
             });
 
-            videos.push(...data.items.map((i: any) => i.contentDetails.videoId));
+            videos.push(...data.items.map((i) => i.contentDetails.videoId));
             nextPageToken = data.nextPageToken;
         } while (nextPageToken);
 
@@ -113,16 +115,16 @@ async function hola(channelId: string) {
 
     const uploadsId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
 
-    let videos: Video[] = [];
+    const videos: Video[] = [];
     let nextPageToken: string | null = "";
 
     while (nextPageToken != null) {
         const playlistRes = await fetch(
             `${BASE}/playlistItems?part=contentDetails&playlistId=${uploadsId}&maxResults=50&pageToken=${nextPageToken || ""}&key=${API_KEY}`
         );
-        const playlistData: any = await playlistRes.json();
+        const playlistData: apiContent = await playlistRes.json();
 
-        const ids = playlistData.items.map((item: any) => item.contentDetails.videoId);
+        const ids = playlistData.items.map((item) => item.contentDetails.videoId);
 
         const videosRes = await fetch(
             `${BASE}/videos?part=snippet,statistics,contentDetails&id=${ids.join(",")}&key=${API_KEY}`
@@ -155,6 +157,7 @@ type Subject =
 type Course = "4to ESO" | "3ro ESO" | "(SMR | DAM | DAW | ASIR)";
 interface ZakaVideo {
     title: string;
+    duration: string;
     channel: "ZakaProfe" | "ZakaTeka"; // compat.
     thumbnail: string;
     url: `https://www.youtube.com/watch?v=${string}`;
@@ -169,8 +172,8 @@ interface ZakaVideo {
 const ZPCacheFile = Bun.file("zakaprofe.zakache");
 const ZTCacheFile = Bun.file("zakateka.zakache");
 const ZPVDs: ZakaVideo[] = (await ZPCacheFile.exists())
-    ? await JSON.parse(await ZPCacheFile.text())
-    : [],
+        ? await JSON.parse(await ZPCacheFile.text())
+        : [],
     ZTVDs: ZakaVideo[] = (await ZTCacheFile.exists())
         ? await JSON.parse(await ZTCacheFile.text())
         : [];
@@ -237,13 +240,18 @@ for (const vid of ZakaProfe) {
     const levelKey = levelKeys[level];
     const thumbnail = `t/zp/${subjectKey}/${levelKey}/${normalize(title).replaceAll(" ", "_").replaceAll(",", "").replaceAll("(", "").replaceAll(")", "")}.avif`;
 
-    const res = await fetch(vid.snippet.thumbnails.maxres.url);
-    await Bun.file(`static/${thumbnail.replace(".avif", ".png")}`).write(await res.arrayBuffer());
+    if (!(await Bun.file("static/" + thumbnail).exists())) {
+        const res = await fetch(vid.snippet.thumbnails.maxres.url);
+        await Bun.file(`static/${thumbnail.replace(".avif", ".png")}`).write(
+            await res.arrayBuffer()
+        );
+    }
 
     ZPVDs.push({
         channel: "ZakaProfe",
         title,
         subject,
+        duration: parserDuraciónISO(vid.contentDetails.duration),
         level,
         url: `https://www.youtube.com/watch?v=${vid.id}`,
         season,
@@ -265,15 +273,20 @@ for (const vid of ZakaTeka) {
 
     const thumbnail = `t/zt/${subjectKey}/${levelKey}/${normalize(title).replaceAll(" ", "_").replaceAll(",", "").replaceAll("(", "").replaceAll(")", "")}.avif`;
 
-    const res = await fetch(vid.snippet.thumbnails.maxres.url);
-    await Bun.file(`static/${thumbnail.replace(".avif", ".png")}`).write(await res.arrayBuffer());
+    if (!(await Bun.file("static/" + thumbnail).exists())) {
+        const res = await fetch(vid.snippet.thumbnails.maxres.url);
+        await Bun.file(`static/${thumbnail.replace(".avif", ".png")}`).write(
+            await res.arrayBuffer()
+        );
+    }
 
     ZTVDs.push({
         channel: "ZakaTeka",
         title,
-        subject: subject as Subject,
+        subject: subject.trim() as Subject,
         level: "(SMR | DAM | DAW | ASIR)",
         url: `https://www.youtube.com/watch?v=${vid.id}`,
+        duration: parserDuraciónISO(vid.contentDetails.duration),
         season: 4,
         thumbnail,
         likes: Number(vid.statistics.likeCount),
@@ -299,4 +312,4 @@ await file.write(
         .replace("interface ZakaVideo", "export interface IVideo")
 );
 
-export { };
+export {};
