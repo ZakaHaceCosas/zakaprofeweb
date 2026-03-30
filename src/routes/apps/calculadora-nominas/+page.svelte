@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    // @ts-ignore untyped?
     import { sumArray } from "numeric-utils";
     import Button from "../../../components/Button.svelte";
     import Input from "../../../components/Input.svelte";
@@ -108,6 +107,7 @@
         try {
             devengo = JSON.parse(decodeURIComponent(atob(nominaParam)));
         } catch (error) {
+            console.error(error);
             history.replaceState(null, "", window.location.pathname);
         }
     });
@@ -282,9 +282,9 @@
             }}
         >
             <option value="" disabled>(Elige algo)</option>
-            {#each Object.entries(basesCotContingenciasComunes) as [idx, base]}
+            {#each Object.entries(basesCotContingenciasComunes) as [idx, base] (idx)}
                 <option value={idx}
-                    >[GRUPO {idx}, {bcDiaria(Number(idx)) ? "COT. DIARIA]" : "COT. MENSUAL]"}
+                    >[GRUPO {idx}, {bcDiaria(Number(idx)) ? "COT. DIARIA" : "COT. MENSUAL"}]
                     {base[0]}
                 </option>
             {/each}
@@ -510,7 +510,7 @@
         >
     </div>
 
-    {#each devengo.longevidad as plus, index}
+    {#each devengo.longevidad as plus, index (index)}
         <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
             <code class="font-mono! whitespace-nowrap">Plus longevidad #{index + 1}</code>
 
@@ -555,7 +555,7 @@
             <Button
                 title="Eliminar este plus de longevidad"
                 tail="md:w-inherit! w-auto!"
-                callback={() => {
+                onclick={() => {
                     devengo.longevidad.splice(index, 1);
                     devengo.longevidad = [...devengo.longevidad];
                 }}
@@ -591,7 +591,7 @@
                             ? " opacity-50 cursor-not-allowed! pointer-events-none"
                             : "")}
                     title="Añadir un plus por longevidad"
-                    callback={() => {
+                    onclick={() => {
                         devengo.longevidad = [...devengo.longevidad, ["", ""]];
                     }}
                     channel="ZakaProfe">Añadir</Button
@@ -616,7 +616,7 @@
         }}>¿Sumar las prorratas a la paga extra?</Checkbox
     >
 
-    {#each devengo.pluses as plus, index}
+    {#each devengo.pluses as plus, index (index)}
         <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
             <code class="font-mono! whitespace-nowrap">Añadir plus #{index + 1}</code>
 
@@ -685,7 +685,7 @@
             <Button
                 title="Eliminar este plus salarial"
                 tail="md:w-inherit! w-auto!"
-                callback={() => {
+                onclick={() => {
                     devengo.pluses.splice(index, 1);
                     devengo.pluses = [...devengo.pluses];
                 }}
@@ -698,7 +698,7 @@
                             ? " opacity-50 cursor-not-allowed! pointer-events-none"
                             : "")}
                     title="Añadir un plus salarial"
-                    callback={() => {
+                    onclick={() => {
                         devengo.pluses = [...devengo.pluses, ["", "", false]];
                     }}
                     channel="ZakaProfe">Añadir</Button
@@ -710,13 +710,13 @@
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
         <Button
-            callback={calculateWage}
+            onclick={calculateWage}
             channel="ZakaProfe"
             title="Calcular la nómina con los datos introducidos."
             ><b>&starf;</b> Calcular salario</Button
         >
         <Button
-            callback={share}
+            onclick={share}
             channel="ZakaProfe"
             popovertarget="share-popover"
             title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button

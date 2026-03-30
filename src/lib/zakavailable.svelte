@@ -1,104 +1,15 @@
 <script lang="ts">
     import Link from "../components/Link.svelte";
-
-    let status = $state("");
-    let statusText = $state("");
-    let statusClass = $state("");
-    let currentSpanishTime = $state("");
-
-    const getTimeStatus = () => {
-        const formatter = new Intl.DateTimeFormat("es-ES", {
-            timeZone: "Europe/Madrid",
-            weekday: "narrow",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-        });
-        const now = new Date();
-        const parts = formatter.formatToParts(now);
-        const hour = Number(parts.find((p) => p.type === "hour")?.value);
-        let newStatus = "";
-        let newStatusText = "";
-        let newStatusClass = "";
-        const isOnVacation = false;
-        const weekday = now.getDay(); // 0=Dom, 1=Lun, ..., 5=Vie, 6=Sáb
-        const isWeekday = weekday >= 1 && weekday <= 5;
-
-        if (isWeekday && !isOnVacation) {
-            if (hour >= 8 && hour < 16) {
-                // 8-16: OCUPADO (clase)
-                newStatus = "OCUPADO";
-                newStatusText = "Estoy en clase.";
-                newStatusClass = "ocupado";
-            } else if (hour >= 16 && hour < 21) {
-                // 16-21: DISPONIBLE
-                newStatus = "DISPONIBLE";
-                newStatusText = "Si tienes cualquier duda, pregunta y te responderé.";
-                newStatusClass = "disponible";
-            } else if (hour >= 21 && hour <= 23) {
-                // 21-23: MÁS O MENOS
-                newStatus = "MÁS O MENOS";
-                newStatusText =
-                    "Si tienes cualquier duda, pregunta y te responderé (igual tardo un poco).";
-                newStatusClass = "mas-o-menos";
-            } else {
-                // 0-8: OCUPADO (dormir)
-                newStatus = "OCUPADO";
-                newStatusText = "(Tengo que dormir).";
-                newStatusClass = "ocupado";
-            }
-        } else {
-            // SAB, DOM, y vacaciones
-            if (hour >= 10 && hour < 21) {
-                // 10-21: DISPONIBLE
-                newStatus = "DISPONIBLE";
-                newStatusText = "Si tienes cualquier duda, pregunta y te responderé.";
-                newStatusClass = "disponible";
-            } else if (hour >= 21 && hour <= 23) {
-                // 21-24: MÁS O MENOS
-                newStatus = "MÁS O MENOS";
-                newStatusText =
-                    "Si tienes cualquier duda, pregunta y te responderé (igual tardo un poco).";
-                newStatusClass = "mas-o-menos";
-            } else {
-                // 0-10: OCUPADO (dormir)
-                newStatus = "OCUPADO";
-                newStatusText = "(Tengo que dormir).";
-                newStatusClass = "ocupado";
-            }
-        }
-
-        status = newStatus;
-        statusText = newStatusText;
-        statusClass = newStatusClass;
-    };
-
-    setInterval(getTimeStatus, 1000); // actualiza cada segundo
-    getTimeStatus();
 </script>
 
 <div class="flex w-full flex-1 flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4">
     <p>
-        <strong>Puedes preguntar dudas cuando quieras</strong> usando los medios de contacto de
-        abajo y responderé cuanto antes.<!--<br />Aquí tienes mi «horario», por si te
-        sirve de referencia (se actualiza en tiempo real y todo, fíjate que guapo).-->
+        <strong>Puedes preguntar dudas cuando quieras</strong> usando los medios de contacto de abajo
+        y responderé cuanto antes.
     </p>
-    <!--<div class="flex w-full flex-1 flex-row items-center justify-start gap-1">
-        <div class="bola-wrap">
-            <div class={`bola ${statusClass}`}></div>
-        </div>
-        <h2 class={`font-normal ${statusClass}`}>
-            {status} <b>·</b>
-            {currentSpanishTime}{" "}
-            <span style="font-size: medium; font-weight: 600">UTC+1</span>
-        </h2>
-    </div>
-    <p style="opacity: 0.75">{statusText}</p>
-    <hr style="margin: 0" />-->
-    <!--<div class="flex w-full flex-1 flex-row items-center justify-center gap-1">-->
     <div class="flex flex-col gap-2">
         <Link
-            href={"https://instagram.com/zhc.zakaprofe/"}
+            href="https://instagram.com/zhc.zakaprofe/"
             channel="ZakaProfe"
             title="Enviar un mensaje de Instagram a ZakaProfe."
             tail="w-full justify-start! flex flex-1 flex-row items-center gap-2"
@@ -111,7 +22,7 @@
             </svg>
             Ir a Instagram &gt;
         </Link><Link
-            href={"mailto:zakaprofe@proton.me"}
+            href="mailto:zakaprofe@proton.me"
             channel="ZakaProfe"
             title="Enviar un correo electrónico a ZakaProfe."
             tail="w-full justify-start! flex flex-1 flex-row items-center gap-2"

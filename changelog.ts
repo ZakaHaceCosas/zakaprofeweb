@@ -35,7 +35,7 @@ const footerLineStartIdx = footerFileLines.findIndex((s) =>
 const ver = JSON.parse(await file("package.json").text())["version"];
 const newFooterLines = [
     ...footerFileLines.slice(0, footerLineStartIdx),
-    `<p class="md:flex-2 md:text-end"><b>ZakaProfe WEB v${ver} (${markup.split("\n")[2].split("(")[1].split(")")[0]})</b> · <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a> · <a href="/bugs" class="underline">Reportar un fallo</a></p>`,
+    `<p class="md:flex-2 md:text-end"><b>ZakaProfe WEB v${ver} (${markup.split("\n")[2].split("(")[1].split(")")[0]})</b> · <a href={resolve("/changelog")} class="underline">¿Qué hay de nuevo en esta versión?</a> · <a href={resolve("/bugs")} class="underline">Reportar un fallo</a></p>`,
     ...footerFileLines.slice(footerLineStartIdx + 5),
 ];
 await footerFile.write(newFooterLines.join("\n"));

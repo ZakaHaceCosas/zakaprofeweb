@@ -78,9 +78,7 @@
         oninput={(e) => (author = e.currentTarget.value)}
         required={false}
     />
-    <Button callback={submit} disabled={loading} channel="ZakaProfe" title="Comentar">
-        Enviar
-    </Button>
+    <Button onclick={submit} disabled={loading} channel="ZakaProfe" title="Comentar">Enviar</Button>
 
     {#if loading}
         <p>(Cargando datos...)</p>
@@ -95,7 +93,7 @@
                 inapropiado, que lo dudo). Gracias por tus comentarios.
             </p>{/if}
     {/if}
-    {#each comments as c}
+    {#each comments as c, i (i)}
         <div class="flex flex-col gap-1 bg-(--blk) p-3 text-(--txt)">
             <p class="wrap-break-word" style="white-space: pre-line;">{c.text}</p>
             <div class="text-sm text-gray-400">

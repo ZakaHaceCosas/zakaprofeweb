@@ -3,6 +3,7 @@
     // import favicon from "$lib/assets/favicon.svg";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
+    import { resolve } from "$app/paths";
 
     let { children } = $props();
 
@@ -73,7 +74,7 @@
 <nav
     class="flex flex-col items-center justify-between border-b-2 border-b-(--fff25) bg-(--blk) p-4 shadow-[0px_0px_15px_10px_var(--blkSha)] md:flex-row"
 >
-    <a href="/">
+    <a href={resolve("/")}>
         <img
             class="pointer-events-none!"
             src="/logo_horizon.avif"
@@ -83,7 +84,7 @@
     </a>
     <div class="flex w-full flex-row items-center justify-center gap-2.5 md:justify-end">
         <button
-            onclick={() => goto("/")}
+            onclick={() => goto(resolve("/"))}
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="25px" height="25px">
@@ -95,7 +96,7 @@
             <p class="hidden md:block">Inicio</p>
         </button>
         <button
-            onclick={() => goto("/search")}
+            onclick={() => goto(resolve("/search"))}
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="25px" height="25px">
@@ -107,7 +108,7 @@
             <p class="hidden md:block">Buscador</p>
         </button>
         <button
-            onclick={() => goto("/apps")}
+            onclick={() => goto(resolve("/apps"))}
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
             <svg width="25px" height="25px" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
@@ -150,7 +151,7 @@
     </p>
     <p class="md:flex-2 md:text-end">
         <b>ZakaProfe WEB v3.5.0 (En progreso)</b> ·
-        <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a>
-        · <a href="/bugs" class="underline">Reportar un fallo</a>
+        <a href={resolve("/changelog")} class="underline">¿Qué hay de nuevo en esta versión?</a>
+        · <a href={resolve("/bugs")} class="underline">Reportar un fallo</a>
     </p>
 </footer>

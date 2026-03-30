@@ -111,7 +111,7 @@
         se calcula una media aritmética (es un atajo para asumir que todas las notas valen lo
         mismo).<br /><br />
     </p>
-    {#each notas as nota, index}
+    {#each notas as nota, index (index)}
         <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
             <code class="font-mono!">#{index}</code>
 
@@ -165,7 +165,7 @@
             <Button
                 title="Eliminar esta nota"
                 tail="md:w-inherit! w-auto!"
-                callback={() => deleteNota(index)}
+                onclick={() => deleteNota(index)}
                 channel="ZakaProfe">Eliminar</Button
             >
         </div>
@@ -181,19 +181,17 @@
     <br />
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button
-            callback={addNota}
-            channel="ZakaProfe"
-            title="Añadir una nota más con la que mediar."><b>+</b> Agregar Nota</Button
+        <Button onclick={addNota} channel="ZakaProfe" title="Añadir una nota más con la que mediar."
+            ><b>+</b> Agregar Nota</Button
         >
         <Button
-            callback={calculateAverage}
+            onclick={calculateAverage}
             channel="ZakaProfe"
             title="Calcular la media de las notas que has introducido."
             ><b>&starf;</b> Calcular Promedio</Button
         >
         <Button
-            callback={share}
+            onclick={share}
             channel="ZakaProfe"
             popovertarget="share-popover"
             title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button

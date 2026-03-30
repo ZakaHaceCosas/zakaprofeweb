@@ -2,7 +2,6 @@
     import { onMount } from "svelte";
     import Button from "../../../components/Button.svelte";
     import Textarea from "../../../components/Textarea.svelte";
-    // @ts-ignore
     import { isBetween } from "numeric-utils";
     import { validateAgainst } from "strings-utils";
 
@@ -788,11 +787,11 @@
 
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button callback={parseCMDs} channel="ZakaTeka" title="Calcular el FLSM."
+        <Button onclick={parseCMDs} channel="ZakaTeka" title="Calcular el FLSM."
             ><b>&starf;</b> Analizar comando</Button
         >
         <Button
-            callback={share}
+            onclick={share}
             channel="ZakaTeka"
             popovertarget="share-popover"
             title="Generar un enlace para compartir el resultado."
@@ -809,7 +808,7 @@
 
     {#if val !== null}
         <br />
-        {#each val as expression, idx}
+        {#each val as expression, idx (idx)}
             <h3 class="opacity-50">Línea {idx + 1}</h3>
             {#if expression.some((v) => typeof v != "string" && !("comment" in v) && v.prediction && "err" in v.prediction)}
                 <div class="mt-2 bg-red-700 p-4 text-white">
@@ -820,7 +819,7 @@
                 </div>
                 <br />
             {/if}
-            {#each expression as c, idx}
+            {#each expression as c, idx (idx)}
                 {#if typeof c == "string"}
                     <p>
                         <b
@@ -855,7 +854,7 @@
                             </h2>
                         {/if}
                         <h2 class="font-mono!">
-                            {#each c.positionals as p}
+                            {#each c.positionals as p, i (i)}
                                 {#if isStringToEvalEnvVariable(p)}
                                     <abbr
                                         title={`Variable de entorno «${p.slice(1, -1)}»`}
@@ -867,7 +866,7 @@
                             {/each}
                         </h2>
                         <h2 class="font-mono!">
-                            {#each c.switches as p}
+                            {#each c.switches as p, i (i)}
                                 <span class="font-mono! font-light opacity-50">{p}</span>{" "}
                             {/each}
                         </h2>

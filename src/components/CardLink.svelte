@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { resolve } from "$app/paths";
     import { goto } from "$app/navigation";
     import type { Snippet } from "svelte";
 
@@ -19,7 +20,7 @@
 <a
     onclick={(e) => {
         e.preventDefault();
-        goto(target);
+        goto(resolve(target));
     }}
     href={`https://profe.zhc.es/${target}`}
     class={className}

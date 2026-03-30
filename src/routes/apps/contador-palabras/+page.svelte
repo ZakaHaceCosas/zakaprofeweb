@@ -53,7 +53,7 @@
 
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
         <Button
-            callback={share}
+            onclick={share}
             channel="ZakaProfe"
             popovertarget="share-popover"
             title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button

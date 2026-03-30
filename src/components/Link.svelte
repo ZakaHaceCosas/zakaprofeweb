@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
+    import type { MouseEventHandler } from "svelte/elements";
 
     const {
         href,
@@ -8,7 +9,7 @@
         title,
         children,
     } = $props<{
-        href: string | (() => any);
+        href: string | MouseEventHandler<HTMLAnchorElement>;
         channel: "ZakaProfe" | "ZakaTeka";
         tail?: string;
         title: string;
@@ -21,8 +22,9 @@
 </script>
 
 <a
+    // eslint-disable-next-line svelte/no-navigation-without-resolve
     href={typeof href === "string" ? href : undefined}
-    onclick={typeof href === "function" ? href : undefined}
+    onclick={typeof href === "string" ? undefined : href}
     class={className}
     target="_blank"
     rel="noopener noreferrer"

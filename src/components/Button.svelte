@@ -1,9 +1,11 @@
 <script lang="ts">
+    import { resolve } from "$app/paths";
     import type { Snippet } from "svelte";
+    import type { MouseEventHandler } from "svelte/elements";
 
     let {
         href,
-        callback,
+        onclick,
         channel,
         tail = "",
         popovertarget,
@@ -12,7 +14,7 @@
         children,
     } = $props<{
         href?: string;
-        callback?: () => any;
+        onclick?: MouseEventHandler<HTMLButtonElement>;
         channel: "ZakaProfe" | "ZakaTeka";
         tail?: string;
         popovertarget?: string;
@@ -29,7 +31,7 @@
 
 {#if href}
     <a
-        {href}
+        href={resolve(href)}
         class={className}
         target="_blank"
         rel="noopener noreferrer"
@@ -39,14 +41,7 @@
         {@render children?.()}
     </a>
 {:else}
-    <button
-        onclick={callback}
-        class={className}
-        {popovertarget}
-        {title}
-        aria-label={title}
-        {disabled}
-    >
+    <button {onclick} class={className} {popovertarget} {title} aria-label={title} {disabled}>
         {@render children?.()}
     </button>
 {/if}

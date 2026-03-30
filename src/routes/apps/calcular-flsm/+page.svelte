@@ -4,7 +4,6 @@
     import Button from "../../../components/Button.svelte";
     import Input from "../../../components/Input.svelte";
     import Table from "../../../components/Table.svelte";
-    // @ts-ignore
     import { isBetween } from "numeric-utils";
 
     let ipAddress = "";
@@ -191,11 +190,11 @@
 
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button callback={calculateFLSM} channel="ZakaTeka" title="Calcular el FLSM."
+        <Button onclick={calculateFLSM} channel="ZakaTeka" title="Calcular el FLSM."
             ><b>&starf;</b> Calcular FLSM</Button
         >
         <Button
-            callback={share}
+            onclick={share}
             channel="ZakaTeka"
             popovertarget="share-popover"
             title="Generar un enlace para compartir el resultado."
@@ -212,7 +211,7 @@
 
     {#if val !== null}
         <br />
-        {#each val as range, rangeIdx}
+        {#each val as range, rangeIdx (rangeIdx)}
             <h2>Rango #{rangeIdx}</h2>
             <br />
             <Table

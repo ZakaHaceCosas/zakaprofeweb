@@ -142,11 +142,11 @@
 
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button callback={calculateIp} channel="ZakaTeka" title="Calcular la IP."
+        <Button onclick={calculateIp} channel="ZakaTeka" title="Calcular la IP."
             ><b>&starf;</b> Calcular IP</Button
         >
         <Button
-            callback={share}
+            onclick={share}
             popovertarget="share-popover"
             channel="ZakaTeka"
             title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button

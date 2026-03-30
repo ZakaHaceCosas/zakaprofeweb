@@ -180,7 +180,7 @@
         tail="w-full!"
     />
     <br />
-    {#each ranges as range, index}
+    {#each ranges as range, index (index)}
         <div class="mb-3 flex w-full flex-row items-center gap-3">
             <code class="font-mono!">#{index}</code>
 
@@ -210,7 +210,7 @@
                 title="Eliminar este rango."
                 tail="flex-1!"
                 channel="ZakaTeka"
-                callback={() => deleteRange(index)}>Eliminar</Button
+                onclick={() => deleteRange(index)}>Eliminar</Button
             >
         </div>
     {/each}
@@ -224,14 +224,14 @@
     <br />
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button callback={addRange} channel="ZakaTeka" title="Agregar un nuevo rango a la lista."
+        <Button onclick={addRange} channel="ZakaTeka" title="Agregar un nuevo rango a la lista."
             ><b>+</b> Agregar Rango</Button
         >
-        <Button callback={calculateVLSM} channel="ZakaTeka" title="Calcular el VLSM."
+        <Button onclick={calculateVLSM} channel="ZakaTeka" title="Calcular el VLSM."
             ><b>&starf;</b> Calcular VLSM</Button
         >
         <Button
-            callback={share}
+            onclick={share}
             channel="ZakaTeka"
             popovertarget="share-popover"
             title="Generar un enlace para compartir el resultado."
@@ -248,7 +248,7 @@
 
     {#if val !== null}
         <br />
-        {#each val as range, idx}
+        {#each val as range, idx (idx)}
             <h2 class="font-mono!">
                 Rango {idx}
                 <span class="text-lg opacity-70">{range.target} dispositivos</span>

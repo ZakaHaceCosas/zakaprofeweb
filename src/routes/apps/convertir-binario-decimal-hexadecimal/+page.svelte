@@ -144,7 +144,7 @@
     <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
         <Button
-            callback={share}
+            onclick={share}
             popovertarget="share-popover"
             channel="ZakaTeka"
             title="Generar un enlace para compartir el resultado."

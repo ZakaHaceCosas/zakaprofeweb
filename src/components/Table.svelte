@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        {#each table as val}
+        {#each table as val, i (i)}
             <tr class="w-full border-2 border-(--fff25)">
                 <td class="w-1/2 p-4 text-left">{val[0]}</td>
                 <td
