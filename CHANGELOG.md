@@ -14,6 +14,7 @@
 
 ### Nuevas aplicaciones
 
+- Añadida una aplicación general para calcular (asignatura Itinerario Personal para la Empleabilidad), una calculadora de liquidaciones de nóminas.
 - Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de PowerShell por alguna razón; no tiene sentido pero es más fácil).
 - Ahora se puede ver el registro de cambios desde la propia web.
 - Añadido soporte para «comentarios» en la web; se usan para reportar fallas y sugerir mejoras de forma rápida. Se envían de inmediato, pero no aparecen en público hasta que yo los revise (y opcionalmente responda).
@@ -23,6 +24,7 @@
 
 - Mejorada la calculadora de nóminas:
     - Ahora valida la base que proveas contra el S.M.I.
+    - Ahora hace bien los cálculos en base al año (antes asumía que tiene 365 días, ahora mira si este año es bisiesto para usar 366).
     - Ahora permite especificar si el contrato es temporal (afecta al cálculo).
     - Si para las pagas extra tienes un contrato con una cantidad "mas la antigüedad", ahora puedes hacer que se sume la prorrata calculada.
     - Redondeados los números en la explicación del cálculo.

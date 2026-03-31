@@ -5,6 +5,7 @@
     import Input from "../../../components/Input.svelte";
     import Table from "../../../components/Table.svelte";
     import Checkbox from "../../../components/Checkbox.svelte";
+    import { yearSize } from "$lib/stuff";
 
     const basesCotContingenciasComunes = {
         1: [
@@ -173,7 +174,7 @@
             if (extrasCnt > 0 && extrasVal > 0) {
                 const totalExtrasAnual =
                     extrasCnt * (extrasVal + (devengo.sumarProrrataAPagaExtra ? sumLongevidad : 0));
-                prorrateoExtras = totalExtrasAnual / (bcMensual(grupoCot) ? 12 : 365);
+                prorrateoExtras = totalExtrasAnual / (bcMensual(grupoCot) ? 12 : yearSize());
             }
 
             const plusesCotizados = sumArray(pluses.filter((v) => v[2] == false).map((v) => v[0]));
@@ -819,8 +820,9 @@
                         * Number(devengo.extras[1])}</span
                 >
                 al año. Prorrateado {#if bcMensual(resultado.grupoCot)}entre 12 meses{:else}entre
-                    365 días{/if}, corresponden <b>{resultado.prorrateoExtras.toFixed(2)}</b> por
-                período.
+                    {yearSize()} días{/if}, corresponden
+                <b>{resultado.prorrateoExtras.toFixed(2)}</b>
+                por período.
                 {#if devengo.noProrratear}
                     Como has indicado que las extras <em>no</em> se prorratean en nómina, este
                     importe
