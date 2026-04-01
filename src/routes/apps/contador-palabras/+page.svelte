@@ -1,7 +1,7 @@
 <script lang="ts">
     import { normalize } from "strings-utils";
-    import Textarea from "../../../components/Textarea.svelte";
-    import Button from "../../../components/Button.svelte";
+    import Textarea from "$lib/Textarea.svelte";
+    import Button from "$lib/Button.svelte";
     import { onMount } from "svelte";
 
     let text = "";

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Button from "../../../components/Button.svelte";
-    import Input from "../../../components/Input.svelte";
+    import Button from "$lib/Button.svelte";
+    import Input from "$lib/Input.svelte";
 
     interface Nota {
         nota: string;

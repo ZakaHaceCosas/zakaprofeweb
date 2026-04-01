@@ -2,11 +2,11 @@
 
 <script lang="ts">
     import { ZPVDs, ZTVDs } from "$lib/db";
-    import ZakAvailable from "$lib/zakavailable.svelte";
+    import ZakAvailable from "$lib/ZakAvailable.svelte";
     import { onMount } from "svelte";
-    import Link from "../components/Link.svelte";
-    import RandomVideoFeed from "../lib/videos.svelte";
-    import Bola from "../components/Bola.svelte";
+    import Link from "$lib/Link.svelte";
+    import RandomVideoFeed from "$lib/VideoTuple.svelte";
+    import Bola from "$lib/Bola.svelte";
 
     let container: HTMLDivElement;
     let words: HTMLDivElement[] = [];

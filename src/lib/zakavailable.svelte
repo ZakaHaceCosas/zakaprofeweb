@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Link from "../components/Link.svelte";
+    import Link from "$lib/Link.svelte";
 </script>
 
 <div class="flex w-full flex-1 flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4">

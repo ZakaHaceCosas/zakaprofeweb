@@ -2,9 +2,9 @@
     import { countOccurrences, isValidIP, validateAgainst } from "strings-utils";
     import { onMount } from "svelte";
     import { isBetween } from "numeric-utils";
-    import Button from "../../../components/Button.svelte";
-    import Input from "../../../components/Input.svelte";
-    import Table from "../../../components/Table.svelte";
+    import Button from "$lib/Button.svelte";
+    import Input from "$lib/Input.svelte";
+    import Table from "$lib/Table.svelte";
 
     let ipAddress = "";
     let val: null | {

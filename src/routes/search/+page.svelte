@@ -1,7 +1,7 @@
 <script lang="ts">
-    import Button from "../../components/Button.svelte";
-    import Input from "../../components/Input.svelte";
-    import { ZPVDs, ZTVDs, type IVideo } from "../../lib/db";
+    import Button from "$lib/Button.svelte";
+    import Input from "$lib/Input.svelte";
+    import { ZPVDs, ZTVDs, type IVideo } from "$lib/db";
     import { validate, normalize, pluralOrNot, similarity } from "strings-utils";
 
     let search = $state("");

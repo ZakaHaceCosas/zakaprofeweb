@@ -1,5 +1,5 @@
 <script>
-    import Comments from "../../components/Comments.svelte";
+    import Comments from "$lib/Comments.svelte";
 </script>
 
 <svelte:head>

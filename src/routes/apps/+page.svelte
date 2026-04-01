@@ -1,8 +1,8 @@
 <svelte:options runes={true} />
 
 <script lang="ts">
-    import CardLink from "../../components/CardLink.svelte";
-    import Link from "../../components/Link.svelte";
+    import CardLink from "$lib/CardLink.svelte";
+    import Link from "$lib/Link.svelte";
 </script>
 
 <svelte:head>

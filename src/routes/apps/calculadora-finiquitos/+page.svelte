@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Button from "../../../components/Button.svelte";
-    import Input from "../../../components/Input.svelte";
-    import Table from "../../../components/Table.svelte";
-    import Checkbox from "../../../components/Checkbox.svelte";
+    import Button from "$lib/Button.svelte";
+    import Input from "$lib/Input.svelte";
+    import Table from "$lib/Table.svelte";
+    import Checkbox from "$lib/Checkbox.svelte";
     import { yearSize } from "$lib/stuff";
 
     let deuda: {

@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Textarea from "./Textarea.svelte";
-    import Button from "./Button.svelte";
-    import Input from "./Input.svelte";
+    import Textarea from "$lib/Textarea.svelte";
+    import Button from "$lib/Button.svelte";
+    import Input from "$lib/Input.svelte";
 
     type Comment = {
         approved: true;

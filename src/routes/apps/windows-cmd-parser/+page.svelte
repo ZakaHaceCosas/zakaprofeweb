@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Button from "../../../components/Button.svelte";
-    import Textarea from "../../../components/Textarea.svelte";
+    import Button from "$lib/Button.svelte";
+    import Textarea from "$lib/Textarea.svelte";
     import { isBetween } from "numeric-utils";
     import { validateAgainst } from "strings-utils";
 

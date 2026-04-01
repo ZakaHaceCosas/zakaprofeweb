@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { IVideo } from "$lib/db";
-    import Link from "./Link.svelte";
+    import Link from "$lib/Link.svelte";
 
     const { video } = $props<{ video: IVideo }>();
 </script>

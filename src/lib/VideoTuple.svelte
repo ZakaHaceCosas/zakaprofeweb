@@ -1,6 +1,6 @@
 <script lang="ts">
-    import VideoCard from "../components/VideoCard.svelte";
-    import { ZPVDs, ZTVDs, type IVideo } from "./db";
+    import VideoCard from "$lib/VideoCard.svelte";
+    import { ZPVDs, ZTVDs, type IVideo } from "$lib/db";
 
     let videos = $state<{ one: null | IVideo; two: null | IVideo }>({
         one: null,
