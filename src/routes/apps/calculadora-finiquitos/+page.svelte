@@ -1,4 +1,3 @@
-<!-- [TODO] ESTO NO ESTÁ ACABADO -->
 <script lang="ts">
     import { onMount } from "svelte";
     import Button from "../../../components/Button.svelte";
@@ -18,6 +17,7 @@
         end: string;
         daysInd: string;
         enjoyedDays: string;
+        daysAnt: string;
     } = {
         base: "",
         extras: "",
@@ -29,9 +29,28 @@
         meses: "",
         daysInd: "",
         enjoyedDays: "",
+        daysAnt: "",
     };
 
-    let resultado: null | {} = null;
+    let resultado: null | {
+        data: {
+            dailyWage: number;
+            daysSinceYear: number;
+            daysSinceMonth: number;
+            divisorSemestral: number;
+            enjoyedDays: number;
+            sanctionDays: number;
+            workedMonths: number;
+        };
+        result: {
+            vacation: number;
+            extraPayouts: number;
+            pendingWage: number;
+            ind: number;
+            lateness: number;
+        };
+        total: number;
+    } = null;
 
     onMount(() => {
         const params = new URLSearchParams(window.location.search);
@@ -55,7 +74,7 @@
         return isNaN(n) ? 0 : n;
     };
 
-    function calculateWage() {
+    function calculateLiquidation() {
         try {
             const newParams = `?finiquito=${encodeURIComponent(btoa(JSON.stringify(deuda)))}`;
             history.replaceState(null, "", newParams);
@@ -64,43 +83,55 @@
             const base = num(deuda.base);
             const daysSinceLastPayout = num(deuda.daysLastExtra);
             const extra = num(deuda.extras);
-            const daysInd = num(deuda.daysInd);
+            const sanctionDays = num(deuda.daysInd);
             const workedMonths = num(deuda.meses);
             const enjoyedDays = num(deuda.enjoyedDays);
+            const daysLate = num(deuda.daysAnt);
 
-            const daysSince = (month: number) =>
-                Math.ceil(
-                    Math.abs(new Date(yearSize(), month, 1).getTime() - now.getTime())
-                        / (1000 * 60 * 60 * 24)
-                );
-            const daysSinceYear = daysSince(0);
-            const daysSinceMonth = daysSince(now.getMonth());
-            // TODO: no sé si esto es así
-            // tengo apuntes de clase que dicen esto, pero el libro dice que es el salario ANUAL : 365
-            // eso incluiría las pagas extra...
-            // YA VERÉ COMO LO HAGO, de momento estoy programando esto para hacer mi tarea con ello, ya lo ajustaré
-            const dailyWage = (base * daysSinceMonth) / 30;
+            const daysSince = (dateA: Date, dateB: Date) => {
+                const diffInMs = Math.abs(dateA.getTime() - dateB.getTime());
+                return Math.round(diffInMs / (1000 * 60 * 60 * 24));
+            };
+            const daysSinceYear = daysSince(new Date(now.getFullYear(), 0, 1), now);
+            const daysSinceMonth = daysSince(new Date(now.getFullYear(), now.getMonth(), 1), now);
+            const dailyWage = (base * 12 + extra * 2) / 365;
+            const divisorSemestral =
+                daysSinceYear > (yearSize() == 366 ? 182 : 181)
+                    ? yearSize() == 366
+                        ? 182
+                        : 181
+                    : 184;
 
             const pendingWage = dailyWage * daysSinceMonth;
             const extraPayouts: number = deuda.isSemestral
-                ? (daysSinceLastPayout * extra)
-                  / (daysSinceYear > (yearSize() == 366 ? 182 : 181)
-                      ? yearSize() == 366
-                          ? 182
-                          : 181
-                      : 184)
+                ? (daysSinceLastPayout * extra) / divisorSemestral
                 : (daysSinceLastPayout * extra) / yearSize();
 
             // TODO: soportar valores diferentes a 30 si el tio tiene vacaciones raras
             const vacation = dailyWage * ((daysSinceYear * 30) / yearSize() - enjoyedDays);
 
-            const ind = deuda.isBad ? dailyWage * daysInd * (workedMonths / 12) : null;
+            const ind = deuda.isBad ? dailyWage * sanctionDays * (workedMonths / 12) : 0;
+            const lateness = deuda.isWorse ? (15 - daysLate) * dailyWage : 0;
 
-            resultado = {
+            const result = {
                 vacation,
                 extraPayouts,
                 pendingWage,
                 ind,
+                lateness,
+            };
+            resultado = {
+                data: {
+                    dailyWage,
+                    daysSinceYear,
+                    daysSinceMonth,
+                    workedMonths,
+                    enjoyedDays,
+                    divisorSemestral,
+                    sanctionDays,
+                },
+                result,
+                total: Object.values(result).reduce((curr, acc) => (curr += acc), 0),
             };
 
             return;
@@ -130,6 +161,7 @@
         para la mayor precisión.<br />Contacte conmigo para reportar errores, contenido
         desactualizado y demás.
     </p>
+    <hr />
     <h2>Información del finiquito</h2>
     <br />
     <Checkbox
@@ -141,7 +173,7 @@
         }}
         onkeydown={(e) => {
             if (e.key !== "Enter") return;
-            if (e.shiftKey) calculateWage();
+            if (e.shiftKey) calculateLiquidation();
             else {
                 document.getElementById("is_bad")?.focus();
             }
@@ -156,7 +188,7 @@
         }}
         onkeydown={(e) => {
             if (e.key !== "Enter") return;
-            if (e.shiftKey) calculateWage();
+            if (e.shiftKey) calculateLiquidation();
             else {
                 document.getElementById("is_worse")?.focus();
             }
@@ -171,11 +203,11 @@
         }}
         onkeydown={(e) => {
             if (e.key !== "Enter") return;
-            if (e.shiftKey) calculateWage();
+            if (e.shiftKey) calculateLiquidation();
             else {
                 document.getElementById("sal_base")?.focus();
             }
-        }}>¿Te han avisado fuera de plazo? [TODO] (aún no implementado)</Checkbox
+        }}>¿Te han avisado fuera de plazo?</Checkbox
     >
     <hr />
     <h2>Cuánto te debe la empresa</h2>
@@ -195,7 +227,7 @@
             required
             onkeydown={(e) => {
                 if (e.key !== "Enter") return;
-                if (e.shiftKey) calculateWage();
+                if (e.shiftKey) calculateLiquidation();
                 else {
                     document.getElementById("pagas_extra")!.focus();
                 }
@@ -219,7 +251,7 @@
             required
             onkeydown={(e) => {
                 if (e.key !== "Enter") return;
-                if (e.shiftKey) calculateWage();
+                if (e.shiftKey) calculateLiquidation();
                 else {
                     document.getElementById("pagas_extra_days")!.focus();
                 }
@@ -240,7 +272,7 @@
             required
             onkeydown={(e) => {
                 if (e.key !== "Enter") return;
-                if (e.shiftKey) calculateWage();
+                if (e.shiftKey) calculateLiquidation();
                 else {
                     document.getElementById("end_date")!.focus();
                 }
@@ -264,7 +296,7 @@
             required
             onkeydown={(e) => {
                 if (e.key !== "Enter") return;
-                if (e.shiftKey) calculateWage();
+                if (e.shiftKey) calculateLiquidation();
                 else {
                     document.getElementById("vac_days_enjoyed")!.focus();
                 }
@@ -288,7 +320,7 @@
             required
             onkeydown={(e) => {
                 if (e.key !== "Enter") return;
-                if (e.shiftKey) calculateWage();
+                if (e.shiftKey) calculateLiquidation();
                 else {
                     document.getElementById("meses")!.focus();
                 }
@@ -314,7 +346,7 @@
                 required
                 onkeydown={(e) => {
                     if (e.key !== "Enter") return;
-                    if (e.shiftKey) calculateWage();
+                    if (e.shiftKey) calculateLiquidation();
                     else {
                         document.getElementById("days_ind")!.focus();
                     }
@@ -339,23 +371,41 @@
                 required
                 onkeydown={(e) => {
                     if (e.key !== "Enter") return;
-                    if (e.shiftKey) calculateWage();
+                    if (e.shiftKey) calculateLiquidation();
                     else {
-                        document.getElementById("end_date")!.focus();
+                        document.getElementById("days_ant")!.focus();
                     }
                 }}
             />
         </div>
     {/if}
+    {#if deuda.isWorse}
+        <h3>Aviso tardío</h3>
+        <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
+            <code class="flex-none font-mono! whitespace-nowrap"
+                >¿Con cuántos días de antelación te han avisado?</code
+            >
 
-    {#if resultado}
-        <Table table={Object.entries(resultado)} channel="ZakaProfe" />
+            <Input
+                tail="w-full flex-1"
+                channel="ZakaProfe"
+                type="number"
+                name="days_ant"
+                id="days_ant"
+                bind:value={deuda.daysAnt}
+                oninput={(e) => (deuda.daysAnt = e.currentTarget.value)}
+                title="Máximo 14 días, a los 15 ya es legal"
+                required
+                onkeydown={(e) => {
+                    if (e.key !== "Enter") return;
+                    calculateLiquidation();
+                }}
+            />
+        </div>
     {/if}
-
-    <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
         <Button
-            onclick={calculateWage}
+            onclick={calculateLiquidation}
             channel="ZakaProfe"
             title="Calcular el finiquito con los datos introducidos."
             ><b>&starf;</b> Calcular finiquito</Button
@@ -374,4 +424,96 @@
     >
         ¡Enlace copiado al portapapeles! Incluye todos los números que has añadido aquí.
     </div>
+    {#if resultado}
+        <br />
+        <h2>Conceptos que te deben</h2>
+        <br />
+        <Table
+            table={[
+                ["Vacaciones", resultado.result.vacation],
+                ["Días pendientes del mes", resultado.result.pendingWage],
+                ["Paga extra pendiente", resultado.result.extraPayouts],
+                ["Indemnización", resultado.result.ind],
+                ["Aviso tardío", resultado.result.lateness],
+            ]}
+            channel="ZakaProfe"
+        />
+        <br />
+        <p class="text-xl">
+            Total:
+            <b><span class="text-(--ZakaProfe)"> {resultado.total.toFixed(2)}</span> euros </b>
+        </p>
+        <br />
+        <h2>¿Cómo se ha calculado esto?</h2>
+        <br />
+        <p>
+            Tu salario diario es de
+            <span class="font-serif">{resultado.data.dailyWage.toFixed(2)} €</span>. Este valor sale
+            de sumar tu base anual (la mensual que nos diste, por doce) y tus dos pagas extra,
+            dividido entre los {yearSize()} días del año.
+        </p>
+        <br />
+        <h3>Salario que te queda por cobrar del mes</h3>
+        <p>
+            Te corresponden <span class="font-serif"
+                >{resultado.result.pendingWage.toFixed(2)} €</span
+            >
+            por los
+            <span class="font-serif">{resultado.data.daysSinceMonth}</span> días trabajados el mes del
+            finiquito.
+        </p>
+        <br />
+        <h3>Pagas extraordinarias</h3>
+        <p>
+            Has acumulado <span class="font-serif"
+                >{resultado.result.extraPayouts.toFixed(2)} €</span
+            >
+            de las pagas extra que aún no se han cobrado.
+            {#if deuda.isSemestral}
+                Este cálculo se ajusta según el semestre actual (dividiéndose por <span
+                    class="font-serif">{resultado.data.divisorSemestral}</span
+                > días).
+            {:else}
+                Se calcula de forma proporcional a los días transcurridos del año.
+            {/if}
+        </p>
+        <br />
+        <h3>Vacaciones no disfrutadas</h3>
+        <p>
+            Por los <span class="font-serif">{resultado.data.daysSinceYear}</span> días que llevas
+            de año, y restando los
+            <span class="font-serif">{resultado.data.enjoyedDays}</span>
+            días que ya tomaste, se te deben
+            <span class="font-serif">{resultado.result.vacation.toFixed(2)} €</span>.
+        </p>
+
+        {#if resultado.result.ind > 0 || resultado.result.lateness > 0}
+            <br />
+            <h3>Conceptos adicionales</h3>
+            {#if resultado.result.ind > 0}
+                <p>
+                    Te deben una indemnización por despido de {resultado.data.sanctionDays}.
+                    <span class="font-serif"
+                        >{resultado.data.dailyWage.toFixed(2)} * {resultado.data.sanctionDays} * ({resultado
+                            .data.workedMonths} / 12)</span
+                    >
+                    da <span class="font-serif">{resultado.result.ind.toFixed(2)} €</span>.
+                </p>
+            {/if}
+            {#if resultado.result.lateness > 0}
+                <p>
+                    Te han avisado tarde, cada día sin avisar se paga. Te dan <span
+                        class="font-serif">{resultado.result.lateness.toFixed(2)} €</span
+                    >.
+                </p>
+            {/if}
+        {/if}
+        <br />
+        <p>
+            <span class="text-xl">Total a percibir: </span>
+            <span class="text-xl font-bold text-(--ZakaProfe)"
+                >{resultado.total.toFixed(2)} euros</span
+            >
+        </p>
+    {/if}
 </main>

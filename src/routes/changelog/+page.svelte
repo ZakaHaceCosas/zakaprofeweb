@@ -50,6 +50,10 @@
     <h3>Nuevas aplicaciones</h3>
     <ul>
         <li>
+            Añadida una aplicación general para calcular (asignatura Itinerario Personal para la
+            Empleabilidad), una calculadora de liquidaciones de nóminas.
+        </li>
+        <li>
             Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de
             sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de
             PowerShell por alguna razón; no tiene sentido pero es más fácil).
@@ -74,6 +78,10 @@
             Mejorada la calculadora de nóminas:
             <ul>
                 <li>Ahora valida la base que proveas contra el S.M.I.</li>
+                <li>
+                    Ahora hace bien los cálculos en base al año (antes asumía que tiene 365 días,
+                    ahora mira si este año es bisiesto para usar 366).
+                </li>
                 <li>Ahora permite especificar si el contrato es temporal (afecta al cálculo).</li>
                 <li>
                     Si para las pagas extra tienes un contrato con una cantidad &quot;mas la
@@ -92,6 +100,7 @@
             Quitado el horario de la sección de contacto, no soy una empresa y no tengo porqué
             creerme tanto. Contacta cuando quieras, supongo.
         </li>
+        <li>Semi-automatizadas las actualizaciones de datos para el buscador y demás.</li>
     </ul>
     <hr />
     <h2>Actualizaciones internas (desarrollo)</h2>
@@ -103,6 +112,7 @@
         <li>Quitados varios <code>console.log</code> innecesarios.</li>
         <li>Ahora en teoría el predenderizado de Svelte debería ir.</li>
         <li>Quitados algunos estilos CSS innecesarios, debería mejorar un pelín el rendimiento.</li>
+        <li>Optimizadas la mayoría de imágenes, de WebP a AVIF, deberían cargar mejor.</li>
     </ul>
     <hr />
     <h2>3.4.0 (08/03/2026)</h2>
