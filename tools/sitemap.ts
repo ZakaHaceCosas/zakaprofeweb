@@ -1,6 +1,8 @@
 import { writeFileSync } from "fs";
 import { execSync } from "child_process";
 
+console.log(Bun.color("blue", "ansi"), "===> Sitemap.XML", Bun.color("white", "ansi"));
+
 const _pages: string[] = [
     "/",
     "/search",
@@ -17,11 +19,12 @@ const _pages: string[] = [
     "/apps/windows-cmd-parser",
 ];
 
+console.log(_pages.join("\n- "));
+
 const PAGES: [string, string][] = _pages.map((p) => {
     const cmd = `git log -1 --format=%cs -- src/routes${p === "/" ? "" : p}/+page.svelte`;
-    console.log(cmd);
     const out = execSync(cmd);
-    console.log(out.toString("utf8"));
+    console.log(cmd);
     return [p, out.toString("utf-8")];
 });
 
@@ -37,3 +40,5 @@ ${PAGES.map(
 `;
 
 writeFileSync("static/sitemap.xml", body);
+
+console.log(Bun.color("lightgreen", "ansi"), "¡OK! Sitemap.XML", Bun.color("white", "ansi"));

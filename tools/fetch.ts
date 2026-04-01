@@ -1,5 +1,11 @@
 import { normalize } from "strings-utils";
 
+console.log(
+    Bun.color("blue", "ansi"),
+    "===> Actualización del repositorio de vídeos",
+    Bun.color("white", "ansi")
+);
+
 const API_KEY = process.env["YOUTUBE"]!;
 const BASE = "https://www.googleapis.com/youtube/v3";
 type apiContent = {
@@ -310,6 +316,12 @@ await file.write(
     [...cnt.slice(0, injectionPoint + 1), ...thisCnt.slice(thisCntIS, thisCntIE), ...stringsForFile]
         .join("\n")
         .replace("interface ZakaVideo", "export interface IVideo")
+);
+
+console.log(
+    Bun.color("lightgreen", "ansi"),
+    "¡OK! Actualización del repositorio de vídeos",
+    Bun.color("white", "ansi")
 );
 
 export {};

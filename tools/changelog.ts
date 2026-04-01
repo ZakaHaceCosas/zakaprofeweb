@@ -1,7 +1,9 @@
 import { $, markdown, file } from "bun";
 
+console.log(Bun.color("blue", "ansi"), "===> Actualización del CHANGELOG markup");
+
 // necesario pq los putos números de linea están hardcoded
-await $`bun prettier --w .`.then(() => console.log("Vamos allá..."));
+await $`bun prettier --w .`.then(() => console.log("Empezando..."));
 
 const markup = markdown
     .html(await file("CHANGELOG.md").text())
@@ -40,4 +42,10 @@ const newFooterLines = [
 ];
 await footerFile.write(newFooterLines.join("\n"));
 
-await $`bun prettier --w .`.then(() => console.log("¡OK!"));
+await $`bun prettier --w .`.then(() =>
+    console.log(
+        Bun.color("lightgreen", "ansi"),
+        "¡OK! Actualización del CHANGELOG markup",
+        Bun.color("white", "ansi")
+    )
+);

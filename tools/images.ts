@@ -2,6 +2,8 @@ import { exec } from "child_process";
 import { readdirSync, rmSync } from "fs";
 import { join, basename, extname } from "path";
 
+console.log(Bun.color("blue", "ansi"), "===> Optimización de imágenes", Bun.color("white", "ansi"));
+
 const EXT_ARRAY = [".png", ".webp"];
 
 async function optimizeImages(dir: string) {
@@ -13,6 +15,7 @@ async function optimizeImages(dir: string) {
             optimizeImages(fullPath);
         } else if (dirent.isFile() && EXT_ARRAY.includes(extname(dirent.name))) {
             if (dirent.name.endsWith(".webp.webp") || dirent.name.endsWith(".avif.avif")) {
+                console.log("Eliminando", join(dir, dirent.name));
                 rmSync(join(dir, dirent.name));
             } else if (dirent.name.includes("favicon-")) return;
             else {
@@ -50,3 +53,9 @@ async function optimizeImages(dir: string) {
 }
 
 await optimizeImages("static");
+
+console.log(
+    Bun.color("lightgreen", "ansi"),
+    "¡OK! Optimización de imágenes",
+    Bun.color("white", "ansi")
+);

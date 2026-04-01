@@ -12,7 +12,11 @@
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "format": "prettier --write .",
-        "lint": "prettier --check . && eslint ."
+        "lint": "prettier --check . && eslint .",
+        "zpw:chg": "bun tools/changelog.ts",
+        "zpw:fch": "bun tools/fetch.ts",
+        "zpw:img": "bun tools/images.ts",
+        "zpw:xml": "bun tools/sitemap.ts"
     },
     "devDependencies": {
         "@eslint/compat": "^1.4.1",

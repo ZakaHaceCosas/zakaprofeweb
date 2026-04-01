@@ -8,11 +8,12 @@
     import RandomVideoFeed from "$lib/VideoTuple.svelte";
     import Bola from "$lib/Bola.svelte";
 
+    // eslint-disable no-unassigned-vars (sí se asigna con un bind: pero no me lo detecta)
     let container: HTMLDivElement;
     let words: HTMLDivElement[] = [];
 
     // yo esto lo hice en CSS yo solito
-    // que esté vive-coded (que se nota) es por una tontería (mover el texto de al lado con la animación) y porque es de noche y me da pereza y quiero dormir y no me voy a poner a buscar dónde pone que tengo que hacer un requestAnimationFrame(requestAnimationFrame()) para que funcione
+    // que esté vive-coded esta versión JS (que se nota) es por una tontería (mover el texto de al lado con la animación) y porque es de noche y me da pereza y quiero dormir y no me voy a poner a buscar dónde pone que tengo que hacer un requestAnimationFrame(requestAnimationFrame()) para que funcione
     // tengo que retomar el curso de c#, js me tiene harto
     onMount(() => {
         const total = words.length;
