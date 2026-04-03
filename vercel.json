@@ -3,7 +3,7 @@
         {
             "source": "/calculadora-notas",
             "destination": "/apps/calculadora-notas",
-            "status": 301
+            "permanent": true
         }
     ]
 }
