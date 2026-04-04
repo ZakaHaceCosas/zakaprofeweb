@@ -81,7 +81,7 @@
                             <div class="flex-10">
                                 <h2>{v.title}</h2>
                                 <p>
-                                    {v.subject} · {v.level} · <b>S{v.season}</b>
+                                    {v.subject} · {v.level} · {v.duration} · <b>S{v.season}</b>
                                 </p>
                             </div>
                             <Button
@@ -90,13 +90,11 @@
                                 title="Redirigir a YouTube para ver este video."
                                 tail="h-auto mt-auto flex-1"
                             >
-                                Ver en YouTube &gt;
+                                Ver en YouTube &gt;&gt;&gt;
                             </Button>
                             <p class="text-sm opacity-50">
-                                <b>{v.duration}</b><br /><b>{v.seen}</b> visualizaciones y
-                                <b>{v.likes}</b>
-                                «me gusta»<br />Se parece en un <b>{v.similarity.toFixed(2)}</b>% a
-                                lo que escribiste.
+                                <b>{v.seen}</b> vistas, <b>{v.likes}</b>
+                                «me gusta». Coincide un <b>{v.similarity.toFixed(2)}</b>%.
                             </p>
                         </div>
                     </div>

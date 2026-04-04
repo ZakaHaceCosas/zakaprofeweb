@@ -86,6 +86,41 @@
     </div>
     <div class="flex w-full flex-row items-center gap-4">
         <p class="whitespace-nowrap">
+            <span class="text-(--ZakaProfe)">ZakaProfe</span> · Matemáticas
+        </p>
+        <hr />
+    </div>
+    <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+        <CardLink
+            channel="ZakaProfe"
+            target="apps/acumuladores"
+            title="Calculadora de acumuladores"
+            body="Calcula rápidamente un sumatorio o productorio."
+        >
+            {#snippet svg()}
+                <svg
+                    width="25"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="25"
+                    id="screenshot-a87215a7-8c6b-8099-8007-d1da17189188"
+                    viewBox="-745.467 -545 16.327 20"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1"
+                    ><g id="shape-a87215a7-8c6b-8099-8007-d1da17189188"
+                        ><g class="fills" id="fills-a87215a7-8c6b-8099-8007-d1da17189188"
+                            ><path
+                                d="M-745.4674682617188,-545L-730.4674682617188,-545L-730.0692138671875,-539.970458984375L-730.6296997070312,-539.970458984375C-730.6985473632812,-540.9635620117188,-730.86572265625,-541.72314453125,-731.1311645507812,-542.2492065429688C-731.3966674804688,-542.7752685546875,-731.760498046875,-543.1563110351562,-732.2225952148438,-543.3922729492188C-732.6847534179688,-543.6282958984375,-733.4172973632812,-543.7462768554688,-734.4202270507812,-543.7462768554688L-741.2491455078125,-543.7462768554688L-735.15771484375,-535.92919921875L-742.08984375,-527.7433471679688L-734.4940185546875,-527.7433471679688C-733.117431640625,-527.7433471679688,-732.0653076171875,-527.9645385742188,-731.337646484375,-528.4070434570312C-730.6100463867188,-528.8495483398438,-730.0643310546875,-529.7738037109375,-729.7005004882812,-531.179931640625L-729.1400146484375,-531.0471801757812L-729.9954833984375,-525L-745.4674682617188,-525L-745.4674682617188,-525.5309448242188L-737.768310546875,-534.6165161132812L-745.4674682617188,-544.468994140625L-745.4674682617188,-545Z"
+                                style="stroke-opacity: 1; stroke: none; font-family: &quot;Times New Roman&quot;; stroke-width: 1px; stroke-linejoin: miter; font-style: normal; font-weight: normal; font-size: 2050.28px; stroke-linecap: butt; fill-opacity: 1;"
+                                fill="currentColor"
+                            /></g
+                        ></g
+                    ></svg
+                >
+            {/snippet}
+        </CardLink>
+    </div>
+    <div class="flex w-full flex-row items-center gap-4">
+        <p class="whitespace-nowrap">
             <span class="text-(--ZakaProfe)">ZakaProfe</span> · Itinerario Personal para la Empleabilidad
         </p>
         <hr />
