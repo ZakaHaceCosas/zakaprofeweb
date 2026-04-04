@@ -33,7 +33,7 @@ no/**
 project_id
 .env*.local
 
-# No listo para prod
-**/apps/dev/**
 # zaka cache lol
 **.zakache
+# No listo para prod (MANTENER) AL FINAL Y NO AÑADIR UNA TRAILING LINE
+**/apps/dev/**

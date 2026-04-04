@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { isValidIP } from "strings-utils";
+    import { isValidIP } from "@zhc.js/string-utils";
     import { onMount } from "svelte";
     import Button from "$lib/Button.svelte";
     import Input from "$lib/Input.svelte";
     import Table from "$lib/Table.svelte";
-    import { isBetween } from "numeric-utils";
+    import { isBetween } from "@zhc.js/number-utils";
 
     let ipAddress = "";
     let val:

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { normalize } from "strings-utils";
+    import { normalize } from "@zhc.js/string-utils";
     import Textarea from "$lib/Textarea.svelte";
     import Button from "$lib/Button.svelte";
     import { onMount } from "svelte";

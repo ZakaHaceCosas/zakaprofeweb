@@ -1,4 +1,12 @@
 lintScript: lint
 prettyScript: format
 launchCmd:
+    - ~sed -i '$d' .gitignore
     - $;;dev --open
+commitCmd:
+    - ~echo "**/apps/dev/**" >> .gitignore
+    # podría usar también $zpw:fch y cosas así, pero lo mismo da lol
+    - =tools/fetch.ts
+    - =tools/changelog.ts
+    - =tools/images.ts
+    - =tools/sitemap.ts

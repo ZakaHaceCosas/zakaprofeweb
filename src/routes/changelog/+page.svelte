@@ -44,14 +44,18 @@
         <li>Mejorada bastante la adaptabilidad móvil.</li>
         <li>
             Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla.
-            Además, ahora muestra algún dato más (como las visitas de cada video).
+            Además, ahora muestra algún dato más (como las visitas de cada video o su duración).
         </li>
     </ul>
     <h3>Nuevas aplicaciones</h3>
     <ul>
         <li>
-            Añadida una aplicación general para calcular (asignatura Itinerario Personal para la
-            Empleabilidad), una calculadora de liquidaciones de nóminas.
+            Añadida una aplicación para ZakaProfe (asignatura Matemáticas) para calcular sumatorios
+            y productorios.
+        </li>
+        <li>
+            Añadida una aplicación (asignatura Itinerario Personal para la Empleabilidad) para
+            calcular una calculadora de liquidaciones de nóminas.
         </li>
         <li>
             Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de

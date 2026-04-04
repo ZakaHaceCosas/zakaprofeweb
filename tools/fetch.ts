@@ -1,4 +1,4 @@
-import { normalize } from "strings-utils";
+import { normalize } from "@zhc.js/string-utils";
 
 console.log(
     Bun.color("blue", "ansi"),
@@ -18,7 +18,7 @@ function parserDuraciónISO(iso: string) {
 
     return `${Number(match?.[1] || 0)
         .toString()
-        .padStart(2, "0")}:${Number(match?.[1] || 0)
+        .padStart(2, "0")}:${Number(match?.[2] || 0)
         .toString()
         .padStart(2, "0")}:${Number(match?.[3] || 0)
         .toString()
@@ -306,7 +306,7 @@ stringsForFile.push("export { ZPVDs, ZTVDs };");
 const file = Bun.file("src/lib/db.ts");
 const cnt = (await file.text()).split("\n");
 const injectionPoint = cnt.findIndex((s) => s == "// # INYECTAR AQUÍ AMIGO # //");
-const thisFile = Bun.file("fetch.ts");
+const thisFile = Bun.file("tools/fetch.ts");
 const thisCnt = (await thisFile.text()).split("\n");
 const [thisCntIS, thisCntIE] = [
     thisCnt.findIndex((s) => s == "// # types #"),

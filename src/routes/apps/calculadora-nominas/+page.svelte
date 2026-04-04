@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { sumArray } from "numeric-utils";
+    import { sumArray } from "@zhc.js/number-utils";
     import Button from "$lib/Button.svelte";
     import Input from "$lib/Input.svelte";
     import Table from "$lib/Table.svelte";

@@ -2,7 +2,7 @@
     import Button from "$lib/Button.svelte";
     import Input from "$lib/Input.svelte";
     import { ZPVDs, ZTVDs, type IVideo } from "$lib/db";
-    import { validate, normalize, pluralOrNot, similarity } from "strings-utils";
+    import { validate, normalize, pluralOrNot, similarity } from "@zhc.js/string-utils";
 
     let search = $state("");
     let results: (IVideo & { similarity: number })[] = $state([]);
@@ -108,10 +108,10 @@
                 la calidad de producción se sube el número, básicamente. Va desde el 0 (mis primeros
                 videos) hasta el 4 (los más nuevos y mejores).
                 <br /><br />
-                Los datos de visitas y «me gusta» no son en tiempo real, se actualizan aproximadamente
-                cada quince días (mucho tiempo para evitar consumo de red). Puedes ver lo más reciente
-                en YouTube, aunque no suelen cambiar con frecuencia.
-                <br /><br />
+                Los datos de visitas y «me gusta» no son en tiempo real, se actualizan cada cierto tiempo
+                para evitar consumo de red. Puedes ver lo más reciente en YouTube, aunque no suelen cambiar
+                con frecuencia.
+                <br />
                 Recuerda que, en todos videos, el porcentaje de espectadores que expresan su opinión suele
                 ser bajo. 100 visitas y solo 15 «me gustas» no significan que a las otras 85 personas
                 no les haya gustado el video, no suele ser así.

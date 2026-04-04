@@ -10,11 +10,12 @@
 
 - Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mucho mejor.
 - Mejorada bastante la adaptabilidad móvil.
-- Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla. Además, ahora muestra algún dato más (como las visitas de cada video).
+- Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla. Además, ahora muestra algún dato más (como las visitas de cada video o su duración).
 
 ### Nuevas aplicaciones
 
-- Añadida una aplicación general para calcular (asignatura Itinerario Personal para la Empleabilidad), una calculadora de liquidaciones de nóminas.
+- Añadida una aplicación para ZakaProfe (asignatura Matemáticas) para calcular sumatorios y productorios.
+- Añadida una aplicación (asignatura Itinerario Personal para la Empleabilidad) para calcular una calculadora de liquidaciones de nóminas.
 - Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de PowerShell por alguna razón; no tiene sentido pero es más fácil).
 - Ahora se puede ver el registro de cambios desde la propia web.
 - Añadido soporte para «comentarios» en la web; se usan para reportar fallas y sugerir mejoras de forma rápida. Se envían de inmediato, pero no aparecen en público hasta que yo los revise (y opcionalmente responda).

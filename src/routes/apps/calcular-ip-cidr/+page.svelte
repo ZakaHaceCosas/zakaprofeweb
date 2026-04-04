@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { countOccurrences, isValidIP, validateAgainst } from "strings-utils";
+    import { countOccurrences, isValidIP, validateAgainst } from "@zhc.js/string-utils";
     import { onMount } from "svelte";
-    import { isBetween } from "numeric-utils";
+    import { isBetween } from "@zhc.js/number-utils";
     import Button from "$lib/Button.svelte";
     import Input from "$lib/Input.svelte";
     import Table from "$lib/Table.svelte";

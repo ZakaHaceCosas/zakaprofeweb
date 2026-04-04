@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { isValidIP } from "strings-utils";
+    import { isValidIP } from "@zhc.js/string-utils";
     import { onMount } from "svelte";
     import Button from "$lib/Button.svelte";
     import Input from "$lib/Input.svelte";

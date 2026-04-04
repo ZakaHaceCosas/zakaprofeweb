@@ -2,8 +2,8 @@
     import { onMount } from "svelte";
     import Button from "$lib/Button.svelte";
     import Textarea from "$lib/Textarea.svelte";
-    import { isBetween } from "numeric-utils";
-    import { validateAgainst } from "strings-utils";
+    import { isBetween } from "@zhc.js/number-utils";
+    import { validateAgainst } from "@zhc.js/string-utils";
 
     type orClause = { or: [string, string]; basis: string };
     type expr = {
