@@ -114,75 +114,69 @@
     />
 </svelte:head>
 
-<main>
-    <h1>Calculadora de IPs con CIDR</h1>
-    <br />
-    <p>
-        Escribe una IP con CIDR y dale a calcular. Te dará todo lo que podrías necesitar (máscara,
-        dirección de red, dirección de broadcast...)<br /><br />
-    </p>
-    <Input
-        type="text"
-        name="ip"
-        bind:value={ipAddress}
-        oninput={(e) => {
-            ipAddress = e.currentTarget.value;
-            const newParams = `?ip=${encodeURIComponent(e.currentTarget.value)}`;
-            history.replaceState(null, "", newParams);
-        }}
-        onkeydown={(e) => {
-            if (e.key !== "Enter") return;
-            calculateIp();
-        }}
-        title="Introduce una IP con el CIDR, como 192.168.0.1/28"
-        required
-        tail="w-full! flex-1 md:flex-3"
-        channel="ZakaTeka"
-    />
+<h1>Calculadora de IPs con CIDR</h1>
+<br />
+<p>
+    Escribe una IP con CIDR y dale a calcular. Te dará todo lo que podrías necesitar (máscara,
+    dirección de red, dirección de broadcast...)<br /><br />
+</p>
+<Input
+    type="text"
+    name="ip"
+    bind:value={ipAddress}
+    oninput={(e) => {
+        ipAddress = e.currentTarget.value;
+        const newParams = `?ip=${encodeURIComponent(e.currentTarget.value)}`;
+        history.replaceState(null, "", newParams);
+    }}
+    onkeydown={(e) => {
+        if (e.key !== "Enter") return;
+        calculateIp();
+    }}
+    title="Introduce una IP con el CIDR, como 192.168.0.1/28"
+    required
+    tail="w-full! flex-1 md:flex-3"
+    channel="ZakaTeka"
+/>
 
-    <br />
-    <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button onclick={calculateIp} channel="ZakaTeka" title="Calcular la IP."
-            ><b>&starf;</b> Calcular IP</Button
-        >
-        <Button
-            onclick={share}
-            popovertarget="share-popover"
-            channel="ZakaTeka"
-            title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button
-        >
-    </div>
-    <div
-        id="share-popover"
-        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
-        popover
+<br />
+<div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
+    <Button onclick={calculateIp} channel="ZakaTeka" title="Calcular la IP."
+        ><b>&starf;</b> Calcular IP</Button
     >
-        ¡Enlace copiado al portapapeles!
-    </div>
+    <Button
+        onclick={share}
+        popovertarget="share-popover"
+        channel="ZakaTeka"
+        title="Generar un enlace para compartir el resultado."><b>&nearr;</b> Compartir</Button
+    >
+</div>
+<div id="share-popover" class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4" popover>
+    ¡Enlace copiado al portapapeles!
+</div>
 
-    {#if val !== null}
-        <br />
-        <Table
-            channel="ZakaTeka"
-            table={[
-                ["Dirección de red", val.networkAddress],
-                ["Dirección de broadcast", val.broadcastAddress],
-                ["Dirección de gateway", val.gatewayAddress],
-                ["IP en formato binario", val.binIp],
-                ["Máscara de red", val.mask],
-                ["Wildcard", val.wildcard],
-                ["Rango utilizable", `${val.usable[0]} — ${val.usable[1]}`],
-                ["Número de hosts útiles", `${val.usableHosts[0]} (${val.usableHosts[1]} - 2)`],
-                ["Número de hosts en total", `${val.usableHosts[0] + 2} (${val.usableHosts[1]})`],
-                [
-                    "Octeto crítico",
-                    val.critical
-                        ? `${val.critical[0]} (posición ${val.critical[1]} en la IP, ${val.critical[2]} bits críticos [${val.critical[4]}] y núm. base ${val.critical[3]})`
-                        : "No hay",
-                ],
-                ["Bits de red", val.netBits],
-                ["Bits de host", val.hostBits],
-            ]}
-        />
-    {/if}
-</main>
+{#if val !== null}
+    <br />
+    <Table
+        channel="ZakaTeka"
+        table={[
+            ["Dirección de red", val.networkAddress],
+            ["Dirección de broadcast", val.broadcastAddress],
+            ["Dirección de gateway", val.gatewayAddress],
+            ["IP en formato binario", val.binIp],
+            ["Máscara de red", val.mask],
+            ["Wildcard", val.wildcard],
+            ["Rango utilizable", `${val.usable[0]} — ${val.usable[1]}`],
+            ["Número de hosts útiles", `${val.usableHosts[0]} (${val.usableHosts[1]} - 2)`],
+            ["Número de hosts en total", `${val.usableHosts[0] + 2} (${val.usableHosts[1]})`],
+            [
+                "Octeto crítico",
+                val.critical
+                    ? `${val.critical[0]} (posición ${val.critical[1]} en la IP, ${val.critical[2]} bits críticos [${val.critical[4]}] y núm. base ${val.critical[3]})`
+                    : "No hay",
+            ],
+            ["Bits de red", val.netBits],
+            ["Bits de host", val.hostBits],
+        ]}
+    />
+{/if}

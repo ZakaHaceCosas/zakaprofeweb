@@ -11,6 +11,7 @@
 - Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mucho mejor.
 - Mejorada bastante la adaptabilidad móvil.
 - Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla. Además, ahora muestra algún dato más (como las visitas de cada video o su duración).
+- Mejorada bastante la accesibilidad desde teléfonos.
 
 ### Nuevas aplicaciones
 
@@ -36,14 +37,15 @@
 - Corregidos fallos visuales menores.
 - Ajustado los tamaños de texto para mejor legibilidad.
 - Quitado el horario de la sección de contacto, no soy una empresa y no tengo porqué creerme tanto. Contacta cuando quieras, supongo.
+- Quitada la sección para las clases particulares. No está cancelado, pero mañana no va a ser, no tiene mucho sentido el spoiler ahí.
 - Semi-automatizadas las actualizaciones de datos para el buscador y demás.
 
 ## Actualizaciones internas (desarrollo)
 
 - Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
 - Quitados varios `console.log` innecesarios.
-- Ahora en teoría el predenderizado de Svelte debería ir.
-- Quitados algunos estilos CSS innecesarios, debería mejorar un pelín el rendimiento.
+- Ahora en teoría el prerenderizado de Svelte debería ir.
+- Quitados algunos estilos CSS innecesarios, debería mejorar un poquito el rendimiento.
 - Optimizadas la mayoría de imágenes, de WebP a AVIF, deberían cargar mejor.
 
 ## 3.4.0 (08/03/2026)

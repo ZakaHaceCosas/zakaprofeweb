@@ -157,121 +157,111 @@
     />
 </svelte:head>
 
-<main>
-    <h1>Calculadora de VLSM</h1>
-    <br />
-    <p>
-        Escribe una IP e introduce cuántos dispositivos deberían caber en cada rango, y dale a
-        calcular. Usará VLSM para dividir la red por tí. No introduzcas el CIDR en la IP que
-        proveas.<br /><br />
-    </p>
-    <Input
-        type="text"
-        name="ip"
-        bind:value={ipAddress}
-        oninput={(e) => (ipAddress = e.currentTarget.value)}
-        onkeydown={(e) => {
-            if (e.key !== "Enter") return;
-            document.getElementById("rng-inp-0")?.focus();
-        }}
-        title="Introduce una IPv4, como 192.168.0.1"
-        required
-        channel="ZakaTeka"
-        tail="w-full!"
-    />
-    <br />
-    {#each ranges as range, index (index)}
-        <div class="mb-3 flex w-full flex-row items-center gap-3">
-            <code class="font-mono!">#{index}</code>
+<h1>Calculadora de VLSM</h1>
+<br />
+<p>
+    Escribe una IP e introduce cuántos dispositivos deberían caber en cada rango, y dale a calcular.
+    Usará VLSM para dividir la red por tí. No introduzcas el CIDR en la IP que proveas.<br /><br />
+</p>
+<Input
+    type="text"
+    name="ip"
+    bind:value={ipAddress}
+    oninput={(e) => (ipAddress = e.currentTarget.value)}
+    onkeydown={(e) => {
+        if (e.key !== "Enter") return;
+        document.getElementById("rng-inp-0")?.focus();
+    }}
+    title="Introduce una IPv4, como 192.168.0.1"
+    required
+    channel="ZakaTeka"
+    tail="w-full!"
+/>
+<br />
+{#each ranges as range, index (index)}
+    <div class="mb-3 flex w-full flex-row items-center gap-3">
+        <code class="font-mono!">#{index}</code>
 
-            <Input
-                id={`rng-inp-${index}`}
-                type="number"
-                name="range"
-                bind:value={range}
-                oninput={(e) => handleInputChange(index, e.currentTarget.value)}
-                onkeydown={(e) => {
-                    if (e.key !== "Enter") return;
-                    if (e.shiftKey) calculateVLSM();
-                    else {
-                        if (index + 1 == ranges.length) addRange();
-                        setTimeout(() => {
-                            document.getElementById(`rng-inp-${index + 1}`)?.focus();
-                        }, 100);
-                    }
-                }}
-                title="Introduce un número de dispositivos para este rango"
-                required
-                tail="w-full! flex-1 md:flex-6"
-                channel="ZakaTeka"
-            />
-
-            <Button
-                title="Eliminar este rango."
-                tail="flex-1!"
-                channel="ZakaTeka"
-                onclick={() => deleteRange(index)}>Eliminar</Button
-            >
-        </div>
-    {/each}
-    <code class="text-sm opacity-50"
-        ><kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para pasar a la siguiente entrada (añadirá
-        otro rango si hace falta) ·
-        <kbd class="bg-gray-600 px-1.5 py-1">SHIFT</kbd>
-        +
-        <kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para calcular</code
-    >
-    <br />
-    <br />
-    <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button onclick={addRange} channel="ZakaTeka" title="Agregar un nuevo rango a la lista."
-            ><b>+</b> Agregar Rango</Button
-        >
-        <Button onclick={calculateVLSM} channel="ZakaTeka" title="Calcular el VLSM."
-            ><b>&starf;</b> Calcular VLSM</Button
-        >
-        <Button
-            onclick={share}
+        <Input
+            id={`rng-inp-${index}`}
+            type="number"
+            name="range"
+            bind:value={range}
+            oninput={(e) => handleInputChange(index, e.currentTarget.value)}
+            onkeydown={(e) => {
+                if (e.key !== "Enter") return;
+                if (e.shiftKey) calculateVLSM();
+                else {
+                    if (index + 1 == ranges.length) addRange();
+                    setTimeout(() => {
+                        document.getElementById(`rng-inp-${index + 1}`)?.focus();
+                    }, 100);
+                }
+            }}
+            title="Introduce un número de dispositivos para este rango"
+            required
+            tail="w-full! flex-1 md:flex-6"
             channel="ZakaTeka"
-            popovertarget="share-popover"
-            title="Generar un enlace para compartir el resultado."
-            ><b>&nearr;</b> Compartir
-        </Button>
-    </div>
-    <div
-        id="share-popover"
-        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
-        popover
-    >
-        ¡Enlace copiado al portapapeles!
-    </div>
+        />
 
-    {#if val !== null}
+        <Button
+            title="Eliminar este rango."
+            tail="flex-1!"
+            channel="ZakaTeka"
+            onclick={() => deleteRange(index)}>Eliminar</Button
+        >
+    </div>
+{/each}
+<code class="text-sm opacity-50"
+    ><kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para pasar a la siguiente entrada (añadirá
+    otro rango si hace falta) ·
+    <kbd class="bg-gray-600 px-1.5 py-1">SHIFT</kbd>
+    +
+    <kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para calcular</code
+>
+<br />
+<br />
+<div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
+    <Button onclick={addRange} channel="ZakaTeka" title="Agregar un nuevo rango a la lista."
+        ><b>+</b> Agregar Rango</Button
+    >
+    <Button onclick={calculateVLSM} channel="ZakaTeka" title="Calcular el VLSM."
+        ><b>&starf;</b> Calcular VLSM</Button
+    >
+    <Button
+        onclick={share}
+        channel="ZakaTeka"
+        popovertarget="share-popover"
+        title="Generar un enlace para compartir el resultado."
+        ><b>&nearr;</b> Compartir
+    </Button>
+</div>
+<div id="share-popover" class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4" popover>
+    ¡Enlace copiado al portapapeles!
+</div>
+
+{#if val !== null}
+    <br />
+    {#each val as range, idx (idx)}
+        <h2 class="font-mono!">
+            Rango {idx}
+            <span class="text-lg opacity-70">{range.target} dispositivos</span>
+        </h2>
         <br />
-        {#each val as range, idx (idx)}
-            <h2 class="font-mono!">
-                Rango {idx}
-                <span class="text-lg opacity-70">{range.target} dispositivos</span>
-            </h2>
-            <br />
-            <Table
-                channel="ZakaTeka"
-                table={[
-                    ["Dirección de red", range.networkAddress],
-                    ["Dirección de broadcast", range.broadcastAddress],
-                    ["Máscara de red", range.mask],
-                    ["Rango utilizable", `${range.usable[0]} — ${range.usable[1]}`],
-                    [
-                        "Número de hosts útiles",
-                        `${range.usableHosts[0]} (${range.usableHosts[1]} - 2)`,
-                    ],
-                    [
-                        "Número de hosts en total",
-                        `${range.usableHosts[0] + 2} (${range.usableHosts[1]})`,
-                    ],
-                ]}
-            />
-            <br />
-        {/each}
-    {/if}
-</main>
+        <Table
+            channel="ZakaTeka"
+            table={[
+                ["Dirección de red", range.networkAddress],
+                ["Dirección de broadcast", range.broadcastAddress],
+                ["Máscara de red", range.mask],
+                ["Rango utilizable", `${range.usable[0]} — ${range.usable[1]}`],
+                ["Número de hosts útiles", `${range.usableHosts[0]} (${range.usableHosts[1]} - 2)`],
+                [
+                    "Número de hosts en total",
+                    `${range.usableHosts[0] + 2} (${range.usableHosts[1]})`,
+                ],
+            ]}
+        />
+        <br />
+    {/each}
+{/if}

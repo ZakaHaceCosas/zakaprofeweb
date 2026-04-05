@@ -34,7 +34,7 @@
     }>();
 
     const className = $derived(
-        `font-mono p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) gap-3 ${
+        `font-mono p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) ${
             channel === "ZakaProfe" ? "outline-(--ZakaProfe)" : "outline-(--ZakaTeka)"
         } ${tail} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`
     );

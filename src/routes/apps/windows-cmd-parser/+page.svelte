@@ -753,207 +753,196 @@
     />
 </svelte:head>
 
-<main>
-    <h1>Analizador sintáctico de comandos Windows CMD</h1>
-    <br />
-    <p>
-        Escribe una secuencia de CMD y la analizará por ti, prediciendo la salida.<br /><br /><b
-            >Aún está en desarrollo y solo soporta un subset de comandos y funciones limitado.</b
-        >
-        Que se sepa, falta soporte para algunos comandos (PAUSE, NET, ICACLS ...) y para sintaxis de guiones
-        (IF, paréntesis, ...).
-        <br />Puede que falten predicciones o que no acierte del todo con el control de flujo. Sigo
-        trabajando en ello y lo iré actualizando con el tiempo.
-        <br />
-    </p>
-    <br />
-    <Textarea
-        name="cmd"
-        bind:value={cmd}
-        oninput={(e) => (cmd = e.currentTarget.value)}
-        onkeydown={(e) => {
-            if (e.key !== "Enter") return;
-            parseCMDs();
-        }}
-        title="Introduce una secuencia, como 'cd \Windows && tree > \Users\yo\tree.txt"
-        required
-        channel="ZakaTeka"
-        tail="w-full! font-mono!"
-    />
-    <br />
-    <code class="text-sm opacity-50">
-        <kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para analizar
-    </code>
-
-    <br />
-    <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button onclick={parseCMDs} channel="ZakaTeka" title="Calcular el FLSM."
-            ><b>&starf;</b> Analizar comando</Button
-        >
-        <Button
-            onclick={share}
-            channel="ZakaTeka"
-            popovertarget="share-popover"
-            title="Generar un enlace para compartir el resultado."
-            ><b>&nearr;</b> Compartir
-        </Button>
-    </div>
-    <div
-        id="share-popover"
-        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
-        popover
+<h1>Analizador sintáctico de comandos Windows CMD</h1>
+<br />
+<p>
+    Escribe una secuencia de CMD y la analizará por ti, prediciendo la salida.<br /><br /><b
+        >Aún está en desarrollo y solo soporta un subset de comandos y funciones limitado.</b
     >
-        ¡Enlace copiado al portapapeles!
-    </div>
+    Que se sepa, falta soporte para algunos comandos (PAUSE, NET, ICACLS ...) y para sintaxis de guiones
+    (IF, paréntesis, ...).
+    <br />Puede que falten predicciones o que no acierte del todo con el control de flujo. Sigo
+    trabajando en ello y lo iré actualizando con el tiempo.
+    <br />
+</p>
+<br />
+<Textarea
+    name="cmd"
+    bind:value={cmd}
+    oninput={(e) => (cmd = e.currentTarget.value)}
+    onkeydown={(e) => {
+        if (e.key !== "Enter") return;
+        parseCMDs();
+    }}
+    title="Introduce una secuencia, como 'cd \Windows && tree > \Users\yo\tree.txt"
+    required
+    channel="ZakaTeka"
+    tail="w-full! font-mono!"
+/>
+<br />
+<code class="text-sm opacity-50">
+    <kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para analizar
+</code>
 
-    {#if val !== null}
-        <br />
-        {#each val as expression, idx (idx)}
-            <h3 class="opacity-50">Línea {idx + 1}</h3>
-            {#if expression.some((v) => typeof v != "string" && !("comment" in v) && v.prediction && "err" in v.prediction)}
-                <div class="mt-2 bg-red-700 p-4 text-white">
+<br />
+<div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
+    <Button onclick={parseCMDs} channel="ZakaTeka" title="Calcular el FLSM."
+        ><b>&starf;</b> Analizar comando</Button
+    >
+    <Button
+        onclick={share}
+        channel="ZakaTeka"
+        popovertarget="share-popover"
+        title="Generar un enlace para compartir el resultado."
+        ><b>&nearr;</b> Compartir
+    </Button>
+</div>
+<div id="share-popover" class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4" popover>
+    ¡Enlace copiado al portapapeles!
+</div>
+
+{#if val !== null}
+    <br />
+    {#each val as expression, idx (idx)}
+        <h3 class="opacity-50">Línea {idx + 1}</h3>
+        {#if expression.some((v) => typeof v != "string" && !("comment" in v) && v.prediction && "err" in v.prediction)}
+            <div class="mt-2 bg-red-700 p-4 text-white">
+                <b
+                    >Se han detectado errores de sintaxis, tu comando fallará sí o sí en algún lado.<br
+                    />Baja y busca los bloques rojos, te indicarán qué pasa.</b
+                >
+            </div>
+            <br />
+        {/if}
+        {#each expression as c, idx (idx)}
+            {#if typeof c == "string"}
+                <p>
                     <b
-                        >Se han detectado errores de sintaxis, tu comando fallará sí o sí en algún
-                        lado.<br />Baja y busca los bloques rojos, te indicarán qué pasa.</b
+                        >{{
+                            "|": "Y SE REDIRIGE A",
+                            "||": "Y SI SALE MAL",
+                            "&&": "Y SI SALE BIEN",
+                            "&": "Y DESPUÉS",
+                            ">": "Y CON SU SALIDA ESTÁNDAR, (CREA O) SOBRESCRIBE",
+                            "1>": "Y CON ESPECÍFICAMENTE SU SALIDA ESTÁNDAR, (CREA O) SOBRESCRIBE",
+                            ">>": "Y CON SU SALIDA ESTÁNDAR, (CREA O) AÑADE A",
+                            "2>": "Y CON SU ERROR ESTÁNDAR, (CREA O) SOBRESCRIBE",
+                            "2>>": "Y CON SU ERROR ESTÁNDAR, (CREA O) AÑADE A",
+                        }[c]}</b
                     >
-                </div>
-                <br />
-            {/if}
-            {#each expression as c, idx (idx)}
-                {#if typeof c == "string"}
-                    <p>
-                        <b
-                            >{{
-                                "|": "Y SE REDIRIGE A",
-                                "||": "Y SI SALE MAL",
-                                "&&": "Y SI SALE BIEN",
-                                "&": "Y DESPUÉS",
-                                ">": "Y CON SU SALIDA ESTÁNDAR, (CREA O) SOBRESCRIBE",
-                                "1>": "Y CON ESPECÍFICAMENTE SU SALIDA ESTÁNDAR, (CREA O) SOBRESCRIBE",
-                                ">>": "Y CON SU SALIDA ESTÁNDAR, (CREA O) AÑADE A",
-                                "2>": "Y CON SU ERROR ESTÁNDAR, (CREA O) SOBRESCRIBE",
-                                "2>>": "Y CON SU ERROR ESTÁNDAR, (CREA O) AÑADE A",
-                            }[c]}</b
-                        >
-                    </p>
-                {:else if "comment" in c}
-                    <span class="text-italic font-mono! opacity-60"
-                        >Comentario: <b>{c.comment}</b></span
-                    >
-                {:else}
-                    <div class="flex flex-row gap-4">
-                        {#if c.utility in knownUtils}
-                            <abbr title={knownUtils[c.utility]}>
-                                <h2 class="font-mono!">
-                                    {c.utility}
-                                </h2>
-                            </abbr>
-                        {:else}
+                </p>
+            {:else if "comment" in c}
+                <span class="text-italic font-mono! opacity-60">Comentario: <b>{c.comment}</b></span
+                >
+            {:else}
+                <div class="flex flex-row gap-4">
+                    {#if c.utility in knownUtils}
+                        <abbr title={knownUtils[c.utility]}>
                             <h2 class="font-mono!">
                                 {c.utility}
                             </h2>
-                        {/if}
-                        <h2 class="font-mono!">
-                            {#each c.positionals as p, i (i)}
-                                {#if isStringToEvalEnvVariable(p)}
-                                    <abbr
-                                        title={`Variable de entorno «${p.slice(1, -1)}»`}
-                                        class="font-mono! opacity-70">{p}</abbr
-                                    >{" "}
-                                {:else}
-                                    <span class="font-mono! opacity-70">{p}</span>{" "}
-                                {/if}
-                            {/each}
-                        </h2>
-                        <h2 class="font-mono!">
-                            {#each c.switches as p, i (i)}
-                                <span class="font-mono! font-light opacity-50">{p}</span>{" "}
-                            {/each}
-                        </h2>
-                    </div>
-                    {#if c.prediction}
-                        {#if "err" in c.prediction}
-                            <div class="mt-2 bg-red-700 p-4 font-mono text-white">
-                                <b>Esto va a fallar. ¿El motivo?</b>
-                                {c.prediction.err}
-                            </div>
-                        {/if}{#if "action" in c.prediction}
-                            <div class="mt-2 bg-blue-700 p-4 font-mono text-white">
-                                <b>{c.prediction.action}</b>
-                            </div>
-                        {/if}{#if "takes" in c.prediction}
-                            <div class="mt-2 bg-teal-700 p-4 font-mono text-white">
-                                Toma la siguiente entrada:<br /><b>{c.prediction.takes}</b>
-                            </div>
-                        {/if}{#if "exits" in c.prediction}
-                            <div class="mt-2 bg-black p-4 font-mono text-white">
-                                <b>Sale de CMD.</b> Devuelve el código de salida {c.prediction
-                                    .exits}.
-                            </div>
-                        {/if}{#if "clears" in c.prediction}
-                            <div class="mt-2 bg-gray-700 p-4 font-mono text-white">
-                                Limpia la pantalla. Lo que sea que se haya impreso antes se borrará.
-                            </div>
-                        {/if}{#if "help" in c.prediction}
-                            <div class="mt-2 bg-cyan-700 p-4 font-mono text-white">
-                                Muestra la ayuda {#if typeof c.prediction.help == "number"}general{:else}con
-                                    el comando {c.prediction.help}{/if}.
-                            </div>
-                        {/if}{#if "finds" in c.prediction}
-                            <div class="mt-2 bg-amber-700 p-4 font-mono text-white">
-                                Busca la cadena <b>{c.prediction.finds![0]}</b> en
-                                <b
-                                    >{#if c.prediction.finds![1] == 1}la salida del comando anterior{:else}{c
-                                            .prediction.finds![1]}{/if}</b
-                                >.
-                            </div>
-                        {/if}{#if "dev" in c.prediction}
-                            <div class="mt-2 bg-gray-500 p-4 font-mono text-white">
-                                Esto actúa como dispositivo, puede recibir salidas y usarse de forma
-                                especial. Este es <b>{c.prediction.dev}</b>
-                            </div>
-                        {/if}{#if "prints" in c.prediction}
-                            <div class="mt-2 bg-slate-700 p-4 font-mono text-white">
-                                {#if typeof c.prediction.prints == "string"}
-                                    Imprime <b
-                                        >{formatStringToEvalEnvVariable(
-                                            c.prediction.prints,
-                                            true
-                                        )}</b
-                                    >
-                                    a la salida estándar.<br />
-                                {:else}
-                                    Imprime una de dos:
-                                    <ul>
-                                        <li>
-                                            {c.prediction.prints!.or[0]}
-                                        </li>
-                                        <li>
-                                            {c.prediction.prints!.or[1]}
-                                        </li>
-                                    </ul>
-                                    ¿El criterio? {c.prediction.prints!.basis}
-                                {/if}
-                            </div>
-                        {/if}
-                    {:else if typeof expression[idx - 1] == "string" && [">", ">>"].includes(expression[idx - 1] as string)}
-                        <div class="mt-2 bg-teal-800 p-4 font-mono text-white">
-                            Esto de arriba es la ruta a un fichero que se creará/(sobre)escribirá
-                            con la salida del comando anterior.
-                        </div>
+                        </abbr>
                     {:else}
-                        <p>
-                            No se puede predecir con exactitud la salida de este comando. Si es un
-                            ejecutable esto es normal, si es una función de CMD, no estará (aún)
-                            soportada por este analizador sintáctico.
-                        </p>
+                        <h2 class="font-mono!">
+                            {c.utility}
+                        </h2>
                     {/if}
+                    <h2 class="font-mono!">
+                        {#each c.positionals as p, i (i)}
+                            {#if isStringToEvalEnvVariable(p)}
+                                <abbr
+                                    title={`Variable de entorno «${p.slice(1, -1)}»`}
+                                    class="font-mono! opacity-70">{p}</abbr
+                                >{" "}
+                            {:else}
+                                <span class="font-mono! opacity-70">{p}</span>{" "}
+                            {/if}
+                        {/each}
+                    </h2>
+                    <h2 class="font-mono!">
+                        {#each c.switches as p, i (i)}
+                            <span class="font-mono! font-light opacity-50">{p}</span>{" "}
+                        {/each}
+                    </h2>
+                </div>
+                {#if c.prediction}
+                    {#if "err" in c.prediction}
+                        <div class="mt-2 bg-red-700 p-4 font-mono text-white">
+                            <b>Esto va a fallar. ¿El motivo?</b>
+                            {c.prediction.err}
+                        </div>
+                    {/if}{#if "action" in c.prediction}
+                        <div class="mt-2 bg-blue-700 p-4 font-mono text-white">
+                            <b>{c.prediction.action}</b>
+                        </div>
+                    {/if}{#if "takes" in c.prediction}
+                        <div class="mt-2 bg-teal-700 p-4 font-mono text-white">
+                            Toma la siguiente entrada:<br /><b>{c.prediction.takes}</b>
+                        </div>
+                    {/if}{#if "exits" in c.prediction}
+                        <div class="mt-2 bg-black p-4 font-mono text-white">
+                            <b>Sale de CMD.</b> Devuelve el código de salida {c.prediction.exits}.
+                        </div>
+                    {/if}{#if "clears" in c.prediction}
+                        <div class="mt-2 bg-gray-700 p-4 font-mono text-white">
+                            Limpia la pantalla. Lo que sea que se haya impreso antes se borrará.
+                        </div>
+                    {/if}{#if "help" in c.prediction}
+                        <div class="mt-2 bg-cyan-700 p-4 font-mono text-white">
+                            Muestra la ayuda {#if typeof c.prediction.help == "number"}general{:else}con
+                                el comando {c.prediction.help}{/if}.
+                        </div>
+                    {/if}{#if "finds" in c.prediction}
+                        <div class="mt-2 bg-amber-700 p-4 font-mono text-white">
+                            Busca la cadena <b>{c.prediction.finds![0]}</b> en
+                            <b
+                                >{#if c.prediction.finds![1] == 1}la salida del comando anterior{:else}{c
+                                        .prediction.finds![1]}{/if}</b
+                            >.
+                        </div>
+                    {/if}{#if "dev" in c.prediction}
+                        <div class="mt-2 bg-gray-500 p-4 font-mono text-white">
+                            Esto actúa como dispositivo, puede recibir salidas y usarse de forma
+                            especial. Este es <b>{c.prediction.dev}</b>
+                        </div>
+                    {/if}{#if "prints" in c.prediction}
+                        <div class="mt-2 bg-slate-700 p-4 font-mono text-white">
+                            {#if typeof c.prediction.prints == "string"}
+                                Imprime <b
+                                    >{formatStringToEvalEnvVariable(c.prediction.prints, true)}</b
+                                >
+                                a la salida estándar.<br />
+                            {:else}
+                                Imprime una de dos:
+                                <ul>
+                                    <li>
+                                        {c.prediction.prints!.or[0]}
+                                    </li>
+                                    <li>
+                                        {c.prediction.prints!.or[1]}
+                                    </li>
+                                </ul>
+                                ¿El criterio? {c.prediction.prints!.basis}
+                            {/if}
+                        </div>
+                    {/if}
+                {:else if typeof expression[idx - 1] == "string" && [">", ">>"].includes(expression[idx - 1] as string)}
+                    <div class="mt-2 bg-teal-800 p-4 font-mono text-white">
+                        Esto de arriba es la ruta a un fichero que se creará/(sobre)escribirá con la
+                        salida del comando anterior.
+                    </div>
+                {:else}
+                    <p>
+                        No se puede predecir con exactitud la salida de este comando. Si es un
+                        ejecutable esto es normal, si es una función de CMD, no estará (aún)
+                        soportada por este analizador sintáctico.
+                    </p>
                 {/if}
-                <br />
-            {/each}
+            {/if}
+            <br />
         {/each}
-    {/if}
-</main>
+    {/each}
+{/if}
 
 <!--
 probar con esto:

@@ -130,108 +130,91 @@
     />
 </svelte:head>
 
-<main>
-    <h1>Calculadora de FLSM</h1>
-    <br />
-    <p>
-        Escribe una IP con CIDR e introduce cuántas subredes deberían existir, y dale a calcular.
-        Usará FLSM para dividir la red por tí.<br /><br />
-    </p>
-    <br />
-    <div class="mb-3 flex w-full flex-row items-center gap-3">
-        <Input
-            type="text"
-            name="ip"
-            bind:value={ipAddress}
-            oninput={(e) => (ipAddress = e.currentTarget.value)}
-            onkeydown={(e) => {
-                if (e.key !== "Enter") return;
-                history.replaceState(
-                    null,
-                    "",
-                    `?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges}`
-                );
-                if (e.shiftKey) calculateFLSM();
-                else document.getElementById("rngInput")?.focus();
-            }}
-            title="Introduce una IPv4 con CIDR, como 192.168.0.1/24"
-            required
-            channel="ZakaTeka"
-            tail="w-full!"
-        />
-        <Input
-            type="number"
-            name="range"
-            id="rngInput"
-            bind:value={ranges}
-            oninput={(e) => (ranges = e.currentTarget.value)}
-            onkeydown={(e) => {
-                if (e.key !== "Enter") return;
-                history.replaceState(
-                    null,
-                    "",
-                    `?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges}`
-                );
-                calculateFLSM();
-            }}
-            title="Introduce la cantidad de subredes que necesitas"
-            required
-            channel="ZakaTeka"
-        />
-    </div>
+<h1>Calculadora de FLSM</h1>
+<br />
+<p>
+    Escribe una IP con CIDR e introduce cuántas subredes deberían existir, y dale a calcular. Usará
+    FLSM para dividir la red por tí.<br /><br />
+</p>
+<br />
+<div class="mb-3 flex w-full flex-row items-center gap-3">
+    <Input
+        type="text"
+        name="ip"
+        bind:value={ipAddress}
+        oninput={(e) => (ipAddress = e.currentTarget.value)}
+        onkeydown={(e) => {
+            if (e.key !== "Enter") return;
+            history.replaceState(null, "", `?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges}`);
+            if (e.shiftKey) calculateFLSM();
+            else document.getElementById("rngInput")?.focus();
+        }}
+        title="Introduce una IPv4 con CIDR, como 192.168.0.1/24"
+        required
+        channel="ZakaTeka"
+        tail="w-full!"
+    />
+    <Input
+        type="number"
+        name="range"
+        id="rngInput"
+        bind:value={ranges}
+        oninput={(e) => (ranges = e.currentTarget.value)}
+        onkeydown={(e) => {
+            if (e.key !== "Enter") return;
+            history.replaceState(null, "", `?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges}`);
+            calculateFLSM();
+        }}
+        title="Introduce la cantidad de subredes que necesitas"
+        required
+        channel="ZakaTeka"
+    />
+</div>
 
-    <code class="text-sm opacity-50"
-        ><kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para pasar a la siguiente entrada (o
-        calcular si has terminado) ·
-        <kbd class="bg-gray-600 px-1.5 py-1">SHIFT</kbd>
-        +
-        <kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para calcular</code
+<code class="text-sm opacity-50"
+    ><kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para pasar a la siguiente entrada (o calcular
+    si has terminado) ·
+    <kbd class="bg-gray-600 px-1.5 py-1">SHIFT</kbd>
+    +
+    <kbd class="bg-gray-600 px-1.5 py-1">ENTER</kbd> para calcular</code
+>
+
+<br />
+<div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
+    <Button onclick={calculateFLSM} channel="ZakaTeka" title="Calcular el FLSM."
+        ><b>&starf;</b> Calcular FLSM</Button
     >
+    <Button
+        onclick={share}
+        channel="ZakaTeka"
+        popovertarget="share-popover"
+        title="Generar un enlace para compartir el resultado."
+        ><b>&nearr;</b> Compartir
+    </Button>
+</div>
+<div id="share-popover" class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4" popover>
+    ¡Enlace copiado al portapapeles!
+</div>
 
+{#if val !== null}
     <br />
-    <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button onclick={calculateFLSM} channel="ZakaTeka" title="Calcular el FLSM."
-            ><b>&starf;</b> Calcular FLSM</Button
-        >
-        <Button
-            onclick={share}
-            channel="ZakaTeka"
-            popovertarget="share-popover"
-            title="Generar un enlace para compartir el resultado."
-            ><b>&nearr;</b> Compartir
-        </Button>
-    </div>
-    <div
-        id="share-popover"
-        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
-        popover
-    >
-        ¡Enlace copiado al portapapeles!
-    </div>
-
-    {#if val !== null}
+    {#each val as range, rangeIdx (rangeIdx)}
+        <h2>Rango #{rangeIdx}</h2>
         <br />
-        {#each val as range, rangeIdx (rangeIdx)}
-            <h2>Rango #{rangeIdx}</h2>
-            <br />
-            <Table
-                channel="ZakaTeka"
-                table={[
-                    ["Dirección de red", range.networkAddress],
-                    ["Dirección de broadcast", range.broadcastAddress],
-                    ["Máscara de red", range.mask],
-                    ["Rango utilizable", `${range.usable[0]} — ${range.usable[1]}`],
-                    [
-                        "Número de hosts útiles",
-                        `${range.usableHosts[0]} (${range.usableHosts[1]} - 2)`,
-                    ],
-                    [
-                        "Número de hosts en total",
-                        `${range.usableHosts[0] + 2} (${range.usableHosts[1]})`,
-                    ],
-                ]}
-            />
-            <br />
-        {/each}
-    {/if}
-</main>
+        <Table
+            channel="ZakaTeka"
+            table={[
+                ["Dirección de red", range.networkAddress],
+                ["Dirección de broadcast", range.broadcastAddress],
+                ["Máscara de red", range.mask],
+                ["Rango utilizable", `${range.usable[0]} — ${range.usable[1]}`],
+                ["Número de hosts útiles", `${range.usableHosts[0]} (${range.usableHosts[1]} - 2)`],
+                [
+                    "Número de hosts en total",
+                    `${range.usableHosts[0] + 2} (${range.usableHosts[1]})`,
+                ],
+            ]}
+        />
+        <br />
+    {/each}
+{/if}

@@ -49,106 +49,100 @@
     />
 </svelte:head>
 
-<main>
-    <h1>Convertidor entre binario, decimal, y hexadecimal</h1>
-    <br />
-    <p>
-        Escribe un número en cualquiera de las tres cajas (una para bin., otra para dec., y otra
-        para hex.) y te muestra dicho número en los tres formatos.<br /><br />
-    </p>
-    <div class="flex w-full flex-row gap-2">
-        <Input
-            type="number"
-            pattern="[10]*"
-            inputmode="numeric"
-            name="bin"
-            bind:value={bin}
-            oninput={(e) => {
-                handleInputChange(1, e.currentTarget.value);
-                const newParams = `?val=${dec}`;
-                history.replaceState(null, "", newParams);
-            }}
-            title="Número binario"
-            required
-            channel="ZakaTeka"
-            tail="w-full! flex-1 md:flex-3"
-            label="Binario"
-        />
-        <Input
-            type="number"
-            name="dec"
-            bind:value={dec}
-            oninput={(e) => {
-                handleInputChange(2, e.currentTarget.value);
-                const newParams = `?val=${dec}`;
-                history.replaceState(null, "", newParams);
-            }}
-            title="Número decimal"
-            required
-            tail="w-full! flex-1 md:flex-3"
-            channel="ZakaTeka"
-            label="Decimal"
-        />
-        <Input
-            type="text"
-            name="hex"
-            bind:value={hex}
-            oninput={(e) => {
-                handleInputChange(3, e.currentTarget.value);
-                const newParams = `?val=${dec}`;
-                history.replaceState(null, "", newParams);
-            }}
-            title="Número hexadecimal"
-            required
-            channel="ZakaTeka"
-            tail="w-full! flex-1 md:flex-3"
-            label="Hexadecimal"
-        />
-    </div>
-    <div
-        id="share-popover"
-        class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4"
-        popover
-    >
-        ¡Enlace copiado al portapapeles!
-    </div>
+<h1>Convertidor entre binario, decimal, y hexadecimal</h1>
+<br />
+<p>
+    Escribe un número en cualquiera de las tres cajas (una para bin., otra para dec., y otra para
+    hex.) y te muestra dicho número en los tres formatos.<br /><br />
+</p>
+<div class="flex w-full flex-row gap-2">
+    <Input
+        type="number"
+        pattern="[10]*"
+        inputmode="numeric"
+        name="bin"
+        bind:value={bin}
+        oninput={(e) => {
+            handleInputChange(1, e.currentTarget.value);
+            const newParams = `?val=${dec}`;
+            history.replaceState(null, "", newParams);
+        }}
+        title="Número binario"
+        required
+        channel="ZakaTeka"
+        tail="w-full! flex-1 md:flex-3"
+        label="Binario"
+    />
+    <Input
+        type="number"
+        name="dec"
+        bind:value={dec}
+        oninput={(e) => {
+            handleInputChange(2, e.currentTarget.value);
+            const newParams = `?val=${dec}`;
+            history.replaceState(null, "", newParams);
+        }}
+        title="Número decimal"
+        required
+        tail="w-full! flex-1 md:flex-3"
+        channel="ZakaTeka"
+        label="Decimal"
+    />
+    <Input
+        type="text"
+        name="hex"
+        bind:value={hex}
+        oninput={(e) => {
+            handleInputChange(3, e.currentTarget.value);
+            const newParams = `?val=${dec}`;
+            history.replaceState(null, "", newParams);
+        }}
+        title="Número hexadecimal"
+        required
+        channel="ZakaTeka"
+        tail="w-full! flex-1 md:flex-3"
+        label="Hexadecimal"
+    />
+</div>
+<div id="share-popover" class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4" popover>
+    ¡Enlace copiado al portapapeles!
+</div>
 
-    {#if !(bin === "" || dec === "" || hex === "")}
-        <br />
-        {#if bin !== bin.replace(/[^10]/g, "") && bin !== "NaN"}
-            <p style="color: red!important">
-                Oye, genio, que en binario solo puedes poner unos y ceros.
-            </p>
-            <br />
-        {/if}
-        {#if hex !== hex.replace(/[^0123456789AaBbCcDdEeFf]/g, "") && hex !== "NaN"}
-            <p style="color: red!important">
-                Oye, genio, que en hexadecimal solo puedes poner del 0 al 9 y de la A a la F.
-            </p>
-            <br />
-        {/if}
-        <div class="flex w-full flex-row items-center justify-center gap-10">
-            <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
-                {bin}
-            </span>
-            <b>·</b>
-            <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
-                {dec}
-            </span>
-            <b>·</b>
-            <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
-                {hex.toUpperCase()}
-            </span>
-        </div>
-    {/if}
+{#if !(bin === "" || dec === "" || hex === "")}
     <br />
-    <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button
-            onclick={share}
-            popovertarget="share-popover"
-            channel="ZakaTeka"
-            title="Generar un enlace para compartir el resultado."
-            ><b>&nearr;</b> Compartir
-        </Button>
+    {#if bin !== bin.replace(/[^10]/g, "") && bin !== "NaN"}
+        <p style="color: red!important">
+            Oye, genio, que en binario solo puedes poner unos y ceros.
+        </p>
+        <br />
+    {/if}
+    {#if hex !== hex.replace(/[^0123456789AaBbCcDdEeFf]/g, "") && hex !== "NaN"}
+        <p style="color: red!important">
+            Oye, genio, que en hexadecimal solo puedes poner del 0 al 9 y de la A a la F.
+        </p>
+        <br />
+    {/if}
+    <div class="flex w-full flex-row items-center justify-center gap-10">
+        <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+            {bin}
+        </span>
+        <b>·</b>
+        <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+            {dec}
+        </span>
+        <b>·</b>
+        <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+            {hex.toUpperCase()}
+        </span>
     </div>
-</main>
+{/if}
+<br />
+<div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
+    <Button
+        onclick={share}
+        popovertarget="share-popover"
+        channel="ZakaTeka"
+        title="Generar un enlace para compartir el resultado."
+        ><b>&nearr;</b> Compartir
+    </Button>
+</div>

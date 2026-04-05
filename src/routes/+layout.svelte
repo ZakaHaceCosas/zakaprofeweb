@@ -4,6 +4,7 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import { resolve } from "$app/paths";
+    import Button from "$lib/Button.svelte";
 
     let { children } = $props();
 
@@ -66,23 +67,32 @@
         swapTheme(loadTheme);
     });
 
+    let mobileMenu = $state(false);
+
     $effect(() => {
         swapTheme(theme);
     });
 </script>
 
 <nav
-    class="flex flex-col items-center justify-between border-b-2 border-b-(--fff25) bg-(--blk) p-4 shadow-[0px_0px_15px_10px_var(--blkSha)] md:flex-row"
+    class="flex flex-row items-center justify-between border-b-2 border-b-(--fff25) bg-(--blk) p-4 shadow-[0px_0px_15px_10px_var(--blkSha)]"
 >
     <a href={resolve("/")}>
         <img
-            class="pointer-events-none!"
+            class="pointer-events-none! h-12 object-scale-down"
             src="/logo_horizon.avif"
             alt="Logotipo de ZakaProfe"
-            style="height: 50px; object-fit: scale-down;"
         />
     </a>
-    <div class="flex w-full flex-row items-center justify-center gap-2.5 md:justify-end">
+    <button
+        class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25) md:hidden"
+        onclick={() => {
+            mobileMenu = !mobileMenu;
+        }}
+    >
+        {mobileMenu ? "✕" : "☰"}
+    </button>
+    <div class="hidden w-full flex-row items-center justify-end gap-2.5 md:flex">
         <button
             onclick={() => goto(resolve("/"))}
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
@@ -138,7 +148,31 @@
     </div>
 </nav>
 
-{@render children?.()}
+<main class="flex flex-1 flex-col items-start justify-start p-8">
+    {#if mobileMenu}
+        <h2>Usa estos enlaces para navegar el sitio</h2>
+        {#each [{ url: "/", title: "Inicio" }, { url: "/apps", title: "Aplicaciones de ZakaProfe" }, { url: "/search", title: "Buscador de videos" }] as link}
+            <br />
+            <a href={link.url} class="hover:text-gray-400" onclick={() => (mobileMenu = false)}>
+                {link.title}
+            </a>
+        {/each}
+        <br />
+        <Button
+            onclick={() => {
+                if (theme === "dark") theme = "light";
+                else theme = "dark";
+            }}
+            tail="flex-none!"
+            title="Dale aquí para alternar entre el tema claro y el oscuro"
+            channel="ZakaProfe"
+        >
+            Cambiar al tema {theme == "light" ? "oscuro" : "claro"}
+        </Button>
+    {:else}
+        {@render children?.()}
+    {/if}
+</main>
 
 <footer
     class="flex flex-col items-center justify-between gap-4 border-t-2 border-t-(--fff25) bg-(--blk) p-4 text-sm font-medium text-(--grey) shadow-[0px_0px_-15px_10px_var(--blkSha)] md:flex-row md:gap-0"

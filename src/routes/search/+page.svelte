@@ -41,84 +41,82 @@
     <title>Buscador de vídeos</title>
 </svelte:head>
 
-<main>
-    <h1>Buscador de vídeos</h1>
-    <br />
-    <p>
-        Es más rápido que el propio buscador de YouTube y tiene enlace directo a cada video, por lo
-        que te será útil.
-    </p>
-    <hr />
-    <Input
-        required
-        value={search}
-        type="text"
-        name="query"
-        title="Busca un video..."
-        oninput={(e) => {
-            search = normalize(e.currentTarget.value, { strict: true });
-        }}
-        channel="ZakaProfe"
-    />
+<h1>Buscador de vídeos</h1>
+<br />
+<p>
+    Es más rápido que el propio buscador de YouTube y tiene enlace directo a cada video, por lo que
+    te será útil.
+</p>
+<hr />
+<Input
+    required
+    value={search}
+    type="text"
+    name="query"
+    title="Busca un video..."
+    oninput={(e) => {
+        search = normalize(e.currentTarget.value, { strict: true });
+    }}
+    channel="ZakaProfe"
+/>
 
-    {#if search.length > 2}
-        <br />
-        <p class="disclaimer" aria-live="polite">
-            {pluralOrNot("Encontrado", results.length)} <b>{results.length}</b>
-            {pluralOrNot("video", results.length)}.
-        </p>
-        <br />
-        {#if results && results.length != 0}
-            <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-                {#each results as v (v.url)}
-                    <div class="flex flex-col gap-3 border-2 border-(--fff25) bg-(--blk) p-3">
-                        <img
-                            class="pointer-events-none! aspect-video w-full border-2 border-(--fff25)"
-                            src={v.thumbnail}
-                            alt={`${v.title}, ${v.subject}, ${v.level}`}
-                        />
-                        <div class="flex flex-1 flex-col justify-between gap-2">
-                            <div class="flex-10">
-                                <h2>{v.title}</h2>
-                                <p>
-                                    {v.subject} · {v.level} · {v.duration} · <b>S{v.season}</b>
-                                </p>
-                            </div>
-                            <Button
-                                channel={v.channel}
-                                href={v.url}
-                                title="Redirigir a YouTube para ver este video."
-                                tail="h-auto mt-auto flex-1"
-                            >
-                                Ver en YouTube &gt;&gt;&gt;
-                            </Button>
-                            <p class="text-sm opacity-50">
-                                <b>{v.seen}</b> vistas, <b>{v.likes}</b>
-                                «me gusta». Coincide un <b>{v.similarity.toFixed(2)}</b>%.
+{#if search.length > 2}
+    <br />
+    <p class="disclaimer" aria-live="polite">
+        {pluralOrNot("Encontrado", results.length)} <b>{results.length}</b>
+        {pluralOrNot("video", results.length)}.
+    </p>
+    <br />
+    {#if results && results.length != 0}
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
+            {#each results as v (v.url)}
+                <div class="flex flex-col gap-3 border-2 border-(--fff25) bg-(--blk) p-3">
+                    <img
+                        class="pointer-events-none! aspect-video w-full border-2 border-(--fff25)"
+                        src={v.thumbnail}
+                        alt={`${v.title}, ${v.subject}, ${v.level}`}
+                    />
+                    <div class="flex flex-1 flex-col justify-between gap-2">
+                        <div class="flex-10">
+                            <h2>{v.title}</h2>
+                            <p>
+                                {v.subject} · {v.level} · {v.duration} · <b>S{v.season}</b>
                             </p>
                         </div>
+                        <Button
+                            channel={v.channel}
+                            href={v.url}
+                            title="Redirigir a YouTube para ver este video."
+                            tail="h-auto mt-auto flex-1"
+                        >
+                            Ver en YouTube &gt;&gt;&gt;
+                        </Button>
+                        <p class="text-sm opacity-50">
+                            <b>{v.seen}</b> vistas, <b>{v.likes}</b>
+                            «me gusta». Coincide un <b>{v.similarity.toFixed(2)}</b>%.
+                        </p>
                     </div>
-                {/each}
-            </div>
-            <br />
-            <p class="text-sm opacity-50">
-                La S indica la temporada a la que pertenece el video; cada cambio significativo en
-                la calidad de producción se sube el número, básicamente. Va desde el 0 (mis primeros
-                videos) hasta el 4 (los más nuevos y mejores).
-                <br /><br />
-                Los datos de visitas y «me gusta» no son en tiempo real, se actualizan cada cierto tiempo
-                para evitar consumo de red. Puedes ver lo más reciente en YouTube, aunque no suelen cambiar
-                con frecuencia.
-                <br />
-                Recuerda que, en todos videos, el porcentaje de espectadores que expresan su opinión suele
-                ser bajo. 100 visitas y solo 15 «me gustas» no significan que a las otras 85 personas
-                no les haya gustado el video, no suele ser así.
-            </p>
-        {:else}
-            <p>Ningún resultado para <b>{search}</b>.</p>
-        {/if}
-    {:else}
+                </div>
+            {/each}
+        </div>
         <br />
-        <p>Escribe al menos 3 caracteres y buscará automáticamente.</p>
+        <p class="text-sm opacity-50">
+            La S indica la temporada a la que pertenece el video; cada cambio significativo en la
+            calidad de producción se sube el número, básicamente. Va desde el 0 (mis primeros
+            videos) hasta el 4 (los más nuevos y mejores).
+            <br /><br />
+            Los datos de visitas y «me gusta» no son en tiempo real, se actualizan cada cierto tiempo
+            para evitar consumo de red. Puedes ver lo más reciente en YouTube, aunque no suelen cambiar
+            con frecuencia.
+            <br />
+            Recuerda que, en todos videos, el porcentaje de espectadores que expresan su opinión suele
+            ser bajo. 100 visitas y solo 15 «me gustas» no significan que a las otras 85 personas no les
+            haya gustado el video, no suele ser así.
+        </p>
+    {:else}
+        <p>Ningún resultado para <b>{search}</b>.</p>
     {/if}
-</main>
+{:else}
+    <br />
+    <p>Escribe al menos 3 caracteres y buscará automáticamente.</p>
+{/if}
