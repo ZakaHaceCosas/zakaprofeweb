@@ -5,7 +5,6 @@
     import { onMount } from "svelte";
     import Link from "$lib/Link.svelte";
     import RandomVideoFeed from "$lib/VideoTuple.svelte";
-    import Bola from "$lib/Bola.svelte";
     import ZakAvailable from "$lib/ZakAvailable.svelte";
 
     // eslint-disable no-unassigned-vars (sí se asigna con un bind: pero no me lo detecta)

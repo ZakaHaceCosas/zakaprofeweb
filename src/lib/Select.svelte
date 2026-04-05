@@ -11,6 +11,7 @@
         channel,
         tail,
         disabled = false,
+        nullable = false,
     } = $props<{
         value: string;
         id: string;
@@ -21,6 +22,7 @@
         options: { value: string; label: string }[];
         tail?: string;
         disabled?: boolean;
+        nullable?: boolean;
     }>();
 
     const className = $derived(
@@ -41,7 +43,7 @@
     required
     {onkeydown}
 >
-    <option value="" disabled>(Elige algo)</option>
+    {#if !nullable}<option value="" disabled>(Elige algo)</option>{/if}
     {#each options as opt, idx (idx)}
         <option value={opt.value}>{opt.label}</option>
     {/each}

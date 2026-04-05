@@ -150,17 +150,20 @@ const ZakaProfe = await hola("UC-MFtBk1HQB0qyrQ5NgYGrA");
 const ZakaTeka = await hola("UCU-pq21TjveQWm4DgEyFSiw");
 
 // # types #
-type Subject =
-    | "Física y Química"
-    | "Matemáticas"
-    | "Ciencias Sociales"
-    | "Biología y Geología"
-    | "Lengua Castellana"
-    | "Inglés"
-    | "Desarrollo web"
-    | "Programación"
-    | "Sistemas Operativos";
-type Course = "4to ESO" | "3ro ESO" | "(SMR | DAM | DAW | ASIR)";
+export const SUBJECTS = [
+    "Física y Química",
+    "Matemáticas",
+    "Ciencias Sociales",
+    "Biología y Geología",
+    "Lengua Castellana",
+    "Inglés",
+    "Desarrollo web",
+    "Programación",
+    "Sistemas Operativos",
+] as const;
+export const COURSES = ["4to ESO", "3ro ESO", "(SMR | DAM | DAW | ASIR)"] as const;
+export type Subject = (typeof SUBJECTS)[number];
+export type Course = (typeof COURSES)[number];
 interface ZakaVideo {
     title: string;
     duration: string;

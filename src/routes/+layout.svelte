@@ -151,9 +151,13 @@
 <main class="flex flex-1 flex-col items-start justify-start p-8">
     {#if mobileMenu}
         <h2>Usa estos enlaces para navegar el sitio</h2>
-        {#each [{ url: "/", title: "Inicio" }, { url: "/apps", title: "Aplicaciones de ZakaProfe" }, { url: "/search", title: "Buscador de videos" }] as link}
+        {#each [{ url: "/", title: "Inicio" }, { url: "/apps", title: "Aplicaciones de ZakaProfe" }, { url: "/search", title: "Buscador de videos" }] as const as link, i (i)}
             <br />
-            <a href={link.url} class="hover:text-gray-400" onclick={() => (mobileMenu = false)}>
+            <a
+                href={resolve(link.url)}
+                class="hover:text-gray-400"
+                onclick={() => (mobileMenu = false)}
+            >
                 {link.title}
             </a>
         {/each}

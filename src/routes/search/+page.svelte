@@ -1,39 +1,57 @@
 <script lang="ts">
     import Button from "$lib/Button.svelte";
     import Input from "$lib/Input.svelte";
-    import { ZPVDs, ZTVDs, type IVideo } from "$lib/db";
-    import { validate, normalize, pluralOrNot, similarity } from "@zhc.js/string-utils";
+    import Select from "$lib/Select.svelte";
+    import {
+        COURSES,
+        SUBJECTS,
+        ZPVDs,
+        ZTVDs,
+        type Course,
+        type IVideo,
+        type Subject,
+    } from "$lib/db";
+    import { normalize, pluralOrNot, similarity } from "@zhc.js/string-utils";
 
     let search = $state("");
+    let selectedSubject = $state<Subject | "">("");
+    let selectedCourse = $state<Course | "">("");
     let results: (IVideo & { similarity: number })[] = $state([]);
 
     $effect(() => {
-        if (!validate(search) || search.length < 3) return;
+        const query = normalize(search.trim(), { keepSpaces: true });
+        const words = query.split(/\s+/).filter((w) => w.length > 0);
+        const hasQuery = words.length > 0 && search.length >= 3;
 
         results = [...ZPVDs, ...ZTVDs]
-            .map((v) => {
-                const normalizedTitle = normalize(v.title, { strict: true });
-                const normalizedSubject = normalize(v.subject, { strict: true });
-                const normalizedLevel = normalize(v.level, { strict: true });
-
-                const similarityScore = search
-                    .toLowerCase()
-                    .split(/\s+/)
-                    .reduce((sum, word) => {
-                        // no sé como coño hacer que esto filtre por asignaturas
-                        // tipo que si contiene "mat", "mate" o cosas así no muestre cosas de física
-                        // ya lo pensaré, TODO
-                        const titleSim = similarity(normalizedTitle, word);
-                        const subjectSim = similarity(normalizedSubject, word);
-                        const levelSim = similarity(normalizedLevel, word);
-
-                        return sum + titleSim + subjectSim + levelSim;
-                    }, 0);
-
-                return { ...v, similarity: (similarityScore * 100) / 3 };
+            .filter((v) => {
+                if (selectedSubject && v.subject !== selectedSubject) return false;
+                if (selectedCourse && v.level !== selectedCourse) return false;
+                return true;
             })
-            .filter((v) => v && v.similarity > 0)
-            .sort((a, b) => b!.similarity - a!.similarity);
+            .map((v) => {
+                if (!hasQuery) return { ...v, similarity: 1 };
+
+                const titleTokens = normalize(v.title, { keepSpaces: true })
+                    .split(/\s+/)
+                    .filter((t) => t.length > 0);
+
+                const score =
+                    words.reduce((sum, word) => {
+                        const best = Math.max(
+                            ...titleTokens.map((token) => {
+                                if (token === word) return 1;
+                                if (token.includes(word) || word.includes(token)) return 0.9;
+                                return similarity(token, word);
+                            })
+                        );
+                        return sum + best;
+                    }, 0) / words.length;
+
+                return { ...v, similarity: score * 100 };
+            })
+            .filter((v) => !hasQuery || v.similarity > 40)
+            .sort((a, b) => b.similarity - a.similarity);
     });
 </script>
 
@@ -48,17 +66,47 @@
     te será útil.
 </p>
 <hr />
-<Input
-    required
-    value={search}
-    type="text"
-    name="query"
-    title="Busca un video..."
-    oninput={(e) => {
-        search = normalize(e.currentTarget.value, { strict: true });
-    }}
-    channel="ZakaProfe"
-/>
+<div class="flex w-full flex-col gap-2 md:flex-row">
+    <Select
+        bind:value={selectedSubject}
+        nullable
+        options={[
+            { value: "", label: "Todas las asignaturas" },
+            ...SUBJECTS.map((c) => {
+                return { value: c, label: c };
+            }),
+        ]}
+        title="Elige una asignatura"
+        id="asig-select"
+        channel="ZakaProfe"
+    />
+
+    <Select
+        bind:value={selectedCourse}
+        nullable
+        options={[
+            { value: "", label: "Todos los cursos" },
+            ...COURSES.map((c) => {
+                return { value: c, label: c };
+            }),
+        ]}
+        title="Elige un curso"
+        id="course-select"
+        channel="ZakaProfe"
+    />
+
+    <Input
+        required
+        bind:value={search}
+        type="text"
+        name="query"
+        title="Busca por título del video..."
+        oninput={(e) => {
+            search = normalize(e.currentTarget.value, { strict: true });
+        }}
+        channel="ZakaProfe"
+    />
+</div>
 
 {#if search.length > 2}
     <br />
