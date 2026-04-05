@@ -148,9 +148,9 @@
     </div>
 </nav>
 
-<main class="flex flex-1 flex-col items-start justify-start p-8">
-    {#if mobileMenu}
-        <h2>Usa estos enlaces para navegar el sitio</h2>
+{#if mobileMenu}
+    <div class="flex flex-col bg-(--blk) p-8">
+        <h2>Navegación</h2>
         {#each [{ url: "/", title: "Inicio" }, { url: "/apps", title: "Aplicaciones de ZakaProfe" }, { url: "/search", title: "Buscador de videos" }] as const as link, i (i)}
             <br />
             <a
@@ -173,10 +173,9 @@
         >
             Cambiar al tema {theme == "light" ? "oscuro" : "claro"}
         </Button>
-    {:else}
-        {@render children?.()}
-    {/if}
-</main>
+    </div>
+{/if}
+<main class="flex flex-1 flex-col items-start justify-start p-8">{@render children?.()}</main>
 
 <footer
     class="flex flex-col items-center justify-between gap-4 border-t-2 border-t-(--fff25) bg-(--blk) p-4 text-sm font-medium text-(--grey) shadow-[0px_0px_-15px_10px_var(--blkSha)] md:flex-row md:gap-0"
