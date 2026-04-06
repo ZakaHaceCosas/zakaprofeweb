@@ -14,13 +14,19 @@
 // # INYECTAR AQUÍ AMIGO # //
 // # types #
 export const SUBJECTS = [
-    "Física y Química", "Matemáticas", "Ciencias Sociales",
-    "Biología y Geología", "Lengua Castellana", "Inglés",
-    "Desarrollo web", "Programación", "Sistemas Operativos"
+    "Física y Química",
+    "Matemáticas",
+    "Ciencias Sociales",
+    "Biología y Geología",
+    "Lengua Castellana",
+    "Inglés",
+    "Desarrollo web",
+    "Programación",
+    "Sistemas Operativos",
 ] as const;
 export const COURSES = ["4to ESO", "3ro ESO", "(SMR | DAM | DAW | ASIR)"] as const;
-export type Subject = typeof SUBJECTS[number]
-export type Course = typeof COURSES[number]
+export type Subject = (typeof SUBJECTS)[number];
+export type Course = (typeof COURSES)[number];
 export interface IVideo {
     title: string;
     duration: string;

@@ -94,6 +94,7 @@
     </button>
     <div class="hidden w-full flex-row items-center justify-end gap-2.5 md:flex">
         <button
+            aria-label="Ir al inicio"
             onclick={() => goto(resolve("/"))}
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
@@ -106,6 +107,7 @@
             <p class="hidden md:block">Inicio</p>
         </button>
         <button
+            aria-label="Ir al buscador"
             onclick={() => goto(resolve("/search"))}
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
@@ -118,6 +120,7 @@
             <p class="hidden md:block">Buscador</p>
         </button>
         <button
+            aria-label="Ir a aplicaciones"
             onclick={() => goto(resolve("/apps"))}
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
@@ -130,6 +133,7 @@
             <p class="hidden md:block">Aplicaciones</p>
         </button>
         <button
+            aria-label="Cambiar tema"
             onclick={() => {
                 if (theme === "dark") theme = "light";
                 else theme = "dark";

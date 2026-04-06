@@ -35,7 +35,7 @@ project_id
 
 # zaka cache lol
 **.zakache
-# aplicaciones internas para ayudarme a hacer videos
+# Aplicaciones internas para ayudarme a hacer videos
 **/apps/internal/**
-# No listo para prod (MANTENER) AL FINAL Y NO AÑADIR UNA TRAILING LINE
+# No listo para prod
 **/apps/dev/**
