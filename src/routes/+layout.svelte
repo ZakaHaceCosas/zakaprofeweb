@@ -191,7 +191,7 @@
         y otros materiales asociados sin autorización expresa.
     </p>
     <p class="md:flex-2 md:text-end">
-        <b>ZakaProfe WEB v3.5.0 (En progreso)</b> ·
+        <b>ZakaProfe WEB v3.5.0 (06/04/2026)</b> ·
         <a href={resolve("/changelog")} class="underline">¿Qué hay de nuevo en esta versión?</a>
         · <a href={resolve("/bugs")} class="underline">Reportar un fallo</a>
     </p>

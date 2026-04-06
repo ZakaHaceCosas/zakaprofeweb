@@ -42,10 +42,10 @@
 </script>
 
 <svelte:head>
-    <title>Convertidor entre binario, decimal, y hexadecimal</title>
+    <title>Convertidor entre binario, decimal y hexadecimal</title>
     <meta
         name="description"
-        content="Un convertidor entre binario, decimal, y hexadecimal. Escribes en un formato y automáticamente recibes el resultado en los otros dos."
+        content="Un convertidor entre binario, decimal y hexadecimal. Escribes en un formato y automáticamente recibes el resultado en los otros dos."
     />
 </svelte:head>
 

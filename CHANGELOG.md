@@ -2,14 +2,19 @@
 
 # ZakaProfe WEB · Registro de cambios
 
-## 3.5.0 (En progreso)
+## 3.5.0 (06/04/2026)
 
-## Actualizaciones visibles para el usuario
+<br/>
+
+**Actualizaciones visibles para el usuario**
+
+<br/>
 
 ### Mejoras significativas
 
 - Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mucho mejor.
 - Mejorada bastante la adaptabilidad móvil.
+    - Las aplicaciones, aunque han mejorado, aún necesitan algo de trabajo. Para la próxima versión renovaré el diseño de todas las aplicaciones para ser (a parte de mejor, en general) correctamente adaptativo.
 - Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla. Además, ahora muestra algún dato más (como las visitas de cada video o su duración).
 - Mejorada bastante la accesibilidad desde teléfonos.
 
@@ -40,13 +45,16 @@
 - Quitada la sección para las clases particulares. No está cancelado, pero mañana no va a ser, no tiene mucho sentido el spoiler ahí.
 - Semi-automatizadas las actualizaciones de datos para el buscador y demás.
 
-## Actualizaciones internas (desarrollo)
+<br/>
+
+**Actualizaciones internas (desarrollo)**
+
+<br/>
 
 - Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
-- Quitados varios `console.log` innecesarios.
 - Ahora en teoría el prerenderizado de Svelte debería ir.
 - Quitados algunos estilos CSS innecesarios, debería mejorar un poquito el rendimiento.
-- Optimizadas la mayoría de imágenes, de WebP a AVIF, deberían cargar mejor.
+- Optimizadas la mayoría de imágenes cambiando el formato de WebP a AVIF, deberían cargar mejor.
 
 ## 3.4.0 (08/03/2026)
 

@@ -31,16 +31,26 @@
 <hr />
 <!--ESTO SE INYECTA MEDIANTE UN SCRIPT, NO HACE FALTA TOCAR A MANO-->
 <!--#CHG-->
-<h2>3.5.0 (En progreso)</h2>
-<hr />
-<h2>Actualizaciones visibles para el usuario</h2>
+<h2>3.5.0 (06/04/2026)</h2>
+<br />
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
+<br />
 <h3>Mejoras significativas</h3>
 <ul>
     <li>
         Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mucho
         mejor.
     </li>
-    <li>Mejorada bastante la adaptabilidad móvil.</li>
+    <li>
+        Mejorada bastante la adaptabilidad móvil.
+        <ul>
+            <li>
+                Las aplicaciones, aunque han mejorado, aún necesitan algo de trabajo. Para la
+                próxima versión renovaré el diseño de todas las aplicaciones para ser (a parte de
+                mejor, en general) correctamente adaptativo.
+            </li>
+        </ul>
+    </li>
     <li>
         Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla. Además,
         ahora muestra algún dato más (como las visitas de cada video o su duración).
@@ -109,16 +119,19 @@
     </li>
     <li>Semi-automatizadas las actualizaciones de datos para el buscador y demás.</li>
 </ul>
-<hr />
-<h2>Actualizaciones internas (desarrollo)</h2>
+<br />
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
+<br />
 <ul>
     <li>
         Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
     </li>
-    <li>Quitados varios <code>console.log</code> innecesarios.</li>
     <li>Ahora en teoría el prerenderizado de Svelte debería ir.</li>
     <li>Quitados algunos estilos CSS innecesarios, debería mejorar un poquito el rendimiento.</li>
-    <li>Optimizadas la mayoría de imágenes, de WebP a AVIF, deberían cargar mejor.</li>
+    <li>
+        Optimizadas la mayoría de imágenes cambiando el formato de WebP a AVIF, deberían cargar
+        mejor.
+    </li>
 </ul>
 <hr />
 <h2>3.4.0 (08/03/2026)</h2>

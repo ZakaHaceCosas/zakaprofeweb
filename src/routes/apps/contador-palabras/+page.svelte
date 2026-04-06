@@ -24,7 +24,10 @@
 
 <svelte:head>
     <title>Contador de palabras</title>
-    <meta name="description" content="Un contador de palabras, letras, y párrafos." />
+    <meta
+        name="description"
+        content="Un contador de palabras, letras, párrafos y tiempo de lectura."
+    />
 </svelte:head>
 
 <h1>Contador de palabras (y de caracteres, y de párrafos...)</h1>
