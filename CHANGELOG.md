@@ -1,6 +1,33 @@
-<!-- markdownlint-disable md007 -->
+<!-- markdownlint-disable md007 md033 md036 md024 -->
 
 # ZakaProfe WEB · Registro de cambios
+
+## 4.0.0 (En desarrollo)
+
+<br/>
+
+**Actualizaciones visibles para el usuario**
+
+<br/>
+
+### Cambios rompedores
+
+- Ahora, para ser más coherentes, cada canal tiene su propia web. El contenido de «ZakaTeka» se ha movido de _profe.zhc.es_ (donde siempre estuvo) a _teka.zhc.es_ (donde debería haber estado desde un principio).
+
+### Mejoras significativas
+
+- Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de colores de tu sistema.
+- [ZPW/TEKA] Ejemplo (solo mostrar en web teka)
+- [ZPW/PROFE] Ejemplo (solo mostrar en web profe)
+
+<br/>
+
+**Actualizaciones internas (desarrollo)**
+
+<br/>
+
+- Partida la web en dos, ahora es un monorepo.
+- Ahora todas las aplicaciones, en lugar de ser código independiente, están basadas en el [pensar nombre en clave aquí], dando mayor consistencia y estabilidad.
 
 ## 3.5.0 (06/04/2026)
 

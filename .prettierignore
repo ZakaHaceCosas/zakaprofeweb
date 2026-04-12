@@ -9,4 +9,4 @@ bun.lockb
 /static/
 
 # Automáticos
-src/lib/db.ts
+**/db.ts

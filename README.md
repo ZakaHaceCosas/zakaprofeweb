@@ -1,8 +1,15 @@
 # ZakaProfe Web
 
-Una APW educativa; de parte de [ZakaProfe](https://youtube.com/@ZakaProfe) y [ZakaTeka](https://youtube.com/@ZakaTeka) :]
+> [!NOTE]
+> TODO (personal):
+>
+> - revisar inconsistencias/duplicados en logos, texto y demás
+> - convertir layout en un componente también
+> - conseguir que las builds de vercel funcionen
 
-Tiene varias aplicaciones útiles de diferentes asignaturas, contiene enlaces al canal y de contacto, un buscador (más rápido que el propio de YouTube, já), y más.
+AWPs (aplicaciones web progresivas) educativa; de parte de [ZakaProfe](https://youtube.com/@ZakaProfe) y [ZakaTeka](https://youtube.com/@ZakaTeka) :]
+
+Cada una tiene varias aplicaciones útiles de diferentes asignaturas, contiene enlaces al canal y de contacto, un buscador (más rápido que el propio de YouTube, já), y más.
 
 <div>
 
@@ -13,7 +20,24 @@ Tiene varias aplicaciones útiles de diferentes asignaturas, contiene enlaces al
 
 ## Pila tecnológica
 
-Está escrito enteramente en Svelte(Kit) 5 y alojado en Vercel.
+Esto es un «monorepo», ambas webs están escritas enteramente en Svelte(Kit) 5 y alojadas en Vercel, bajo los dominios [profe.zhc.es] y [teka.zhc.es].
+
+Ambas comparten todo el código posible.
+
+### Notas
+
+**Archivos llamados `db.ts` (uno por sitio)**:
+
+TODO EL CONTENIDO DE ESTOS ARCHIVO ESTÁ AUTOMÁTICAMENTE GENERADO, DIRÍJASE A `tools/fetch.ts` EN LA RAÍZ DE ESTE REPOSITORIO PARA EL GENERADOR DE CÓDIGO.
+
+POR HACER:
+
+- primero, cumplir con este estándar que escribí hace siglos
+-   - QUE VIDEOS SE DESTACAN:
+-   -   - ultima temporada, todos
+-   -   - mejores videos de la temporada anterior si es que no hay al menos 6 videos
+-   -   - si hay videos extraordinariamente buenos, añadirlos sin importar la temporada
+- ~~segundo, reorganizar todo mejor para compaginar ZP y ZT [HECHO]~~
 
 ## Contribuir a la web
 
@@ -23,4 +47,4 @@ No hay pautas formales todavía, sencillamente clónate el repositorio, haz algo
 
 ## Autor
 
-- Zakaria B., más conocido como «@ZakaProfe» (o «@ZakaHaceCosas» también)
+\- Zakaria B., más conocido como «@ZakaProfe», «@ZakaTeka» o también «@ZakaHaceCosas» también.
