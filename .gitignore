@@ -40,3 +40,4 @@ project_id
 **/apps/internal/**
 # No listo para prod
 **/apps/dev/**
+.idea

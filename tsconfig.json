@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "module": "commonjs",
         "allowJs": true,
         "checkJs": true,
         "esModuleInterop": true,
@@ -8,6 +9,7 @@
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
-        "moduleResolution": "bundler"
+        "moduleResolution": "bundler",
+        "target": "esnext"
     }
 }
