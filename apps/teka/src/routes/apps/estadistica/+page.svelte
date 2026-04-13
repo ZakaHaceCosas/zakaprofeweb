@@ -1,0 +1,25 @@
+// B
+function input<T>() { return "" as any as T; };
+// S
+const pairs = input<[number, number][]>();
+
+let i = 0;
+const avg = 1.93;
+
+const WHAT: "DM" | "Varian" = "Varian" as "DM" | "Varian";
+
+pairs.forEach((p) => {
+  const a = WHAT == "DM" ? Math.abs(p[0] - avg) : Math.pow(p[0] - avg, 2);
+  i += a * p[1];
+});
+
+i = i / 74;
+console.log(i);
+if (WHAT == "Varian") console.log(Math.sqrt(i));
+// F
+const q = {};
+// M
+const m = {
+  name: "Calculadora para estadística",
+  desc: "Calculadora que genera tablas y gráficos para estudios estadísticos unidimensionales o bidimensionales."
+};
