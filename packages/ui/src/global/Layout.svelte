@@ -79,6 +79,7 @@
             alt="Logotipo de {channel}"
         />
     </a>
+    <!--
     <button
         class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25) md:hidden"
         onclick={() => {
@@ -129,7 +130,7 @@
         </button>
     </div>
 </nav>
-
+<!--
 {#if mobileMenu}
     <div class="flex flex-col bg-(--blk) p-8">
         <h2>Navegación</h2>
@@ -144,9 +145,15 @@
             </a>
         {/each}
     </div>
-{/if}
-
-<main class="flex flex-1 flex-col items-start justify-start p-8">{@render children?.()}</main>
+{/if}-->
+<main class="flex flex-1 flex-col items-start justify-start p-8">
+    <!-- {@render children?.()} -->
+    <h1>Sitio web en mantenimiento</h1>
+    <p>
+        Estoy trabajando en varios arreglos y mejoras; hasta entonces la web de ZakaProfe no está
+        disponible, ¡lo siento!
+    </p>
+</main>
 
 <footer
     class="flex flex-col items-center justify-between gap-4 border-t-2 border-t-(--fff25) bg-(--blk) p-4 text-sm font-medium text-(--grey) shadow-[0px_0px_-15px_10px_var(--blkSha)] md:flex-row md:gap-0"
@@ -158,8 +165,9 @@
         autorización expresa.
     </p>
     <p class="md:flex-2 md:text-end">
-        <b>ZakaProfe WEB v4.0.0 (15/04/2026 - Primera parte)</b> ·
+        <b>ZakaProfe WEB v3.5.0 (06/04/2026) (En mantenimiento)</b
+        ><!-- ·
         <a href={resolve("/changelog")} class="underline">¿Qué hay de nuevo en esta versión?</a>
-        · <a href={resolve("/bugs")} class="underline">Reportar un fallo</a>
+        · <a href={resolve("/bugs")} class="underline">Reportar un fallo</a>-->
     </p>
 </footer>
