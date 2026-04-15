@@ -1,4 +1,17 @@
 import { normalize } from "@zhc.js/string-utils";
+import {
+    ISCourse_ZP,
+    ISSubject_ZP,
+    ISSubject_ZT,
+    IVideo,
+    ZP_COURSES,
+    ZP_SUBJECTS,
+    ZPCourse,
+    ZPSubject,
+    ZT_SUBJECTS,
+    ZTCourse,
+    ZTSubject,
+} from "@zpw/types/types";
 
 console.log(
     Bun.color("blue", "ansi"),
@@ -149,59 +162,34 @@ const ZPTemporadas: Record<string, string[]> = await playlists("UC-MFtBk1HQB0qyr
 const ZakaProfe = await hola("UC-MFtBk1HQB0qyrQ5NgYGrA");
 const ZakaTeka = await hola("UCU-pq21TjveQWm4DgEyFSiw");
 
-// # types #
-export const SUBJECTS = [
-    "Física y Química",
-    "Matemáticas",
-    "Ciencias Sociales",
-    "Biología y Geología",
-    "Lengua Castellana",
-    "Inglés",
-    "Desarrollo web",
-    "Programación",
-    "Sistemas Operativos",
-] as const;
-export const COURSES = ["4to ESO", "3ro ESO", "(SMR | DAM | DAW | ASIR)"] as const;
-export type Subject = (typeof SUBJECTS)[number];
-export type Course = (typeof COURSES)[number];
-interface ZakaVideo {
-    title: string;
-    duration: string;
-    channel: "ZakaProfe" | "ZakaTeka"; // compat.
-    thumbnail: string;
-    url: `https://www.youtube.com/watch?v=${string}`;
-    subject: Subject;
-    level: Course;
-    likes: number;
-    seen: number;
-    season: number;
-}
-// # types! #
-
-const ZPCacheFile = Bun.file("zakaprofe.zakache");
+export const ZPCacheFile = Bun.file("zakaprofe.zakache");
 const ZTCacheFile = Bun.file("zakateka.zakache");
-const ZPVDs: ZakaVideo[] = (await ZPCacheFile.exists())
+const ZPVDs: IVideo[] = (await ZPCacheFile.exists())
         ? await JSON.parse(await ZPCacheFile.text())
         : [],
-    ZTVDs: ZakaVideo[] = (await ZTCacheFile.exists())
+    ZTVDs: IVideo[] = (await ZTCacheFile.exists())
         ? await JSON.parse(await ZTCacheFile.text())
         : [];
 
-const subjectKeys: Record<Subject, string> = {
+const zpSubjectKeys: Record<ZPSubject, string> = {
     "Biología y Geología": "bio",
     "Ciencias Sociales": "cis",
-    "Desarrollo web": "dev_web",
-    "Sistemas Operativos": "dev_oses",
-    "Programación": "dev",
     "Matemáticas": "mate",
     "Lengua Castellana": "esp",
     "Inglés": "eng",
     "Física y Química": "fyq",
 };
-const levelKeys: Record<Course, string> = {
-    "(SMR | DAM | DAW | ASIR)": "smr", // SMR pq es lo que estudio yo, lo que tiñe mis enseñanzas
+const zpLevelKeys: Record<ZPCourse, string> = {
     "3ro ESO": "3eso",
     "4to ESO": "4eso",
+};
+const ztSubjectKeys: Record<ZTSubject, string> = {
+    "Desarrollo web": "dev_web",
+    "Sistemas Operativos": "dev_oses",
+    "Programación": "dev",
+};
+const ztLevelKeys: Record<ZTCourse, string> = {
+    "(SMR | DAM | DAW | ASIR)": "smr", // SMR pq es lo que estudio yo, lo que tiñe mis enseñanzas
 };
 
 const stringsForFile: string[] = [];
@@ -225,14 +213,14 @@ for (const vid of ZakaProfe) {
                     ? subjectAndLevelDirty.indexOf("3")
                     : subjectAndLevelDirty.indexOf("4")
             )
-            .trim() as Subject,
+            .trim(),
         subjectAndLevelDirty
             .slice(
                 subjectAndLevelDirty.indexOf("4") == -1
                     ? subjectAndLevelDirty.indexOf("3")
                     : subjectAndLevelDirty.indexOf("4")
             )
-            .trim() as Course,
+            .trim(),
     ];
 
     const season = Number(
@@ -245,19 +233,23 @@ for (const vid of ZakaProfe) {
             .find((i) => i !== null)!
     );
 
-    const subjectKey = subjectKeys[subject];
-    const levelKey = levelKeys[level];
-    const thumbnail = `t/zp/${subjectKey}/${levelKey}/${normalize(title).replaceAll(" ", "_").replaceAll(",", "").replaceAll("(", "").replaceAll(")", "")}.avif`;
+    if (!ISCourse_ZP(level) || !ISSubject_ZP(subject))
+        throw new Error(
+            `VD FAILED (Subject/Course constraint UNMET) GOT ${vid.snippet.title} (AS ${subject}) WHICH IS ABSENT IN ${ZP_SUBJECTS.join(",")} OR ${ZP_COURSES.join(",")}`
+        );
 
-    if (!(await Bun.file("static/" + thumbnail).exists())) {
+    const subjectKey = zpSubjectKeys[subject];
+    const levelKey = zpLevelKeys[level];
+    const thumbnail = `t/${subjectKey}/${levelKey}/${normalize(title).replaceAll(" ", "_").replaceAll(",", "").replaceAll("(", "").replaceAll(")", "")}.avif`;
+
+    if (!(await Bun.file("apps/profe/static/" + thumbnail).exists())) {
         const res = await fetch(vid.snippet.thumbnails.maxres.url);
-        await Bun.file(`static/${thumbnail.replace(".avif", ".png")}`).write(
+        await Bun.file(`apps/profe/static/${thumbnail.replace(".avif", ".png")}`).write(
             await res.arrayBuffer()
         );
     }
 
     ZPVDs.push({
-        channel: "ZakaProfe",
         title,
         subject,
         duration: parserDuraciónISO(vid.contentDetails.duration),
@@ -275,24 +267,29 @@ stringsForFile.push(`const ZPVDs: IVideo[] = ${JSON.stringify(ZPVDs)};`);
 
 for (const vid of ZakaTeka) {
     if (ZTVDs.find((v) => v.url.endsWith(vid.id))) continue;
-    const [title, subject] = vid.snippet.title.split("/");
+    const [title, _subject] = vid.snippet.title.split("/");
+    const subject = _subject.trim();
 
-    const subjectKey = subjectKeys[subject as Subject];
-    const levelKey = levelKeys["(SMR | DAM | DAW | ASIR)"];
+    if (!ISSubject_ZT(subject))
+        throw new Error(
+            `VD FAILED (Subject/Course constraint UNMET) GOT ${vid.snippet.title} (AS ${subject}) WHICH IS ABSENT IN ${ZT_SUBJECTS.join(",")}`
+        );
 
-    const thumbnail = `t/zt/${subjectKey}/${levelKey}/${normalize(title).replaceAll(" ", "_").replaceAll(",", "").replaceAll("(", "").replaceAll(")", "")}.avif`;
+    const subjectKey = ztSubjectKeys[subject];
+    const levelKey = ztLevelKeys["(SMR | DAM | DAW | ASIR)"];
 
-    if (!(await Bun.file("static/" + thumbnail).exists())) {
+    const thumbnail = `t/${subjectKey}/${levelKey}/${normalize(title).replaceAll(" ", "_").replaceAll(",", "").replaceAll("(", "").replaceAll(")", "")}.avif`;
+
+    if (!(await Bun.file("apps/teka/static/" + thumbnail).exists())) {
         const res = await fetch(vid.snippet.thumbnails.maxres.url);
-        await Bun.file(`static/${thumbnail.replace(".avif", ".png")}`).write(
+        await Bun.file(`apps/teka/static/${thumbnail.replace(".avif", ".png")}`).write(
             await res.arrayBuffer()
         );
     }
 
     ZTVDs.push({
-        channel: "ZakaTeka",
         title,
-        subject: subject.trim() as Subject,
+        subject: subject.trim(),
         level: "(SMR | DAM | DAW | ASIR)",
         url: `https://www.youtube.com/watch?v=${vid.id}`,
         duration: parserDuraciónISO(vid.contentDetails.duration),
@@ -304,27 +301,19 @@ for (const vid of ZakaTeka) {
 }
 
 await ZTCacheFile.write(JSON.stringify(ZTVDs));
-stringsForFile.push(`const ZTVDs: IVideo[] = ${JSON.stringify(ZTVDs)};`);
-stringsForFile.push("export { ZPVDs, ZTVDs };");
-const file = Bun.file("src/lib/db.ts");
-const cnt = (await file.text()).split("\n");
-const injectionPoint = cnt.findIndex((s) => s == "// # INYECTAR AQUÍ AMIGO # //");
-const thisFile = Bun.file("tools/fetch.ts");
-const thisCnt = (await thisFile.text()).split("\n");
-const [thisCntIS, thisCntIE] = [
-    thisCnt.findIndex((s) => s == "// # types #"),
-    thisCnt.findIndex((s) => s == "// # types! #"),
-];
-await file.write(
-    [...cnt.slice(0, injectionPoint + 1), ...thisCnt.slice(thisCntIS, thisCntIE), ...stringsForFile]
-        .join("\n")
-        .replace("interface ZakaVideo", "export interface IVideo")
+await Promise.all(
+    ["profe", "teka"].map(async (chn) => {
+        const file = Bun.file(`apps/${chn}/src/lib/db.ts`);
+        await file.write(
+            `import { type IVideo } from "@zpw/types/types"; export const ${chn == "profe" ? "ZPVDs" : "ZTVDs"}: IVideo[] = ${JSON.stringify(chn == "profe" ? ZPVDs : ZTVDs)};`
+        );
+    })
 );
 
 console.log(
     Bun.color("lightgreen", "ansi"),
     "¡OK! Actualización del repositorio de vídeos",
-    Bun.color("white", "ansi")
+    "\x1b[0m"
 );
 
 export {};

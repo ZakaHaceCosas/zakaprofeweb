@@ -14,7 +14,8 @@
         "editor.formatOnSave": false
     },
     "files.associations": {
-        "*.zakache": "json"
+        "*.zakache": "json",
+        "*.zpwapp": "typescript"
     },
     "cSpell.language": "es-ES,en-US",
     "cSpell.words": [
@@ -28,8 +29,6 @@
         "flsm",
         "fullscreen",
         "irpf",
-        "oxfmt",
-        "oxlint",
         "popovertarget",
         "supabase",
         "tailwindcss",
@@ -44,6 +43,7 @@
         "zakateka",
         "zakavailable",
         "ZPVDs",
+        "zpwapp",
         "ZTVDs"
     ]
 }

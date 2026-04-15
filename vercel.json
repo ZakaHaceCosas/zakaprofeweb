@@ -1,9 +1,0 @@
-{
-    "redirects": [
-        {
-            "source": "/calculadora-notas",
-            "destination": "/apps/calculadora-notas",
-            "permanent": true
-        }
-    ]
-}

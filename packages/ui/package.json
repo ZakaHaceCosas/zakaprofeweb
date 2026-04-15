@@ -1,0 +1,13 @@
+{
+    "name": "@zpw/ui",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./*": {
+            "svelte": "./src/*.svelte",
+            "default": "./src/*.svelte"
+        }
+    },
+    "svelte": "./src"
+}

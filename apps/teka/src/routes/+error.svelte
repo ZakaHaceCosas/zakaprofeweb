@@ -1,0 +1,8 @@
+<svelte:options runes={true} />
+
+<script lang="ts">
+    import { page } from "$app/state";
+</script>
+
+<h1>Error HTTP {page.status}</h1>
+<p>Mensaje: «{page.error?.message ?? "(No hay mensaje, de hecho. Esto es raro. Avísame.)"}»</p>

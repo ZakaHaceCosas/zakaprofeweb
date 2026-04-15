@@ -52,7 +52,8 @@ async function optimizeImages(dir: string) {
     );
 }
 
-await optimizeImages("static");
+await optimizeImages("apps/profe/static");
+await optimizeImages("apps/teka/static");
 
 console.log(
     Bun.color("lightgreen", "ansi"),

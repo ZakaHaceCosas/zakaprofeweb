@@ -1,0 +1,20 @@
+<!--
+asi:Utilidades pluri-asignatura
+title:Contador de palabras
+body:Un contador de palabras, letras, y párrafos.
+-->
+<svg
+    width="25"
+    height="25"
+    viewBox="0 0 30 25"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <path d="M0 0H20V4H0V0Z" fill="currentColor" />
+    <path d="M0 14H20V18H0V14Z" fill="currentColor" />
+    <path d="M0 21H20V25H0V21Z" fill="currentColor" />
+    <path d="M10 7H30V11H10V7Z" fill="currentColor" />
+    <path d="M22 0H30V4H22V0Z" fill="currentColor" />
+    <path d="M22 14H30V18H22V14Z" fill="currentColor" />
+    <path d="M22 21H30V25H22V21Z" fill="currentColor" />
+    <path d="M0 7H8V11H0V7Z" fill="currentColor" />
+</svg>

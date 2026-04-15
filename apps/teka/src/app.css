@@ -1,0 +1,7 @@
+@import "../../../packages/app.css";
+@source "../../../packages/ui/src";
+
+:root {
+    --accent: var(--ZakaTeka);
+    --acc-txt: #fff;
+}

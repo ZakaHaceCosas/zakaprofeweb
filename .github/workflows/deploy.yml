@@ -1,0 +1,39 @@
+name: Deploy
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: "Entorno de despliegue"
+                required: true
+                type: choice
+                options:
+                    - preview
+                    - production
+
+jobs:
+    deploy-profe:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  ref: monorepo
+            - run: npm i -g vercel
+            - run: vercel deploy ${{ github.event.inputs.environment == 'production' && '--prod' || '' }}
+              env:
+                  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+                  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PROFE }}
+                  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+
+    deploy-teka:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  ref: monorepo
+            - run: npm i -g vercel
+            - run: vercel deploy ${{ github.event.inputs.environment == 'production' && '--prod' || '' }}
+              env:
+                  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+                  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_TEKA }}
+                  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
