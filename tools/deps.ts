@@ -2,7 +2,7 @@
 // llevan años sin pensar que 'bun update' debería actualizar las versiones de los catalogs
 // parezco low level ahora, tengo que programar mis propias herramientas para que no duela usarlas
 
-console.log(Bun.color("blue", "ansi"), "===> Actualización de dependencias globales");
+console.log(Bun.color("blue", "ansi"), "===> Actualización de dependencias globales", "\x1b[0m");
 
 const packageJsonFile = Bun.file("package.json");
 const originalContent = await packageJsonFile.text();
@@ -44,7 +44,7 @@ await Bun.$`bun run format`;
 console.log(
     Bun.color("lightgreen", "ansi"),
     "¡OK! Actualización de dependencias globales",
-    Bun.color("white", "ansi")
+    "\x1b[0m"
 );
 
 export {};

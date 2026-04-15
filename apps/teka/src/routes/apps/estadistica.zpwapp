@@ -1,28 +1,41 @@
+function zpw_input<T>(n: 1 | 0 = 0) { return "" as any as T; }
+const input: Record<string, any> = {};
+type IDef = { type: "txt" | "txtArea" | "num", placeholder: string, bind_to: string | false, input_name: string, r: 1 | 0 }[]
+type MDef = { name: string; desc: string; longDesc: string; }
+/*S*/
 // TODO:
 // definir el formato
-// hacer la app en sí lol
-// B
-function input<T>() { return "" as any as T; };
-// S
-const pairs = input<[number, number][]>();
+// hacer la app en sí, lol
+const pairs = zpw_input<[number, number][]>()
+const test = zpw_input<string>(1)
 
 let i = 0;
 const avg = 1.93;
 
 const w: "DM" | "Varian" = "Varian" as "DM" | "Varian";
 
-pairs.forEach((p) => {
-  const a = w == "DM" ? Math.abs(p[0] - avg) : Math.pow(p[0] - avg, 2);
-  i += a * p[1];
-});
+function calculatorMethod() {
+  input.pairs.forEach((p) => {
+    const a = w == "DM" ? Math.abs(p[0] - avg) : Math.pow(p[0] - avg, 2);
+    i += a * p[1];
+  });
 
-i = i / 74;
-console.log(i);
-if (w == "Varian") console.log(Math.sqrt(i));
-// F
-const q = {};
-// M
-const m = {
-  name: "Calculadora para estadística",
-  desc: "Calculadora que genera tablas y gráficos para estudios estadísticos unidimensionales o bidimensionales."
+  i = i / 74;
+  console.log(i);
+  if (w == "Varian") console.log(Math.sqrt(i));
+}
+/*_*/
+const Q: IDef = [
+  {
+    "type": "txt",
+    "placeholder": "test de ZPWAPP code-gen",
+    "input_name": "foo",
+    "r": 1,
+    "bind_to": "pairs"
+  }
+];
+const M: MDef = {
+  "name": "Calculadora para estadística",
+  "desc": "Calculadora que genera tablas y gráficos para estudios estadísticos unidimensionales o bidimensionales.",
+  "longDesc": "todo"
 };

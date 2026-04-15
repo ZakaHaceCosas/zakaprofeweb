@@ -1,10 +1,10 @@
 import { $, markdown, file } from "bun";
 
-console.log(Bun.color("blue", "ansi"), "===> Actualización del CHANGELOG markup");
+console.log(Bun.color("blue", "ansi"), "===> Actualización del CHANGELOG markup", "\x1b[0m");
 
 const app = Bun.argv[2];
 if (!["profe", "teka"].includes(app)) {
-    console.error(Bun.color("#ff3232", "ansi"), "App desconocida:", app);
+    console.error(Bun.color("#ff3232", "ansi"), "App desconocida:", app, "\x1b[0m");
     process.exit(1);
 }
 
@@ -61,6 +61,6 @@ await $`bun prettier --w .`.then(() =>
     console.log(
         Bun.color("lightgreen", "ansi"),
         "¡OK! Actualización del CHANGELOG markup",
-        Bun.color("white", "ansi")
+        "\x1b[0m"
     )
 );

@@ -1,7 +1,7 @@
 import * as Bun from "bun";
 import { $ } from "bun";
 
-console.log(Bun.color("blue", "ansi"), "===> ZPW INIT");
+console.log(Bun.color("blue", "ansi"), "===> ZPW INIT", "\x1b[0m");
 
 const ws = Bun.argv[2];
 
@@ -14,4 +14,4 @@ const RT = `apps/${ws}`;
 
 await $`cd ${RT} && bun dev`;
 
-console.log(Bun.color("lightgreen", "ansi"), "¡OK! ZPW INIT", Bun.color("white", "ansi"));
+console.log(Bun.color("lightgreen", "ansi"), "¡OK! ZPW INIT", "\x1b[0m");

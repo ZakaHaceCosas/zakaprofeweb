@@ -5,7 +5,7 @@ console.log(Bun.color("blue", "ansi"), "===> Sitemap.XML", Bun.color("white", "a
 
 const app = Bun.argv[2];
 if (!["profe", "teka"].includes(app)) {
-    console.error(Bun.color("#ff3232", "ansi"), "App desconocida:", app);
+    console.error(Bun.color("#ff3232", "ansi"), "App desconocida:", app, "\x1b[0m");
     process.exit(1);
 }
 
@@ -46,4 +46,4 @@ ${PAGES.map(
 
 writeFileSync(`apps/${app}/static/sitemap.xml`, body);
 
-console.log(Bun.color("lightgreen", "ansi"), "¡OK! Sitemap.XML", Bun.color("white", "ansi"));
+console.log(Bun.color("lightgreen", "ansi"), "¡OK! Sitemap.XML", "\x1b[0m");

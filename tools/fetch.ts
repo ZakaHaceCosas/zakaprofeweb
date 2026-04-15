@@ -313,7 +313,7 @@ await Promise.all(
 console.log(
     Bun.color("lightgreen", "ansi"),
     "¡OK! Actualización del repositorio de vídeos",
-    Bun.color("white", "ansi")
+    "\x1b[0m"
 );
 
 export {};

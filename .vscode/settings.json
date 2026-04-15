@@ -14,7 +14,8 @@
         "editor.formatOnSave": false
     },
     "files.associations": {
-        "*.zakache": "json"
+        "*.zakache": "json",
+        "*.zpwapp": "typescript"
     },
     "cSpell.language": "es-ES,en-US",
     "cSpell.words": [
