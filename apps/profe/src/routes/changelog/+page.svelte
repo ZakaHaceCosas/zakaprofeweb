@@ -31,7 +31,7 @@
 <hr />
 <!--ESTO SE INYECTA MEDIANTE UN SCRIPT, NO HACE FALTA TOCAR A MANO-->
 <!--#CHG-->
-<h2>4.0.0-beta (15/04/2026 - Primera parte)</h2>
+<h2>4.0.0 (15/04/2026 - beta)</h2>
 <br />
 <p><strong>Actualizaciones visibles para el usuario</strong></p>
 <br />

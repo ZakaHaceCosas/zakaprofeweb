@@ -2,7 +2,7 @@
 
 # ZakaProfe WEB · Registro de cambios
 
-## 4.0.0-beta (15/04/2026 - Primera parte)
+## 4.0.0 (15/04/2026 - beta)
 
 <br/>
 
