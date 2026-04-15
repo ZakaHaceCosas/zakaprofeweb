@@ -1,12 +1,11 @@
 lintScript: lint
 prettyScript: format
 launchCmd:
-    - =tools/gitignore.ts n
     - $;;dev --open
 commitCmd:
-    - =tools/gitignore.ts y
     # podría usar también $zpw:fch y cosas así, pero lo mismo da lol
-    - =tools/fetch.ts
-    - =tools/changelog.ts
-    - =tools/images.ts
-    - =tools/sitemap.ts
+    - $zpw:chg teka
+    - $zpw:chg profe
+    - $zpw:xml teka
+    - $zpw:xml profe
+    - $zpw:img

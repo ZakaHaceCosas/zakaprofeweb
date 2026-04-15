@@ -20,6 +20,7 @@ node_modules
 .env.production.local
 .svelte-kit
 .directory
+.idea
 
 npm-debug.log*
 yarn-debug.log*
@@ -36,8 +37,3 @@ project_id
 
 # zaka cache lol
 **.zakache
-# Aplicaciones internas para ayudarme a hacer videos
-**/apps/internal/**
-# No listo para prod
-**/apps/dev/**
-.idea

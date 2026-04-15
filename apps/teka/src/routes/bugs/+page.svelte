@@ -12,7 +12,7 @@
     <b>Página de reporte de errores y envío de sugerencias.</b> En vez de mandar un correo o pasar por
     Instagram, puedes hacer un reporte desde aquí de forma anónima. Se enviará de inmediato, y (tras revisarlo
     yo) aparecerá públicamente para evitar reportes duplicados. También verás que dejo respuestas a comentarios
-    en algunos casos (donde pone «Zaka:» y está destacado de azul).
+    en algunos casos (donde pone «Zaka:» y está destacado con color).
 </p>
 <hr />
-<Comments pageId="bugTracker" />
+<Comments pageId="bug-tracker-zt" />

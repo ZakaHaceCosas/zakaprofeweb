@@ -36,7 +36,7 @@
 
     function share() {
         navigator.clipboard.writeText(
-            `https://profe.zhc.es/apps/convertir-binario-decimal-hexadecimal?val=${dec}`
+            `https://teka.zhc.es/apps/convertir-binario-decimal-hexadecimal?val=${dec}`
         );
     }
 </script>
@@ -120,15 +120,15 @@
         <br />
     {/if}
     <div class="flex w-full flex-row items-center justify-center gap-10">
-        <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+        <span class="font-mono! text-3xl font-bold text-(--accent)">
             {bin}
         </span>
         <b>·</b>
-        <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+        <span class="font-mono! text-3xl font-bold text-(--accent)">
             {dec}
         </span>
         <b>·</b>
-        <span class="font-mono! text-3xl font-bold text-(--ZakaTeka)">
+        <span class="font-mono! text-3xl font-bold text-(--accent)">
             {hex.toUpperCase()}
         </span>
     </div>

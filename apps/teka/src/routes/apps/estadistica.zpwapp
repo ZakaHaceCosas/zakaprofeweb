@@ -1,7 +1,15 @@
-function zpw_input<T>(n: 1 | 0 = 0) { return "" as any as T; }
+function zpw_input<T>(n: 1 | 0 = 0) {
+    return "" as any as T;
+}
 const input: Record<string, any> = {};
-type IDef = { type: "txt" | "txtArea" | "num", placeholder: string, bind_to: string | false, input_name: string, r: 1 | 0 }[]
-type MDef = { name: string; desc: string; longDesc: string; }
+type IDef = {
+    type: "txt" | "txtArea" | "num";
+    placeholder: string;
+    bind_to: string | false;
+    input_name: string;
+    r: 1 | 0;
+}[];
+type MDef = { name: string; desc: string; longDesc: string };type MDef = { name: string; desc: string; longDesc: string };type MDef = { name: string; desc: string; longDesc: string; }
 /*S*/
 // TODO:
 // definir el formato

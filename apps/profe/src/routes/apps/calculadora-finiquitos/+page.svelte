@@ -422,7 +422,7 @@
     <br />
     <p class="text-xl">
         Total:
-        <b><span class="text-(--ZakaProfe)"> {resultado.total.toFixed(2)}</span> euros </b>
+        <b><span class="text-(--accent)"> {resultado.total.toFixed(2)}</span> euros </b>
     </p>
     <br />
     <h2>¿Cómo se ha calculado esto?</h2>
@@ -487,6 +487,6 @@
     <br />
     <p>
         <span class="text-xl">Total a percibir: </span>
-        <span class="text-xl font-bold text-(--ZakaProfe)">{resultado.total.toFixed(2)} euros</span>
+        <span class="text-xl font-bold text-(--accent)">{resultado.total.toFixed(2)} euros</span>
     </p>
 {/if}

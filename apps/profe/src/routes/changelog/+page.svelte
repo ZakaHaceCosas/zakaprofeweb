@@ -31,7 +31,7 @@
 <hr />
 <!--ESTO SE INYECTA MEDIANTE UN SCRIPT, NO HACE FALTA TOCAR A MANO-->
 <!--#CHG-->
-<h2>4.0.0 (En desarrollo)</h2>
+<h2>4.0.0-beta (15/04/2026 - Primera parte)</h2>
 <br />
 <p><strong>Actualizaciones visibles para el usuario</strong></p>
 <br />
@@ -49,18 +49,21 @@
         Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de colores de
         tu sistema.
     </li>
-    <li>Ejemplo (solo mostrar en web profe)</li>
+</ul>
+<h3>Correcciones</h3>
+<ul>
+    <li>
+        [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era
+        usable.
+    </li>
 </ul>
 <br />
 <p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <br />
 <ul>
     <li>Partida la web en dos, ahora es un monorepo.</li>
-    <li>
-        Ahora todas las aplicaciones, en lugar de ser código independiente, están basadas en el
-        [pensar nombre en clave aquí], dando mayor consistencia y estabilidad.
-    </li>
 </ul>
+<!-- - Ahora todas las aplicaciones, en lugar de ser código independiente, están basadas en el [pensar nombre en clave aquí], dando mayor consistencia y estabilidad. -->
 <hr />
 <h2>3.5.0 (06/04/2026)</h2>
 <br />

@@ -158,7 +158,7 @@
         autorización expresa.
     </p>
     <p class="md:flex-2 md:text-end">
-        <b>ZakaProfe WEB v4.0.0 (En desarrollo)</b> ·
+        <b>ZakaProfe WEB v4.0.0 (15/04/2026 - Primera parte)</b> ·
         <a href={resolve("/changelog")} class="underline">¿Qué hay de nuevo en esta versión?</a>
         · <a href={resolve("/bugs")} class="underline">Reportar un fallo</a>
     </p>

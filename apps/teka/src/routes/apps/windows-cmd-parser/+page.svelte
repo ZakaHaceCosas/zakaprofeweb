@@ -740,7 +740,7 @@
 
     function share() {
         navigator.clipboard.writeText(
-            `https://profe.zhc.es/apps/windows-cmd-parser?cmd=${encodeURIComponent(cmd)}`
+            `https://teka.zhc.es/apps/windows-cmd-parser?cmd=${encodeURIComponent(cmd)}`
         );
     }
 </script>

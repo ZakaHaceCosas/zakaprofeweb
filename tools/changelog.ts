@@ -44,7 +44,7 @@ const newLines = [
 ];
 await codeFile.write(newLines.join("\n"));
 
-const footerFile = file(`apps/${app}/src/routes/+layout.svelte`);
+const footerFile = file("packages/ui/src/global/Layout.svelte");
 const footerLines = (await footerFile.text()).split("\n");
 const footerLineStartIdx = footerLines.findIndex((s) =>
     s.trim().startsWith('<p class="md:flex-2 md:text-end">')

@@ -67,7 +67,7 @@
     <br />
     <h3 id="result" class="flex flex-row items-center gap-2">
         Esto tiene
-        <span style="font-size: xx-large; font-weight: 700; color: var(--ZakaProfe);">
+        <span style="font-size: xx-large; font-weight: 700; color: var(--accent);">
             {normalize(text).split(" ").length}
         </span>
         palabras

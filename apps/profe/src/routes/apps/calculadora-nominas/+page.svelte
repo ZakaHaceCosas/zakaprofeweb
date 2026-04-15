@@ -11,21 +11,21 @@
     import Select from "@zpw/ui/Select";
 
     const basesCotContingenciasComunes = {
-        1: [
+        0: [
             "Ingenieros y Licenciados. Personal de alta dirección no incluido en el artículo 1.3.c del Estatuto de los Trabajadores",
             1929.0,
             4909.5,
         ],
-        2: ["Ingenieros Técnicos, Peritos y Ayudantes Titulados", 1599.6, 4909.5],
-        3: ["Jefes Administrativos y de Taller", 1391.7, 4909.5],
-        4: ["Ayudantes no Titulados", 1381.2, 4909.5],
-        5: ["Oficiales Administrativos", 1381.2, 4909.5],
-        6: ["Subalternos", 1381.2, 4909.5],
-        7: ["Auxiliares Administrativos", 1381.2, 4909.5],
-        8: ["Oficiales de primera y segunda", 46.04, 163.65],
-        9: ["Oficiales de tercera y Especialistas", 46.04, 163.65],
-        10: ["Peones", 46.04, 163.65],
-        11: [
+        1: ["Ingenieros Técnicos, Peritos y Ayudantes Titulados", 1599.6, 4909.5],
+        2: ["Jefes Administrativos y de Taller", 1391.7, 4909.5],
+        3: ["Ayudantes no Titulados", 1381.2, 4909.5],
+        4: ["Oficiales Administrativos", 1381.2, 4909.5],
+        5: ["Subalternos", 1381.2, 4909.5],
+        6: ["Auxiliares Administrativos", 1381.2, 4909.5],
+        7: ["Oficiales de primera y segunda", 46.04, 163.65],
+        8: ["Oficiales de tercera y Especialistas", 46.04, 163.65],
+        9: ["Peones", 46.04, 163.65],
+        10: [
             "Personas trabajadoras menores de dieciocho años, cualquiera que sea su categoría profesional",
             46.04,
             163.65,

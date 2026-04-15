@@ -15,4 +15,4 @@
     en algunos casos (donde pone «Zaka:» y está destacado de azul).
 </p>
 <hr />
-<Comments pageId="bugTracker" />
+<Comments pageId="bug-tracker-zp" />

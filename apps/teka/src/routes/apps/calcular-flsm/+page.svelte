@@ -117,7 +117,7 @@
 
     function share() {
         navigator.clipboard.writeText(
-            `https://profe.zhc.es/apps/calcular-flsm?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges}`
+            `https://teka.zhc.es/apps/calcular-flsm?ip=${encodeURIComponent(ipAddress)}&ranges=${ranges}`
         );
     }
 </script>

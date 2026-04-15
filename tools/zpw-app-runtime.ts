@@ -41,10 +41,10 @@ class ZPWAPP {
         fs.writeFileSync(
             this.where,
             types.join("\n")
-            + origin
-                .split("\n")
-                .slice(origin.split("\n").indexOf("/*S*/") - 1)
-                .join("\n"),
+                + origin
+                    .split("\n")
+                    .slice(origin.split("\n").indexOf("/*S*/") - 1)
+                    .join("\n"),
             { encoding: "utf-8" }
         );
     }

@@ -6,7 +6,7 @@
     "author": "ZakaHaceCosas",
     "developer": {
         "name": "ZakaHaceCosas",
-        "url": "https://profe.zhc.es"
+        "url": "https://teka.zhc.es"
     },
     "icons": [
         {
@@ -29,7 +29,7 @@
     "scope": "/",
     "display": "standalone",
     "orientation": "portrait",
-    "theme_color": "#0099FF", // TODO
+    "theme_color": "#FF9900",
     "background_color": "#0F0F0F",
     "screenshots": [
         {

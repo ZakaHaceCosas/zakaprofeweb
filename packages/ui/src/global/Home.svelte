@@ -128,13 +128,23 @@
         Ver todos los videos ({list.length}) en YouTube &gt;&gt;&gt;
     </Link>
 </div>
+<hr />
+<section aria-labelledby="contact-section" class="w-full">
+    <h2 id="contact-section">CONTACTO &gt;&gt;&gt;</h2>
+    <p>Te mereces poder preguntar directamente si no entiendes algo de un video.</p>
+    <br />
+    <Contact {channel} />
+</section>
+<hr />
 
-<br />
-<details>
-    <summary class="cursor-pointer bg-(--blk) p-2 hover:bg-(--blk-hov)"
-        >Clic aquí para una descripción más extensa del canal, que dudo que te la leas, pero en
-        algún lado tenía que ponerla.</summary
-    >
+<section aria-labelledby="about-section" class="w-full">
+    <h2 id="about-section">ACERCA DE &gt;&gt;&gt;</h2>
+    <p>
+        Acerca de mí y de este canal. <span class="opacity-50"
+            >La gente no suele leerse esto, ni es importante, pero bueno. Quizás a ti sí te
+            interesa.</span
+        >
+    </p>
     <br />
     {#if channel == "ZakaProfe"}
         <div class="flex-1 bg-(--ZakaProfe) p-4">
@@ -152,14 +162,11 @@
                 este sitio para ver videos (o te vas a las listas de reproducción del canal en
                 YouTube) verás que está agrupado por temporadas, las cuales mido precisamente en
                 base a la calidad de producción (cada mejora significativa marca una nueva
-                temporada).<br /><br />Si vas a YouTube ahora, verás que la última subida fue hace
-                muchos meses, lo sé y lo siento. Quienes me conocen en persona también me lo suelen
-                comentar. <u>No</u>, no está abandonado o algo. Pasa que teniendo estudios que no
-                tienen nada que ver, es difícil sacar tiempo o incluso encontrar la teoría (porque
-                los libros de la ESO no se encuentran tan fácilmente). Tengo una pila de videos
-                incompletos que nunca pude subir y de ideas que no llegué a empezar, y cuando sea el
-                momento llegarán. Prometido. Al menos tienes esta web, esto sí que se actualiza
-                frecuentemente.
+                temporada).<br /><br />No es un canal activo, lo sé y lo siento. Teniendo estudios
+                (que no tienen nada que ver con lo que enseño aquí) es difícil sacar tiempo o
+                incluso encontrar la teoría (porque los libros de la ESO no se encuentran tan
+                fácilmente). Eso no significa que el canal esté muerto o que nunca vaya a subir
+                cosas; prometido. Al menos tienes esta web, que sí se actualiza frecuentemente.
             </p>
         </div>
     {:else}
@@ -186,11 +193,4 @@
             </p>
         </div>
     {/if}
-</details>
-<hr />
-<section aria-labelledby="contact-section" class="w-full">
-    <h2 id="contact-section">CONTACTO &gt;&gt;&gt;</h2>
-    <p>Te mereces poder preguntar directamente si no entiendes algo de un video.</p>
-    <br />
-    <Contact {channel} />
 </section>

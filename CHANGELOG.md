@@ -2,7 +2,7 @@
 
 # ZakaProfe WEB · Registro de cambios
 
-## 4.0.0 (En desarrollo)
+## 4.0.0-beta (15/04/2026 - Primera parte)
 
 <br/>
 
@@ -17,8 +17,10 @@
 ### Mejoras significativas
 
 - Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de colores de tu sistema.
-- [ZPW/TEKA] Ejemplo (solo mostrar en web teka)
-- [ZPW/PROFE] Ejemplo (solo mostrar en web profe)
+
+### Correcciones
+
+- [ZPW/PROFE] [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era usable.
 
 <br/>
 
@@ -27,7 +29,7 @@
 <br/>
 
 - Partida la web en dos, ahora es un monorepo.
-- Ahora todas las aplicaciones, en lugar de ser código independiente, están basadas en el [pensar nombre en clave aquí], dando mayor consistencia y estabilidad.
+      <!-- - Ahora todas las aplicaciones, en lugar de ser código independiente, están basadas en el [pensar nombre en clave aquí], dando mayor consistencia y estabilidad. -->
 
 ## 3.5.0 (06/04/2026)
 

@@ -55,6 +55,7 @@
     let sharePopover = $state<null | 0 | string>(null);
 
     function genURL(abs: boolean = true): string {
+        // TODO: multi-app
         return `${abs ? "https://profe.zhc.es/apps/" : ""}${app}?${Object.entries(values)
             .map(
                 ([k, v]) =>

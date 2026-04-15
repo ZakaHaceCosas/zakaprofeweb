@@ -210,7 +210,7 @@
     <h3 id="result" class="flex flex-row items-center gap-2">
         La media sería de
         <span
-            style={`font-size: xx-large; font-weight: 700; color: ${average < 5 ? "#ff3232" : "var(--ZakaProfe)"};`}
+            style={`font-size: xx-large; font-weight: 700; color: ${average < 5 ? "#ff3232" : "var(--accent)"};`}
         >
             {average.toFixed(2)}
         </span>

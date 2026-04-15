@@ -10,7 +10,7 @@ function zpwapp() {
             const archivos = await glob("../../apps/**/*.zpwapp"); // tiene q ser así pq se ejecuta desde cada app, no desde la raíz
             await Promise.all(archivos.map(zpwappCodeGen));
         },
-        // @ts-ignore
+        // @ts-expect-error untyped
         async handleHotUpdate({ file }) {
             if (file.endsWith(".zpwapp")) {
                 await zpwappCodeGen(file);
@@ -20,6 +20,10 @@ function zpwapp() {
 }
 
 export default defineConfig({
-    plugins: [zpwapp(), tailwindcss(), sveltekit()],
+    plugins: [
+        // zpwapp(),
+        tailwindcss(),
+        sveltekit(),
+    ],
     assetsInclude: ["**/*.zpwapp"],
 });

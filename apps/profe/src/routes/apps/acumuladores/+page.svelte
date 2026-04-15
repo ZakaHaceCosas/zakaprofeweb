@@ -130,7 +130,7 @@
 
     {#if res}
         <div
-            class="mx-auto flex flex-row items-center justify-center gap-4 font-serif text-5xl text-(--ZakaProfe)"
+            class="mx-auto flex flex-row items-center justify-center gap-4 font-serif text-5xl text-(--accent)"
         >
             <div class="flex flex-col items-center justify-center">
                 <p class="text-xl">{values.nVal}</p>

@@ -101,7 +101,7 @@
 
     function share() {
         navigator.clipboard.writeText(
-            `https://profe.zhc.es/apps/calcular-ip-cidr?ip=${encodeURIComponent(ipAddress)}`
+            `https://teka.zhc.es/apps/calcular-ip-cidr?ip=${encodeURIComponent(ipAddress)}`
         );
     }
 </script>
