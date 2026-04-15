@@ -16,8 +16,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v6
-              with:
-                  ref: monorepo
             - run: npm i -g vercel
             - run: |
                 if [ "${{ github.event.inputs.environment }}" = "production" ]; then
@@ -34,8 +32,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v6
-              with:
-                  ref: monorepo
             - run: npm i -g vercel
             - run: |
                 if [ "${{ github.event.inputs.environment }}" = "production" ]; then
