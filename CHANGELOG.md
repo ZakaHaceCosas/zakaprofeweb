@@ -20,6 +20,8 @@
 
 ### Correcciones
 
+- Corregido algún error menor con el buscador.
+- [ZPW/TEKA] De hecho, el naranja que usaba la web no era exactamente el mismo que el del logo, esto se ha corregido.
 - [ZPW/PROFE] [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era usable.
 
 <br/>
@@ -29,7 +31,6 @@
 <br/>
 
 - Partida la web en dos, ahora es un monorepo.
-      <!-- - Ahora todas las aplicaciones, en lugar de ser código independiente, están basadas en el [pensar nombre en clave aquí], dando mayor consistencia y estabilidad. -->
 
 ## 3.5.0 (06/04/2026)
 

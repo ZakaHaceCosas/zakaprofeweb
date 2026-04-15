@@ -182,6 +182,7 @@ const zpSubjectKeys: Record<ZPSubject, string> = {
 const zpLevelKeys: Record<ZPCourse, string> = {
     "3ro ESO": "3eso",
     "4to ESO": "4eso",
+    "1ro bach": "1bach",
 };
 const ztSubjectKeys: Record<ZTSubject, string> = {
     "Desarrollo web": "dev_web",
@@ -205,22 +206,12 @@ for (const vid of ZakaProfe) {
                 : titleDirty.slice(1).indexOf('"')) + 1
         )
         .trim();
+    const numI = subjectAndLevelDirty
+        .split("")
+        .findIndex((l) => l !== "" && l !== " " && !isNaN(Number(l)));
     const [subject, level] = [
-        subjectAndLevelDirty
-            .slice(
-                0,
-                subjectAndLevelDirty.indexOf("4") == -1
-                    ? subjectAndLevelDirty.indexOf("3")
-                    : subjectAndLevelDirty.indexOf("4")
-            )
-            .trim(),
-        subjectAndLevelDirty
-            .slice(
-                subjectAndLevelDirty.indexOf("4") == -1
-                    ? subjectAndLevelDirty.indexOf("3")
-                    : subjectAndLevelDirty.indexOf("4")
-            )
-            .trim(),
+        subjectAndLevelDirty.slice(0, numI).trim(),
+        subjectAndLevelDirty.slice(numI).trim(),
     ];
 
     const season = Number(

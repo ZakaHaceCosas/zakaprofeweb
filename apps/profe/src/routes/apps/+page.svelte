@@ -36,7 +36,7 @@
 </div>
 <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
     <CardLink
-        target="apps/apps"
+        target="apps/contador-palabras"
         title="Contador de palabras"
         body="Un contador de palabras, letras, y párrafos."
         >{#snippet svg()}<svg
@@ -57,7 +57,7 @@
     </CardLink>
 
     <CardLink
-        target="apps/apps"
+        target="apps/calculadora-notas"
         title="Calculadora de notas"
         body="Una calculadora de notas medias, tanto aritméticas (simples) como ponderadas (con peso)."
         >{#snippet svg()}<svg
@@ -81,7 +81,7 @@
 </div>
 <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
     <CardLink
-        target="apps/apps"
+        target="apps/calculadora-nominas"
         title="Calculadora de nóminas"
         body="Recibe varios datos y calcula una nómina en base a la legislación española."
         >{#snippet svg()}<svg
@@ -99,7 +99,7 @@
     </CardLink>
 
     <CardLink
-        target="apps/apps"
+        target="apps/calculadora-finiquitos"
         title="Calculadora de finiquitos"
         body="Calcula cuánto se debe pagar por una liquidación de contrato."
         >{#snippet svg()}<svg
@@ -124,7 +124,7 @@
 </div>
 <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
     <CardLink
-        target="apps/apps"
+        target="apps/acumuladores"
         title="Calculadora de acumuladores"
         body="Calcula rápidamente un sumatorio o productorio."
         >{#snippet svg()}<svg

@@ -19,7 +19,7 @@ const _pages: string[] = ["/", "/search", "/changelog", "/bugs", "/apps"];
 
 const glob = new Bun.Glob(`apps/${app}/src/routes/apps/**/+page.svelte`);
 for await (const file of glob.scan(".")) {
-    const a = file.split("\\apps\\")[1].trim().replace("\\+page.svelte", "");
+    const a = file.replaceAll("\\", "/").split("/apps/")[1].trim().replace("/+page.svelte", "");
     if (a == "+page.svelte") continue;
     _pages.push("/apps/" + a);
 }

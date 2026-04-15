@@ -52,6 +52,7 @@
 </ul>
 <h3>Correcciones</h3>
 <ul>
+    <li>Corregido algún error menor con el buscador.</li>
     <li>
         [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era
         usable.
@@ -63,7 +64,6 @@
 <ul>
     <li>Partida la web en dos, ahora es un monorepo.</li>
 </ul>
-<!-- - Ahora todas las aplicaciones, en lugar de ser código independiente, están basadas en el [pensar nombre en clave aquí], dando mayor consistencia y estabilidad. -->
 <hr />
 <h2>3.5.0 (06/04/2026)</h2>
 <br />

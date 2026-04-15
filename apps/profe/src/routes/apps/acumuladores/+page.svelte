@@ -18,7 +18,7 @@
         op: "",
     });
 
-    function method(params: Record<string, any>) {
+    function method(params: Record<string, string>) {
         const { op, nVal, iVal, expr } = params as typeof values;
         if (!op) throw "No se especificó un tipo de operador (sumatorio o productorio).";
         if (!iVal) throw "No se dió un valor de «i».";

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { glob } from "glob";
 import path from "path";
 import fs from "fs";
 
@@ -114,7 +117,22 @@ class ZPWAPP {
     }
 }
 
-export async function zpwappCodeGen(filepath: string) {
+async function zpwappCodeGen(filepath: string) {
     const app = new ZPWAPP(filepath);
     app.build();
+}
+
+export function zpwapp() {
+    return {
+        async buildStart() {
+            const archivos = await glob("../../apps/**/*.zpwapp"); // tiene q ser así pq se ejecuta desde cada app, no desde la raíz
+            await Promise.all(archivos.map(zpwappCodeGen));
+        },
+        // @ts-expect-error untyped
+        async handleHotUpdate({ file }) {
+            if (file.endsWith(".zpwapp")) {
+                await zpwappCodeGen(file);
+            }
+        },
+    };
 }

@@ -17,7 +17,7 @@ export const ZP_SUBJECTS = [
     "Lengua Castellana",
     "Inglés",
 ] as const;
-export const ZP_COURSES = ["4to ESO", "3ro ESO"] as const;
+export const ZP_COURSES = ["4to ESO", "3ro ESO", "1ro bach"] as const;
 export type ZPSubject = (typeof ZP_SUBJECTS)[number];
 export type ZPCourse = (typeof ZP_COURSES)[number];
 export const ZT_SUBJECTS = ["Desarrollo web", "Programación", "Sistemas Operativos"] as const;

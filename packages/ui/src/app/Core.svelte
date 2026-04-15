@@ -16,11 +16,11 @@
         labels,
         app,
     } = $props<{
-        values: Record<string, any>;
+        values: Record<string, string>;
         children: Snippet;
         app: string;
         params: Param[];
-        calculatorMethod: (params: Record<string, any>) => void;
+        calculatorMethod: (params: Record<string, string>) => void;
         labels: {
             calc: string;
             calcLite: string;

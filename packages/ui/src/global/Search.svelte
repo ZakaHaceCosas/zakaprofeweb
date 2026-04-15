@@ -98,9 +98,6 @@
         type="text"
         name="query"
         title="Busca por título del video..."
-        oninput={(e) => {
-            search = normalize(e.currentTarget.value, { strict: true });
-        }}
     />
 </div>
 
@@ -146,7 +143,7 @@
         <p class="text-sm opacity-50">
             La S indica la temporada a la que pertenece el video; cada cambio significativo en la
             calidad de producción se sube el número, básicamente. Va desde el 0 (mis primeros
-            videos) hasta el 4 (los más nuevos y mejores).
+            videos) hasta el 5 (los más nuevos y mejores).
             <br /><br />
             Los datos de visitas y «me gusta» no son en tiempo real, se actualizan cada cierto tiempo
             para evitar consumo de red. Puedes ver lo más reciente en YouTube, aunque no suelen cambiar

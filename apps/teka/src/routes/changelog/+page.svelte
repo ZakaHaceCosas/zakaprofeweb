@@ -51,13 +51,19 @@
     </li>
 </ul>
 <h3>Correcciones</h3>
+<ul>
+    <li>Corregido algún error menor con el buscador.</li>
+    <li>
+        De hecho, el naranja que usaba la web no era exactamente el mismo que el del logo, esto se
+        ha corregido.
+    </li>
+</ul>
 <br />
 <p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <br />
 <ul>
     <li>Partida la web en dos, ahora es un monorepo.</li>
 </ul>
-<!-- - Ahora todas las aplicaciones, en lugar de ser código independiente, están basadas en el [pensar nombre en clave aquí], dando mayor consistencia y estabilidad. -->
 <hr />
 <h2>3.5.0 (06/04/2026)</h2>
 <br />

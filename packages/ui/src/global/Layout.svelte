@@ -1,17 +1,14 @@
 <script lang="ts">
-    import { browser } from "$app/environment";
-    import { goto } from "$app/navigation";
-    import { onMount } from "svelte";
-    import { resolve } from "$app/paths";
+    import { onMount, type Snippet } from "svelte";
 
-    let { children, channel } = $props<{ children: any; channel: "ZakaProfe" | "ZakaTeka" }>();
+    let { children, channel } = $props<{ children: Snippet; channel: "ZakaProfe" | "ZakaTeka" }>();
 
     // nos hacemos los interesantes
     console.log(
         "%cZakaProfe WEB%c versión %c4.x%c - Salvando tus notas",
         "color: white; background: #0099ff; padding: 5px 10px; font-size: 16px; font-weight: bold;",
         "font-size: 15px;",
-        "color: black; background: #feb100; padding: 5px 10px; font-size: 16px; font-weight: bold;",
+        "color: black; background: #FFB100; padding: 5px 10px; font-size: 16px; font-weight: bold;",
         "font-size: 15px;"
     );
     console.log(
@@ -62,9 +59,7 @@
         });
     });
 
-    $effect(() => {
-        if (browser) swapTheme(theme);
-    });
+    $effect(() => swapTheme(theme));
 
     let mobileMenu = $state(false);
 </script>
@@ -72,14 +67,13 @@
 <nav
     class="flex flex-row items-center justify-between border-b-2 border-b-(--fff25) bg-(--blk) p-4 shadow-[0px_0px_15px_10px_var(--blkSha)]"
 >
-    <a href={resolve("/")}>
+    <a href="/">
         <img
             class="pointer-events-none! h-12 object-scale-down"
             src="/logo_horizon.avif"
             alt="Logotipo de {channel}"
         />
     </a>
-    <!--
     <button
         class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25) md:hidden"
         onclick={() => {
@@ -89,9 +83,9 @@
         {mobileMenu ? "✕" : "☰"}
     </button>
     <div class="hidden w-full flex-row items-center justify-end gap-2.5 md:flex">
-        <button
+        <a
             aria-label="Ir al inicio"
-            onclick={() => goto(resolve("/"))}
+            href="/"
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="25px" height="25px">
@@ -101,10 +95,10 @@
                 />
             </svg>
             <p class="hidden md:block">Inicio</p>
-        </button>
-        <button
+        </a>
+        <a
             aria-label="Ir al buscador"
-            onclick={() => goto(resolve("/search"))}
+            href="/search"
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="25px" height="25px">
@@ -114,10 +108,10 @@
                 />
             </svg>
             <p class="hidden md:block">Buscador</p>
-        </button>
-        <button
+        </a>
+        <a
             aria-label="Ir a aplicaciones"
-            onclick={() => goto(resolve("/apps"))}
+            href="/apps"
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
             <svg width="25px" height="25px" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
@@ -127,32 +121,24 @@
                 <path d="M24 24.0001H44V44.0001H24V24.0001Z" fill="currentColor" />
             </svg>
             <p class="hidden md:block">Aplicaciones</p>
-        </button>
+        </a>
     </div>
 </nav>
-<!--
+
 {#if mobileMenu}
     <div class="flex flex-col bg-(--blk) p-8">
         <h2>Navegación</h2>
         {#each [{ url: "/", title: "Inicio" }, { url: "/apps", title: `Aplicaciones de ${channel}` }, { url: "/search", title: "Buscador de videos" }] as const as link, i (i)}
             <br />
-            <a
-                href={resolve(link.url)}
-                class="hover:text-gray-400"
-                onclick={() => (mobileMenu = false)}
-            >
+            <a href={link.url} class="hover:text-gray-400" onclick={() => (mobileMenu = false)}>
                 {link.title}
             </a>
         {/each}
     </div>
-{/if}-->
+{/if}
+
 <main class="flex flex-1 flex-col items-start justify-start p-8">
-    <!-- {@render children?.()} -->
-    <h1>Sitio web en mantenimiento</h1>
-    <p>
-        Estoy trabajando en varios arreglos y mejoras; hasta entonces la web de ZakaProfe no está
-        disponible, ¡lo siento!
-    </p>
+    {@render children?.()}
 </main>
 
 <footer
@@ -165,9 +151,8 @@
         autorización expresa.
     </p>
     <p class="md:flex-2 md:text-end">
-        <b>ZakaProfe WEB v3.5.0 (06/04/2026) (En mantenimiento)</b
-        ><!-- ·
-        <a href={resolve("/changelog")} class="underline">¿Qué hay de nuevo en esta versión?</a>
-        · <a href={resolve("/bugs")} class="underline">Reportar un fallo</a>-->
+        <b>ZakaProfe WEB v4.0.0 (15/04/2026 - Primera parte)</b> ·
+        <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a>
+        · <a href="/bugs" class="underline">Reportar un fallo</a>
     </p>
 </footer>

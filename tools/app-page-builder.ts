@@ -20,7 +20,7 @@ const apps: {
 }[] = [];
 
 for (const _ of glob.scanSync()) {
-    const path = _.replaceAll("\\", "/").replaceAll("apps/teka/src/routes/apps/", "");
+    const path = _.replaceAll("\\", "/").replaceAll(`apps/${app}/src/routes/apps/`, "");
     if (!path.includes("/")) continue;
     if (path.includes(".server.")) continue;
     if (path.includes("+")) continue;
