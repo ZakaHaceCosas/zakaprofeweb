@@ -15,11 +15,16 @@ jobs:
     deploy-profe:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
               with:
                   ref: monorepo
             - run: npm i -g vercel
-            - run: vercel deploy ${{ github.event.inputs.environment == 'production' && '--prod' || '' }}
+            - run: |
+                if [ "${{ github.event.inputs.environment }}" = "production" ]; then
+                    vercel deploy --prod --token=$VERCEL_TOKEN
+                else
+                    vercel deploy --token=$VERCEL_TOKEN
+                fi
               env:
                   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
                   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PROFE }}
@@ -28,11 +33,16 @@ jobs:
     deploy-teka:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
               with:
                   ref: monorepo
             - run: npm i -g vercel
-            - run: vercel deploy ${{ github.event.inputs.environment == 'production' && '--prod' || '' }}
+            - run: |
+                if [ "${{ github.event.inputs.environment }}" = "production" ]; then
+                    vercel deploy --prod --token=$VERCEL_TOKEN
+                else
+                    vercel deploy --token=$VERCEL_TOKEN
+                fi
               env:
                   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
                   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_TEKA }}
