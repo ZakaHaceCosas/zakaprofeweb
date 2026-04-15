@@ -28,7 +28,7 @@
 
     async function load() {
         loading = true;
-        const res = await fetch(`/api?comments=${pageId}`);
+        const res = await fetch(`https://me.zhc.es/api/comments?comments=${pageId}`);
         comments = await res.json();
         loading = false;
     }
@@ -37,21 +37,21 @@
         if (!text.trim()) return;
         loading = true;
 
-        const res = await fetch("/api?comments", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text, author, pageId }),
-        });
+        try {
+            const res = await fetch("https://me.zhc.es/api/comments?comments", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text, author, pageId }),
+            });
 
-        loading = false;
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
 
-        if (res.ok) {
             text = "";
             resp = true;
             await load();
-        } else {
-            const data = await res.json();
-            resp = data.error;
+        } catch (e) {
+            resp = "Hubo un error: " + String(e);
         }
     }
 
