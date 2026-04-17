@@ -45,9 +45,10 @@
 </svelte:head>
 
 <Core
+    channel="profe"
     bind:values
     bind:this={core}
-    calculatorMethod={method}
+    {method}
     params={[
         {
             key: "expr",

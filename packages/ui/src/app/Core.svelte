@@ -12,19 +12,21 @@
         values = $bindable({}),
         children,
         params,
-        calculatorMethod,
+        method,
         labels,
         app,
+        channel,
     } = $props<{
         values: Record<string, string>;
         children: Snippet;
         app: string;
         params: Param[];
-        calculatorMethod: (params: Record<string, string>) => void;
+        method: (params: Record<string, string>) => void;
         labels: {
             calc: string;
             calcLite: string;
         };
+        channel: "profe" | "teka";
     }>();
 
     onMount(() => {
@@ -45,7 +47,7 @@
 
     export function calculate(throws = true) {
         try {
-            calculatorMethod(values);
+            method(values);
             history.replaceState(null, "", genURL(false));
         } catch (e) {
             if (throws) alert(e);
@@ -55,8 +57,7 @@
     let sharePopover = $state<null | 0 | string>(null);
 
     function genURL(abs: boolean = true): string {
-        // TODO: multi-app
-        return `${abs ? "https://profe.zhc.es/apps/" : ""}${app}?${Object.entries(values)
+        return `${abs ? `https://${channel}.zhc.es/apps/` : ""}${app}?${Object.entries(values)
             .map(
                 ([k, v]) =>
                     `${k}=${encodeURIComponent(typeof v === "string" ? v : JSON.stringify(v))}`

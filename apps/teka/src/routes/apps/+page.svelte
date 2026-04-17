@@ -28,7 +28,6 @@
     y cuéntame ;)<br /><br />
 </p>
 <!--apps-->
-
 <div class="flex w-full flex-row items-center gap-4">
     <p class="whitespace-nowrap">
         <span class="text-(--accent)">ZakaTeka</span> · Sistemas Operativos Mono-puestos

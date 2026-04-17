@@ -8,7 +8,7 @@ import fs from "fs";
 function zpw_input<T>(n: 1 | 0 = 0) {
     return "" as any as T;
 }
-const input: Record<string, any> = {};
+const values: Record<string, any> = {};
 type IDef = {
     type: "txt" | "txtArea" | "num";
     placeholder: string;
@@ -44,10 +44,8 @@ class ZPWAPP {
         fs.writeFileSync(
             this.where,
             types.join("\n")
-                + origin
-                    .split("\n")
-                    .slice(origin.split("\n").indexOf("/*S*/") - 1)
-                    .join("\n"),
+                + "\n"
+                + origin.split("\n").slice(origin.split("\n").indexOf("/*S*/")).join("\n"),
             { encoding: "utf-8" }
         );
     }
@@ -64,7 +62,7 @@ class ZPWAPP {
                 .replace("(1)", "");
             return [n, decl];
         });
-        const props = `let values: {${preparedInputLines.map((v) => `${v[0]}: ${v[1]}`).join(",")}} = $state({});`;
+        const props = `let values: {${preparedInputLines.map((v) => `${v[0]}: string/*${v[1]}*/`).join(",")}} = $state({${preparedInputLines.map((v) => `${v[0].replace("?", "")}: ""`).join(",")}});`;
         return `import Core from "@zpw/ui/app/Core";\nimport Input from "@zpw/ui/Input";\n${props}\n${input
             .trim()
             .split("\n")
@@ -79,7 +77,7 @@ class ZPWAPP {
         str += `title="${i.placeholder}"\n`;
         str += `name="${i.input_name}"\n`;
         str += `required={${i.r == 1}}\n`;
-        str += `bind:value={input.${i.bind_to}}`;
+        str += `bind:value={values.${i.bind_to}}`;
         str += "/>";
         return str;
     }
@@ -89,7 +87,7 @@ class ZPWAPP {
     private prepareFormMarkup(input: string): string {
         const obj = JSON.parse(input);
         const str = obj.map(this.formKeyParser);
-        return "\n<Core bind:values {calculatorMethod}>\n" + str.join("\n") + "\n</Core>";
+        return `\n<Core app="${this.where.split("/").at(-1)?.split(".")[0]}" channel="${this.where.includes("profe") ? "profe" : "teka"}" bind:values {calculatorMethod}>\n${str.join("\n")}\n</Core>`;
     }
 
     private convert(): string {
@@ -124,12 +122,12 @@ async function zpwappCodeGen(filepath: string) {
 
 export function zpwapp() {
     return {
+        name: "zpwapp-code_gen-sys",
         async buildStart() {
             const archivos = await glob("../../apps/**/*.zpwapp"); // tiene q ser así pq se ejecuta desde cada app, no desde la raíz
             await Promise.all(archivos.map(zpwappCodeGen));
         },
-        // @ts-expect-error untyped
-        async handleHotUpdate({ file }) {
+        async handleHotUpdate({ file }: { file: string }) {
             if (file.endsWith(".zpwapp")) {
                 await zpwappCodeGen(file);
             }

@@ -36,7 +36,7 @@
             },
             "dep": {
                 "@2toad/profanity": "^3.3.0",
-                "@supabase/supabase-js": "^2.103.2",
+                "@supabase/supabase-js": "^2.103.3",
                 "@sveltejs/adapter-vercel": "^6.3.3",
                 "@zhc.js/number-utils": "^2.1.1",
                 "@zhc.js/string-utils": "^4.1.0",
@@ -52,7 +52,6 @@
         "zpw:fch": "bun tools/fetch.ts",
         "zpw:img": "bun tools/images.ts",
         "zpw:xml": "bun tools/sitemap.ts",
-        "zpw:bld": "bun tools/build.ts",
         "zpw:upd": "bun tools/deps.ts",
         "zpw:app": "bun tools/app-page-builder.ts",
         "commit": "bun zpw:upd && bun zpw:fch && bun zpw:chg teka && bun zpw:chg profe && bun zpw:xml teka && bun zpw:xml profe && bun zpw:img"
