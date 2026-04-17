@@ -1,7 +1,5 @@
 <script lang="ts">
-    import Input from "@zpw/ui/Input";
     import { evaluate } from "mathjs";
-    import Select from "@zpw/ui/Select";
     import Core from "@zpw/ui/app/Core";
 
     let core = $state<ReturnType<typeof import("@zpw/ui/app/Core").default>>();
@@ -36,110 +34,69 @@
     }
 </script>
 
-<svelte:head>
-    <title>Calculador de acumulación</title>
-    <meta
-        name="description"
-        content="Una calculadora que trabaja con operadores de acumulación matemática (sumatorio y productorio)."
-    />
-</svelte:head>
-
 <Core
     channel="profe"
     bind:values
     bind:this={core}
     {method}
     params={[
-        {
-            key: "expr",
-        },
-        {
-            key: "op",
-        },
-        {
-            key: "nVal",
-        },
-        {
-            key: "iVal",
-        },
+        [
+            {
+                key: "op",
+                type: "select",
+                title: "Elige un acumulador...",
+                onchange: "calc-no-throw",
+                options: [
+                    { value: "∑", label: "Sumatorio (∑)" },
+                    { value: "∏", label: "Productorio (∏)" },
+                ],
+            },
+            {
+                key: "nVal",
+                type: "text",
+                title: "Parámetro de arriba (n)",
+                req: true,
+                tail: "w-full! flex-1 sm:flex-3",
+            },
+            {
+                key: "iVal",
+                type: "text",
+                title: "Parámetro de abajo (i)",
+                req: true,
+                tail: "w-full! flex-1 sm:flex-3",
+            },
+            {
+                key: "expr",
+                type: "text",
+                title: "Expresión, o f(i)",
+                req: true,
+                tail: "w-full! flex-1 sm:flex-3",
+            },
+        ],
     ]}
     app="acumuladores"
     labels={{
+        title: "Calculadora de acumulación",
+        desc: [
+            "Una calculadora que trabaja con operadores de acumulación matemática (sumatorio y productorio).",
+        ],
         calc: `Calcular ${values.op == "∑" ? "sumatorio" : "productorio"}`,
         calcLite: "Calcula el operador deseado y muestra el resultado.",
     }}
 >
-    <h1>Calculador de acumulación</h1>
-    <br />
-    <p>Agrega sumatorios y productorios.<br /><br /></p>
-    <div class="flex w-full flex-row gap-2">
-        <Select
-            id="op-val"
-            onchange={() => {
-                core?.calculate(false);
-            }}
-            title="Elige un acumulador..."
-            options={[
-                {
-                    value: "∑",
-                    label: "Sumatorio (∑)",
-                },
-                {
-                    value: "∏",
-                    label: "Productorio (∏)",
-                },
-            ]}
-            bind:value={values.op}
-        />
-        <Input
-            type="text"
-            name="n-val"
-            bind:value={values.nVal}
-            onkeydown={(e) => {
-                if (e.key !== "Enter") return;
-                core?.calculate();
-            }}
-            title="Parámetro de arriba (n)"
-            required
-            tail="w-full! flex-1 sm:flex-3"
-        />
-        <Input
-            type="text"
-            name="i-val"
-            bind:value={values.iVal}
-            onkeydown={(e) => {
-                if (e.key !== "Enter") return;
-                core?.calculate();
-            }}
-            title="Parámetro de abajo (i)"
-            required
-            tail="w-full! flex-1 sm:flex-3"
-        />
-        <Input
-            type="text"
-            name="expr-val"
-            bind:value={values.expr}
-            onkeydown={(e) => {
-                if (e.key !== "Enter") return;
-                core?.calculate();
-            }}
-            title="Expresión, o f(i)"
-            required
-            tail="w-full! flex-1 sm:flex-3"
-        />
-    </div>
-
-    {#if res}
-        <div
-            class="mx-auto flex flex-row items-center justify-center gap-4 font-serif text-5xl text-(--accent)"
-        >
-            <div class="flex flex-col items-center justify-center">
-                <p class="text-xl">{values.nVal}</p>
-                <p>{values.op}</p>
-                <p class="text-xl">{values.iVal}</p>
+    {#snippet result()}
+        {#if res != null}
+            <div
+                class="mx-auto flex flex-row items-center justify-center gap-4 font-serif text-5xl text-(--accent)"
+            >
+                <div class="flex flex-col items-center justify-center">
+                    <p class="text-xl">{values.nVal}</p>
+                    <p>{values.op}</p>
+                    <p class="text-xl">{values.iVal}</p>
+                </div>
+                <p class="text-left"><i>{values.expr}</i>=<b>{res}</b></p>
+                <div></div>
             </div>
-            <p class="text-left"><i>{values.expr}</i>=<b>{res}</b></p>
-            <div></div>
-        </div>
-    {/if}
+        {/if}
+    {/snippet}
 </Core>

@@ -32,3 +32,13 @@ export const ISCourse_ZP = (a: unknown): a is ZPCourse =>
     typeof a == "string" && ZP_COURSES.includes(a as ZPCourse);
 export const ISCourse_ZT = (a: unknown): a is ZTCourse =>
     typeof a == "string" && ZT_COURSES.includes(a as ZTCourse);
+export type Param = {
+    key: string;
+    type: "text" | "number" | "textarea" | "select";
+    title: string;
+    onchange?: "none" | "calc" | "calc-no-throw";
+    onenter?: "none" | "calc" | "calc-no-throw";
+    options?: { value: string; label: string }[];
+    req?: boolean;
+    tail?: string;
+};

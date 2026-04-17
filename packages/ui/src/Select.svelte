@@ -11,6 +11,7 @@
         tail,
         disabled = false,
         nullable = false,
+        required,
     } = $props<{
         value: string;
         id: string;
@@ -21,6 +22,7 @@
         tail?: string;
         disabled?: boolean;
         nullable?: boolean;
+        required: boolean;
     }>();
 
     const className = $derived(
@@ -36,7 +38,7 @@
     {onchange}
     {title}
     {disabled}
-    required
+    {required}
     {onkeydown}
 >
     {#if !nullable}<option value="" disabled>(Elige algo)</option>{/if}

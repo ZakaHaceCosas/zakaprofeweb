@@ -24,6 +24,7 @@ class ZPWAPP {
     private where: string;
 
     constructor(filepath: string) {
+        filepath = filepath.replaceAll("\\", "/");
         this.where = filepath;
         const parts = filepath.split("/");
         const name = parts.pop()!.split(".")[0];
@@ -102,7 +103,7 @@ class ZPWAPP {
         const form = this.prepareFormMarkup(
             markupGenerator.split(";")[0].replace("const Q: IDef = ", "").trim()
         );
-        // tengo crisises existenciales programando, a veces uso inglés y a veces español
+        // tengo crisis existenciales programando, a veces uso inglés y a veces español
         return `<script lang="ts">/* THIS IS GENERATED CODE, built with the ZPWAPP engine. Look for a .ZPWAPP file one directory above with the same name as this directory, the code for this app is there.*/\n${svelte}</script>${form}`;
     }
 
