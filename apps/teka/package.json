@@ -38,7 +38,6 @@
     },
     "dependencies": {
         "@2toad/profanity": "catalog:dep",
-        "@supabase/supabase-js": "catalog:dep",
         "@sveltejs/adapter-vercel": "catalog:dep",
         "@zhc.js/number-utils": "catalog:dep",
         "@zhc.js/string-utils": "catalog:dep",

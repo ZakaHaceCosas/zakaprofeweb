@@ -4,9 +4,77 @@
     "private": true,
     "type": "module",
     "exports": {
-        "./*": {
-            "svelte": "./src/*.svelte",
-            "default": "./src/*.svelte"
+        "./Bola": {
+            "svelte": "./src/Bola.svelte",
+            "default": "./src/Bola.svelte"
+        },
+        "./Button": {
+            "svelte": "./src/Button.svelte",
+            "default": "./src/Button.svelte"
+        },
+        "./CardLink": {
+            "svelte": "./src/CardLink.svelte",
+            "default": "./src/CardLink.svelte"
+        },
+        "./Checkbox": {
+            "svelte": "./src/Checkbox.svelte",
+            "default": "./src/Checkbox.svelte"
+        },
+        "./Comments": {
+            "svelte": "./src/Comments.svelte",
+            "default": "./src/Comments.svelte"
+        },
+        "./Contact": {
+            "svelte": "./src/Contact.svelte",
+            "default": "./src/Contact.svelte"
+        },
+        "./Input": {
+            "svelte": "./src/Input.svelte",
+            "default": "./src/Input.svelte"
+        },
+        "./Link": {
+            "svelte": "./src/Link.svelte",
+            "default": "./src/Link.svelte"
+        },
+        "./Select": {
+            "svelte": "./src/Select.svelte",
+            "default": "./src/Select.svelte"
+        },
+        "./Table": {
+            "svelte": "./src/Table.svelte",
+            "default": "./src/Table.svelte"
+        },
+        "./Textarea": {
+            "svelte": "./src/Textarea.svelte",
+            "default": "./src/Textarea.svelte"
+        },
+        "./VideoCard": {
+            "svelte": "./src/VideoCard.svelte",
+            "default": "./src/VideoCard.svelte"
+        },
+        "./VideoTuple": {
+            "svelte": "./src/VideoTuple.svelte",
+            "default": "./src/VideoTuple.svelte"
+        },
+        "./global/Home": {
+            "svelte": "./src/global/Home.svelte",
+            "default": "./src/global/Home.svelte"
+        },
+        "./global/Layout": {
+            "svelte": "./src/global/Layout.svelte",
+            "default": "./src/global/Layout.svelte"
+        },
+        "./global/Search": {
+            "svelte": "./src/global/Search.svelte",
+            "default": "./src/global/Search.svelte"
+        },
+        "./app/Core": {
+            "svelte": "./src/app/Core.svelte",
+            "default": "./src/app/Core.svelte"
+        },
+        "./app/Field": {
+            "svelte": "./src/app/Field.svelte",
+            "default": "./src/app/Field.svelte"
         }
     },
     "svelte": "./src"

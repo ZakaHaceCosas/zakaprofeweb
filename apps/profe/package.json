@@ -34,11 +34,11 @@
         "typescript": "catalog:dev",
         "typescript-eslint": "catalog:dev",
         "vercel": "catalog:dev",
-        "vite": "catalog:dev"
+        "vite": "catalog:dev",
+        "@types/youtube": "catalog:dev"
     },
     "dependencies": {
         "@2toad/profanity": "catalog:dep",
-        "@supabase/supabase-js": "catalog:dep",
         "@sveltejs/adapter-vercel": "catalog:dep",
         "@zhc.js/number-utils": "catalog:dep",
         "@zhc.js/string-utils": "catalog:dep",

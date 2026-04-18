@@ -273,7 +273,7 @@
         id="grupo_cot"
         value={devengo.grupo_cot}
         onchange={(e) => {
-            devengo.grupo_cot = String(Number(e.currentTarget.value) + 1);
+            devengo.grupo_cot = e.currentTarget.value;
         }}
         title="Grupo profesional"
         onkeydown={(e) => {
