@@ -11,7 +11,7 @@
         style = undefined,
         id = undefined,
         label = undefined,
-    } = $props<{
+    }: {
         oninput?: (e: Event & { currentTarget: HTMLTextAreaElement }) => void;
         onkeydown?: (e: KeyboardEvent & { currentTarget: HTMLTextAreaElement }) => void;
         tail?: string;
@@ -23,7 +23,7 @@
         style?: string;
         id?: string;
         label?: string;
-    }>();
+    } = $props();
 
     const className = $derived(
         `p-4 border-2 border-(--fff25) w-full text-(--txt) font-mono bg-(--blk) gap-3 outline-(--accent) ${tail}`

@@ -1,7 +1,14 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
 
-    let { checked, onchange, onkeydown, id, children, tail } = $props<{
+    let {
+        checked,
+        onchange,
+        onkeydown,
+        id,
+        children,
+        tail,
+    }: {
         checked: boolean;
         onchange: (
             e: Event & {
@@ -16,7 +23,7 @@
         id: string;
         children: Snippet;
         tail?: string;
-    }>();
+    } = $props();
 
     const className = $derived("flex flex-row gap-2 " + tail);
 </script>

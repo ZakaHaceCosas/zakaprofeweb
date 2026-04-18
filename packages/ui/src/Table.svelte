@@ -1,7 +1,9 @@
 <script lang="ts">
-    const { table } = $props<{
+    const {
+        table,
+    }: {
         table: [string, string | number][];
-    }>();
+    } = $props();
 </script>
 
 <table class="w-full">

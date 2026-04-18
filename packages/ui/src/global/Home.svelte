@@ -5,16 +5,23 @@
     import Link from "@zpw/ui/Link";
     import RandomVideoFeed from "@zpw/ui/VideoTuple";
     import Contact from "@zpw/ui/Contact";
-    import { type IVideo } from "../../../types/types";
+    import { type IVideo } from "@zpw/types/types";
 
-    const { list, channel, metaDesc, slogan, slogans, bioLine } = $props<{
-        channel: string;
+    const {
+        list,
+        channel,
+        metaDesc,
+        slogan,
+        slogans,
+        bioLine,
+    }: {
+        channel: "ZakaProfe" | "ZakaTeka";
         metaDesc: string;
         slogan: string;
         bioLine: string;
         slogans: [string, string, string];
         list: IVideo[];
-    }>();
+    } = $props();
 
     let container: HTMLDivElement;
     let words: HTMLDivElement[] = [];

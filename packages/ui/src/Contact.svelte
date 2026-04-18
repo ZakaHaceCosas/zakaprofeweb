@@ -1,6 +1,6 @@
 <script lang="ts">
     import Link from "./Link.svelte";
-    const { channel } = $props<{ channel: "ZakaProfe" | "ZakaTeka" }>();
+    const { channel }: { channel: "ZakaProfe" | "ZakaTeka" } = $props();
 </script>
 
 <div class="flex w-full flex-1 flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4">

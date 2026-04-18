@@ -11,7 +11,7 @@
         title,
         disabled = false,
         children,
-    } = $props<{
+    }: {
         href?: string;
         onclick?: MouseEventHandler<HTMLButtonElement>;
         tail?: string;
@@ -19,7 +19,7 @@
         title: string;
         disabled?: boolean;
         children: Snippet;
-    }>();
+    } = $props();
 
     const className = $derived(
         `flex-1 w-full p-4 cursor-pointer border-2 border-(--fff25) p-3 hover:bg-(--blk) focus-visible:bg-(--blk) no-underline text-center hover:text-(--accent) bg-(--accent) text-(--acc-txt) focus-visible:text-(--accent) outline-(--accent) ${tail}`

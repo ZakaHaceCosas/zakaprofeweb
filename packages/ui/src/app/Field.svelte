@@ -1,22 +1,24 @@
 <script lang="ts">
     import type { Param } from "@zpw/types/types";
     import Select from "../Select.svelte";
-    import * as s from "@zhc.js/string-utils";
     import Input from "../Input.svelte";
 
-    const { param, onchange, onkeydown, values } = $props<{
-        param: Param;
+    const {
+        param,
+        onchange,
+        onkeydown,
+        values,
+    }: {
+        param: Param & { id: string };
         onchange: (() => void) | undefined;
-        onkeydown: (() => void) | undefined;
+        onkeydown: ((e: KeyboardEvent) => void) | undefined;
         values: Record<string, string>;
-    }>();
-
-    const id = $derived(s.toKebabCase(s.splitCamelOrPascalCase(param.key).join(" ")));
+    } = $props();
 </script>
 
 {#if param.type == "text"}<Input
         type="text"
-        name={id}
+        name={param.id}
         bind:value={values[param.key]}
         {onkeydown}
         title={param.title}
@@ -24,11 +26,11 @@
         tail={param.tail}
     />{:else if param.type == "textarea"}{:else}
     <Select
-        {id}
+        id={param.id}
         {onchange}
         tail={param.tail}
         title={param.title}
-        options={param.options}
+        options={param.options!}
         bind:value={values[param.key]}
         required={param.req == undefined ? true : param.req}
     />

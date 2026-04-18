@@ -3,17 +3,19 @@
     import Button from "@zpw/ui/Button";
     import { onMount, type Snippet } from "svelte";
     import Field from "./Field.svelte";
+    import { toKebabCase, splitCamelOrPascalCase } from "@zhc.js/string-utils";
 
     let loading = $state(true);
+
     const {
         values = $bindable({}),
-        params,
+        params: _params,
         method,
         labels,
         app,
         channel,
         result,
-    } = $props<{
+    }: {
         values: Record<string, string>;
         app: string;
         params: (Param | Param[])[];
@@ -26,7 +28,16 @@
         };
         channel: "profe" | "teka";
         result: Snippet;
-    }>();
+    } = $props();
+
+    const paramCallback = (v: Param) => {
+        return { ...v, id: toKebabCase(splitCamelOrPascalCase(v.key).join(" ")) };
+    };
+    const params = $derived(
+        _params.map((v: Param | Param[]) =>
+            Array.isArray(v) ? v.map(paramCallback) : paramCallback(v)
+        )
+    );
 
     onMount(() => {
         if (!window.location.search) {
@@ -42,7 +53,9 @@
             values[p.key] = val;
         });
 
-        if (params.filter((v: Param) => v.req).every((v: Param) => values[v.key] !== undefined)) {
+        if (
+            flatParams.filter((v: Param) => v.req).every((v: Param) => values[v.key] !== undefined)
+        ) {
             calculate();
         }
 
@@ -103,7 +116,14 @@
                         onchange={p.onchange == "none"
                             ? undefined
                             : () => calculate(p.onchange == "calc")}
-                        onkeydown={() => {}}
+                        onkeydown={(e) => {
+                            if (p.onenter == "none") return;
+                            if (e.key !== "Enter") return;
+                            if (e.shiftKey) calculate(p.onchange == "calc");
+                            else {
+                                document.getElementById(param[i + 1].id)?.focus();
+                            }
+                        }}
                         {values}
                     />
                 {/each}

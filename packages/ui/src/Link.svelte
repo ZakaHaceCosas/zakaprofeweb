@@ -8,12 +8,12 @@
         tail = "",
         title,
         children,
-    } = $props<{
+    }: {
         href: string | MouseEventHandler<HTMLAnchorElement>;
         tail?: string;
         title: string;
         children: Snippet;
-    }>();
+    } = $props();
 
     const className = $derived(
         `cursor-pointer text-(--txt) hover:underline group hover:text-(--accent) focus-visible:text-(--accent) outline-(--accent) ${tail}`

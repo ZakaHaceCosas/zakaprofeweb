@@ -11,7 +11,13 @@
     let selectedSubject = $state<string | "">("");
     let selectedCourse = $state<string | "">("");
     let results: SIVideo[] = $state([]);
-    const { videos, channel } = $props<{ videos: IVideo[]; channel: "ZakaProfe" | "ZakaTeka" }>();
+    const {
+        videos,
+        channel,
+    }: {
+        videos: IVideo[];
+        channel: "ZakaProfe" | "ZakaTeka";
+    } = $props();
 
     const [SUBJECTS, COURSES] = $derived(
         channel === "ZakaProfe" ? [ZP_SUBJECTS, ZP_COURSES] : [ZT_SUBJECTS, ZT_COURSES]
@@ -77,6 +83,7 @@
         ]}
         title="Elige una asignatura"
         id="asig-select"
+        required
     />
 
     <Select
@@ -90,6 +97,7 @@
         ]}
         title="Elige un curso"
         id="course-select"
+        required
     />
 
     <Input

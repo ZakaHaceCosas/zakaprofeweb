@@ -1,12 +1,17 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
 
-    let { title, body, target, svg } = $props<{
+    let {
+        title,
+        body,
+        target,
+        svg,
+    }: {
         title: string;
         body: string;
         target: string;
         svg?: Snippet;
-    }>();
+    } = $props();
 </script>
 
 <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->

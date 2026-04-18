@@ -14,7 +14,7 @@
         id,
         label,
         disabled,
-    } = $props<{
+    }: {
         oninput?: (e: Event & { currentTarget: HTMLInputElement }) => void;
         onkeydown?: (e: KeyboardEvent & { currentTarget: HTMLInputElement }) => void;
         tail?: string;
@@ -29,7 +29,7 @@
         id?: string;
         label?: string;
         disabled?: boolean;
-    }>();
+    } = $props();
 
     const className = $derived(
         `font-mono p-4 border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) outline-(--accent) ${tail} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`

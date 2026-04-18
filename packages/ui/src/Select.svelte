@@ -12,7 +12,7 @@
         disabled = false,
         nullable = false,
         required,
-    } = $props<{
+    }: {
         value: string;
         id: string;
         title: string;
@@ -23,7 +23,7 @@
         disabled?: boolean;
         nullable?: boolean;
         required: boolean;
-    }>();
+    } = $props();
 
     const className = $derived(
         `font-mono border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) outline-(--accent) ${tail} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`

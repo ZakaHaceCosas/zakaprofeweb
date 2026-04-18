@@ -2,7 +2,7 @@
     import { type IVideo } from "@zpw/types/types";
     import Link from "./Link.svelte";
 
-    const { video } = $props<{ video: IVideo }>();
+    const { video }: { video: IVideo } = $props();
 </script>
 
 <Link href={video.url} tail="text-white!" title={"Ver " + video.title + " en YouTube"}>

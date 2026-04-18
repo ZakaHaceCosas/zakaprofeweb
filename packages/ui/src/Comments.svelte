@@ -16,9 +16,11 @@
         is_wm: boolean;
     };
 
-    const { pageId } = $props<{
+    const {
+        pageId,
+    }: {
         pageId: string;
-    }>();
+    } = $props();
 
     let comments: Comment[] = $state([]);
     let text = $state("");

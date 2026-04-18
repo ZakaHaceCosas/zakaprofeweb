@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, type Snippet } from "svelte";
 
-    let { children, channel } = $props<{ children: Snippet; channel: "ZakaProfe" | "ZakaTeka" }>();
+    let { children, channel }: { children: Snippet; channel: "ZakaProfe" | "ZakaTeka" } = $props();
 
     // nos hacemos los interesantes
     console.log(

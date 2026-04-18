@@ -5,7 +5,7 @@
 
     let videos = $state<IVideo[]>([]);
 
-    let { list } = $props<{ list: IVideo[] }>();
+    let { list }: { list: IVideo[] } = $props();
 
     $effect(() => {
         if (list.length < 4) return;

@@ -1,9 +1,13 @@
 <script lang="ts">
-    const { color, text, small } = $props<{
+    const {
+        color,
+        text,
+        small,
+    }: {
         color: "mas-o-menos" | "ocupado" | "disponible";
         text: string;
         small?: string;
-    }>();
+    } = $props();
 
     const c = (a: boolean = true) =>
         color === "mas-o-menos"
