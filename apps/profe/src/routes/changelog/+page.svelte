@@ -31,7 +31,7 @@
 <hr />
 <!--ESTO SE INYECTA MEDIANTE UN SCRIPT, NO HACE FALTA TOCAR A MANO-->
 <!--#CHG-->
-<h2>4.0.0 (15/04/2026 - beta)</h2>
+<h2>4.0.0 (18/04/2026)</h2>
 <br />
 <p><strong>Actualizaciones visibles para el usuario</strong></p>
 <br />
@@ -63,6 +63,15 @@
 <br />
 <ul>
     <li>Partida la web en dos, ahora es un monorepo.</li>
+    <li>Hecho bastante trabajo de preparación para cambios grandes de futuras versiones:</li>
+    <li>
+        Ahora existe el sistema ZPWAPP, que más adelante usarán todas las Apps de esta web. Para
+        usuarios, significa apps más consistentes y con menos bugs.
+    </li>
+    <li>
+        Existe también el sistema ZakaPlayer, que se implementara muy pronto. Permitirá ver videos
+        de forma interactiva y con ejercicios prácticos.
+    </li>
 </ul>
 <hr />
 <h2>3.5.0 (06/04/2026)</h2>

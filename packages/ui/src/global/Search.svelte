@@ -67,8 +67,9 @@
 <h1>Buscador de vídeos</h1>
 <br />
 <p>
-    Es más rápido que el propio buscador de YouTube y tiene enlace directo a cada video, por lo que
-    te será útil.
+    Es más rápido que el propio buscador de YouTube, por lo que te será útil. Busca palabras que
+    estén en el título del video que quieres ver, o selecciona una asignatura o curso para mostrar
+    todos los videos de la categoría.
 </p>
 <hr />
 <div class="flex w-full flex-col gap-2 md:flex-row">
@@ -132,13 +133,25 @@
                                 {v.subject} · {v.level} · {v.duration} · <b>S{v.season}</b>
                             </p>
                         </div>
-                        <Button
-                            href={v.url}
-                            title="Redirigir a YouTube para ver este video."
-                            tail="h-auto mt-auto flex-1"
-                        >
-                            Ver en YouTube &gt;&gt;&gt;
-                        </Button>
+                        <div class="flex flex-row gap-1">
+                            <Button
+                                href={v.url}
+                                title="Redirigir a YouTube para ver este video."
+                                tail="h-auto mt-auto flex-1"
+                            >
+                                Ver en YouTube &gt;
+                            </Button>
+                            <Button
+                                onclick={() =>
+                                    (
+                                        document.getElementById("soon-modal") as HTMLDialogElement
+                                    ).showModal()}
+                                title="Ver este video aquí (recomendado)."
+                                tail="h-auto mt-auto flex-1 opacity-50"
+                            >
+                                Ver aquí y aprender &gt;
+                            </Button>
+                        </div>
                         <p class="text-sm opacity-50">
                             <b>{v.seen}</b> vistas, <b>{v.likes}</b>
                             «me gusta». Coincide un <b>{v.similarity.toFixed(2)}</b>%.
@@ -161,6 +174,29 @@
             ser bajo. 100 visitas y solo 15 «me gustas» no significan que a las otras 85 personas no les
             haya gustado el video, no suele ser así.
         </p>
+        <dialog
+            class="animate-in fade-in zoom-in backdrop:animate-in backdrop:fade-in m-auto h-fit w-full max-w-md border-2 border-(--fff25) bg-(--blk) p-0 duration-200 backdrop:bg-black/75 backdrop:backdrop-blur-sm backdrop:duration-300 starting:scale-95 starting:opacity-0 backdrop:starting:opacity-0"
+            id="soon-modal"
+        >
+            <div class="flex flex-col gap-1 overflow-hidden p-6">
+                <h2 class="text-lg font-semibold text-slate-900">¡Pronto disponible!</h2>
+                <hr />
+                <p class=" leading-relaxed text-slate-700">
+                    El reproductor de <b>video interactivo</b> será de las mejores funciones de este
+                    sitio; te dejará <b>ver cada video con anotaciones y ejercicios prácticos</b>
+                    para
+                    <strong>ayudarte a practicar con la explicación y afianzar conocimientos</strong
+                    >. Todavía está en desarrollo, pero pronto podrás probarlo.
+                </p>
+                <br />
+                <Button
+                    title="Cerrar este modal."
+                    onclick={() =>
+                        (document.getElementById("soon-modal") as HTMLDialogElement).close()}
+                    >¡Guay!</Button
+                >
+            </div>
+        </dialog>
     {:else}
         <p>Ningún resultado para <b>{search}</b>.</p>
     {/if}

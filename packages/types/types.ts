@@ -42,3 +42,18 @@ export type Param = {
     req?: boolean;
     tail?: string;
 };
+export type PlayerStep = {
+    timestamp: number;
+    action: {
+        title: string;
+        desc: string;
+    } & (
+        | { type: "check" }
+        | { type: "choose"; options: { label: string; correct: boolean; explanation: string }[] }
+        | {
+              type: "tof";
+              answer: boolean;
+          }
+        | { type: "input"; answers: string[] }
+    );
+};

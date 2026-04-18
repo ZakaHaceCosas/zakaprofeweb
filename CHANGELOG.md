@@ -2,7 +2,7 @@
 
 # ZakaProfe WEB · Registro de cambios
 
-## 4.0.0 (15/04/2026 - beta)
+## 4.0.0 (18/04/2026)
 
 <br/>
 
@@ -31,6 +31,9 @@
 <br/>
 
 - Partida la web en dos, ahora es un monorepo.
+- Hecho bastante trabajo de preparación para cambios grandes de futuras versiones:
+    - Ahora existe el sistema ZPWAPP, que más adelante usarán todas las Apps de esta web. Para usuarios, significa apps más consistentes y con menos bugs.
+    - Existe también el sistema ZakaPlayer, que se implementara muy pronto. Permitirá ver videos de forma interactiva y con ejercicios prácticos.
 
 ## 3.5.0 (06/04/2026)
 

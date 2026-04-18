@@ -36,6 +36,10 @@
             "svelte": "./src/Link.svelte",
             "default": "./src/Link.svelte"
         },
+        "./Player": {
+            "svelte": "./src/Player.svelte",
+            "default": "./src/Player.svelte"
+        },
         "./Select": {
             "svelte": "./src/Select.svelte",
             "default": "./src/Select.svelte"
