@@ -44,17 +44,15 @@ export type Param = {
 };
 export type PlayerStep = {
     timestamp: number;
-    action: {
-        title: string;
-        desc: string;
-    } & (
-        | { type: "check" }
-        | { type: "freestanding"; hideAt: number }
-        | { type: "choose"; options: { label: string; correct: boolean; explanation: string }[] }
-        | {
-              type: "tof";
-              answer: boolean;
-          }
-        | { type: "input"; answers: string[] }
-    );
-};
+    title: string;
+    desc: string;
+} & (
+    | { type: "check" }
+    | { type: "freestanding"; hideAt: number }
+    | { type: "choose"; options: { label: string; correct: boolean; explanation: string }[] }
+    | {
+          type: "tof";
+          answer: boolean;
+      }
+    | { type: "input"; answers: string[] }
+);

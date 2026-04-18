@@ -119,7 +119,7 @@
         if (phase.name !== "activity") return;
 
         const idx = phase.stepIdx;
-        const action = steps[idx].action;
+        const action = steps[idx];
 
         nextStepIdx = idx + 1;
 
@@ -128,7 +128,6 @@
             player.playVideo();
             lastTime = player.getCurrentTime();
         } else {
-            // check, choose, tof, input → TODO
             if (nextStepIdx >= steps.length) {
                 phase = { name: "done" };
             } else {
@@ -164,6 +163,12 @@
             </p>
         </div>
     {/if}
+    <p class="text-red-400">
+        <b
+            >DEMO TÉCNICA - ESTO NO ESTÁ TERMINADO, ESPERE ERRORES Y FUNCIONES INCOMPLETAS O
+            DIRECTAMENTE AUSENTES.</b
+        >
+    </p>
     <div class="flex max-h-2/4 flex-row gap-4">
         <div class="aspect-video" style="flex: 3" bind:this={container}></div>
         <div
@@ -171,9 +176,10 @@
         >
             {#if phase.name === "activity" && currentStep}
                 <div class="h-full w-full">
-                    <h2>{currentStep.action.title}</h2>
-                    <h3>{currentStep.action.desc}</h3>
-                    {#if currentStep.action.type === "freestanding"}
+                    <h2>{currentStep.title}</h2>
+                    <h3>{currentStep.desc}</h3>
+                    <br />
+                    {#if currentStep.type === "freestanding"}
                         <Input
                             type="text"
                             title="Escribe aquí una respuesta"
@@ -181,35 +187,90 @@
                             bind:value={responses[phase.stepIdx]}
                             required
                         />
-                    {:else if currentStep.action.type === "choose"}
-                        {#each currentStep.action.options as opt, idx (idx)}
-                            <br />
-                            <Button
-                                title={`Elegir la opción «${opt.label}»`}
-                                onclick={() => {
-                                    responses[phase.stepIdx] = opt.correct + opt.explanation;
-                                }}
-                            >
-                                {opt.label}
-                            </Button>
-                        {/each}
+                        <p>Pregunta abierta. Pon lo que consideres.</p>
+                    {:else if currentStep.type === "choose"}
+                        <div class="grid grid-cols-2 grid-rows-2 gap-2">
+                            {#each currentStep.options as opt, idx (idx)}
+                                <Button
+                                    title={`Elegir la opción «${opt.label}»`}
+                                    onclick={() => {
+                                        responses[phase.stepIdx] = opt.correct + opt.explanation;
+                                    }}
+                                >
+                                    {opt.label}
+                                </Button>
+                            {/each}
+                        </div>
                         {#if responses[phase.stepIdx]}
-                            <p>
+                            <br />
+                            <p
+                                class={responses[phase.stepIdx].startsWith("true")
+                                    ? "text-(--accent)"
+                                    : "text-red-500"}
+                            >
                                 <b
                                     >{responses[phase.stepIdx].startsWith("true")
-                                        ? "Correcto"
-                                        : "Incorrecto, tonto"}.</b
+                                        ? "Correcto :]"
+                                        : "Incorrecto :["}</b
                                 >
                                 {responses[phase.stepIdx].replace("true", "").replace("false", "")}
                             </p>
                         {/if}
+                    {:else if currentStep.type === "tof"}
+                        <div class="grid grid-cols-2 grid-rows-1 gap-2">
+                            <Button
+                                title="Marcar que el enunciado es verdadero"
+                                onclick={() => {
+                                    responses[phase.stepIdx] = "1";
+                                }}
+                            >
+                                Verdadero
+                            </Button>
+                            <Button
+                                title="Marcar que el enunciado es false"
+                                onclick={() => {
+                                    responses[phase.stepIdx] = "0";
+                                }}
+                            >
+                                Falso
+                            </Button>
+                        </div>
+                        {#if responses[phase.stepIdx]}
+                            <br />
+                            <p
+                                class={(responses[phase.stepIdx] == "1") == currentStep.answer
+                                    ? "text-(--accent)"
+                                    : "text-red-500"}
+                            >
+                                <b
+                                    >{(responses[phase.stepIdx] == "1") == currentStep.answer
+                                        ? "Correcto :]"
+                                        : "Incorrecto :["}</b
+                                >
+                            </p>
+                        {/if}
+                    {:else if currentStep.type == "input"}
+                        <Input
+                            type="text"
+                            title="Escribe aquí una respuesta"
+                            name={`${phase.stepIdx}-fixed-input`}
+                            bind:value={responses[phase.stepIdx]}
+                            required
+                        />
+                        <p>¡Piensa bien!</p>
+                    {:else}
+                        <p class="text-sm opacity-50">
+                            Esto solo es una anotación. En cuanto la guardes en tu cabeza, puedes
+                            continuar sin más.
+                        </p>
                     {/if}
                 </div>
-                {#if currentStep.action.type === "freestanding" || currentStep.action.type === "check" || (currentStep.action.type === "choose" && responses[phase.stepIdx].startsWith("true"))}
-                    <Button title="Siguiente paso" onclick={completeStep}>Listo</Button>
+                {#if currentStep.type === "freestanding" || currentStep.type === "check" || (currentStep.type === "choose" && responses[phase.stepIdx].startsWith("true")) || (currentStep.type == "tof" && responses[phase.stepIdx] && (responses[phase.stepIdx] == "1") == currentStep.answer)}
+                    <Button title="Siguiente paso" onclick={completeStep}>¡Sigamos!</Button>
                 {/if}
+                <!--TODO:continuar y validar tras input (no freestanding)-->
             {:else if phase.name === "viewing_result" && currentStep}
-                {#if currentStep.action.type === "freestanding"}
+                {#if currentStep.type === "freestanding"}
                     <div class="h-full w-full">
                         <h2>¡Veamos si lo tienes bien!</h2>
                         <h3>Has respondido:</h3>
@@ -230,10 +291,32 @@
                 {/if}
             {:else if phase.name === "watching"}
                 <div class="h-full w-full">
-                    <h3>{nextStepIdx === 0 ? "¡Empecemos!" : "Sigue mirando"}</h3>
+                    {#if nextStepIdx === 0}
+                        <h2>¡Empecemos!</h2>
+                        <br />
+                        <p>
+                            Vamos con <b>{video.title}</b>, de parte de {video.subject}. Tardaremos {video.duration}.
+                        </p>
+                        <br />
+                        {#if canSkipIntro}
+                            <h3>Dale al video para empezar.</h3>
+                            <br />
+                            <p>
+                                <b>Si ya has visto el video previamente</b> (o, en general, si ya te
+                                haces a la idea de lo que trata el tema),
+                                <b>usa el botón de abajo para omitir la introducción.</b> Unos 30 segundos
+                                más o menos que te ahorrarás con eso.
+                            </p>
+                        {/if}
+                    {:else}
+                        <h2>Sigamos</h2>
+                        <h3>Continúa viendo el video. ¡Presta atención a todo!</h3>
+                    {/if}
                 </div>
                 {#if canSkipIntro}
-                    <Button title="Saltar intro" onclick={skipIntro}>¿Saltarte la intro?</Button>
+                    <Button title="Saltar intro" onclick={skipIntro}
+                        >Omitir introducción al tema</Button
+                    >
                 {/if}
             {:else if phase.name === "done"}
                 <div class="h-full w-full">
@@ -244,17 +327,13 @@
         </div>
     </div>
     <div class="flex flex-row items-center justify-center gap-2">
-        <p class="whitespace-nowrap">Pasos pendientes:</p>
+        <p class="whitespace-nowrap opacity-50">El video parará en los siguientes momentos</p>
         <hr />
         {#each steps as step, i (i)}
             <p class="whitespace-nowrap" style={i >= nextStepIdx ? "color: var(--accent);" : ""}>
-                <b>{step.timestamp}"</b>
+                <b>{step.timestamp}"</b>{step.type == "freestanding" ? ` - ${step.hideAt}"` : ""}
             </p>
             <hr />
         {/each}
     </div>
-    <p class="opacity-50">
-        Estás viendo <b>{video.title}</b>, que dura {video.duration}. En total se ha visto {video.seen}
-        veces.
-    </p>
 </div>

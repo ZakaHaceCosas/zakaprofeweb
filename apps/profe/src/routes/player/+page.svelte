@@ -9,52 +9,67 @@
     let video = $state<LoadedVideo | null>(null);
     let steps = $state<PlayerStep[]>([
         {
-            timestamp: 37,
-            action: {
-                title: "Check de ejemplo",
-                desc: "Los checks son sencillamente pausas para mostrar algo que el estudiante debería leer.",
-                type: "check",
-            },
+            timestamp: 1,
+
+            title: "¿Cuál NO es parte de un estudio?",
+            desc: "Elige la opción correspondiente",
+            type: "choose",
+            options: [
+                {
+                    label: "Población",
+                    correct: false,
+                    explanation: "La población sí es parte de un estudio.",
+                },
+                {
+                    label: "Muestra",
+                    correct: false,
+                    explanation: "La muestra sí es parte de un estudio.",
+                },
+                {
+                    label: "Juan Manuel Moreno Bonilla presidente de la Junta de Andalucía",
+                    correct: true,
+                    explanation:
+                        "Juan Manuel Moreno Bonilla presidente de la Junta de Andalucía NO es parte de un estudio estadístico. Es un personaje público que nada que ver.",
+                },
+                {
+                    label: "Variable",
+                    correct: false,
+                    explanation: "La variable sí es parte de un estudio.",
+                },
+            ],
         },
+        {
+            timestamp: 2,
+
+            title: "El porcentaje es Fi por cien.",
+            desc: "Es eso, ¿verdad?",
+            type: "tof",
+            answer: false,
+        },
+        {
+            timestamp: 3,
+
+            title: "¿Cómo se llama la tabla esa?",
+            desc: "[Tengo que pensar mejores preguntas para esto, eh]",
+            type: "input",
+            answers: ["de frecuencias", "tabla de frecuencias"],
+        },
+
+        {
+            timestamp: 4,
+
+            title: "Recuerda",
+            desc: "Toda estadística tiene, por lo menos, algún número.",
+            type: "check",
+        },
+
         {
             timestamp: 45,
-            action: {
-                title: "Responde",
-                desc: "¿Qué crees que es?",
-                type: "freestanding",
-                hideAt: 52,
-            },
-        },
-        {
-            timestamp: 77,
-            action: {
-                title: "¿Cuál NO es parte de un estudio?",
-                desc: "Elige la opción correspondiente",
-                type: "choose",
-                options: [
-                    {
-                        label: "Población",
-                        correct: false,
-                        explanation: "La población sí es parte de un estudio.",
-                    },
-                    {
-                        label: "Muestra",
-                        correct: false,
-                        explanation: "La muestra sí es parte de un estudio.",
-                    },
-                    {
-                        label: "Juan Manuel Moreno Bonilla presidente de la Junta de Andalucía",
-                        correct: true,
-                        explanation:
-                            "Juan Manuel Moreno Bonilla presidente de la Junta de Andalucía NO es parte de un estudio estadístico. Es un personaje público que nada que ver.",
-                    },
-                    {
-                        label: "Variable",
-                        correct: false,
-                        explanation: "La variable sí es parte de un estudio.",
-                    },
-                ],
-            },
+
+            title: "Responde",
+            desc: "¿Qué crees que es?",
+            type: "freestanding",
+            hideAt: 54,
         },
     ]);
     onMount(() => {
