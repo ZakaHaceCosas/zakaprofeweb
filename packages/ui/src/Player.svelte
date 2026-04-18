@@ -188,11 +188,6 @@
                                 title={`Elegir la opción «${opt.label}»`}
                                 onclick={() => {
                                     responses[phase.stepIdx] = opt.correct + opt.explanation;
-                                    console.log(
-                                        responses[phase.stepIdx],
-                                        opt.correct,
-                                        opt.explanation
-                                    );
                                 }}
                             >
                                 {opt.label}

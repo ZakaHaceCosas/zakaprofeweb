@@ -58,7 +58,7 @@
         },
     ]);
     onMount(() => {
-        const id = new URLSearchParams(window.location.search).get("v") ?? "";
+        const id: string = "lkDUdY2tO6g"; // new URLSearchParams(window.location.search).get("v") ?? "";
         if (id == "") {
             loading = false;
             return;

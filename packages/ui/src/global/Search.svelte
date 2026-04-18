@@ -35,7 +35,14 @@
                 return true;
             })
             .map((v: IVideo) => {
-                if (!hasQuery) return { ...v, similarity: 1 };
+                if (!hasQuery && selectedSubject == "" && selectedCourse == "")
+                    return { ...v, similarity: 1 };
+
+                if (!hasQuery)
+                    return {
+                        ...v,
+                        similarity: 100,
+                    };
 
                 const titleTokens = normalize(v.title, { keepSpaces: true })
                     .split(/\s+/)
@@ -110,7 +117,7 @@
     />
 </div>
 
-{#if search.length > 2}
+{#if search.length > 2 || !(selectedSubject == "" && selectedCourse == "")}
     <br />
     <p class="disclaimer" aria-live="polite">
         {pluralOrNot("Encontrado", results.length)} <b>{results.length}</b>
@@ -202,5 +209,5 @@
     {/if}
 {:else}
     <br />
-    <p>Escribe al menos 3 caracteres y buscará automáticamente.</p>
+    <p>Escribe al menos 3 caracteres o selecciona algún filtro y buscará automáticamente.</p>
 {/if}
