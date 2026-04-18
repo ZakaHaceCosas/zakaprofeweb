@@ -2,7 +2,6 @@
     import { evaluate } from "mathjs";
     import Core from "@zpw/ui/app/Core";
 
-    let core = $state<ReturnType<typeof import("@zpw/ui/app/Core").default>>();
     let res = $state<string | null>(null);
     let values = $state<{
         expr: string;
@@ -37,7 +36,6 @@
 <Core
     channel="profe"
     bind:values
-    bind:this={core}
     {method}
     params={[
         [

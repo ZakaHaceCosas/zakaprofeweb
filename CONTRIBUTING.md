@@ -47,6 +47,7 @@ Son estos:
 - `apps/+page.svelte`, todas las webs, guión `zpw:app` @ `tools/app-page-builder.ts`.
 - `lib/db.ts`, todas las webs, guión `zpw:fch` @ `tools/fetch.ts`.
 - `static/sitemap.xml`, todas las webs, guión `zpw:xml` @ `tools/sitemap.ts`.
+- `packages/ui/package.json` (parcialmente), guión `zpw:typ` @ `tools/ui-typegen.ts`
 
 No los toques. Si te parece que algo está mal, cámbialo desde el archivo code-gen.
 
@@ -79,6 +80,7 @@ bun zpw:fch # code-gen para DB
 bun zpw:img # convierte PNGs a AVIF (require avifenc instalado)
 bun zpw:xml [app] # code-gen para sitemap.xml
 bun zpw:app # code-gen para ZPWAPP-RT
+bun zpw:typ # code-gen para exports de @zpw/ui
 # tu favorito:
 bun commit # ejecuta todos los guiones zpw:* necesarios antes de una confirmación
 ```
@@ -92,6 +94,14 @@ A partir de aquí hay dos rutas, según si vas a contribuir a una APP o a cualqu
 No hay pautas específicas, haz algo guay y servirá.
 
 ### Para apps
+
+> [!CAUTION]
+> Hay ciertos problemas con esta guía.
+>
+> 1. Esta es la forma *actual* de desarrollar aplicaciones de ZakaProfeWeb. Un nuevo sistema (ZPWAPP-RT) está en desarrollo, una vez terminado esto cambiará bastante.
+> 2. Irónicamente, pese a lo que acabas de leer, este método es a la vez el «nuevo», y como tal la mayoría de aplicaciones aún no están migradas a este sistema, siendo mucho más arcaicas y desagradables de mantener.
+>
+> Más información al respecto al [final de la sección](#código-heredado-y-código-futuro-en-las-apps-de-zakaprofe).
 
 Vale, las apps siguen esta estructura:
 
@@ -135,7 +145,6 @@ Después, la app en sí puedes escribirla libremente. Lo único que se pauta es 
 <script lang="ts">
 import Core from "@zpw/ui/app/Core";
 
-let core = $state<ReturnType<typeof import("@zpw/ui/app/Core").default>>();
 let res = $state<TuTipoAquí | null>(null); // guardar el RESULTADO
 let values = $state<{
     key: string;
@@ -149,36 +158,46 @@ function method() {
 }
 </script>
 
-<svelte:head>
-    <title>(App)</title>
-    <meta
-        name="description"
-        content="(Desc. app)."
-    />
-</svelte:head>
-
 <Core
-    {method}
     channel="..."
     bind:values
-    bind:this={core}
-    params={
-        ...
-    }
+    {method}
+    params={[...]}
     app="..."
-    labels={{
-        calc: "...",
-        calcLite: "...",
-    }}
+    labels={...}
 >
-    <h1>(Nombre app)</h1>
-    <br />
-    <p>(Describe aquí la app)</p>
-    <br /><br />
-    <!-- inputs de la app, resultados y demás -->
+    {#snippet result()}
+        {#if res != null}
+            <!--resultado aquí-->
+        {/if}
+    {/snippet}
 </Core>
 ```
 
-Donde cada cosa es:
+Donde cada cosa es lo siguiente:
 
-- TODO
+| Cómo está en el ejemplo | Qué es realmente | Consideraciones |
+| -- | -- | -- |
+| `res: TuTipoAquí = ...` | Estado donde guardarás el resultado una vez el usuario ejecute la app. | / |
+| `values = ...` | Estado donde guardarás la entrada del usuario. | Todo son cadenas, aunque uses booleanos, números o estructuras complejas. Deberás adaptarte. |
+| `method()` | Función que recibe los `values` y hace todos los cálculos. | Primero, al final debería establecer `res`, no devolver; segundo, ante un error, debería lanzar una cadena (no un `Error`) y no capturarla (la capturará el componente superior, descuida) |
+| `<Core ... />` | Donde ocurre la magia. Gestiona todo. | Me debes una por hacer que funcione. |
+| `Core: channel="..."` | Canal al que corresponde la app. | `"profe"` o `"teka"`. |
+| `bind:values` | Pasa los valores de este `.svelte` a `<Core />` y viceversa. | / |
+| `params={[...]}` | Parámetros. Aquí defines todos los elementos de entrada que tendrá el formulario. | La abstracción JSON que usa esto es sencilla, pero no muy potente. Por ejemplo, actualmente sería incapaz de recrear la [calculadora de nóminas](https://profe.zhc.es/apps/calculadora-nominas) de ZakaProfe. |
+| `app="..."` | Nombre único de la app. Para la URL, básicamente. | / |
+| `labels={{...}}` | Texto y etiquetas que mostrar en el componente. | / |
+
+(Más adelante se documentará más en detalle; de momento el JSDoc y los tipos te serán suficientes para manejarte.)
+
+### Código heredado y código futuro en las apps de ZakaProfe
+
+La palabra inglesa «overkill» define perfectamente el estado de las ZPWAPPs. Actualmente hay tres formas diferentes de hacerlas:
+
+- Están las «clásicas» (viejas) que no siguen ningún sistema definido. Una mini app en un componente Svelte. Duplican cierta cantidad de código entre sí.
+- Luego están las «modernas» (¿actuales? solo las usa una app) que usan el componente `<Core />` de `@zpw/ui/app`. Son casi perfectas, de hecho, pero requieren de un segundo archivo (el archivo de control `i.svg`).
+- Y luego está el futuro sistema «ZPWAPP-RT» (no usadas por nada, salvo la app de pruebas que hay) que crean una capa de abstracción superior tratando de contener todo (incluido el contenido «de control» del SVG) en un único archivo y delegando a un pequeño sistema de code-gen el crear los diversos archivos necesarios.
+
+Ya sé que es estúpido, parece esto Microsoft Windows...
+
+Si vas a contribuir algo, usa el enfoque «moderno» (`<Core />` y a correr). Es lo más sano de momento. No intentes migrar aplicaciones «clásicas» a este sistema. Cuando ZPWAPP-RT sea lo suficientemente bueno, migraré yo todo. Ten en cuenta que no estará para mañana ni pasado.
