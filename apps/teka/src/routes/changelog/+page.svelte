@@ -53,6 +53,7 @@
 <h3>Correcciones</h3>
 <ul>
     <li>Corregido algún error menor con el buscador.</li>
+    <li>Resulta que las analíticas de Vercel no estaban funcionando.</li>
     <li>
         De hecho, el naranja que usaba la web no era exactamente el mismo que el del logo, esto se
         ha corregido.

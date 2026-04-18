@@ -41,6 +41,7 @@
         "@sveltejs/adapter-vercel": "catalog:dep",
         "@zhc.js/number-utils": "catalog:dep",
         "@zhc.js/string-utils": "catalog:dep",
+        "@vercel/analytics": "catalog:dep",
         "@zpw/ui": "workspace:*",
         "mathjs": "catalog:dep"
     },

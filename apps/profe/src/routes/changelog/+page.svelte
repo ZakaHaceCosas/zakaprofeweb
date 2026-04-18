@@ -53,6 +53,7 @@
 <h3>Correcciones</h3>
 <ul>
     <li>Corregido algún error menor con el buscador.</li>
+    <li>Resulta que las analíticas de Vercel no estaban funcionando.</li>
     <li>
         [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era
         usable.

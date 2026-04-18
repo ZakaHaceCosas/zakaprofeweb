@@ -21,6 +21,7 @@
 ### Correcciones
 
 - Corregido algún error menor con el buscador.
+- Resulta que las analíticas de Vercel no estaban funcionando.
 - [ZPW/TEKA] De hecho, el naranja que usaba la web no era exactamente el mismo que el del logo, esto se ha corregido.
 - [ZPW/PROFE] [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era usable.
 
