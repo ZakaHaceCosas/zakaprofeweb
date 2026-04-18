@@ -119,12 +119,12 @@
 
 {#if search.length > 2 || !(selectedSubject == "" && selectedCourse == "")}
     <br />
-    <p class="disclaimer" aria-live="polite">
-        {pluralOrNot("Encontrado", results.length)} <b>{results.length}</b>
-        {pluralOrNot("video", results.length)}.
-    </p>
-    <br />
     {#if results && results.length != 0}
+        <p class="disclaimer" aria-live="polite">
+            {pluralOrNot("Encontrado", results.length)} <b>{results.length}</b>
+            {pluralOrNot("video", results.length)}.
+        </p>
+        <br />
         <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
             {#each results as v (v.url)}
                 <div class="flex flex-col gap-3 border-2 border-(--fff25) bg-(--blk) p-3">
@@ -205,7 +205,10 @@
             </div>
         </dialog>
     {:else}
-        <p>Ningún resultado para <b>{search}</b>.</p>
+        <p>
+            Ningún resultado para la búsqueda. Prueba a escribirlo de otra forma o cambiar/quitar
+            los filtros.
+        </p>
     {/if}
 {:else}
     <br />

@@ -178,11 +178,11 @@ Donde cada cosa es lo siguiente:
 
 | Cómo está en el ejemplo | Qué es realmente | Consideraciones |
 | -- | -- | -- |
-| `res: TuTipoAquí = ...` | Estado donde guardarás el resultado una vez el usuario ejecute la app. | / |
+| `res = ...` | Estado donde guardarás el resultado una vez el usuario ejecute la app. | / |
 | `values = ...` | Estado donde guardarás la entrada del usuario. | Todo son cadenas, aunque uses booleanos, números o estructuras complejas. Deberás adaptarte. |
 | `method()` | Función que recibe los `values` y hace todos los cálculos. | Primero, al final debería establecer `res`, no devolver; segundo, ante un error, debería lanzar una cadena (no un `Error`) y no capturarla (la capturará el componente superior, descuida) |
 | `<Core ... />` | Donde ocurre la magia. Gestiona todo. | Me debes una por hacer que funcione. |
-| `Core: channel="..."` | Canal al que corresponde la app. | `"profe"` o `"teka"`. |
+| `channel="..."` | Canal al que corresponde la app. | `"profe"` o `"teka"`. |
 | `bind:values` | Pasa los valores de este `.svelte` a `<Core />` y viceversa. | / |
 | `params={[...]}` | Parámetros. Aquí defines todos los elementos de entrada que tendrá el formulario. | La abstracción JSON que usa esto es sencilla, pero no muy potente. Por ejemplo, actualmente sería incapaz de recrear la [calculadora de nóminas](https://profe.zhc.es/apps/calculadora-nominas) de ZakaProfe. |
 | `app="..."` | Nombre único de la app. Para la URL, básicamente. | / |
