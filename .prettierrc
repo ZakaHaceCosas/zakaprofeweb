@@ -19,6 +19,13 @@
             "options": {
                 "parser": "svelte"
             }
+        },
+        {
+            "files": "*.zpwapp",
+            "options": {
+                "quoteProps": "consistent",
+                "trailingComma": "none"
+            }
         }
     ],
     "tailwindStylesheet": "./packages/app.css"

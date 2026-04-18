@@ -5,18 +5,13 @@ import path from "path";
 import fs from "fs";
 
 // #T
+import type { Param } from "@zpw/types/types";
 function zpw_input<T>(n: 1 | 0 = 0) {
     return "" as any as T;
 }
-const values: Record<string, any> = {};
-type IDef = {
-    type: "txt" | "txtArea" | "num";
-    placeholder: string;
-    bind_to: string | false;
-    input_name: string;
-    r: 1 | 0;
-}[];
-type MDef = { name: string; desc: string; longDesc: string };
+const values: Record<string, string> = {};
+type MDef = { title: string; desc: string[]; calc: string; calcLite: string };
+type IDef = (Param | Param[])[];
 
 class ZPWAPP {
     public sveltePath: string;
@@ -64,31 +59,14 @@ class ZPWAPP {
             return [n, decl];
         });
         const props = `let values: {${preparedInputLines.map((v) => `${v[0]}: string/*${v[1]}*/`).join(",")}} = $state({${preparedInputLines.map((v) => `${v[0].replace("?", "")}: ""`).join(",")}});`;
-        return `import Core from "@zpw/ui/app/Core";\nimport Input from "@zpw/ui/Input";\n${props}\n${input
+        return `import Core from "@zpw/ui/app/Core";\n${props}\n${input
             .trim()
             .split("\n")
             .filter((v) => !v.includes("zpw_input"))
             .join("\n")}`;
     }
-
-    private formKeyParser(i: IDef[0]) {
-        let str = "<";
-        if (i.type == "txt") str += "Input\ntype='text'\n";
-
-        str += `title="${i.placeholder}"\n`;
-        str += `name="${i.input_name}"\n`;
-        str += `required={${i.r == 1}}\n`;
-        str += `bind:value={values.${i.bind_to}}`;
-        str += "/>";
-        return str;
-    }
-    private prepareMetaMarkup(input: string): string {
-        return "// TODO";
-    }
-    private prepareFormMarkup(input: string): string {
-        const obj = JSON.parse(input);
-        const str = obj.map(this.formKeyParser);
-        return `\n<Core app="${this.where.split("/").at(-1)?.split(".")[0]}" channel="${this.where.includes("profe") ? "profe" : "teka"}" bind:values {calculatorMethod}>\n${str.join("\n")}\n</Core>`;
+    private prepareMarkup(inputQ: string, inputM: string): string {
+        return `\n<Core params={${inputQ}} labels={${inputM}} app="${this.where.split("/").at(-1)?.split(".")[0]}" channel="${this.where.includes("profe") ? "profe" : "teka"}" bind:values {method}/>`;
     }
 
     private convert(): string {
@@ -100,8 +78,9 @@ class ZPWAPP {
             .split("/*S*/");
         const [rawSvelte, markupGenerator] = shit[1].split("/*_*/");
         const svelte = this.prepareSvelte(rawSvelte);
-        const form = this.prepareFormMarkup(
-            markupGenerator.split(";")[0].replace("const Q: IDef = ", "").trim()
+        const form = this.prepareMarkup(
+            markupGenerator.split(";")[0].replace("const Q: IDef = ", "").trim(),
+            markupGenerator.split(";")[1].replace("const M: MDef = ", "").trim()
         );
         // tengo crisis existenciales programando, a veces uso inglés y a veces español
         return `<script lang="ts">/* THIS IS GENERATED CODE, built with the ZPWAPP engine. Look for a .ZPWAPP file one directory above with the same name as this directory, the code for this app is there.*/\n${svelte}</script>${form}`;

@@ -1,17 +1,12 @@
 // renombrado a .ts para evitar que se ejecute ahora, que no estoy trabajando en ello
 // quitar .ts dejando .zpwapp para que se use
+import type { Param } from "@zpw/types/types";
 function zpw_input<T>(n: 1 | 0 = 0) {
     return "" as any as T;
 }
-const values: Record<string, any> = {};
-type IDef = {
-    type: "txt" | "txtArea" | "num";
-    placeholder: string;
-    bind_to: string | false;
-    input_name: string;
-    r: 1 | 0;
-}[];
-type MDef = { name: string; desc: string; longDesc: string };
+const values: Record<string, string> = {};
+type MDef = { title: string; desc: string[]; calc: string; calcLite: string };
+type IDef = (Param | Param[])[];
 /*S*/
 // TODO
 // definir el formato
@@ -24,7 +19,7 @@ const avg = 1.93;
 
 const w: "DM" | "Varian" = "Varian" as "DM" | "Varian";
 
-function calculatorMethod() {
+function method() {
     values.pairs.forEach((p) => {
         const a = w == "DM" ? Math.abs(p[0] - avg) : Math.pow(p[0] - avg, 2);
         i += a * p[1];
@@ -37,15 +32,18 @@ function calculatorMethod() {
 /*_*/
 const Q: IDef = [
     {
-        type: "txt",
-        placeholder: "test de ZPWAPP code-gen",
-        input_name: "foo",
-        r: 1,
-        bind_to: "pairs",
+        type: "text",
+        title: "test de ZPWAPP code-gen",
+        key: "foo",
+        req: true,
     },
 ];
 const M: MDef = {
-    name: "Calculadora para estadística",
-    desc: "Calculadora que genera tablas y gráficos para estudios estadísticos unidimensionales o bidimensionales.",
-    longDesc: "todo",
+    title: "Calculadora para estadística",
+    desc: [
+        "Calculadora completa para estudios estadísticos unidimensionales o bidimensionales.",
+        "Una calculadora que, recibiendo datos de un estudio estadístico, genera todas las tablas, parámetros y gráficas que pudieras necesitar.",
+    ],
+    calc: "Analizar",
+    calcLite: "Computar los datos proveídos y hacer todo el trabajo.",
 };
