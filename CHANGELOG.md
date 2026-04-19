@@ -32,6 +32,8 @@
     - Existe también el sistema ZakaPlayer, que se implementara muy pronto. Permitirá ver videos de forma interactiva y con ejercicios prácticos.
 - Añadida documentación para contribuidores.
 
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/v3.5.0...v4.0.0)
+
 ## 3.5.0 (06/04/2026)
 
 **Actualizaciones visibles para el usuario**
@@ -184,8 +186,6 @@
 
 ## 2.3.0 (17/04/2025)
 
-[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/afb17008372c6916cae4e7e68eba8c6100e0c3b1...fad2abd7ae05e61b2f5ad8a16cf9701aaded1115)
-
 **Actualizaciones visibles para el usuario**
 
 - Añadida una calculadora de notas.
@@ -196,9 +196,9 @@
 - Eliminados archivos innecesarios.
 - Configurado Prettier.
 
-## 2.2.0 (03/03/2025)
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/afb17008372c6916cae4e7e68eba8c6100e0c3b1...fad2abd7ae05e61b2f5ad8a16cf9701aaded1115)
 
-[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/61a89ebb62a0eb0f75d005ce7e6dbf51e750885b...afb17008372c6916cae4e7e68eba8c6100e0c3b1)
+## 2.2.0 (03/03/2025)
 
 **Actualizaciones visibles para el usuario**
 
@@ -209,9 +209,9 @@
 - Migrado de CRA a Vite.
 - Migrado de JavaScript a TypeScript.
 
-## 2.1.2 (19/02/2025)
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/61a89ebb62a0eb0f75d005ce7e6dbf51e750885b...afb17008372c6916cae4e7e68eba8c6100e0c3b1)
 
-[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/1575d528d7be86d800a2ff11e253fd05c6bcc075...61a89ebb62a0eb0f75d005ce7e6dbf51e750885b)
+## 2.1.2 (19/02/2025)
 
 **Actualizaciones visibles para el usuario**
 
@@ -225,9 +225,9 @@
 
 - Agrupados correctamente los videos por temporadas.
 
-## 2.1.1 (14/02/2025)
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/1575d528d7be86d800a2ff11e253fd05c6bcc075...61a89ebb62a0eb0f75d005ce7e6dbf51e750885b)
 
-[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/b1717088db022e6b228dd93e958c746c01354a97...1575d528d7be86d800a2ff11e253fd05c6bcc075)
+## 2.1.1 (14/02/2025)
 
 **Actualizaciones visibles para el usuario**
 
@@ -239,9 +239,9 @@
 
 - Eliminado `pdfPro` y `pdfNah` del array de videos.
 
-## 2.1.0 (12/02/2025)
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/b1717088db022e6b228dd93e958c746c01354a97...1575d528d7be86d800a2ff11e253fd05c6bcc075)
 
-[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/75761b525181b5244963e83dd67c73cf0fd81103...b1717088db022e6b228dd93e958c746c01354a97).
+## 2.1.0 (12/02/2025)
 
 **Actualizaciones visibles para el usuario**
 
@@ -259,9 +259,9 @@
 
 - Ahora las strings se validan con `string-utils` (nueva dep.) en vez de `.trim().toLowerCase()` para más precision.
 
-## 2.0.0 (08/02/2025)
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/75761b525181b5244963e83dd67c73cf0fd81103...b1717088db022e6b228dd93e958c746c01354a97).
 
-[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/5457f06689b7b1510067c6a3d077bcb6fb17bc34...75761b525181b5244963e83dd67c73cf0fd81103).
+## 2.0.0 (08/02/2025)
 
 - ¡El sitio web ha vuelto!
 
@@ -286,6 +286,8 @@
 - Eliminados algunos estilos compatibles con navegadores antiguos (a los usuarios con tecnologías ancestrales que les den).
 - Eliminadas clases de CSS y tags HTML redundantes.
 - Reorganizadas las miniaturas.
+
+[Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/5457f06689b7b1510067c6a3d077bcb6fb17bc34...75761b525181b5244963e83dd67c73cf0fd81103).
 
 ## 1.1.4
 

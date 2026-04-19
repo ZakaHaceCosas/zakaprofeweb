@@ -56,7 +56,7 @@
         "zpw:upd": "bun tools/deps.ts",
         "zpw:app": "bun tools/app-page-builder.ts",
         "zpw:typ": "bun tools/ui-typegen.ts",
-        "commit": "bun zpw:upd && bun zpw:fch && bun zpw:chg && bun zpw:app teka && bun zpw:app profe && bun zpw:xml teka && bun zpw:xml profe && bun zpw:img"
+        "commit": "bun zpw:upd && bun zpw:fch && bun zpw:chg && bun zpw:app teka && bun zpw:app profe && bun zpw:xml && bun zpw:img"
     },
     "browserslist": {
         "production": [

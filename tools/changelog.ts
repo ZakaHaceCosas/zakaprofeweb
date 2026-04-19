@@ -27,6 +27,10 @@ async function main(app: "profe" | "teka") {
             "<p><strong>**Actualizaciones internas (desarrollo)**</strong></p>",
             "<br/><p><strong>**Actualizaciones internas (desarrollo)**</strong></p>"
         )
+        .replaceAll(
+            ">Comparación de cambios</a>",
+            "class='text-(--accent) underline'>Comparación de cambios</a><br><br>"
+        )
         .replaceAll("<h3>", "<br><h3>")
         .replaceAll("</h3>", "</h3><br>")
         .replaceAll("<h2>", "<hr /> <h2>")

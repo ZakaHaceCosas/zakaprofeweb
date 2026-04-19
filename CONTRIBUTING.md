@@ -78,7 +78,7 @@ bun zpw:upd # equiv. a bun update (nop, tampoco va)
 bun zpw:chg # code-gen para changelogs
 bun zpw:fch # code-gen para DB
 bun zpw:img # convierte PNGs a AVIF (require avifenc instalado)
-bun zpw:xml [app] # code-gen para sitemap.xml
+bun zpw:xml # code-gen para sitemap.xml
 bun zpw:app # code-gen para ZPWAPP-RT
 bun zpw:typ # code-gen para exports de @zpw/ui
 # tu favorito:

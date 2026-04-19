@@ -4,6 +4,5 @@ launchCmd:
     - $;;dev --open
 commitCmd:
     - $zpw:chg
-    - $zpw:xml teka
-    - $zpw:xml profe
+    - $zpw:xml
     - $zpw:img
