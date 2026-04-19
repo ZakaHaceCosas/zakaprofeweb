@@ -1,5 +1,7 @@
 <script lang="ts">
     import { onMount, type Snippet } from "svelte";
+    import Dialog from "../Dialog.svelte";
+    import Comments from "../Comments.svelte";
 
     let { children, channel }: { children: Snippet; channel: "ZakaProfe" | "ZakaTeka" } = $props();
 
@@ -141,6 +143,16 @@
     {@render children?.()}
 </main>
 
+<Dialog id="bugs-modal" title="¿Algo no funciona bien aquí?" buttonLabel="Cerrar">
+    <p>
+        Puedes hacer un reporte desde aquí de forma anónima. Se enviará de inmediato, y (tras
+        revisarlo yo) aparecerá públicamente para evitar reportes duplicados. También verás que dejo
+        respuestas a comentarios en algunos casos (donde pone «Zaka:» y está destacado de azul).
+    </p>
+    <hr />
+    <Comments pageId="bug-tracker-{channel == 'ZakaProfe' ? 'zp' : 'zt'}" />
+</Dialog>
+
 <footer
     class="flex flex-col items-center justify-between gap-4 border-t-2 border-t-(--fff25) bg-(--blk) p-4 text-sm font-medium text-(--grey) shadow-[0px_0px_-15px_10px_var(--blkSha)] md:flex-row md:gap-0"
 >
@@ -151,8 +163,13 @@
         autorización expresa.
     </p>
     <p class="md:flex-2 md:text-end">
-        <b>ZakaProfe WEB v4.0.0 (18/04/2026)</b> ·
+        <b>ZakaProfe WEB v4.0.0 (19/04/2026)</b> ·
         <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a>
-        · <a href="/bugs" class="underline">Reportar un fallo</a>
+        ·
+        <a
+            href="#top"
+            onclick={() => (document.getElementById("bugs-modal") as HTMLDialogElement).showModal()}
+            class="underline">Reportar un fallo</a
+        >
     </p>
 </footer>

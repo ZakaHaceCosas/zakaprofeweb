@@ -2,13 +2,9 @@
 
 # ZakaProfe WEB · Registro de cambios
 
-## 4.0.0 (18/04/2026)
-
-<br/>
+## 4.0.0 (19/04/2026)
 
 **Actualizaciones visibles para el usuario**
-
-<br/>
 
 ### Cambios rompedores
 
@@ -18,32 +14,27 @@
 
 - Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de colores de tu sistema.
 
-### Correcciones
+### Correcciones y cambios menores
 
+- Restauradas las comparaciones de versión (de ahora en adelante).
+- Ahora la sección de comentarios está implementada en un modal. La clásica `/bugs` no se ha eliminado.
 - Corregido algún error menor con el buscador.
 - Resulta que las analíticas de Vercel no estaban funcionando, ahora sí lo hacen.
 - Ahora el buscador permite usar filtros sin escribir para mostrar todos los videos (como debería, cosa que no hacía).
 - [ZPW/TEKA] De hecho, el naranja que usaba la web no era exactamente el mismo que el del logo, esto se ha corregido.
 - [ZPW/PROFE] [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era usable.
 
-<br/>
-
 **Actualizaciones internas (desarrollo)**
-
-<br/>
 
 - Partida la web en dos, ahora es un monorepo.
 - Hecho bastante trabajo de preparación para cambios grandes de futuras versiones:
     - Ahora existe el sistema ZPWAPP, que más adelante usarán todas las Apps de esta web. Para usuarios, significa apps más consistentes y con menos bugs.
     - Existe también el sistema ZakaPlayer, que se implementara muy pronto. Permitirá ver videos de forma interactiva y con ejercicios prácticos.
+- Añadida documentación para contribuidores.
 
 ## 3.5.0 (06/04/2026)
 
-<br/>
-
 **Actualizaciones visibles para el usuario**
-
-<br/>
 
 ### Mejoras significativas
 
@@ -80,11 +71,7 @@
 - Quitada la sección para las clases particulares. No está cancelado, pero mañana no va a ser, no tiene mucho sentido el spoiler ahí.
 - Semi-automatizadas las actualizaciones de datos para el buscador y demás.
 
-<br/>
-
 **Actualizaciones internas (desarrollo)**
-
-<br/>
 
 - Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
 - Ahora en teoría el prerenderizado de Svelte debería ir.
@@ -93,7 +80,7 @@
 
 ## 3.4.0 (08/03/2026)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Añadida una calculadora de nóminas para IPE. La ley española es compleja; aún no soporta todas las casuísticas e irá evolucionando con el tiempo.
 - Añadida una calculadora de FLSM para redes.
@@ -101,43 +88,43 @@ Actualizaciones visibles para el usuario:
 - Cambiada la tipografía a Roboto (Flex y Mono), que es la tipografía oficial de ZakaProfe. Además, se ve mejor.
 - Corregido (espero) el widget de contacto mostrando estados incoherentes.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Ahora la web no se desplegará con cada confirmación que se sube al repositorio, por lo que el repositorio refleja ahora el futuro de la página y no el estado actual.
 
 ## 3.3.2 (01/02/2026)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Arreglados varios fallos visual, alguno de ellos grave.
 - Ahora el texto del contador de palabras también se puede compartir.
 
 ## 3.3.1 (29/01/2026)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Corregido algún pequeño error de lógica en algunas apps de ZakaTeka.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Migrados aún más componentes a Tailwind.
 - Eliminada la lógica inútil de las traducciones, reduciendo así consumo y trabajo de carga.
 
 ## 3.3.0 (27/01/2026)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Añadida otra app de ZakaTeka, para calcular VLSM en IPs.
 - Organizadas las apps por categorías.
 - Arreglado un error histórico, la navegación accesible / por tabulador es invisible, volviéndose inaccesible.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Migrado algunos componentes a Tailwind, reduciendo el CSS que se tiene que cargar. Gradualmente se pasará todo a Tailwind para mejorar rendimiento.
 
 ## 3.2.0 (23/01/2026)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Ahora las apps están concentradas en una página dedicada.
 - Añadidas dos apps (de ZakaTeka esta vez), para calcular IPs y números hexadecimales/binarios.
@@ -146,20 +133,20 @@ Actualizaciones visibles para el usuario:
 
 ## 3.1.0 (20/01/2026)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Añadido un contador de palabras como nueva app.
 - Añadido mención a un futuro plan, clases particulares.
 - Mejorado algún detalle visual.
 - Corregido errores de redacción.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Añadidas descripciones SEO, con suerte así el sitio indexará mejor en Google.
 
 ## 3.0.1 (11/01/2026)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Ahora la calculadora de medias permite compartir las notas.
 - Dicha calculadora ahora usa números del 0 al 100 en vez de decimales del 0 al 1 para las ponderaciones.
@@ -167,17 +154,17 @@ Actualizaciones visibles para el usuario:
 - Actualizadas las imágenes de escritorio en el instalador de la Aplicación Web Progresiva.
 - `/grades` ahora es `/calculadora-notas`.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Arreglado Prettier.
 
 ## 3.0.0
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Renovado la web por COMPLETO. Muchos cambios.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Reescrito la web en Svelte en lugar de React.
 
@@ -189,7 +176,7 @@ Actualizaciones internas (desarrollo):
 
 ## 2.3.1 (18/04/2025)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Optimizadas las imágenes para que la pág. cargue más rápido.
 - Mejorados los colores y hechas varas mejoras visuales.
@@ -199,12 +186,12 @@ Actualizaciones visibles para el usuario:
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/afb17008372c6916cae4e7e68eba8c6100e0c3b1...fad2abd7ae05e61b2f5ad8a16cf9701aaded1115)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Añadida una calculadora de notas.
 - Hechos algunos cambios visuales.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Eliminados archivos innecesarios.
 - Configurado Prettier.
@@ -213,11 +200,11 @@ Actualizaciones internas (desarrollo):
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/61a89ebb62a0eb0f75d005ce7e6dbf51e750885b...afb17008372c6916cae4e7e68eba8c6100e0c3b1)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Algún ajuste visual.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Migrado de CRA a Vite.
 - Migrado de JavaScript a TypeScript.
@@ -226,7 +213,7 @@ Actualizaciones internas (desarrollo):
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/1575d528d7be86d800a2ff11e253fd05c6bcc075...61a89ebb62a0eb0f75d005ce7e6dbf51e750885b)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Se mejoró el buscador.
     - Se ve visualmente mejor.
@@ -234,7 +221,7 @@ Actualizaciones visibles para el usuario:
     - Se corrigió «encontrados 1 videos».
 - Ahora el tema por defecto es el oscuro, para que no te exploten los ojos.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Agrupados correctamente los videos por temporadas.
 
@@ -242,13 +229,13 @@ Actualizaciones internas (desarrollo):
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/b1717088db022e6b228dd93e958c746c01354a97...1575d528d7be86d800a2ff11e253fd05c6bcc075)
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Se cambiaron ligeramente los estilos (ahora son sin degradados + se arregló el overlay de los videos en móvil + otros ajustes menores).
 - Se mejoró el buscador, ahora luce mejor, valida mejor la entrada, y rinde mejor.
 - Se optimizó un poco más la página eliminando estilos CSS no usados.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Eliminado `pdfPro` y `pdfNah` del array de videos.
 
@@ -256,7 +243,7 @@ Actualizaciones internas (desarrollo):
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/75761b525181b5244963e83dd67c73cf0fd81103...b1717088db022e6b228dd93e958c746c01354a97).
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Se optimizó un montón la página
     - Todas las imágenes PNG ahora son WEBP (14mb de ahorro).
@@ -268,7 +255,7 @@ Actualizaciones visibles para el usuario:
 - Ahora la bola de status tiene una animación simple :)
 - La página «Estudia más» fue ocultada por completo. El código aún existe, pero es ahora 100% inaccesible y dicho código ya no está en el repositorio.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Ahora las strings se validan con `string-utils` (nueva dep.) en vez de `.trim().toLowerCase()` para más precision.
 
@@ -278,7 +265,7 @@ Actualizaciones internas (desarrollo):
 
 - ¡El sitio web ha vuelto!
 
-Actualizaciones visibles para el usuario:
+**Actualizaciones visibles para el usuario**
 
 - Se actualizó y volvió a implementar el componente de disponibilidad.
 - Ahora la página 404 muestra el pathname solicitado.
@@ -290,7 +277,7 @@ Actualizaciones visibles para el usuario:
 - Se añadió Vercel analytics para medir el rendimiento de la web (esto no afecta a los usuarios).
 - Pequeñas mejoras de accesibilidad.
 
-Actualizaciones internas (desarrollo):
+**Actualizaciones internas (desarrollo)**
 
 - Actualizado a React 19.
 - Formateado todo el código.

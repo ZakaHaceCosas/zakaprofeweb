@@ -5,6 +5,7 @@
     import type { IVideo } from "@zpw/types/types";
     import { ZP_SUBJECTS, ZT_SUBJECTS, ZP_COURSES, ZT_COURSES } from "@zpw/types/types";
     import { normalize, pluralOrNot, similarity } from "@zhc.js/string-utils";
+    import Dialog from "../Dialog.svelte";
 
     type SIVideo = IVideo & { similarity: number };
     let search = $state("");
@@ -181,29 +182,15 @@
             ser bajo. 100 visitas y solo 15 «me gustas» no significan que a las otras 85 personas no les
             haya gustado el video, no suele ser así.
         </p>
-        <dialog
-            class="animate-in fade-in zoom-in backdrop:animate-in backdrop:fade-in m-auto h-fit w-full max-w-md border-2 border-(--fff25) bg-(--blk) p-0 duration-200 backdrop:bg-black/75 backdrop:backdrop-blur-sm backdrop:duration-300 starting:scale-95 starting:opacity-0 backdrop:starting:opacity-0"
-            id="soon-modal"
-        >
-            <div class="flex flex-col gap-1 overflow-hidden p-6">
-                <h2 class="text-lg font-semibold text-slate-900">¡Pronto disponible!</h2>
-                <hr />
-                <p class=" leading-relaxed text-slate-700">
-                    El reproductor de <b>video interactivo</b> será de las mejores funciones de este
-                    sitio; te dejará <b>ver cada video con anotaciones y ejercicios prácticos</b>
-                    para
-                    <strong>ayudarte a practicar con la explicación y afianzar conocimientos</strong
-                    >. Todavía está en desarrollo, pero pronto podrás probarlo.
-                </p>
-                <br />
-                <Button
-                    title="Cerrar este modal."
-                    onclick={() =>
-                        (document.getElementById("soon-modal") as HTMLDialogElement).close()}
-                    >¡Guay!</Button
-                >
-            </div>
-        </dialog>
+        <Dialog id="soon-modal" title="¡Pronto disponible!" buttonLabel="¡Guay!">
+            <p class=" leading-relaxed">
+                El reproductor de <b>video interactivo</b> será de las mejores funciones de este
+                sitio; te dejará <b>ver cada video con anotaciones y ejercicios prácticos</b>
+                para
+                <strong>ayudarte a practicar con la explicación y afianzar conocimientos</strong>.
+                Todavía está en desarrollo, pero pronto podrás probarlo.
+            </p>
+        </Dialog>
     {:else}
         <p>
             Ningún resultado para la búsqueda. Prueba a escribirlo de otra forma o cambiar/quitar

@@ -8,9 +8,7 @@ const values: Record<string, string> = {};
 type MDef = { title: string; desc: string[]; calc: string; calcLite: string };
 type IDef = (Param | Param[])[];
 /*S*/
-// TODO
-// definir el formato
-// hacer la app en sí, lol
+// TODO: hacer la app en sí, lol
 const pairs = zpw_input<[number, number][]>();
 const test = zpw_input<string>(1);
 

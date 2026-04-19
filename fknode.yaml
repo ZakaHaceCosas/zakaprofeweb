@@ -3,9 +3,7 @@ prettyScript: format
 launchCmd:
     - $;;dev --open
 commitCmd:
-    # podría usar también $zpw:fch y cosas así, pero lo mismo da lol
-    - $zpw:chg teka
-    - $zpw:chg profe
+    - $zpw:chg
     - $zpw:xml teka
     - $zpw:xml profe
     - $zpw:img

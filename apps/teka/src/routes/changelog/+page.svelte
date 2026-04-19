@@ -31,11 +31,11 @@
 <hr />
 <!--ESTO SE INYECTA MEDIANTE UN SCRIPT, NO HACE FALTA TOCAR A MANO-->
 <!--#CHG-->
-<h2>4.0.0 (18/04/2026)</h2>
-<br />
+<h2>4.0.0 (19/04/2026)</h2>
 <p><strong>Actualizaciones visibles para el usuario</strong></p>
 <br />
 <h3>Cambios rompedores</h3>
+<br />
 <ul>
     <li>
         Ahora, para ser más coherentes, cada canal tiene su propia web. El contenido de «ZakaTeka»
@@ -43,15 +43,24 @@
         haber estado desde un principio).
     </li>
 </ul>
+<br />
 <h3>Mejoras significativas</h3>
+<br />
 <ul>
     <li>
         Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de colores de
         tu sistema.
     </li>
 </ul>
-<h3>Correcciones</h3>
+<br />
+<h3>Correcciones y cambios menores</h3>
+<br />
 <ul>
+    <li>Restauradas las comparaciones de versión (de ahora en adelante).</li>
+    <li>
+        Ahora la sección de comentarios está implementada en un modal. La clásica <code>/bugs</code> no
+        se ha eliminado.
+    </li>
     <li>Corregido algún error menor con el buscador.</li>
     <li>Resulta que las analíticas de Vercel no estaban funcionando, ahora sí lo hacen.</li>
     <li>
@@ -63,9 +72,7 @@
         ha corregido.
     </li>
 </ul>
-<br />
 <p><strong>Actualizaciones internas (desarrollo)</strong></p>
-<br />
 <ul>
     <li>Partida la web en dos, ahora es un monorepo.</li>
     <li>Hecho bastante trabajo de preparación para cambios grandes de futuras versiones:</li>
@@ -77,13 +84,14 @@
         Existe también el sistema ZakaPlayer, que se implementara muy pronto. Permitirá ver videos
         de forma interactiva y con ejercicios prácticos.
     </li>
+    <li>Añadida documentación para contribuidores.</li>
 </ul>
 <hr />
 <h2>3.5.0 (06/04/2026)</h2>
-<br />
 <p><strong>Actualizaciones visibles para el usuario</strong></p>
 <br />
 <h3>Mejoras significativas</h3>
+<br />
 <ul>
     <li>
         Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mucho
@@ -101,7 +109,9 @@
     </li>
     <li>Mejorada bastante la accesibilidad desde teléfonos.</li>
 </ul>
+<br />
 <h3>Nuevas aplicaciones</h3>
+<br />
 <ul>
     <li>
         Añadida una aplicación para ZakaProfe (asignatura Matemáticas) para calcular sumatorios y
@@ -127,7 +137,9 @@
         en verano pretendo promocionarla todo lo posible, así que vienen bien.)
     </li>
 </ul>
+<br />
 <h3>Cambios en las aplicaciones</h3>
+<br />
 <ul>
     <li>Mejorada la calculadora de nóminas:</li>
     <li>Ahora valida la base que proveas contra el S.M.I.</li>
@@ -143,7 +155,9 @@
     <li>Redondeados los números en la explicación del cálculo.</li>
     <li>Está mejor diseñada en general.</li>
 </ul>
+<br />
 <h3>Otros cambios</h3>
+<br />
 <ul>
     <li>Corregidos fallos visuales menores.</li>
     <li>Ajustado los tamaños de texto para mejor legibilidad.</li>
@@ -157,9 +171,7 @@
     </li>
     <li>Semi-automatizadas las actualizaciones de datos para el buscador y demás.</li>
 </ul>
-<br />
 <p><strong>Actualizaciones internas (desarrollo)</strong></p>
-<br />
 <ul>
     <li>
         Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
@@ -173,7 +185,7 @@
 </ul>
 <hr />
 <h2>3.4.0 (08/03/2026)</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>
         Añadida una calculadora de nóminas para IPE. La ley española es compleja; aún no soporta
@@ -190,7 +202,7 @@
     </li>
     <li>Corregido (espero) el widget de contacto mostrando estados incoherentes.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>
         Ahora la web no se desplegará con cada confirmación que se sube al repositorio, por lo que
@@ -199,18 +211,18 @@
 </ul>
 <hr />
 <h2>3.3.2 (01/02/2026)</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Arreglados varios fallos visual, alguno de ellos grave.</li>
     <li>Ahora el texto del contador de palabras también se puede compartir.</li>
 </ul>
 <hr />
 <h2>3.3.1 (29/01/2026)</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Corregido algún pequeño error de lógica en algunas apps de ZakaTeka.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Migrados aún más componentes a Tailwind.</li>
     <li>
@@ -219,7 +231,7 @@
 </ul>
 <hr />
 <h2>3.3.0 (27/01/2026)</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Añadida otra app de ZakaTeka, para calcular VLSM en IPs.</li>
     <li>Organizadas las apps por categorías.</li>
@@ -228,7 +240,7 @@
         volviéndose inaccesible.
     </li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>
         Migrado algunos componentes a Tailwind, reduciendo el CSS que se tiene que cargar.
@@ -237,7 +249,7 @@
 </ul>
 <hr />
 <h2>3.2.0 (23/01/2026)</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Ahora las apps están concentradas en una página dedicada.</li>
     <li>
@@ -251,20 +263,20 @@
 </ul>
 <hr />
 <h2>3.1.0 (20/01/2026)</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Añadido un contador de palabras como nueva app.</li>
     <li>Añadido mención a un futuro plan, clases particulares.</li>
     <li>Mejorado algún detalle visual.</li>
     <li>Corregido errores de redacción.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Añadidas descripciones SEO, con suerte así el sitio indexará mejor en Google.</li>
 </ul>
 <hr />
 <h2>3.0.1 (11/01/2026)</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Ahora la calculadora de medias permite compartir las notas.</li>
     <li>
@@ -277,17 +289,17 @@
     </li>
     <li><code>/grades</code> ahora es <code>/calculadora-notas</code>.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Arreglado Prettier.</li>
 </ul>
 <hr />
 <h2>3.0.0</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Renovado la web por COMPLETO. Muchos cambios.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Reescrito la web en Svelte en lugar de React.</li>
 </ul>
@@ -303,7 +315,7 @@
 </ul>
 <hr />
 <h2>2.3.1 (18/04/2025)</h2>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Optimizadas las imágenes para que la pág. cargue más rápido.</li>
     <li>Mejorados los colores y hechas varas mejoras visuales.</li>
@@ -320,12 +332,12 @@
         >Comparación de cambios</a
     >
 </p>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Añadida una calculadora de notas.</li>
     <li>Hechos algunos cambios visuales.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Eliminados archivos innecesarios.</li>
     <li>Configurado Prettier.</li>
@@ -338,11 +350,11 @@
         >Comparación de cambios</a
     >
 </p>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Algún ajuste visual.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Migrado de CRA a Vite.</li>
     <li>Migrado de JavaScript a TypeScript.</li>
@@ -355,7 +367,7 @@
         >Comparación de cambios</a
     >
 </p>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Se mejoró el buscador.</li>
     <li>Se ve visualmente mejor.</li>
@@ -363,7 +375,7 @@
     <li>Se corrigió «encontrados 1 videos».</li>
     <li>Ahora el tema por defecto es el oscuro, para que no te exploten los ojos.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Agrupados correctamente los videos por temporadas.</li>
 </ul>
@@ -375,7 +387,7 @@
         >Comparación de cambios</a
     >
 </p>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>
         Se cambiaron ligeramente los estilos (ahora son sin degradados + se arregló el overlay de
@@ -384,7 +396,7 @@
     <li>Se mejoró el buscador, ahora luce mejor, valida mejor la entrada, y rinde mejor.</li>
     <li>Se optimizó un poco más la página eliminando estilos CSS no usados.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Eliminado <code>pdfPro</code> y <code>pdfNah</code> del array de videos.</li>
 </ul>
@@ -396,7 +408,7 @@
         >Comparación de cambios</a
     >.
 </p>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Se optimizó un montón la página</li>
     <li>Todas las imágenes PNG ahora son WEBP (14mb de ahorro).</li>
@@ -414,7 +426,7 @@
         inaccesible y dicho código ya no está en el repositorio.
     </li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>
         Ahora las strings se validan con <code>string-utils</code> (nueva dep.) en vez de
@@ -432,7 +444,7 @@
 <ul>
     <li>¡El sitio web ha vuelto!</li>
 </ul>
-<h3>Actualizaciones visibles para el usuario:</h3>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
 <ul>
     <li>Se actualizó y volvió a implementar el componente de disponibilidad.</li>
     <li>Ahora la página 404 muestra el pathname solicitado.</li>
@@ -456,7 +468,7 @@
     </li>
     <li>Pequeñas mejoras de accesibilidad.</li>
 </ul>
-<h3>Actualizaciones internas (desarrollo):</h3>
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Actualizado a React 19.</li>
     <li>Formateado todo el código.</li>

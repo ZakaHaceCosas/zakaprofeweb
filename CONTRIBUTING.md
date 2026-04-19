@@ -75,7 +75,7 @@ Uso varios **guiones ZPW:\*** hechos manualmente para adaptarse a las necesidade
 bun zpw:run [app] # equiv. a bun run dev (no va)
 bun zpw:upd # equiv. a bun update (nop, tampoco va)
 # LOS DEMÁS (también los vas a usar, pero menos)
-bun zpw:chg [app] # code-gen para changelogs
+bun zpw:chg # code-gen para changelogs
 bun zpw:fch # code-gen para DB
 bun zpw:img # convierte PNGs a AVIF (require avifenc instalado)
 bun zpw:xml [app] # code-gen para sitemap.xml
@@ -98,7 +98,7 @@ No hay pautas específicas, haz algo guay y servirá.
 > [!CAUTION]
 > Hay ciertos problemas con esta guía.
 >
-> 1. Esta es la forma *actual* de desarrollar aplicaciones de ZakaProfeWeb. Un nuevo sistema (ZPWAPP-RT) está en desarrollo, una vez terminado esto cambiará bastante.
+> 1. Esta es la forma _actual_ de desarrollar aplicaciones de ZakaProfeWeb. Un nuevo sistema (ZPWAPP-RT) está en desarrollo, una vez terminado esto cambiará bastante.
 > 2. Irónicamente, pese a lo que acabas de leer, este método es a la vez el «nuevo», y como tal la mayoría de aplicaciones aún no están migradas a este sistema, siendo mucho más arcaicas y desagradables de mantener.
 >
 > Más información al respecto al [final de la sección](#código-heredado-y-código-futuro-en-las-apps-de-zakaprofe).
@@ -176,17 +176,17 @@ function method() {
 
 Donde cada cosa es lo siguiente:
 
-| Cómo está en el ejemplo | Qué es realmente | Consideraciones |
-| -- | -- | -- |
-| `res = ...` | Estado donde guardarás el resultado una vez el usuario ejecute la app. | / |
-| `values = ...` | Estado donde guardarás la entrada del usuario. | Todo son cadenas, aunque uses booleanos, números o estructuras complejas. Deberás adaptarte. |
-| `method()` | Función que recibe los `values` y hace todos los cálculos. | Primero, al final debería establecer `res`, no devolver; segundo, ante un error, debería lanzar una cadena (no un `Error`) y no capturarla (la capturará el componente superior, descuida) |
-| `<Core ... />` | Donde ocurre la magia. Gestiona todo. | Me debes una por hacer que funcione. |
-| `channel="..."` | Canal al que corresponde la app. | `"profe"` o `"teka"`. |
-| `bind:values` | Pasa los valores de este `.svelte` a `<Core />` y viceversa. | / |
-| `params={[...]}` | Parámetros. Aquí defines todos los elementos de entrada que tendrá el formulario. | La abstracción JSON que usa esto es sencilla, pero no muy potente. Por ejemplo, actualmente sería incapaz de recrear la [calculadora de nóminas](https://profe.zhc.es/apps/calculadora-nominas) de ZakaProfe. |
-| `app="..."` | Nombre único de la app. Para la URL, básicamente. | / |
-| `labels={{...}}` | Texto y etiquetas que mostrar en el componente. | / |
+| Cómo está en el ejemplo | Qué es realmente                                                                  | Consideraciones                                                                                                                                                                                               |
+| ----------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `res = ...`             | Estado donde guardarás el resultado una vez el usuario ejecute la app.            | /                                                                                                                                                                                                             |
+| `values = ...`          | Estado donde guardarás la entrada del usuario.                                    | Todo son cadenas, aunque uses booleanos, números o estructuras complejas. Deberás adaptarte.                                                                                                                  |
+| `method()`              | Función que recibe los `values` y hace todos los cálculos.                        | Primero, al final debería establecer `res`, no devolver; segundo, ante un error, debería lanzar una cadena (no un `Error`) y no capturarla (la capturará el componente superior, descuida)                    |
+| `<Core ... />`          | Donde ocurre la magia. Gestiona todo.                                             | Me debes una por hacer que funcione.                                                                                                                                                                          |
+| `channel="..."`         | Canal al que corresponde la app.                                                  | `"profe"` o `"teka"`.                                                                                                                                                                                         |
+| `bind:values`           | Pasa los valores de este `.svelte` a `<Core />` y viceversa.                      | /                                                                                                                                                                                                             |
+| `params={[...]}`        | Parámetros. Aquí defines todos los elementos de entrada que tendrá el formulario. | La abstracción JSON que usa esto es sencilla, pero no muy potente. Por ejemplo, actualmente sería incapaz de recrear la [calculadora de nóminas](https://profe.zhc.es/apps/calculadora-nominas) de ZakaProfe. |
+| `app="..."`             | Nombre único de la app. Para la URL, básicamente.                                 | /                                                                                                                                                                                                             |
+| `labels={{...}}`        | Texto y etiquetas que mostrar en el componente.                                   | /                                                                                                                                                                                                             |
 
 (Más adelante se documentará más en detalle; de momento el JSDoc y los tipos te serán suficientes para manejarte.)
 
