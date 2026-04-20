@@ -453,7 +453,7 @@
                     ...expression,
                     prediction: {
                         prints: new Date().toLocaleTimeString("en-US", { hour12: false }),
-                        takes: "Nueva hora en formato TODO para cambiar la fecha del sistema.",
+                        takes: "Nueva hora en formato hh(:mm(:ss)) (am | pm) para cambiar la fecha del sistema.",
                     },
                 };
             }

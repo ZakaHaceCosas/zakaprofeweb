@@ -10,7 +10,14 @@ function zpw_input<T>(n: 1 | 0 = 0) {
     return "" as any as T;
 }
 const values: Record<string, string> = {};
-type MDef = { title: string; desc: string[]; calc: string; calcLite: string };
+type MDef = {
+    title: string;
+    desc: string[];
+    calc: string;
+    calcLite: string;
+    asi: string;
+    ctlDesc: string;
+};
 type IDef = (Param | Param[])[];
 
 class ZPWAPP {

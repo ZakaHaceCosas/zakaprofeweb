@@ -11,7 +11,7 @@
 </script>
 
 <dialog
-    class="animate-in fade-in zoom-in backdrop:animate-in backdrop:fade-in m-auto h-fit w-full max-w-xl border-2 border-(--fff25) bg-(--blk) p-0 text-(--txt) duration-200 backdrop:bg-black/75 backdrop:backdrop-blur-sm backdrop:duration-300 starting:scale-95 starting:opacity-0 backdrop:starting:opacity-0"
+    class="animate-in fade-in zoom-in backdrop:animate-in backdrop:fade-in m-auto h-fit w-full max-w-xl border-2 border-(--fff25) bg-(--ng1) p-0 text-(--txt) duration-200 backdrop:bg-black/75 backdrop:backdrop-blur-sm backdrop:duration-300 starting:scale-95 starting:opacity-0 backdrop:starting:opacity-0"
     {id}
 >
     <div class="flex flex-col gap-1 overflow-hidden p-6">

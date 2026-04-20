@@ -5,7 +5,14 @@ function zpw_input<T>(n: 1 | 0 = 0) {
     return "" as any as T;
 }
 const values: Record<string, string> = {};
-type MDef = { title: string; desc: string[]; calc: string; calcLite: string };
+type MDef = {
+    title: string;
+    desc: string[];
+    calc: string;
+    calcLite: string;
+    asi: string;
+    ctlDesc: string;
+};
 type IDef = (Param | Param[])[];
 /*S*/
 // TODO: hacer la app en sí, lol
@@ -44,4 +51,6 @@ const M: MDef = {
     ],
     calc: "Analizar",
     calcLite: "Computar los datos proveídos y hacer todo el trabajo.",
+    asi: "Matemáticas",
+    ctlDesc: "Un contador de palabras, letras, y párrafos.",
 };

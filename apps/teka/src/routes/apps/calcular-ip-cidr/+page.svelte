@@ -110,7 +110,7 @@
     <title>Calculadora de IPs con CIDR</title>
     <meta
         name="description"
-        content="Una calculadora que recibe una IP con máscara CIDR y te da TODO lo que podrías querer saber de esa IP (máscara, dirección de red, dirección de host, etc...) en un santiamén."
+        content="Una calculadora que recibe una IP con máscara CIDR y te da todo lo que podrías querer saber de esa IP (máscara, dirección de red, dirección de host, etc...) en un santiamén."
     />
 </svelte:head>
 
