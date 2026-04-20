@@ -7,7 +7,7 @@
     import Input from "@zpw/ui/Input";
     import Table from "@zpw/ui/Table";
     import Checkbox from "@zpw/ui/Checkbox";
-    import { yearSize } from "$lib/stuff";
+    import { yearSize, num } from "@zpw/utils";
     import Select from "@zpw/ui/Select";
 
     const basesCotContingenciasComunes = {
@@ -115,11 +115,6 @@
             history.replaceState(null, "", window.location.pathname);
         }
     });
-
-    const num = (v: string) => {
-        const n = Number(v);
-        return isNaN(n) ? 0 : n;
-    };
 
     function calculateWage() {
         try {
@@ -286,6 +281,7 @@
                 label: `[GRUPO ${i.toString().padStart(2, "0")}, ${bcDiaria(Number(i)) ? "COT. DIARIA" : "COT. AL MES"}] ${o[1][0]}`,
             };
         })}
+        required={false}
     />
 </div>
 {#if bcDiaria(Number(devengo.grupo_cot))}

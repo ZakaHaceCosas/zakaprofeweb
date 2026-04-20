@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Param } from "@zpw/types/types";
+    import type { Parameter, ParameterForField, ParameterValueObject } from "@zpw/types/types";
     import Button from "@zpw/ui/Button";
     import { onMount, type Snippet } from "svelte";
     import Field from "./Field.svelte";
@@ -12,14 +12,14 @@
         params: _params,
         method,
         labels,
-        app,
+        applet,
         channel,
         result,
     }: {
-        values: Record<string, string>;
-        app: string;
-        params: (Param | Param[])[];
-        method: (params: Record<string, string>) => void;
+        values: ParameterValueObject;
+        applet: string;
+        params: (Parameter | Parameter[])[];
+        method: (params: ParameterValueObject) => void;
         labels: {
             title: string;
             desc: string[];
@@ -30,11 +30,11 @@
         result: Snippet;
     } = $props();
 
-    const paramCallback = (v: Param) => {
+    const paramCallback = (v: Parameter): ParameterForField => {
         return { ...v, id: toKebabCase(splitCamelOrPascalCase(v.key).join(" ")) };
     };
-    const params = $derived(
-        _params.map((v: Param | Param[]) =>
+    const params: (ParameterForField | ParameterForField[])[] = $derived(
+        _params.map((v: Parameter | Parameter[]) =>
             Array.isArray(v) ? v.map(paramCallback) : paramCallback(v)
         )
     );
@@ -47,14 +47,16 @@
 
         const URLParams = new URLSearchParams(window.location.search);
         const flatParams = params.flat();
-        flatParams.forEach((p: Param) => {
+        flatParams.forEach((p: Parameter) => {
             const val = URLParams.get(p.key);
             if (!val || val.trim() === "") return;
             values[p.key] = val;
         });
 
         if (
-            flatParams.filter((v: Param) => v.req).every((v: Param) => values[v.key] !== undefined)
+            flatParams
+                .filter((v: Parameter) => v.req)
+                .every((v: Parameter) => values[v.key] !== undefined)
         ) {
             calculate();
         }
@@ -74,7 +76,7 @@
     let sharePopover = $state<null | 0 | string>(null);
 
     function genURL(abs: boolean = true): string {
-        return `${abs ? `https://${channel}.zhc.es/apps/` : ""}${app}?${Object.entries(values)
+        return `${abs ? `https://${channel}.zhc.es/apps/` : ""}${applet}?${Object.entries(values)
             .map(
                 ([k, v]) =>
                     `${k}=${encodeURIComponent(typeof v === "string" ? v : JSON.stringify(v))}`
@@ -100,7 +102,7 @@
 </svelte:head>
 
 {#if loading}
-    <h1>Cargando ZPWAPP «{labels.title}»</h1>
+    <h1>Cargando applet «{labels.title}»</h1>
 {:else}
     <h1>{labels.title}</h1>
     <br />
@@ -153,8 +155,8 @@
     {#if sharePopover != null}
         <div class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4">
             {#if sharePopover == 0}¡Enlace copiado al portapapeles!{:else}Enlace generado, aunque tu
-                navegador no nos deja copiarlo a tu portapapeles por alguna razón. Cópialo tú.<br
-                />{sharePopover}.{/if}
+                navegador no nos deja copiarlo a tu portapapeles por alguna razón. Copia el enlace
+                tú mismo:<br />{sharePopover}.{/if}
         </div>
     {/if}
 {/if}

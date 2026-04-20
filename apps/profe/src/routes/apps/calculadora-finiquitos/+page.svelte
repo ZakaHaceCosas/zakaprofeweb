@@ -4,7 +4,7 @@
     import Input from "@zpw/ui/Input";
     import Table from "@zpw/ui/Table";
     import Checkbox from "@zpw/ui/Checkbox";
-    import { yearSize } from "$lib/stuff";
+    import { yearSize, num } from "@zpw/utils";
 
     let deuda: {
         base: string;
@@ -68,11 +68,6 @@
             history.replaceState(null, "", window.location.pathname);
         }
     });
-
-    const num = (v: string) => {
-        const n = Number(v);
-        return isNaN(n) ? 0 : n;
-    };
 
     function calculateLiquidation() {
         try {

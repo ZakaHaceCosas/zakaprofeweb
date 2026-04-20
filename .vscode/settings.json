@@ -14,11 +14,11 @@
         "editor.formatOnSave": false
     },
     "files.associations": {
-        "*.zakache": "json",
-        "*.zpwapp": "typescript"
+        "*.zakache": "json"
     },
     "cSpell.language": "es-ES,en-US",
     "cSpell.words": [
+        "ansi",
         "Asig",
         "avifenc",
         "bccc",
@@ -44,7 +44,6 @@
         "zakateka",
         "zakavailable",
         "ZPVDs",
-        "zpwapp",
         "ZTVDs"
     ]
 }

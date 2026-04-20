@@ -1,13 +1,15 @@
 <script lang="ts">
     import { evaluate } from "mathjs";
     import Core from "@zpw/ui/app/Core";
+    import type { ParameterValueObject } from "@zpw/types/types";
+    import { validateAgainst } from "@zhc.js/string-utils";
 
     let res = $state<string | null>(null);
     let values = $state<{
         expr: string;
         nVal: string;
         iVal: string;
-        op: "" | "∑" | "∏";
+        op: string;
     }>({
         expr: "",
         nVal: "",
@@ -15,12 +17,14 @@
         op: "",
     });
 
-    function method(params: Record<string, string>) {
-        const { op, nVal, iVal, expr } = params as typeof values;
+    function method(params: ParameterValueObject) {
+        const { op, nVal, iVal, expr } = params;
         if (!op) throw "No se especificó un tipo de operador (sumatorio o productorio).";
+        if (!validateAgainst(op, ["∑", "∏"]))
+            throw "El operador especificado no es válido. Posiblemente un error de la página.";
         if (!iVal) throw "No se dió un valor de «i».";
         if (!nVal) throw "No se dió un valor de «n».";
-        if (!expr) throw "No se dió una expresión.";
+        if (!expr || typeof expr != "string") throw "No se dió una expresión válida.";
         const expression = (v: number) => evaluate(expr.replace("i", v.toString()));
         const n = Number(nVal);
         const i = Number(iVal);
@@ -72,7 +76,7 @@
             },
         ],
     ]}
-    app="acumuladores"
+    applet="acumuladores"
     labels={{
         title: "Calculadora de acumulación",
         desc: [

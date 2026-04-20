@@ -112,7 +112,7 @@
             <p class="hidden md:block">Buscador</p>
         </a>
         <a
-            aria-label="Ir a aplicaciones"
+            aria-label="Ir a applets"
             href="/apps"
             class="text-var(--txt) flex cursor-pointer flex-row items-center justify-center gap-1.25 bg-transparent p-2.5 no-underline hover:bg-(--fff25)"
         >
@@ -122,7 +122,7 @@
                 <path d="M0 24.0001H20V44.0001H0V24.0001Z" fill="currentColor" />
                 <path d="M24 24.0001H44V44.0001H24V24.0001Z" fill="currentColor" />
             </svg>
-            <p class="hidden md:block">Aplicaciones</p>
+            <p class="hidden md:block">Applets</p>
         </a>
     </div>
 </nav>
@@ -130,7 +130,7 @@
 {#if mobileMenu}
     <div class="flex flex-col bg-(--blk) p-8">
         <h2>Navegación</h2>
-        {#each [{ url: "/", title: "Inicio" }, { url: "/apps", title: `Aplicaciones de ${channel}` }, { url: "/search", title: "Buscador de videos" }] as const as link, i (i)}
+        {#each [{ url: "/", title: "Inicio" }, { url: "/apps", title: `Applets de ${channel}` }, { url: "/search", title: "Buscador de videos" }] as const as link, i (i)}
             <br />
             <a href={link.url} class="hover:text-gray-400" onclick={() => (mobileMenu = false)}>
                 {link.title}
@@ -163,7 +163,7 @@
         autorización expresa.
     </p>
     <p class="md:flex-2 md:text-end">
-        <b>ZakaProfe WEB v4.0.0 (19/04/2026)</b> ·
+        <b>ZakaProfe WEB v4.1.0 (En desarrollo)</b> ·
         <a href="/changelog" class="underline">¿Qué hay de nuevo en esta versión?</a>
         ·
         <a

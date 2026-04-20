@@ -2,34 +2,48 @@
 
 # ZakaProfe WEB · Registro de cambios
 
+## 4.1.0 (En desarrollo)
+
+**Actualizaciones visibles para el usuario**
+
+[ZPW/PROFE] ### Nuevos applets
+
+- [ZPW/PROFE] Añadido un applet de estadística, recibe tablas de datos (unidimensionales o bidimensionales) y genera un estudio completo + algún gráfico.
+
+### Correcciones y cambios menores
+
+- [Ingeniería] Optimizados todos los iconos de la página de applets. Reduce ligeramente la cantidad de datos para cargar.
+- [Otros] Dado como nombre formal «applets» a las aplicaciones / mini-aplicaciones / apps / cualquier otro nombre que les haya dado en el pasado.
+
+<!--**Actualizaciones internas (desarrollo)**
+
+- Quitado todo rastro de ZPWAPP-RT.-->
+
 ## 4.0.0 (19/04/2026)
 
 **Actualizaciones visibles para el usuario**
 
 ### Cambios rompedores
 
-- Ahora, para ser más coherentes, cada canal tiene su propia web. El contenido de «ZakaTeka» se ha movido de _profe.zhc.es_ (donde siempre estuvo) a _teka.zhc.es_ (donde debería haber estado desde un principio).
+- [General] Ahora, para ser más coherentes, cada canal tiene su propia web. El contenido de «ZakaTeka» se ha movido de _profe.zhc.es_ (donde siempre estuvo) a _teka.zhc.es_ (donde debería haber estado desde un principio).
 
 ### Mejoras significativas
 
-- Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de colores de tu sistema.
+- [Diseño] Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de colores de tu sistema.
 
 ### Correcciones y cambios menores
 
-- Restauradas las comparaciones de versión (de ahora en adelante).
-- Ahora la sección de comentarios está implementada en un modal. La clásica `/bugs` no se ha eliminado.
-- Corregido algún error menor con el buscador.
-- Resulta que las analíticas de Vercel no estaban funcionando, ahora sí lo hacen.
-- Ahora el buscador permite usar filtros sin escribir para mostrar todos los videos (como debería, cosa que no hacía).
-- [ZPW/TEKA] De hecho, el naranja que usaba la web no era exactamente el mismo que el del logo, esto se ha corregido.
-- [ZPW/PROFE] [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era usable.
+- [Esencial/Buscador] Ahora el buscador permite usar filtros sin escribir para mostrar todos los videos (como debería, cosa que no hacía).
+- [Esencial/Reportes] Ahora la sección de comentarios está implementada en un modal. La clásica `/bugs` no se ha eliminado.
+- [Esencial/Buscador] Corregido algún error menor con el buscador.
+- [ZPW/PROFE] [Applets/CalculadoraNóminas] Corregido un fallo en que el primer grupo de cotización no era usable.
+- [ZPW/TEKA] [Diseño] De hecho, el naranja que usaba la web no era exactamente el mismo que el del logo, esto se ha corregido.
+- [Otros] Restauradas las comparaciones de versión en esta página (de ahora en adelante).
+- [Otros] Resulta que las analíticas de Vercel no estaban funcionando, ahora sí lo hacen.
 
 **Actualizaciones internas (desarrollo)**
 
 - Partida la web en dos, ahora es un monorepo.
-- Hecho bastante trabajo de preparación para cambios grandes de futuras versiones:
-    - Ahora existe el sistema ZPWAPP, que más adelante usarán todas las Apps de esta web. Para usuarios, significa apps más consistentes y con menos bugs.
-    - Existe también el sistema ZakaPlayer, que se implementara muy pronto. Permitirá ver videos de forma interactiva y con ejercicios prácticos.
 - Añadida documentación para contribuidores.
 
 [Comparación de cambios](https://github.com/ZakaHaceCosas/zakaprofeweb/compare/v3.5.0...v4.0.0)
@@ -42,28 +56,30 @@
 
 - Renovada la página de inicio para mostrar más contenido, estar mejor redactada y lucir mucho mejor.
 - Mejorada bastante la adaptabilidad móvil.
-    - Las aplicaciones, aunque han mejorado, aún necesitan algo de trabajo. Para la próxima versión renovaré el diseño de todas las aplicaciones para ser (a parte de mejor, en general) correctamente adaptativo.
+    - Los applets, aunque han mejorado, aún necesitan algo de trabajo. Para próximas versión renovaré el diseño de todos los applets para ser (a parte de mejor, en general) correctamente adaptativo.
 - Mejorado el buscador, ahora tiene menos errores y muestra más contenido en pantalla. Además, ahora muestra algún dato más (como las visitas de cada video o su duración).
 - Mejorada bastante la accesibilidad desde teléfonos.
 
-### Nuevas aplicaciones
+### Nuevos applets
 
-- Añadida una aplicación para ZakaProfe (asignatura Matemáticas) para calcular sumatorios y productorios.
-- Añadida una aplicación (asignatura Itinerario Personal para la Empleabilidad) para calcular una calculadora de liquidaciones de nóminas.
-- Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de PowerShell por alguna razón; no tiene sentido pero es más fácil).
+- [ZPW/PROFE] Añadido un applet (asignatura Matemáticas) para calcular sumatorios y productorios.
+- [ZPW/PROFE] Añadido un applet (asignatura Itinerario Personal para la Empleabilidad) para calcular una calculadora de liquidaciones de nóminas.
+- [ZPW/TEKA] Añadido un applet (asignatura Sistemas Operativos), un analizador de sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de PowerShell por alguna razón; no tiene sentido pero es más fácil).
 - Ahora se puede ver el registro de cambios desde la propia web.
 - Añadido soporte para «comentarios» en la web; se usan para reportar fallas y sugerir mejoras de forma rápida. Se envían de inmediato, pero no aparecen en público hasta que yo los revise (y opcionalmente responda).
     - (Con el poco tráfico que recibe la web parecen un poco inútiles (y por ahora lo son), pero en verano pretendo promocionarla todo lo posible, así que vienen bien.)
 
-### Cambios en las aplicaciones
+[ZPW/PROFE] ### Cambios en los applets
 
-- Mejorada la calculadora de nóminas:
-    - Ahora valida la base que proveas contra el S.M.I.
-    - Ahora hace bien los cálculos en base al año (antes asumía que tiene 365 días, ahora mira si este año es bisiesto para usar 366).
-    - Ahora permite especificar si el contrato es temporal (afecta al cálculo).
-    - Si para las pagas extra tienes un contrato con una cantidad "mas la antigüedad", ahora puedes hacer que se sume la prorrata calculada.
-    - Redondeados los números en la explicación del cálculo.
-    - Está mejor diseñada en general.
+<!-- que rollo hacerlo así -->
+
+- [ZPW/PROFE] Mejorada la calculadora de nóminas:
+    - [ZPW/PROFE] Ahora valida la base que proveas contra el S.M.I.
+    - [ZPW/PROFE] Ahora hace bien los cálculos en base al año (antes asumía que tiene 365 días, ahora mira si este año es bisiesto para usar 366).
+    - [ZPW/PROFE] Ahora permite especificar si el contrato es temporal (afecta al cálculo).
+    - [ZPW/PROFE] Si para las pagas extra tienes un contrato con una cantidad "mas la antigüedad", ahora puedes hacer que se sume la prorrata calculada.
+    - [ZPW/PROFE] Redondeados los números en la explicación del cálculo.
+    - [ZPW/PROFE] Está mejor diseñada en general.
 
 ### Otros cambios
 
@@ -76,7 +92,7 @@
 **Actualizaciones internas (desarrollo)**
 
 - Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
-- Ahora en teoría el prerenderizado de Svelte debería ir.
+- Ahora en teoría el SSR de Svelte debería ir.
 - Quitados algunos estilos CSS innecesarios, debería mejorar un poquito el rendimiento.
 - Optimizadas la mayoría de imágenes cambiando el formato de WebP a AVIF, deberían cargar mejor.
 
@@ -84,9 +100,9 @@
 
 **Actualizaciones visibles para el usuario**
 
-- Añadida una calculadora de nóminas para IPE. La ley española es compleja; aún no soporta todas las casuísticas e irá evolucionando con el tiempo.
-- Añadida una calculadora de FLSM para redes.
-- Mejorada la calculadora de notas; faltaban cosas básicas como darle a Entrar para que calcule.
+- [ZPW/PROFE] Añadida una calculadora de nóminas para IPE. La ley española es compleja; aún no soporta todas las casuísticas e irá evolucionando con el tiempo.
+- [ZPW/TEKA] Añadida una calculadora de FLSM para redes.
+- [ZPW/PROFE] Mejorada la calculadora de notas; faltaban cosas básicas como darle a Entrar para que calcule.
 - Cambiada la tipografía a Roboto (Flex y Mono), que es la tipografía oficial de ZakaProfe. Además, se ve mejor.
 - Corregido (espero) el widget de contacto mostrando estados incoherentes.
 

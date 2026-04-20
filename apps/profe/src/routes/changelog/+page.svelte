@@ -31,6 +31,34 @@
 <hr />
 <!--ESTO SE INYECTA MEDIANTE UN SCRIPT, NO HACE FALTA TOCAR A MANO-->
 <!--#CHG-->
+<h2>4.1.0 (En desarrollo)</h2>
+<p><strong>Actualizaciones visibles para el usuario</strong></p>
+<br />
+<h3>Nuevos applets</h3>
+<br />
+<ul>
+    <li>
+        Añadido un applet de estadística, recibe tablas de datos (unidimensionales o
+        bidimensionales) y genera un estudio completo + algún gráfico.
+    </li>
+</ul>
+<br />
+<h3>Correcciones y cambios menores</h3>
+<br />
+<ul>
+    <li>
+        [Ingeniería] Optimizados todos los iconos de la página de applets. Reduce ligeramente la
+        cantidad de datos para cargar.
+    </li>
+    <li>
+        [Otros] Dado como nombre formal «applets» a las aplicaciones / mini-aplicaciones / apps /
+        cualquier otro nombre que les haya dado en el pasado.
+    </li>
+</ul>
+<!--**Actualizaciones internas (desarrollo)**
+
+- Quitado todo rastro de ZPWAPP-RT.-->
+<hr />
 <h2>4.0.0 (19/04/2026)</h2>
 <p><strong>Actualizaciones visibles para el usuario</strong></p>
 <br />
@@ -38,9 +66,9 @@
 <br />
 <ul>
     <li>
-        Ahora, para ser más coherentes, cada canal tiene su propia web. El contenido de «ZakaTeka»
-        se ha movido de <em>profe.zhc.es</em> (donde siempre estuvo) a <em>teka.zhc.es</em> (donde debería
-        haber estado desde un principio).
+        [General] Ahora, para ser más coherentes, cada canal tiene su propia web. El contenido de
+        «ZakaTeka» se ha movido de <em>profe.zhc.es</em> (donde siempre estuvo) a
+        <em>teka.zhc.es</em> (donde debería haber estado desde un principio).
     </li>
 </ul>
 <br />
@@ -48,42 +76,33 @@
 <br />
 <ul>
     <li>
-        Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de colores de
-        tu sistema.
+        [Diseño] Ahora el tema claro u oscuro no lo tienes que seleccionar; tomará el esquema de
+        colores de tu sistema.
     </li>
 </ul>
 <br />
 <h3>Correcciones y cambios menores</h3>
 <br />
 <ul>
-    <li>Restauradas las comparaciones de versión (de ahora en adelante).</li>
     <li>
-        Ahora la sección de comentarios está implementada en un modal. La clásica <code>/bugs</code> no
-        se ha eliminado.
-    </li>
-    <li>Corregido algún error menor con el buscador.</li>
-    <li>Resulta que las analíticas de Vercel no estaban funcionando, ahora sí lo hacen.</li>
-    <li>
-        Ahora el buscador permite usar filtros sin escribir para mostrar todos los videos (como
-        debería, cosa que no hacía).
+        [Esencial/Buscador] Ahora el buscador permite usar filtros sin escribir para mostrar todos
+        los videos (como debería, cosa que no hacía).
     </li>
     <li>
-        [Apps/Calculadora de Nóminas] Corregido un fallo en que el primer grupo de cotización no era
+        [Esencial/Reportes] Ahora la sección de comentarios está implementada en un modal. La
+        clásica <code>/bugs</code> no se ha eliminado.
+    </li>
+    <li>[Esencial/Buscador] Corregido algún error menor con el buscador.</li>
+    <li>
+        [Applets/CalculadoraNóminas] Corregido un fallo en que el primer grupo de cotización no era
         usable.
     </li>
+    <li>[Otros] Restauradas las comparaciones de versión en esta página (de ahora en adelante).</li>
+    <li>[Otros] Resulta que las analíticas de Vercel no estaban funcionando, ahora sí lo hacen.</li>
 </ul>
 <p><strong>Actualizaciones internas (desarrollo)</strong></p>
 <ul>
     <li>Partida la web en dos, ahora es un monorepo.</li>
-    <li>Hecho bastante trabajo de preparación para cambios grandes de futuras versiones:</li>
-    <li>
-        Ahora existe el sistema ZPWAPP, que más adelante usarán todas las Apps de esta web. Para
-        usuarios, significa apps más consistentes y con menos bugs.
-    </li>
-    <li>
-        Existe también el sistema ZakaPlayer, que se implementara muy pronto. Permitirá ver videos
-        de forma interactiva y con ejercicios prácticos.
-    </li>
     <li>Añadida documentación para contribuidores.</li>
 </ul>
 <p>
@@ -105,8 +124,8 @@
     </li>
     <li>Mejorada bastante la adaptabilidad móvil.</li>
     <li>
-        Las aplicaciones, aunque han mejorado, aún necesitan algo de trabajo. Para la próxima
-        versión renovaré el diseño de todas las aplicaciones para ser (a parte de mejor, en general)
+        Los applets, aunque han mejorado, aún necesitan algo de trabajo. Para próximas versión
+        renovaré el diseño de todos los applets para ser (a parte de mejor, en general)
         correctamente adaptativo.
     </li>
     <li>
@@ -116,21 +135,13 @@
     <li>Mejorada bastante la accesibilidad desde teléfonos.</li>
 </ul>
 <br />
-<h3>Nuevas aplicaciones</h3>
+<h3>Nuevos applets</h3>
 <br />
 <ul>
+    <li>Añadido un applet (asignatura Matemáticas) para calcular sumatorios y productorios.</li>
     <li>
-        Añadida una aplicación para ZakaProfe (asignatura Matemáticas) para calcular sumatorios y
-        productorios.
-    </li>
-    <li>
-        Añadida una aplicación (asignatura Itinerario Personal para la Empleabilidad) para calcular
-        una calculadora de liquidaciones de nóminas.
-    </li>
-    <li>
-        Añadido una aplicación para ZakaTeka (asignatura Sistemas Operativos), un analizador de
-        sintaxis de scripting Windows (CMD, que es lo que está en el currículo en vez de PowerShell
-        por alguna razón; no tiene sentido pero es más fácil).
+        Añadido un applet (asignatura Itinerario Personal para la Empleabilidad) para calcular una
+        calculadora de liquidaciones de nóminas.
     </li>
     <li>Ahora se puede ver el registro de cambios desde la propia web.</li>
     <li>
@@ -144,8 +155,9 @@
     </li>
 </ul>
 <br />
-<h3>Cambios en las aplicaciones</h3>
+<h3>Cambios en los applets</h3>
 <br />
+<!-- que rollo hacerlo así -->
 <ul>
     <li>Mejorada la calculadora de nóminas:</li>
     <li>Ahora valida la base que proveas contra el S.M.I.</li>
@@ -182,7 +194,7 @@
     <li>
         Actualizadas todas las partes que usaban sintaxis Svelte Legacy para que usen Svelte Runes.
     </li>
-    <li>Ahora en teoría el prerenderizado de Svelte debería ir.</li>
+    <li>Ahora en teoría el SSR de Svelte debería ir.</li>
     <li>Quitados algunos estilos CSS innecesarios, debería mejorar un poquito el rendimiento.</li>
     <li>
         Optimizadas la mayoría de imágenes cambiando el formato de WebP a AVIF, deberían cargar
@@ -197,7 +209,6 @@
         Añadida una calculadora de nóminas para IPE. La ley española es compleja; aún no soporta
         todas las casuísticas e irá evolucionando con el tiempo.
     </li>
-    <li>Añadida una calculadora de FLSM para redes.</li>
     <li>
         Mejorada la calculadora de notas; faltaban cosas básicas como darle a Entrar para que
         calcule.

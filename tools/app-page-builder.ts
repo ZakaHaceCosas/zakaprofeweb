@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 
-console.log(Bun.color("blue", "ansi"), "===> Ensamblador de páginas de aplicación", "\x1b[0m");
+console.log(Bun.color("blue", "ansi"), "===> Ensamblador de páginas para applets", "\x1b[0m");
 
 const app = Bun.argv[2];
 if (!["profe", "teka"].includes(app)) {
@@ -82,7 +82,7 @@ await file.write([split.slice(0, idx + 1).join("\n"), code].join("\n"));
 await Bun.$`bun prettier --w .`.then(() =>
     console.log(
         Bun.color("lightgreen", "ansi"),
-        "¡OK! Ensamblador de páginas de aplicación",
+        "¡OK! Ensamblador de páginas para applets",
         "\x1b[0m"
     )
 );

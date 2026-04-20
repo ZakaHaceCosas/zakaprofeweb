@@ -44,6 +44,7 @@
         "@zhc.js/string-utils": "catalog:dep",
         "@zpw/ui": "workspace:*",
         "@vercel/analytics": "catalog:dep",
+        "@zpw/utils": "workspace:*",
         "mathjs": "catalog:dep"
     },
     "browserslist": {

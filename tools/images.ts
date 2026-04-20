@@ -1,5 +1,6 @@
+import { optimize } from "svgo";
 import { exec } from "child_process";
-import { readdirSync, rmSync } from "fs";
+import { readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { join, basename, extname } from "path";
 
 console.log(Bun.color("blue", "ansi"), "===> Optimización de imágenes", "\x1b[0m");
@@ -58,5 +59,28 @@ async function optimizeImages(dir: string) {
 
 await optimizeImages("apps/profe/static");
 await optimizeImages("apps/teka/static");
+
+["profe", "teka"].forEach((v) => {
+    for (const s of new Bun.Glob(`apps/${v}/src/routes/apps/**/**.svg`).scanSync()) {
+        console.log(`Optimizando SVG ${s}`);
+        writeFileSync(
+            s,
+            optimize(readFileSync(s, { encoding: "utf-8" }), {
+                plugins: [
+                    {
+                        name: "preset-default",
+                        params: {
+                            overrides: {
+                                removeComments: false,
+                            },
+                        },
+                    },
+                ],
+            })
+                .data.replace("-->", "\n-->\n")
+                .replace("<!--", "<!--\n")
+        );
+    }
+});
 
 console.log(Bun.color("lightgreen", "ansi"), "¡OK! Optimización de imágenes", "\x1b[0m");

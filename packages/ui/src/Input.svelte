@@ -21,7 +21,7 @@
         title: string;
         type: string;
         name: string;
-        value: string | number;
+        value: string;
         required: boolean;
         pattern?: string;
         inputmode?: "numeric";

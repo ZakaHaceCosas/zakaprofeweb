@@ -32,7 +32,7 @@ export const ISCourse_ZP = (a: unknown): a is ZPCourse =>
     typeof a == "string" && ZP_COURSES.includes(a as ZPCourse);
 export const ISCourse_ZT = (a: unknown): a is ZTCourse =>
     typeof a == "string" && ZT_COURSES.includes(a as ZTCourse);
-export type Param = {
+export type Parameter = {
     key: string;
     type: "text" | "number" | "textarea" | "select";
     title: string;
@@ -42,6 +42,11 @@ export type Param = {
     req?: boolean;
     tail?: string;
 };
+export type ParameterForField = Parameter & { id: string };
+export type ParameterValue = string | string[] | [string, string][];
+export type ParameterValueObject = Record<string, ParameterValue>;
+export const IsParameterATuple = (a: ParameterValue): a is [string, string][] =>
+    Array.isArray(a) && a.at(0) != undefined && Array.isArray(a[0]);
 export type PlayerStep = {
     timestamp: number;
     title: string;
