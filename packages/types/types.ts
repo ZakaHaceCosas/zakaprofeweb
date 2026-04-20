@@ -38,6 +38,7 @@ export type Parameter = {
     title: string;
     onchange?: "none" | "calc" | "calc-no-throw";
     onenter?: "none" | "calc" | "calc-no-throw";
+    list?: "none" | "single" | "tuple";
     options?: { value: string; label: string }[];
     req?: boolean;
     tail?: string;

@@ -2,7 +2,7 @@
     import type { Parameter, ParameterForField, ParameterValueObject } from "@zpw/types/types";
     import Button from "@zpw/ui/Button";
     import { onMount, type Snippet } from "svelte";
-    import Field from "./Field.svelte";
+    import FieldRenderer from "./FieldRenderer.svelte";
     import { toKebabCase, splitCamelOrPascalCase } from "@zhc.js/string-utils";
 
     let loading = $state(true);
@@ -50,7 +50,7 @@
         flatParams.forEach((p: Parameter) => {
             const val = URLParams.get(p.key);
             if (!val || val.trim() === "") return;
-            values[p.key] = val;
+            values[p.key] = p.list && p.list != "none" ? JSON.parse(atob(val)) : val;
         });
 
         if (
@@ -64,7 +64,7 @@
         loading = false;
     });
 
-    export function calculate(throws = true) {
+    export function calculate(throws = true): void {
         try {
             method(values);
             history.replaceState(null, "", genURL(false));
@@ -79,7 +79,7 @@
         return `${abs ? `https://${channel}.zhc.es/apps/` : ""}${applet}?${Object.entries(values)
             .map(
                 ([k, v]) =>
-                    `${k}=${encodeURIComponent(typeof v === "string" ? v : JSON.stringify(v))}`
+                    `${k}=${encodeURIComponent(typeof v === "string" ? v : btoa(JSON.stringify(v)))}`
             )
             .join("&")}`;
     }
@@ -113,35 +113,15 @@
         {#if Array.isArray(param)}
             <div class="flex w-full flex-row gap-2">
                 {#each param as p, i (i)}
-                    <Field
-                        param={p}
-                        onchange={p.onchange == "none"
-                            ? undefined
-                            : () => calculate(p.onchange == "calc")}
-                        onkeydown={(e) => {
-                            if (p.onenter == "none") return;
-                            if (e.key !== "Enter") return;
-                            if (e.shiftKey) calculate(p.onchange == "calc");
-                            else {
-                                document.getElementById(param[i + 1].id)?.focus();
-                            }
-                        }}
-                        {values}
-                    />
+                    <FieldRenderer paramList={param} param={p} {values} {i} {calculate} />
+                    <br />
                 {/each}
             </div>
         {:else}
-            <Field
-                {param}
-                onchange={param.onchange == "none"
-                    ? undefined
-                    : () => calculate(param.onchange == "calc")}
-                onkeydown={() => {}}
-                {values}
-            />
+            <FieldRenderer {param} {values} {calculate} />
+            <br />
         {/if}
     {/each}
-    <br />
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
         <Button onclick={() => calculate()} title={labels.calcLite}
             ><b>&starf;</b> {labels.calc}</Button

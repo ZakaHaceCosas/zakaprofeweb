@@ -1,10 +1,17 @@
 <script lang="ts">
-    import type { ParameterValueObject } from "@zpw/types/types";
+    import { average, sumArray } from "@zhc.js/number-utils";
+    import { validate } from "@zhc.js/string-utils";
+    import { IsParameterATuple, type ParameterValueObject } from "@zpw/types/types";
     import Core from "@zpw/ui/app/Core";
+    import Table from "@zpw/ui/Table";
+    import { num } from "@zpw/utils";
 
     type EstudioUnidimensional = {
-        DM: number;
-        Varianza: number;
+        N: number;
+        avg: number;
+        dm: number;
+        dt: number;
+        varianza: number;
     };
 
     let res = $state<
@@ -20,15 +27,47 @@
         dataBi: [["", ""]],
     });
 
-    function method(params: ParameterValueObject) {
-        values.pairs.forEach((p) => {
-            const a = w == "DM" ? Math.abs(p[0] - avg) : Math.pow(p[0] - avg, 2);
-            i += a * p[1];
-        });
+    function estudiarVariableUnidimensional(datos: [string, string][]): EstudioUnidimensional {
+        const data = datos.map((v) => [num(v[0]), num(v[1])]);
+        const fi = data.map((v) => v[1]);
+        const N = sumArray(fi);
+        const avg = average(fi);
+        const { sumDM, sumVar } = data.reduce(
+            (acc, [x, f]) => ({
+                sumDM: acc.sumDM + Math.abs(x - avg) * f,
+                sumVar: acc.sumVar + Math.pow(x - avg, 2) * f,
+            }),
+            { sumDM: 0, sumVar: 0 }
+        );
 
-        i = i / 74;
-        console.log(i);
-        if (w == "Varian") console.log(Math.sqrt(i));
+        const dm = sumDM / N;
+        const varianza = sumVar / N;
+        const dt = Math.sqrt(dm);
+
+        const r = { avg, N, dm, varianza, dt };
+        console.log(r);
+        return r;
+    }
+
+    function method(params: ParameterValueObject) {
+        const { level, data, dataBi } = params;
+        if (!IsParameterATuple(data) || !IsParameterATuple(dataBi))
+            throw "Error interno (asignación ilegal), reporta esto por favor.";
+        if (level == "uni") {
+            res = estudiarVariableUnidimensional(data);
+            return;
+        }
+        if (data.length != dataBi.length)
+            throw "¿Por qué no diste la misma cantidad de datos para cada tabla marginal? Hazlo.";
+        if (
+            data.some((v) => !validate(v[0]) || !validate(v[1]))
+            || dataBi.some((v) => !validate(v[0]) || !validate(v[1]))
+        )
+            throw "Hay datos vacíos en alguna de las tablas marginales. No hagas eso.";
+        res = {
+            x: estudiarVariableUnidimensional(data),
+            y: estudiarVariableUnidimensional(dataBi),
+        };
     }
 </script>
 
@@ -37,20 +76,23 @@
     bind:values
     {method}
     params={[
-        [
-            {
-                key: "op",
-                type: "select",
-                title: "Elige un acumulador...",
-                onchange: "calc-no-throw",
-                options: [
-                    { value: "∑", label: "Sumatorio (∑)" },
-                    { value: "∏", label: "Productorio (∏)" },
-                ],
-            },
-        ],
+        {
+            key: "level",
+            type: "select",
+            title: "Elige un tipo de estudio...",
+            options: [
+                { value: "uni", label: "Unidimensional" },
+                { value: "bi", label: "Bidimensional" },
+            ],
+        },
+        {
+            key: "data",
+            type: "number",
+            title: "Añade los datos aquí",
+            list: "tuple",
+        },
     ]}
-    applet="acumuladores"
+    applet="estadistica"
     labels={{
         title: "Calculadora para estadística",
         desc: [
@@ -63,7 +105,9 @@
 >
     {#snippet result()}
         {#if res != null}
-            <h1>TODO</h1>
+            {#if values.level == "uni"}
+                <Table table={Object.entries(res as EstudioUnidimensional)} />
+            {/if}
         {/if}
     {/snippet}
 </Core>
