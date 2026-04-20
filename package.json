@@ -30,7 +30,7 @@
                 "svelte-check": "^4.4.6",
                 "tailwindcss": "^4.2.2",
                 "typescript": "^5.9.3",
-                "typescript-eslint": "^8.58.2",
+                "typescript-eslint": "^8.59.0",
                 "vercel": "^50.44.0",
                 "vite": "^7.3.2",
                 "@types/youtube": "^0.2.0"

@@ -64,12 +64,20 @@
         },
 
         {
-            timestamp: 45,
+            timestamp: 35,
 
             title: "Responde",
             desc: "¿Qué crees que es?",
             type: "freestanding",
-            hideAt: 54,
+            hideAt: 36,
+        },
+
+        {
+            timestamp: 37,
+
+            title: "Recuerda",
+            desc: "Toda estadística tiene, por lo menos, algún número.",
+            type: "check",
         },
     ]);
     onMount(() => {

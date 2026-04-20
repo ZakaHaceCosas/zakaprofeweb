@@ -3,6 +3,7 @@
     import Button from "./Button.svelte";
     import type { IVideo, PlayerStep } from "@zpw/types/types";
     import Input from "./Input.svelte";
+    import { normalize, validateAgainst } from "@zhc.js/string-utils";
 
     let {
         video,
@@ -115,6 +116,17 @@
         }
     }
 
+    let inputVerificationState = $state<null | boolean>(null);
+
+    function verifyStep(phase: PlayerStep, idx: number) {
+        if (phase.type != "input") throw new Error("asignación ilegal tío");
+        inputVerificationState = validateAgainst(
+            normalize(responses[idx]),
+            phase.answers.map((v) => normalize(v))
+        );
+        return;
+    }
+
     function completeStep() {
         if (phase.name !== "activity") return;
 
@@ -170,7 +182,11 @@
         >
     </p>
     <div class="flex max-h-2/4 flex-row gap-4">
-        <div class="aspect-video" style="flex: 3" bind:this={container}></div>
+        <div
+            class="aspect-video border-2 border-(--fff25)"
+            style="flex: 3"
+            bind:this={container}
+        ></div>
         <div
             class="flex flex-1 flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4"
         >
@@ -257,7 +273,16 @@
                             bind:value={responses[phase.stepIdx]}
                             required
                         />
-                        <p>¡Piensa bien!</p>
+                        {#if inputVerificationState != null}
+                            <br />
+                            <p class={inputVerificationState ? "text-(--accent)" : "text-red-500"}>
+                                <b>{inputVerificationState ? "Correcto :]" : "Incorrecto :["}</b
+                                >{" "}
+                                {#if !inputVerificationState}Las respuestas correctas son {currentStep!.answers
+                                        .map((v) => `«${v}>`)
+                                        .join(", ")}{/if}
+                            </p>
+                        {/if}
                     {:else}
                         <p class="text-sm opacity-50">
                             Esto solo es una anotación. En cuanto la guardes en tu cabeza, puedes
@@ -265,10 +290,20 @@
                         </p>
                     {/if}
                 </div>
-                {#if currentStep.type === "freestanding" || currentStep.type === "check" || (currentStep.type === "choose" && responses[phase.stepIdx].startsWith("true")) || (currentStep.type == "tof" && responses[phase.stepIdx] && (responses[phase.stepIdx] == "1") == currentStep.answer)}
-                    <Button title="Siguiente paso" onclick={completeStep}>¡Sigamos!</Button>
+                {#if currentStep.type === "freestanding" || currentStep.type === "check" || (currentStep.type === "choose" && responses[phase.stepIdx].startsWith("true")) || (currentStep.type == "tof" && responses[phase.stepIdx] && (responses[phase.stepIdx] == "1") == currentStep.answer) || inputVerificationState != null}
+                    <Button
+                        title="Siguiente paso"
+                        onclick={() => {
+                            completeStep();
+                            inputVerificationState = null;
+                        }}>¡Sigamos!</Button
+                    >
+                {:else if currentStep.type == "input"}
+                    <Button
+                        title="Siguiente paso"
+                        onclick={() => verifyStep(currentStep, phase.stepIdx)}>Verificar</Button
+                    >
                 {/if}
-                <!--TODO:continuar y validar tras input (no freestanding)-->
             {:else if phase.name === "viewing_result" && currentStep}
                 {#if currentStep.type === "freestanding"}
                     <div class="h-full w-full">
@@ -330,8 +365,19 @@
         <p class="whitespace-nowrap opacity-50">El video parará en los siguientes momentos</p>
         <hr />
         {#each steps as step, i (i)}
-            <p class="whitespace-nowrap" style={i >= nextStepIdx ? "color: var(--accent);" : ""}>
+            <p
+                class="text-center whitespace-nowrap"
+                style={i >= nextStepIdx ? "color: var(--accent);" : ""}
+            >
                 <b>{step.timestamp}"</b>{step.type == "freestanding" ? ` - ${step.hideAt}"` : ""}
+                ·
+                {{
+                    check: "Nota",
+                    choose: "Elige",
+                    freestanding: "Comprobar",
+                    input: "Pregunta",
+                    tof: "V o F",
+                }[step.type]}
             </p>
             <hr />
         {/each}

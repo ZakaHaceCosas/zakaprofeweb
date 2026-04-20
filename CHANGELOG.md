@@ -6,6 +6,10 @@
 
 **Actualizaciones visibles para el usuario**
 
+### Mejoras significativas
+
+- Añadido un reproductor interactivo. [Más información sobre esto aquí](tengo que hacer un blog o algo).
+
 [ZPW/PROFE] ### Nuevos applets
 
 - [ZPW/PROFE] Añadido un applet de estadística, recibe tablas de datos (unidimensionales o bidimensionales) y genera un estudio completo + algún gráfico.
