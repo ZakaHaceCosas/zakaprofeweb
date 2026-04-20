@@ -34,6 +34,15 @@
 <h2>4.1.0 (En desarrollo)</h2>
 <p><strong>Actualizaciones visibles para el usuario</strong></p>
 <br />
+<h3>Mejoras significativas</h3>
+<br />
+<ul>
+    <li>
+        Añadido un reproductor interactivo. [Más información sobre esto aquí](tengo que hacer un
+        blog o algo).
+    </li>
+</ul>
+<br />
 <h3>Nuevos applets</h3>
 <br />
 <ul>

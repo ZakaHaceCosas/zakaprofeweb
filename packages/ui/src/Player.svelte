@@ -34,7 +34,7 @@
     let container: HTMLDivElement;
     let player: YT.Player;
     let interval: ReturnType<typeof setInterval>;
-    let lastTime = 0;
+    let lastTime = $state(0);
 
     const currentStep = $derived(
         phase.name === "activity" || phase.name === "viewing_result" ? steps[phase.stepIdx] : null
@@ -170,8 +170,8 @@
     {#if jumpWarning}
         <div class="flex flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4">
             <p>
-                Adelantar el video puede causar «bugs» o fallos en el gestor de actividades.
-                Abstente de hacerlo.
+                Adelantar el video puede causar fallos en el gestor de actividades. Abstente de
+                hacerlo.
             </p>
         </div>
     {/if}
@@ -191,7 +191,16 @@
             class="flex flex-1 flex-col items-start gap-3 border-2 border-(--fff25) bg-(--blk) p-4"
         >
             {#if phase.name === "activity" && currentStep}
-                <div class="h-full w-full">
+                <p class="text-sm opacity-50">
+                    {{
+                        check: "Anotación",
+                        choose: "Elige la opción correcta",
+                        freestanding: "Respuesta libre",
+                        input: "Comprueba tus conocimientos",
+                        tof: "¿Verdadero o Falso?",
+                    }[currentStep.type]}
+                </p>
+                <div class="flex h-full w-full flex-col justify-center">
                     <h2>{currentStep.title}</h2>
                     <h3>{currentStep.desc}</h3>
                     <br />
@@ -203,7 +212,6 @@
                             bind:value={responses[phase.stepIdx]}
                             required
                         />
-                        <p>Pregunta abierta. Pon lo que consideres.</p>
                     {:else if currentStep.type === "choose"}
                         <div class="grid grid-cols-2 grid-rows-2 gap-2">
                             {#each currentStep.options as opt, idx (idx)}
@@ -279,14 +287,13 @@
                                 <b>{inputVerificationState ? "Correcto :]" : "Incorrecto :["}</b
                                 >{" "}
                                 {#if !inputVerificationState}Las respuestas correctas son {currentStep!.answers
-                                        .map((v) => `«${v}>`)
+                                        .map((v) => `«${v}»`)
                                         .join(", ")}{/if}
                             </p>
                         {/if}
                     {:else}
                         <p class="text-sm opacity-50">
-                            Esto solo es una anotación. En cuanto la guardes en tu cabeza, puedes
-                            continuar sin más.
+                            Esto solo es una anotación. Lee lo que dice, reténlo y continúa.
                         </p>
                     {/if}
                 </div>
@@ -308,9 +315,23 @@
                 {#if currentStep.type === "freestanding"}
                     <div class="h-full w-full">
                         <h2>¡Veamos si lo tienes bien!</h2>
-                        <h3>Has respondido:</h3>
-                        <p>{responses[phase.stepIdx]}</p>
-                        <h3>Atiende al vídeo a ver si has acertado.</h3>
+                        <h3>
+                            Has respondido <span class="text-(--acent)"
+                                >{responses[phase.stepIdx]}</span
+                            >
+                        </h3>
+                        <p>Atiende al vídeo. ¡A ver si has acertado!</p>
+                        {#if phase.hidden}
+                            <br />
+                            <p>
+                                <b
+                                    >Revisa si lo que respondiste coincide con lo que explica el
+                                    video.</b
+                                >
+                                Si sí, ¡genial! Si no, actualiza tus apuntes. Dale a continuar cuando
+                                estés.
+                            </p>
+                        {/if}
                     </div>
                     {#if phase.hidden}
                         <Button
@@ -325,7 +346,7 @@
                     {/if}
                 {/if}
             {:else if phase.name === "watching"}
-                <div class="h-full w-full">
+                <div class="flex h-full w-full flex-col justify-center">
                     {#if nextStepIdx === 0}
                         <h2>¡Empecemos!</h2>
                         <br />
@@ -345,7 +366,7 @@
                         {/if}
                     {:else}
                         <h2>Sigamos</h2>
-                        <h3>Continúa viendo el video. ¡Presta atención a todo!</h3>
+                        <p>Continúa viendo el video. ¡Presta atención a todo!</p>
                     {/if}
                 </div>
                 {#if canSkipIntro}
@@ -354,32 +375,35 @@
                     >
                 {/if}
             {:else if phase.name === "done"}
-                <div class="h-full w-full">
-                    <h2>Acabaste toda la práctica. Enhorabuena.</h2>
-                    <h3>Sigue viendo el video hasta el final.</h3>
+                <div class="flex h-full w-full flex-col justify-center">
+                    <h2>¡Acabaste toda la práctica!</h2>
+                    <p>
+                        ¡Enhorabuena! <b>Ya no hay más ejercicios prácticos.</b> Sigue viendo el vídeo
+                        hasta el final por si hay algún apunte más que te pueda servir y listo. ¡Buena
+                        práctica, colega!
+                    </p>
                 </div>
             {/if}
         </div>
     </div>
     <div class="flex flex-row items-center justify-center gap-2">
-        <p class="whitespace-nowrap opacity-50">El video parará en los siguientes momentos</p>
-        <hr />
+        <p class="whitespace-nowrap opacity-50">{Math.trunc(lastTime)}</p>
         {#each steps as step, i (i)}
+            <hr />
             <p
                 class="text-center whitespace-nowrap"
                 style={i >= nextStepIdx ? "color: var(--accent);" : ""}
             >
                 <b>{step.timestamp}"</b>{step.type == "freestanding" ? ` - ${step.hideAt}"` : ""}
-                ·
+                <!--·
                 {{
                     check: "Nota",
                     choose: "Elige",
                     freestanding: "Comprobar",
                     input: "Pregunta",
                     tof: "V o F",
-                }[step.type]}
+                }[step.type]}-->
             </p>
-            <hr />
         {/each}
     </div>
 </div>
