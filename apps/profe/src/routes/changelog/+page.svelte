@@ -38,8 +38,8 @@
 <br />
 <ul>
     <li>
-        Añadido un reproductor interactivo. [Más información sobre esto aquí](tengo que hacer un
-        blog o algo).
+        [Esencial/Player] Añadido un reproductor interactivo. [Más información sobre esto
+        aquí](tengo que hacer un blog o algo).
     </li>
 </ul>
 <br />
@@ -60,13 +60,31 @@
         cantidad de datos para cargar.
     </li>
     <li>
+        [Diseño] Las tablas ya no añadirán <code>.00</code> a números que deberían ser enteros. Además,
+        ahora soportan más de dos columnas correctamente, y muestran rótulos apropiados para cada applet
+        en vez de siempre «Parámetro» y «Valor».
+    </li>
+    <li>
+        [Diseño] Los menús de selección se veían muy «apretados», haciéndolos menos legibles. Se ha
+        corregido.
+    </li>
+    <li>
+        [Otros] Había un fallo en la accesibilidad HTML (atributo <code>for</code> usando nombres equivocados),
+        esto se ha corregido.
+    </li>
+    <li>
         [Otros] Dado como nombre formal «applets» a las aplicaciones / mini-aplicaciones / apps /
         cualquier otro nombre que les haya dado en el pasado.
     </li>
+    <li>[Otros] Corregida alguna falta en el uso del Castellano.</li>
 </ul>
-<!--**Actualizaciones internas (desarrollo)**
-
-- Quitado todo rastro de ZPWAPP-RT.-->
+<p><strong>Actualizaciones internas (desarrollo)</strong></p>
+<ul>
+    <li>
+        Mejorado el caché de <code>ZPW:FCH</code>, asegurando que los videos se actualizan cada 15
+        días como mínimo.
+    </li>
+</ul>
 <hr />
 <h2>4.0.0 (19/04/2026)</h2>
 <p><strong>Actualizaciones visibles para el usuario</strong></p>
@@ -176,8 +194,8 @@
     </li>
     <li>Ahora permite especificar si el contrato es temporal (afecta al cálculo).</li>
     <li>
-        Si para las pagas extra tienes un contrato con una cantidad &quot;mas la antigüedad&quot;,
-        ahora puedes hacer que se sume la prorrata calculada.
+        Si para las pagas extra tienes un contrato con una cantidad «mas la antigüedad», ahora
+        puedes hacer que se sume la prorrata calculada.
     </li>
     <li>Redondeados los números en la explicación del cálculo.</li>
     <li>Está mejor diseñada en general.</li>
@@ -473,10 +491,9 @@
         ha sido cambiado a <code>/estudia</code>.
     </li>
     <li>
-        Se mejoró el rendimiento (CSS más pequeño, menos cosas que cargar, imágenes más
-        pequeñas...).
+        Se mejoró el rendimiento (CSS más pequeño, menos cosas que cargar, imágenes más pequeñas…).
     </li>
-    <li>Se mejoró el estilo en general, ajustando diseños, colores, etc...</li>
+    <li>Se mejoró el estilo en general, ajustando diseños, colores, etc…</li>
     <li>
         Ahora la página es completamente compatible con dispositivos móviles, mostrando todo el
         contenido y el logo en la barra de navegación.
@@ -493,9 +510,7 @@
     <li>Actualizado a React 19.</li>
     <li>Formateado todo el código.</li>
     <li>Establecido <code>pnpm</code> como el gestor de paquetes predeterminado del proyecto.</li>
-    <li>
-        Mejorado el código fuente de hace años (funciones redundantes, cosas no usadas, etc...).
-    </li>
+    <li>Mejorado el código fuente de hace años (funciones redundantes, cosas no usadas, etc…).</li>
     <li>
         Eliminados algunos estilos compatibles con navegadores antiguos (a los usuarios con
         tecnologías ancestrales que les den).
@@ -551,7 +566,7 @@
 <hr />
 <h2>1.0.2</h2>
 <ul>
-    <li>Cambios en OpenGraph, añadidos Twitter tags...</li>
+    <li>Cambios en OpenGraph, añadidos Twitter tags…</li>
 </ul>
 <hr />
 <h2>1.0.1</h2>

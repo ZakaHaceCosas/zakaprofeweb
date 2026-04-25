@@ -5,11 +5,10 @@
         tail = "",
         title,
         rows = 10,
-        name,
         value = $bindable(""),
         required = false,
         style = undefined,
-        id = undefined,
+        id,
         label = undefined,
     }: {
         oninput?: (e: Event & { currentTarget: HTMLTextAreaElement }) => void;
@@ -17,11 +16,10 @@
         tail?: string;
         title: string;
         rows?: number;
-        name: string;
         value?: string | number;
         required?: boolean;
         style?: string;
-        id?: string;
+        id: string;
         label?: string;
     } = $props();
 
@@ -32,7 +30,7 @@
 
 <div class="w-full">
     {#if label}
-        <label class="mb-2 text-sm opacity-50" for={name}>{label}</label>
+        <label class="mb-2 text-sm opacity-50" for={id}>{label}</label>
         <br />
     {/if}
     <textarea
@@ -40,7 +38,7 @@
         class={className}
         {id}
         {title}
-        {name}
+        name={id}
         aria-label={title}
         bind:value
         placeholder={title}

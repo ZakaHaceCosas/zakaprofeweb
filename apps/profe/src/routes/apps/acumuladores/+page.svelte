@@ -46,7 +46,7 @@
             {
                 key: "op",
                 type: "select",
-                title: "Elige un acumulador...",
+                title: "Elige un acumulador…",
                 onchange: "calc-no-throw",
                 options: [
                     { value: "∑", label: "Sumatorio (∑)" },

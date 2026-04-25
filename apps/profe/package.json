@@ -34,8 +34,7 @@
         "typescript": "catalog:dev",
         "typescript-eslint": "catalog:dev",
         "vercel": "catalog:dev",
-        "vite": "catalog:dev",
-        "@types/youtube": "catalog:dev"
+        "vite": "catalog:dev"
     },
     "dependencies": {
         "@2toad/profanity": "catalog:dep",

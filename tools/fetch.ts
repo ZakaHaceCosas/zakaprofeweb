@@ -12,6 +12,7 @@ import {
     ZTCourse,
     ZTSubject,
 } from "@zpw/types/types";
+import { PlayerData } from "./activities";
 
 console.log(
     Bun.color("blue", "ansi"),
@@ -161,16 +162,27 @@ async function hola(channelId: string) {
 const ZPTemporadas: Record<string, string[]> = await playlists("UC-MFtBk1HQB0qyrQ5NgYGrA");
 const ZakaProfe = await hola("UC-MFtBk1HQB0qyrQ5NgYGrA");
 const ZakaTeka = await hola("UCU-pq21TjveQWm4DgEyFSiw");
-
+type ICachedVideo = IVideo & {
+    cachedAt?: Date;
+};
 export const ZPCacheFile = Bun.file("zakaprofe.zakache");
 const ZTCacheFile = Bun.file("zakateka.zakache");
-const ZPVDs: IVideo[] = (await ZPCacheFile.exists())
+let cacheZPVDs: ICachedVideo[] = (await ZPCacheFile.exists())
         ? await JSON.parse(await ZPCacheFile.text())
         : [],
-    ZTVDs: IVideo[] = (await ZTCacheFile.exists())
+    cacheZTVDs: ICachedVideo[] = (await ZTCacheFile.exists())
         ? await JSON.parse(await ZTCacheFile.text())
         : [];
-
+function shouldInvalidateCache(v: ICachedVideo) {
+    const today = new Date();
+    if (v.cachedAt) if (today.valueOf() - v.cachedAt.valueOf() > 1.296e9) return true;
+    if (JSON.stringify(v.player) != JSON.stringify(PlayerData.get(v.id))) return true;
+    return false;
+}
+function cacheVDtoIVideo(v: ICachedVideo): IVideo {
+    delete v.cachedAt;
+    return v;
+}
 const zpSubjectKeys: Record<ZPSubject, string> = {
     "Biología y Geología": "bio",
     "Ciencias Sociales": "cis",
@@ -193,10 +205,9 @@ const ztLevelKeys: Record<ZTCourse, string> = {
     "(SMR | DAM | DAW | ASIR)": "smr", // SMR pq es lo que estudio yo, lo que tiñe mis enseñanzas
 };
 
-const stringsForFile: string[] = [];
-
 for (const vid of ZakaProfe) {
-    if (ZPVDs.find((v) => v.url.endsWith(vid.id))) continue;
+    const prev = cacheZPVDs.find((v) => v.id == vid.id);
+    if (prev && !shouldInvalidateCache(prev)) continue;
     const [titleDirty, subjectAndLevelDirty] = vid.snippet.title.split("/");
     const title = titleDirty
         .slice(
@@ -240,24 +251,27 @@ for (const vid of ZakaProfe) {
         );
     }
 
-    ZPVDs.push({
+    cacheZPVDs = cacheZPVDs.filter((v) => v.id != vid.id);
+    cacheZPVDs.push({
         title,
         subject,
         duration: parserDuraciónISO(vid.contentDetails.duration),
         level,
-        url: `https://www.youtube.com/watch?v=${vid.id}`,
+        id: vid.id,
         season,
         thumbnail,
         likes: Number(vid.statistics.likeCount),
         seen: Number(vid.statistics.viewCount),
+        player: PlayerData.get(vid.id) ?? null,
+        cachedAt: new Date(),
     });
 }
 
-await ZPCacheFile.write(JSON.stringify(ZPVDs));
-stringsForFile.push(`const ZPVDs: IVideo[] = ${JSON.stringify(ZPVDs)};`);
+await ZPCacheFile.write(JSON.stringify(cacheZPVDs));
 
 for (const vid of ZakaTeka) {
-    if (ZTVDs.find((v) => v.url.endsWith(vid.id))) continue;
+    const prev = cacheZTVDs.find((v) => v.id == vid.id);
+    if (prev && !shouldInvalidateCache(prev)) continue;
     const [title, _subject] = vid.snippet.title.split("/");
     const subject = _subject.trim();
 
@@ -278,25 +292,28 @@ for (const vid of ZakaTeka) {
         );
     }
 
-    ZTVDs.push({
+    cacheZTVDs = cacheZTVDs.filter((v) => v.id != vid.id);
+    cacheZTVDs.push({
         title,
         subject: subject.trim(),
         level: "(SMR | DAM | DAW | ASIR)",
-        url: `https://www.youtube.com/watch?v=${vid.id}`,
+        id: vid.id,
         duration: parserDuraciónISO(vid.contentDetails.duration),
         season: 4,
         thumbnail,
         likes: Number(vid.statistics.likeCount),
         seen: Number(vid.statistics.viewCount),
+        player: PlayerData.get(vid.id) ?? null,
+        cachedAt: new Date(),
     });
 }
 
-await ZTCacheFile.write(JSON.stringify(ZTVDs));
+await ZTCacheFile.write(JSON.stringify(cacheZTVDs));
 await Promise.all(
     ["profe", "teka"].map(async (chn) => {
         const file = Bun.file(`apps/${chn}/src/lib/db.ts`);
         await file.write(
-            `import { type IVideo } from "@zpw/types/types"; export const ${chn == "profe" ? "ZPVDs" : "ZTVDs"}: IVideo[] = ${JSON.stringify(chn == "profe" ? ZPVDs : ZTVDs)};`
+            `import { type IVideo } from "@zpw/types/types"; export const ${chn == "profe" ? "ZPVDs" : "ZTVDs"}: IVideo[] = ${JSON.stringify((chn == "profe" ? cacheZPVDs : cacheZTVDs).map(cacheVDtoIVideo))};`
         );
     })
 );

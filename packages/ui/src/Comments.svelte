@@ -62,17 +62,16 @@
 
 <div class="flex w-full flex-col gap-2">
     <h3>Comentarios aquí</h3>
-
     <Textarea
         rows={2}
         value={text}
         oninput={(e) => (text = e.currentTarget.value)}
         title="Escribe aquí tu comentario"
-        name="comment"
+        id="comment"
     />
     <Input
         type="text"
-        name="username"
+        id="username"
         title="¿Cómo te llamas? Opcional, y no tiene que ser un nombre real"
         value={author}
         oninput={(e) => (author = e.currentTarget.value)}

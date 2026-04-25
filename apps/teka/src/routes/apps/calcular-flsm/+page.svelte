@@ -140,7 +140,7 @@
 <div class="mb-3 flex w-full flex-row items-center gap-3">
     <Input
         type="text"
-        name="ip"
+        id="ip"
         bind:value={ipAddress}
         oninput={(e) => (ipAddress = e.currentTarget.value)}
         onkeydown={(e) => {
@@ -155,7 +155,6 @@
     />
     <Input
         type="number"
-        name="range"
         id="rngInput"
         bind:value={ranges}
         oninput={(e) => (ranges = e.currentTarget.value)}
@@ -197,7 +196,8 @@
         <h2>Rango #{rangeIdx}</h2>
         <br />
         <Table
-            table={[
+            keys={["Propiedad", "Valor"]}
+            data={[
                 ["Dirección de red", range.networkAddress],
                 ["Dirección de broadcast", range.broadcastAddress],
                 ["Máscara de red", range.mask],

@@ -26,7 +26,7 @@
     } = $props();
 
     const className = $derived(
-        `font-mono border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) outline-(--accent) ${tail} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`
+        `p-3 font-mono border-2 border-(--fff25) w-full text-(--txt) bg-(--blk) outline-(--accent) ${tail} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`
     );
 </script>
 

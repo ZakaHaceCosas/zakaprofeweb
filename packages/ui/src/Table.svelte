@@ -1,25 +1,32 @@
 <script lang="ts">
     const {
-        table,
+        data,
+        keys,
     }: {
-        table: [string, string | number][];
+        data: (string | number)[][];
+        keys: string[];
     } = $props();
 </script>
 
-<table class="w-full">
+<table class="w-full table-fixed">
     <thead>
         <tr class="w-full border-2 border-(--fff25)">
-            <th class="w-1/2 bg-(--blk) p-4 text-left font-semibold">Propiedad</th>
-            <th class="w-1/2 bg-(--blk) p-4 text-left font-semibold">Valor</th>
+            {#each keys as key, i (i)}
+                <th class="bg-(--blk) p-4 text-left font-semibold">{key}</th>
+            {/each}
         </tr>
     </thead>
     <tbody>
-        {#each table as val, i (i)}
-            <tr class="w-full border-2 border-(--fff25)">
-                <td class="w-1/2 p-4 text-left">{val[0]}</td>
-                <td class="w-1/2 p-4 text-left font-mono! text-(--accent)"
-                    >{typeof val[1] === "number" ? val[1].toFixed(2) : val[1]}</td
-                >
+        {#each data as value, idx (idx)}
+            <tr class="border-2 border-(--fff25)">
+                {#each value as val, i (i)}
+                    {#if i == 0}<td class="w-1/2 p-4 text-left">{val}</td>{:else}
+                        <td class="w-1/2 p-4 text-left font-mono! text-(--accent)"
+                            >{typeof val === "number" && !Number.isInteger(val)
+                                ? val.toFixed(2)
+                                : val}</td
+                        >{/if}
+                {/each}
             </tr>{/each}
     </tbody>
 </table>

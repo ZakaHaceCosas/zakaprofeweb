@@ -21,7 +21,7 @@
     {#if param.type == "text"}
         <Input
             type="text"
-            name={param.id}
+            id={param.id}
             bind:value={values[param.key] as string}
             {onkeydown}
             title={param.title}
@@ -32,7 +32,7 @@
         <Textarea
             title={param.title}
             required={param.req == undefined ? true : param.req}
-            name={param.id}
+            id={param.id}
             bind:value={values[param.key] as string}
         />
     {:else}

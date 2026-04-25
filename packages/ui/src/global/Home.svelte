@@ -161,10 +161,10 @@
                 crecido hasta más de 300 visitas en algún video.
                 <br /><br />
                 <b>Este canal tiene videos para secundaria</b>, de múltiples asignaturas típicas
-                (mates, lengua, física...) y lo caracteriza
+                (mates, lengua, física…) y lo caracteriza
                 <b>la calidad de producción excepcional</b>, porque ¿para qué grabarme frente a una
                 pizarra con lo cutre que queda eso? Una presentación con ~200 diapositivas de
-                animaciones profesionales hechas a mano (no es broma...) es mucho más visual y se
+                animaciones profesionales hechas a mano (no es broma…) es mucho más visual y se
                 entiende mejor. Me lo tomo tan innecesariamente en serio que si usas el buscador de
                 este sitio para ver videos (o te vas a las listas de reproducción del canal en
                 YouTube) verás que está agrupado por temporadas, las cuales mido precisamente en
@@ -184,9 +184,9 @@
                 otorgado a mi mismo (se llaman así, ¿no?).<br /><br />Ahora mismo estudio
                 informática, es mi pasión y, aunque esté mal que yo lo diga, se me da bastante bien
                 (solo observa la pedazo de página web profesional que estás viendo para un canal que
-                ni 100 seguidores tiene...). Me encanta enseñar este tipo de cosas, sobre todo
-                porque a cualquiera, vaya a trabajar de ello o no, le viene bien tener algo de
-                cultura tecnológica en el mundo en el que vivimos (y no me vengas con que la IA va a
+                ni 100 seguidores tiene…). Me encanta enseñar este tipo de cosas, sobre todo porque
+                a cualquiera, vaya a trabajar de ello o no, le viene bien tener algo de cultura
+                tecnológica en el mundo en el que vivimos (y no me vengas con que la IA va a
                 reemplazar todo eso, que te digo yo que no).<br /><br /><b
                     >Este canal tiene videos para cualquier grado de informática (SMR, DAW, DAM o
                     ASIR)</b

@@ -36,11 +36,11 @@
 
     let list: string[] | [string, string][] | null = $state(
         // svelte-ignore state_referenced_locally
-        param.list == "tuple"
-            ? ((values[param.key] as [string, string][]) ?? [["", ""]])
-            : param.list == "single"
-              ? ((values[param.key] as string[]) ?? [""])
-              : null
+        param.list
+            ? param.list.pairs
+                ? ((values[param.key] as [string, string][]) ?? [["", ""]])
+                : ((values[param.key] as string[]) ?? [""])
+            : null
     );
 
     $effect(() => {
@@ -65,7 +65,7 @@
 
     function addField() {
         if (!list) return;
-        list = [...list, param.list == "tuple" ? ["", ""] : ""] as any;
+        list = [...list, param.list && param.list.pairs ? ["", ""] : ""] as any;
     }
 
     function deleteField(index: number) {
@@ -76,19 +76,19 @@
     }
 </script>
 
-{#if param.list == "single"}{:else if param.list == "tuple"}
+{#if !param.list}
+    <Field {param} {onchange} {onkeydown} {values} />
+{:else if param.list.pairs}
     <div class="flex w-full flex-col gap-2">
         {#each list as li, index (index)}
             <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
                 <code class="font-mono!">#{index}</code>
 
                 <Input
-                    // TODO
                     type="string"
-                    name="TODO"
                     value={li[0]}
                     oninput={(e) => handleInputChange(index, e.currentTarget.value, 0)}
-                    title="TODO"
+                    title={param.list.title[0]}
                     required
                     id={`${param.id}_i${index}_v0`}
                     tail="w-full! flex-1 md:flex-3"
@@ -104,13 +104,11 @@
                 />
                 <Input
                     tail="w-full flex-1"
-                    // TODO
                     type="string"
-                    name="TODO"
                     value={li[1]}
                     id={`${param.id}_i${index}_v1`}
                     oninput={(e) => handleInputChange(index, e.currentTarget.value, 1)}
-                    title="TODO"
+                    title={param.list.title[1]}
                     required
                     onkeydown={(e) => {
                         if (e.key !== "Enter") return;
@@ -124,12 +122,14 @@
                     }}
                 />
 
-                <Button title="TODO" tail="md:w-inherit! w-auto!" onclick={() => deleteField(index)}
-                    >Eliminar</Button
+                <Button
+                    title="Eliminar pareja de datos {index + 1}"
+                    tail="md:w-inherit! w-auto!"
+                    onclick={() => deleteField(index)}>Eliminar</Button
                 >
                 {#if index == 0}
                     <Button
-                        title="Eliminar esta nota"
+                        title="Añadir pareja de datos"
                         tail="md:w-inherit! w-auto!"
                         onclick={() => addField()}>Añadir</Button
                     >
@@ -138,5 +138,5 @@
         {/each}
     </div>
 {:else}
-    <Field {param} {onchange} {onkeydown} {values} />
+    <h1>TODO</h1>
 {/if}

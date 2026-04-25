@@ -60,7 +60,7 @@
         type="number"
         pattern="[10]*"
         inputmode="numeric"
-        name="bin"
+        id="bin"
         bind:value={bin}
         oninput={(e) => {
             handleInputChange(1, e.currentTarget.value);
@@ -74,7 +74,7 @@
     />
     <Input
         type="number"
-        name="dec"
+        id="dec"
         bind:value={dec}
         oninput={(e) => {
             handleInputChange(2, e.currentTarget.value);
@@ -88,7 +88,7 @@
     />
     <Input
         type="text"
-        name="hex"
+        id="hex"
         bind:value={hex}
         oninput={(e) => {
             handleInputChange(3, e.currentTarget.value);

@@ -8,7 +8,7 @@
 
 ### Mejoras significativas
 
-- Añadido un reproductor interactivo. [Más información sobre esto aquí](tengo que hacer un blog o algo).
+- [Esencial/Player] Añadido un reproductor interactivo. [Más información sobre esto aquí](tengo que hacer un blog o algo).
 
 [ZPW/PROFE] ### Nuevos applets
 
@@ -17,11 +17,15 @@
 ### Correcciones y cambios menores
 
 - [Ingeniería] Optimizados todos los iconos de la página de applets. Reduce ligeramente la cantidad de datos para cargar.
+- [Diseño] Las tablas ya no añadirán `.00` a números que deberían ser enteros. Además, ahora soportan más de dos columnas correctamente, y muestran rótulos apropiados para cada applet en vez de siempre «Parámetro» y «Valor».
+- [Diseño] Los menús de selección se veían muy «apretados», haciéndolos menos legibles. Se ha corregido.
+- [Otros] Había un fallo en la accesibilidad HTML (atributo `for` usando nombres equivocados), esto se ha corregido.
 - [Otros] Dado como nombre formal «applets» a las aplicaciones / mini-aplicaciones / apps / cualquier otro nombre que les haya dado en el pasado.
+- [Otros] Corregida alguna falta en el uso del Castellano.
 
-<!--**Actualizaciones internas (desarrollo)**
+**Actualizaciones internas (desarrollo)**
 
-- Quitado todo rastro de ZPWAPP-RT.-->
+- Mejorado el caché de `ZPW:FCH`, asegurando que los videos se actualizan cada 15 días como mínimo.
 
 ## 4.0.0 (19/04/2026)
 
@@ -81,7 +85,7 @@
     - [ZPW/PROFE] Ahora valida la base que proveas contra el S.M.I.
     - [ZPW/PROFE] Ahora hace bien los cálculos en base al año (antes asumía que tiene 365 días, ahora mira si este año es bisiesto para usar 366).
     - [ZPW/PROFE] Ahora permite especificar si el contrato es temporal (afecta al cálculo).
-    - [ZPW/PROFE] Si para las pagas extra tienes un contrato con una cantidad "mas la antigüedad", ahora puedes hacer que se sume la prorrata calculada.
+    - [ZPW/PROFE] Si para las pagas extra tienes un contrato con una cantidad «mas la antigüedad», ahora puedes hacer que se sume la prorrata calculada.
     - [ZPW/PROFE] Redondeados los números en la explicación del cálculo.
     - [ZPW/PROFE] Está mejor diseñada en general.
 
@@ -290,8 +294,8 @@
 - Se actualizó y volvió a implementar el componente de disponibilidad.
 - Ahora la página 404 muestra el pathname solicitado.
 - La página «Estudia más» ahora está sin usar y no está referenciada. Aún existe y su pathname ha sido cambiado a `/estudia`.
-- Se mejoró el rendimiento (CSS más pequeño, menos cosas que cargar, imágenes más pequeñas...).
-- Se mejoró el estilo en general, ajustando diseños, colores, etc...
+- Se mejoró el rendimiento (CSS más pequeño, menos cosas que cargar, imágenes más pequeñas…).
+- Se mejoró el estilo en general, ajustando diseños, colores, etc…
 - Ahora la página es completamente compatible con dispositivos móviles, mostrando todo el contenido y el logo en la barra de navegación.
 - Se eliminó soporte para navegadores viejos.
 - Se añadió Vercel analytics para medir el rendimiento de la web (esto no afecta a los usuarios).
@@ -302,7 +306,7 @@
 - Actualizado a React 19.
 - Formateado todo el código.
 - Establecido `pnpm` como el gestor de paquetes predeterminado del proyecto.
-- Mejorado el código fuente de hace años (funciones redundantes, cosas no usadas, etc...).
+- Mejorado el código fuente de hace años (funciones redundantes, cosas no usadas, etc…).
 - Eliminados algunos estilos compatibles con navegadores antiguos (a los usuarios con tecnologías ancestrales que les den).
 - Eliminadas clases de CSS y tags HTML redundantes.
 - Reorganizadas las miniaturas.
@@ -339,7 +343,7 @@
 
 ## 1.0.2
 
-- Cambios en OpenGraph, añadidos Twitter tags...
+- Cambios en OpenGraph, añadidos Twitter tags…
 
 ## 1.0.1
 

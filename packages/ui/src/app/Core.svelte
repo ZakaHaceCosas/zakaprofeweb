@@ -50,7 +50,7 @@
         flatParams.forEach((p: Parameter) => {
             const val = URLParams.get(p.key);
             if (!val || val.trim() === "") return;
-            values[p.key] = p.list && p.list != "none" ? JSON.parse(atob(val)) : val;
+            values[p.key] = p.list && p.list != undefined ? JSON.parse(atob(val)) : val;
         });
 
         if (
@@ -84,14 +84,18 @@
             .join("&")}`;
     }
 
-    function share(): void {
+    async function share(): Promise<void> {
         const url = genURL();
         try {
-            navigator.clipboard.writeText(url);
+            await navigator.clipboard.writeText(url);
             sharePopover = 0;
-        } catch {
+        } catch (e) {
+            console.log(e);
             sharePopover = url;
         }
+        setTimeout(() => {
+            sharePopover = null;
+        }, 5000);
     }
 </script>
 
@@ -114,9 +118,9 @@
             <div class="flex w-full flex-row gap-2">
                 {#each param as p, i (i)}
                     <FieldRenderer paramList={param} param={p} {values} {i} {calculate} />
-                    <br />
                 {/each}
             </div>
+            <br />
         {:else}
             <FieldRenderer {param} {values} {calculate} />
             <br />
@@ -126,14 +130,17 @@
         <Button onclick={() => calculate()} title={labels.calcLite}
             ><b>&starf;</b> {labels.calc}</Button
         >
-        <Button onclick={share} title="Generar un enlace para compartir el resultado.">
+        <Button
+            onclick={async () => await share()}
+            title="Generar un enlace para compartir el resultado."
+        >
             <b>&nearr;</b> Compartir
         </Button>
     </div>
     <br />
     {@render result?.()}
     {#if sharePopover != null}
-        <div class="absolute mx-auto mt-[80vh] border-2 border-(--fff25) p-4">
+        <div class="absolute right-8 border-2 border-(--fff25) bg-(--blk) p-4">
             {#if sharePopover == 0}¡Enlace copiado al portapapeles!{:else}Enlace generado, aunque tu
                 navegador no nos deja copiarlo a tu portapapeles por alguna razón. Copia el enlace
                 tú mismo:<br />{sharePopover}.{/if}

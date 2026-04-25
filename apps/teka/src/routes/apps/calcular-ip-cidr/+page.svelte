@@ -110,7 +110,7 @@
     <title>Calculadora de IPs con CIDR</title>
     <meta
         name="description"
-        content="Una calculadora que recibe una IP con máscara CIDR y te da todo lo que podrías querer saber de esa IP (máscara, dirección de red, dirección de host, etc...) en un santiamén."
+        content="Una calculadora que recibe una IP con máscara CIDR y te da todo lo que podrías querer saber de esa IP (máscara, dirección de red, dirección de host, etc…) en un santiamén."
     />
 </svelte:head>
 
@@ -118,11 +118,11 @@
 <br />
 <p>
     Escribe una IP con CIDR y dale a calcular. Te dará todo lo que podrías necesitar (máscara,
-    dirección de red, dirección de broadcast...)<br /><br />
+    dirección de red, dirección de broadcast…)<br /><br />
 </p>
 <Input
     type="text"
-    name="ip"
+    id="ip"
     bind:value={ipAddress}
     oninput={(e) => {
         ipAddress = e.currentTarget.value;
@@ -154,7 +154,8 @@
 {#if val !== null}
     <br />
     <Table
-        table={[
+        keys={["Propiedad", "Valor"]}
+        data={[
             ["Dirección de red", val.networkAddress],
             ["Dirección de broadcast", val.broadcastAddress],
             ["Dirección de gateway", val.gatewayAddress],

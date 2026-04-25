@@ -5,7 +5,11 @@
     const { video }: { video: IVideo } = $props();
 </script>
 
-<Link href={video.url} tail="text-white!" title={"Ver " + video.title + " en YouTube"}>
+<Link
+    href={`https://www.youtube.com/watch?v=${video.id}`}
+    tail="text-white!"
+    title={"Ver " + video.title + " en YouTube"}
+>
     <div
         class="group relative flex aspect-video w-full flex-1 flex-col overflow-hidden border-2 border-(--fff25)"
     >

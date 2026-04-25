@@ -165,7 +165,7 @@
 </p>
 <Input
     type="text"
-    name="ip"
+    id="ip"
     bind:value={ipAddress}
     oninput={(e) => (ipAddress = e.currentTarget.value)}
     onkeydown={(e) => {
@@ -184,7 +184,6 @@
         <Input
             id={`rng-inp-${index}`}
             type="number"
-            name="range"
             bind:value={range}
             oninput={(e) => handleInputChange(index, e.currentTarget.value)}
             onkeydown={(e) => {
@@ -241,7 +240,8 @@
         </h2>
         <br />
         <Table
-            table={[
+            keys={["Propiedad", "Valor"]}
+            data={[
                 ["Dirección de red", range.networkAddress],
                 ["Dirección de broadcast", range.broadcastAddress],
                 ["Máscara de red", range.mask],

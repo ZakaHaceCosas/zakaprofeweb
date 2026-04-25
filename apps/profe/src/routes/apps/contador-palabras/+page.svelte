@@ -30,7 +30,7 @@
     />
 </svelte:head>
 
-<h1>Contador de palabras (y de caracteres, y de párrafos...)</h1>
+<h1>Contador de palabras (y de caracteres, y de párrafos…)</h1>
 <br />
 <p>
     Por algún motivo no todos los editores de documentos tienen un contador de palabras, dato que te
@@ -40,7 +40,7 @@
 </p>
 
 <Textarea
-    name="texto"
+    id="texto"
     value={text}
     oninput={(e) => {
         text = e.currentTarget.value;

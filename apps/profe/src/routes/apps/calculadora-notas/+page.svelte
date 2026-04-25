@@ -101,12 +101,12 @@
 <br />
 <p>
     Dale un valor de entre 0 y 100 a cada ponderación y pon la nota que quieras. Luego dale a
-    "Calcular Promedio" y obtendrás tu media.
+    «Calcular Promedio» y obtendrás tu media.
     <br /><br />
     Por ponerte un ejemplo de cómo se hace: en exámenes, si dos exámenes valían un 40% de la nota final
     y un tercero valía un 20%, pondrías como ponderaciones 40, 40, y 20, y te calculará la media.
     <br /><br />
-    Las ponderaciones deberían sumar 100, a menos que pongas "100" a <i>todas</i>, caso en que se
+    Las ponderaciones deberían sumar 100, a menos que pongas «100» a <i>todas</i>, caso en que se
     calcula una media aritmética (es un atajo para asumir que todas las notas valen lo mismo).<br
     /><br />
 </p>
@@ -116,7 +116,6 @@
 
         <Input
             type="number"
-            name="nota"
             bind:value={nota.nota}
             oninput={(e) => handleInputChange(index, "nota", e.currentTarget.value)}
             title="Introduce aquí la nota"
@@ -141,7 +140,6 @@
                 ? '#FFc832'
                 : ''};"
             type="number"
-            name="pondering"
             id={"ponder_" + index}
             bind:value={nota.pondering}
             oninput={(e) => handleInputChange(index, "pondering", e.currentTarget.value)}

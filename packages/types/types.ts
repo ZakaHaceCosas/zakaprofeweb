@@ -2,12 +2,13 @@ export type IVideo = {
     title: string;
     duration: string;
     thumbnail: string;
-    url: `https://www.youtube.com/watch?v=${string}`;
+    id: string;
     subject: string;
     level: string;
     likes: number;
     seen: number;
     season: number;
+    player: PlayerStep[] | null;
 };
 export const ZP_SUBJECTS = [
     "Física y Química",
@@ -38,7 +39,15 @@ export type Parameter = {
     title: string;
     onchange?: "none" | "calc" | "calc-no-throw";
     onenter?: "none" | "calc" | "calc-no-throw";
-    list?: "none" | "single" | "tuple";
+    list?:
+        | {
+              pairs: false;
+              title: string;
+          }
+        | {
+              pairs: true;
+              title: [string, string];
+          };
     options?: { value: string; label: string }[];
     req?: boolean;
     tail?: string;

@@ -7,29 +7,28 @@
 
     let {
         video,
-        steps,
         intro,
     }: {
-        video: IVideo & { id: string };
-        steps: PlayerStep[];
+        video: IVideo;
         intro: number;
     } = $props();
 
+    // svelte-ignore state_referenced_locally
+    const steps = video.player!;
+
     type Phase =
-        | { name: "watching" }
+        | { name: "watching"; stepIdx: number }
         | { name: "activity"; stepIdx: number }
         | { name: "viewing_result"; stepIdx: number; hideAt: number; hidden: boolean }
-        | { name: "done" };
+        | { name: "done"; stepIdx: typeof Infinity };
 
-    let phase = $state<Phase>({ name: "watching" });
+    let phase = $state<Phase>({ name: "watching", stepIdx: 0 });
     let nextStepIdx = $state(0);
     let canSkipIntro = $state(true);
     let jumpWarning = $state(false);
     let jumpWarningTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const responses = $state<Record<number, string>>(
-        Object.fromEntries(steps.map((_, i) => [i, ""]))
-    );
+    const responses = $state<string[]>(new Array(steps.length).fill(""));
 
     let container: HTMLDivElement;
     let player: YT.Player;
@@ -141,9 +140,9 @@
             lastTime = player.getCurrentTime();
         } else {
             if (nextStepIdx >= steps.length) {
-                phase = { name: "done" };
+                phase = { name: "done", stepIdx: Infinity };
             } else {
-                phase = { name: "watching" };
+                phase = { name: "watching", stepIdx: nextStepIdx };
             }
             player.playVideo();
             lastTime = player.getCurrentTime();
@@ -175,12 +174,24 @@
             </p>
         </div>
     {/if}
-    <p class="text-red-400">
-        <b
-            >DEMO TÉCNICA - ESTO NO ESTÁ TERMINADO, ESPERE ERRORES Y FUNCIONES INCOMPLETAS O
-            DIRECTAMENTE AUSENTES.</b
+    <div class="flex flex-row gap-4">
+        <p class="text-red-400">
+            <b
+                >DEMO TÉCNICA - ESTO NO ESTÁ TERMINADO, ESPERE ERRORES Y FUNCIONES INCOMPLETAS O
+                DIRECTAMENTE AUSENTES.</b
+            >
+        </p>
+        <b>·</b>
+        <button
+            class="cursor-pointer text-emerald-300"
+            onclick={() => {
+                lastTime = steps[nextStepIdx].timestamp - 2;
+                setTimeout(() => {
+                    player.seekTo(steps[nextStepIdx].timestamp - 2, true);
+                }, 50);
+            }}>SALTAR ACTIVIDAD</button
         >
-    </p>
+    </div>
     <div class="flex max-h-2/4 flex-row gap-4">
         <div
             class="aspect-video border-2 border-(--fff25)"
@@ -208,7 +219,7 @@
                         <Input
                             type="text"
                             title="Escribe aquí una respuesta"
-                            name={`${phase.stepIdx}-freestanding-input`}
+                            id={`${phase.stepIdx}-freestanding-input`}
                             bind:value={responses[phase.stepIdx]}
                             required
                         />
@@ -277,7 +288,7 @@
                         <Input
                             type="text"
                             title="Escribe aquí una respuesta"
-                            name={`${phase.stepIdx}-fixed-input`}
+                            id={`${phase.stepIdx}-fixed-input`}
                             bind:value={responses[phase.stepIdx]}
                             required
                         />
@@ -316,7 +327,7 @@
                     <div class="h-full w-full">
                         <h2>¡Veamos si lo tienes bien!</h2>
                         <h3>
-                            Has respondido <span class="text-(--acent)"
+                            Has respondido <span class="text-(--accent)"
                                 >{responses[phase.stepIdx]}</span
                             >
                         </h3>
@@ -339,6 +350,7 @@
                             onclick={() => {
                                 phase = {
                                     name: "watching",
+                                    stepIdx: phase.stepIdx + 1,
                                 };
                                 player.playVideo();
                             }}>Comprendido</Button
@@ -388,21 +400,21 @@
     </div>
     <div class="flex flex-row items-center justify-center gap-2">
         <p class="whitespace-nowrap opacity-50">{Math.trunc(lastTime)}</p>
-        {#each steps as step, i (i)}
+        {#each steps.slice(phase.stepIdx, phase.stepIdx + 5) as step, i (i)}
             <hr />
-            <p
-                class="text-center whitespace-nowrap"
-                style={i >= nextStepIdx ? "color: var(--accent);" : ""}
-            >
+            <p class="text-center whitespace-nowrap text-(--accent)">
                 <b>{step.timestamp}"</b>{step.type == "freestanding" ? ` - ${step.hideAt}"` : ""}
-                <!--·
+                ·
                 {{
                     check: "Nota",
                     choose: "Elige",
                     freestanding: "Comprobar",
                     input: "Pregunta",
                     tof: "V o F",
-                }[step.type]}-->
+                }[step.type]}
+                {#if phase.stepIdx + 5 < steps.length && i === 4}
+                    <span class="opacity-50">(y aún queda…)</span>
+                {/if}
             </p>
         {/each}
     </div>

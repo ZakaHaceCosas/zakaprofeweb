@@ -211,7 +211,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="sal_base"
         id="sal_base"
         bind:value={deuda.base}
         oninput={(e) => (deuda.base = e.currentTarget.value)}
@@ -234,7 +233,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="pagas_extra"
         id="pagas_extra"
         bind:value={deuda.extras}
         oninput={(e) => (deuda.extras = e.currentTarget.value)}
@@ -254,7 +252,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="pagas_extra_days"
         id="pagas_extra_days"
         bind:value={deuda.daysLastExtra}
         oninput={(e) => (deuda.daysLastExtra = e.currentTarget.value)}
@@ -277,7 +274,6 @@
     <Input
         tail="w-full flex-1"
         type="date"
-        name="end_date"
         id="end_date"
         bind:value={deuda.end}
         oninput={(e) => (deuda.end = e.currentTarget.value)}
@@ -300,7 +296,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="vac_days_enjoyed"
         id="vac_days_enjoyed"
         bind:value={deuda.enjoyedDays}
         oninput={(e) => (deuda.enjoyedDays = e.currentTarget.value)}
@@ -325,7 +320,6 @@
         <Input
             tail="w-full flex-1"
             type="number"
-            name="meses"
             id="meses"
             bind:value={deuda.meses}
             oninput={(e) => (deuda.meses = e.currentTarget.value)}
@@ -349,7 +343,6 @@
         <Input
             tail="w-full flex-1"
             type="number"
-            name="days_ind"
             id="days_ind"
             bind:value={deuda.daysInd}
             oninput={(e) => (deuda.daysInd = e.currentTarget.value)}
@@ -375,7 +368,6 @@
         <Input
             tail="w-full flex-1"
             type="number"
-            name="days_ant"
             id="days_ant"
             bind:value={deuda.daysAnt}
             oninput={(e) => (deuda.daysAnt = e.currentTarget.value)}
@@ -406,7 +398,8 @@
     <h2>Conceptos que te deben</h2>
     <br />
     <Table
-        table={[
+        keys={["Concepto", "Importe"]}
+        data={[
             ["Vacaciones", resultado.result.vacation],
             ["Días pendientes del mes", resultado.result.pendingWage],
             ["Paga extra pendiente", resultado.result.extraPayouts],

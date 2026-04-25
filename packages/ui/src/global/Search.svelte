@@ -5,7 +5,6 @@
     import type { IVideo } from "@zpw/types/types";
     import { ZP_SUBJECTS, ZT_SUBJECTS, ZP_COURSES, ZT_COURSES } from "@zpw/types/types";
     import { normalize, pluralOrNot, similarity } from "@zhc.js/string-utils";
-    import Dialog from "../Dialog.svelte";
 
     type SIVideo = IVideo & { similarity: number };
     let search = $state("");
@@ -113,8 +112,8 @@
         required
         bind:value={search}
         type="text"
-        name="query"
-        title="Busca por título del video..."
+        id="query"
+        title="Busca por título del video…"
     />
 </div>
 
@@ -127,7 +126,7 @@
         </p>
         <br />
         <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
-            {#each results as v (v.url)}
+            {#each results as v (v.id)}
                 <div class="flex flex-col gap-3 border-2 border-(--fff25) bg-(--blk) p-3">
                     <img
                         class="pointer-events-none! aspect-video w-full border-2 border-(--fff25)"
@@ -143,19 +142,9 @@
                         </div>
                         <div class="flex flex-row gap-1">
                             <Button
-                                href={v.url}
-                                title="Redirigir a YouTube para ver este video."
+                                href={`/player?v=${v.id}`}
+                                title="Ver este video ahora"
                                 tail="h-auto mt-auto flex-1"
-                            >
-                                Ver en YouTube &gt;
-                            </Button>
-                            <Button
-                                onclick={() =>
-                                    (
-                                        document.getElementById("soon-modal") as HTMLDialogElement
-                                    ).showModal()}
-                                title="Ver este video aquí (recomendado)."
-                                tail="h-auto mt-auto flex-1 opacity-50"
                             >
                                 Ver aquí y aprender &gt;
                             </Button>
@@ -182,15 +171,6 @@
             ser bajo. 100 visitas y solo 15 «me gustas» no significan que a las otras 85 personas no les
             haya gustado el video, no suele ser así.
         </p>
-        <Dialog id="soon-modal" title="¡Pronto disponible!" buttonLabel="¡Guay!">
-            <p class=" leading-relaxed">
-                El reproductor de <b>video interactivo</b> será de las mejores funciones de este
-                sitio; te dejará <b>ver cada video con anotaciones y ejercicios prácticos</b>
-                para
-                <strong>ayudarte a practicar con la explicación y afianzar conocimientos</strong>.
-                Todavía está en desarrollo, pero pronto podrás probarlo.
-            </p>
-        </Dialog>
     {:else}
         <p>
             Ningún resultado para la búsqueda. Prueba a escribirlo de otra forma o cambiar/quitar

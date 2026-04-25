@@ -290,7 +290,6 @@
 
         <Input
             type="number"
-            name="jornada_d"
             id="jornada_d"
             bind:value={devengo.jornadaDias}
             oninput={(e) => (devengo.jornadaDias = e.currentTarget.value)}
@@ -313,7 +312,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="irpf_i"
         id="irpf_i"
         bind:value={devengo.irpf}
         oninput={(e) => (devengo.irpf = e.currentTarget.value)}
@@ -354,7 +352,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="sal_base"
         id="sal_base"
         bind:value={devengo.base}
         oninput={(e) => (devengo.base = e.currentTarget.value)}
@@ -378,7 +375,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="hex_1"
         id="hex_1"
         bind:value={devengo.hex[0]}
         oninput={(e) => (devengo.hex[0] = e.currentTarget.value)}
@@ -400,7 +396,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="hex_2"
         id="hex_2"
         bind:value={devengo.hex[1]}
         oninput={(e) => (devengo.hex[1] = e.currentTarget.value)}
@@ -425,7 +420,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="sal_especie"
         id="sal_especie"
         bind:value={devengo.especie}
         oninput={(e) => (devengo.especie = e.currentTarget.value)}
@@ -447,7 +441,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="pagas_extra_cnt"
         id="pagas_extra_cnt"
         bind:value={devengo.extras[0]}
         oninput={(e) => (devengo.extras[0] = e.currentTarget.value)}
@@ -465,7 +458,6 @@
     <Input
         tail="w-full flex-1"
         type="number"
-        name="pagas_extra_val"
         id="pagas_extra_val"
         bind:value={devengo.extras[1]}
         oninput={(e) => (devengo.extras[1] = e.currentTarget.value)}
@@ -506,7 +498,6 @@
             oninput={(e) => (devengo.longevidad[index][0] = e.currentTarget.value)}
             title="¿Cada cuántos años cobras este plus?"
             required
-            name={"long_t_" + index}
             id={"long_t_" + index}
             tail="w-full! flex-1 md:flex-3"
             onkeydown={(e) => {
@@ -521,7 +512,6 @@
         <Input
             tail="w-full flex-1"
             type="number"
-            name={"long_per_" + index}
             id={"long_per_" + index}
             bind:value={plus[1]}
             oninput={(e) => (devengo.longevidad[index][1] = e.currentTarget.value)}
@@ -553,7 +543,6 @@
                 oninput={(e) => (devengo.anos = e.currentTarget.value)}
                 title="¿Cuántos años COMPLETOS tienes?"
                 required
-                name="anos"
                 id="anos"
                 tail="w-full! flex-1 md:flex-3"
                 onkeydown={(e) => {
@@ -607,7 +596,6 @@
             oninput={(e) => (devengo.pluses[index][0] = e.currentTarget.value)}
             title="¿Cuánto te van a pagar?"
             required
-            name={"plus_imp_" + index}
             id={"plus_imp_" + index}
             tail="w-full! flex-1 md:flex-3"
             onkeydown={(e) => {
@@ -622,7 +610,6 @@
         <Input
             tail="w-full flex-1"
             type="number"
-            name={"plus_limite_" + index}
             id={"plus_limite_" + index}
             bind:value={plus[1]}
             disabled
@@ -703,7 +690,8 @@
     <h3>DEVENGO</h3>
     <br />
     <Table
-        table={[
+        keys={["Concepto", "Importe"]}
+        data={[
             ["Sueldo base", resultado.salarioPeriodo],
             ["Suelto en especie", resultado.salarioEspecie],
             ["Suma de los pluses que NO cotizan", resultado.plusesNoCotizados],
@@ -722,7 +710,8 @@
     <h3><s>ME ROBAN</s> DEDUZCO</h3>
     <br />
     <Table
-        table={[
+        keys={["Concepto", "Devengo"]}
+        data={[
             ["Contingencias comunes", resultado.robo.contingencias],
             ["Desempleo", resultado.robo.desempleo],
             ["Formación Profesional", resultado.robo.fp],
@@ -737,7 +726,8 @@
     <h3>BASES DE COTIZACIÓN</h3>
     <br />
     <Table
-        table={[
+        keys={["Nombre de la base", "Importe"]}
+        data={[
             ["BCCC", resultado.bccc],
             ["BCCP", resultado.bccp],
             ["HE (proveído por usted)", resultado.horasForzosas],
@@ -746,7 +736,7 @@
     <br />
     <h3>INGRESO NETO</h3>
     <br />
-    <Table table={[["LÍQUIDO A PERCIBIR", resultado.neto]]} />
+    <Table keys={["Líquido a percibir"]} data={[[resultado.neto]]} />
     <br />
     <hr />
     <h2>¿Cómo se ha calculado esto?</h2>

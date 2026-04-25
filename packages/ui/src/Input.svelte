@@ -5,7 +5,6 @@
         tail = "",
         title,
         type,
-        name,
         value = $bindable(""),
         required = false,
         pattern,
@@ -20,13 +19,12 @@
         tail?: string;
         title: string;
         type: string;
-        name: string;
         value: string;
         required: boolean;
         pattern?: string;
         inputmode?: "numeric";
         style?: string;
-        id?: string;
+        id: string;
         label?: string;
         disabled?: boolean;
     } = $props();
@@ -38,7 +36,7 @@
 
 <div class="w-full">
     {#if label}
-        <label class="mb-2 text-sm opacity-50" for={name}>{label}</label>
+        <label class="mb-2 text-sm opacity-50" for={id}>{label}</label>
         <br />
     {/if}
     <input
@@ -48,7 +46,7 @@
         {pattern}
         {id}
         {title}
-        {name}
+        name={id}
         {inputmode}
         aria-label={title}
         bind:value

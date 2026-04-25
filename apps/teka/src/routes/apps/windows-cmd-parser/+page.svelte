@@ -520,7 +520,7 @@
                 return {
                     ...expression,
                     prediction: {
-                        action: `Cambia el directorio de trabajo a "${positionals[0]}"`,
+                        action: `Cambia el directorio de trabajo a «${positionals[0]}»`,
                     },
                 };
             }
@@ -564,8 +564,8 @@
                     ...expression,
                     prediction: {
                         action: continuous
-                            ? `Envía paquetes continuamente a "${positionals[0]}" hasta que se interrumpa`
-                            : `Envía ${count} paquetes a "${positionals[0]}" e imprime estadísticas de latencia`,
+                            ? `Envía paquetes continuamente a «${positionals[0]}» hasta que se interrumpa`
+                            : `Envía ${count} paquetes a «${positionals[0]}» e imprime estadísticas de latencia`,
                     },
                 };
             }
@@ -610,7 +610,7 @@
                 return {
                     ...expression,
                     prediction: {
-                        action: `Mueve "${positionals[0]}" a "${positionals[1]}"${
+                        action: `Mueve "${positionals[0]}" a «${positionals[1]}»${
                             positionals[0].includes("*")
                                 ? " (todos los archivos que coincidan con el patrón)"
                                 : ""
@@ -631,7 +631,7 @@
                 return {
                     ...expression,
                     prediction: {
-                        action: `Cambiará el título de la ventana de CMD a "${positionals.join(" ")}"`,
+                        action: `Cambiará el título de la ventana de CMD a «${positionals.join(" ")}»`,
                     },
                 };
             }
@@ -767,7 +767,7 @@
 </p>
 <br />
 <Textarea
-    name="cmd"
+    id="cmd"
     bind:value={cmd}
     oninput={(e) => (cmd = e.currentTarget.value)}
     onkeydown={(e) => {
