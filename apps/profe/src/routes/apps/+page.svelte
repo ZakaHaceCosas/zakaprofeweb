@@ -76,7 +76,6 @@
                 /></svg
             >{/snippet}
     </CardLink>
-
     <CardLink
         target="apps/acumuladores"
         title="Calculadora de acumuladores"
@@ -117,7 +116,6 @@
                 /></svg
             >{/snippet}
     </CardLink>
-
     <CardLink
         target="apps/calculadora-notas"
         title="Calculadora de notas"
@@ -157,7 +155,6 @@
                 /></svg
             >{/snippet}
     </CardLink>
-
     <CardLink
         target="apps/calculadora-finiquitos"
         title="Calculadora de finiquitos"

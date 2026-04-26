@@ -1,10 +1,12 @@
 <script lang="ts">
-    import { average, sumArray } from "@zhc.js/number-utils";
+    import Chart from "chart.js/auto";
+    import { average, isEven, sumArray } from "@zhc.js/number-utils";
     import { validate } from "@zhc.js/string-utils";
     import { IsParameterATuple, type ParameterValueObject } from "@zpw/types/types";
     import Core from "@zpw/ui/app/Core";
     import Table from "@zpw/ui/Table";
     import { num } from "@zpw/utils";
+    import { replaceState } from "$app/navigation";
 
     type EntradaTablaFrecuencias = {
         xi: number;
@@ -15,16 +17,19 @@
         per: number;
         perAc: number;
         xiFi: number;
-        xiFi2: number;
+        xi2Fi: number;
     };
 
     type EstudioUnidimensional = {
         N: number;
         moda: number;
+        median: number;
+        rango: number;
         avg: number;
         dm: number;
-        dt: number;
         varianza: number;
+        dt: number;
+        cv: number;
     };
 
     type EstudioCompleto = {
@@ -43,18 +48,22 @@
         dataBi: [["", ""]],
     });
 
-    function estudiarVariableUnidimensional(
-        datos: [number, number][],
-        N: number
-    ): EntradaTablaFrecuencias[] {
-        const array: EntradaTablaFrecuencias[] = [];
-        let accFi = datos[0][1];
-        let accHi = datos[0][1] / N;
-        let accPer = (datos[0][1] / N) * 100;
+    function estudiarVariableUnidimensional(datos: [number, number][]): EstudioCompleto {
+        const tabla: EntradaTablaFrecuencias[] = [];
+        const fi = datos.map((v) => v[1]);
+        const N = sumArray(fi);
+        const sumXiFi = datos.reduce((acc, [x, f]) => acc + x * f, 0);
+        const avg = sumXiFi / N;
+        let accFi = 0;
+        let accHi = 0;
+        let accPer = 0;
         for (const dato of datos) {
+            accFi += dato[1];
+            accHi += dato[1] / N;
+            accPer += (dato[1] / N) * 100;
             const hi = dato[1] / N;
             const per = (dato[1] / N) * 100;
-            array.push({
+            tabla.push({
                 xi: dato[0],
                 fi: dato[1],
                 Fi: accFi,
@@ -63,33 +72,36 @@
                 per,
                 perAc: accPer,
                 xiFi: dato[0] * dato[1],
-                xiFi2: (dato[0] ^ 2) * dato[1],
+                xi2Fi: Math.pow(dato[0], 2) * dato[1],
             });
-            accFi += dato[1];
-            accHi += hi;
-            accPer += per;
         }
-        return array;
-    }
 
-    function obtenerParamsVariable(data: [number, number][]): EstudioUnidimensional {
-        const fi = data.map((v) => v[1]);
-        const N = sumArray(fi);
-        const avg = average(fi);
-        const { sumDM, sumVar } = data.reduce(
+        const { sumDM, sumVar } = datos.reduce(
             (acc, [x, f]) => ({
                 sumDM: acc.sumDM + Math.abs(x - avg) * f,
                 sumVar: acc.sumVar + Math.pow(x - avg, 2) * f,
             }),
             { sumDM: 0, sumVar: 0 }
         );
-        const moda = data.sort((a, b) => b[1] - a[1])[0][0];
-
+        const moda = [...datos].sort((a, b) => b[1] - a[1])[0][0];
+        const median = (() => {
+            if (isEven(N)) {
+                const n = N / 2;
+                const i = tabla.findIndex((v) => v.Fi >= n);
+                if (tabla[i].Fi === n) {
+                    return average([tabla[i].xi, tabla[i + 1].xi]);
+                }
+                return tabla[i].xi;
+            }
+            return tabla.find((v) => v.Fi >= (N + 1) / 2)!.xi;
+        })();
+        const rango = tabla.at(-1)!.xi - tabla.at(0)!.xi;
         const dm = sumDM / N;
         const varianza = sumVar / N;
-        const dt = Math.sqrt(dm);
+        const dt = Math.sqrt(varianza);
+        const cv = dt / avg;
 
-        return { N, moda, avg, dm, varianza, dt };
+        return { estudio: { N, avg, moda, median, rango, dm, varianza, dt, cv }, tabla };
     }
 
     function method(params: ParameterValueObject) {
@@ -98,11 +110,7 @@
             throw "Error interno (asignación ilegal), reporta esto por favor.";
         const datos: [number, number][] = data.map((v) => [num(v[0]), num(v[1])]);
         if (level == "uni") {
-            const estudio = obtenerParamsVariable(datos);
-            res = {
-                tabla: estudiarVariableUnidimensional(datos, estudio.N),
-                estudio,
-            };
+            res = estudiarVariableUnidimensional(datos);
             return;
         }
         if (data.length != dataBi.length)
@@ -113,22 +121,43 @@
         )
             throw "Hay datos vacíos en alguna de las tablas marginales. No hagas eso.";
         const datosBi: [number, number][] = dataBi.map((v) => [num(v[0]), num(v[1])]);
-        const estudioX = obtenerParamsVariable(datos);
-        const estudioY = obtenerParamsVariable(datosBi);
         res = {
-            x: {
-                tabla: estudiarVariableUnidimensional(datos, estudioX.N),
-                estudio: estudioX,
-            },
-            y: {
-                tabla: estudiarVariableUnidimensional(datosBi, estudioY.N),
-                estudio: estudioY,
-            },
+            x: estudiarVariableUnidimensional(datos),
+            y: estudiarVariableUnidimensional(datosBi),
         };
     }
+
+    let chart: HTMLCanvasElement | undefined = $state();
+
+    $effect(() => {
+        if (!chart || !res) return;
+        if ("x" in res) return;
+        console.log("chart element:", chart);
+        const ctx = chart.getContext("2d");
+        console.log("ctx:", ctx);
+
+        new Chart(ctx!, {
+            type: "bar",
+            options: {
+                font: {
+                    family: "Roboto",
+                },
+            },
+            data: {
+                labels: res.tabla.map((row) => `xi ${row.xi}`),
+                datasets: [
+                    {
+                        label: "Valor de fi",
+                        data: res.tabla.map((row) => row.fi),
+                    },
+                ],
+            },
+        });
+    });
 </script>
 
 <Core
+    {replaceState}
     channel="profe"
     bind:values
     {method}
@@ -181,7 +210,7 @@
                                 v.per,
                                 v.perAc,
                                 v.xiFi,
-                                v.xiFi2,
+                                v.xi2Fi,
                             ])
                             .sort((a, b) => a[0] - b[0])
                     )}
@@ -200,11 +229,18 @@
                                 dm: "Desviación Media",
                                 dt: "Desviación Típica",
                                 varianza: "Varianza",
+                                rango: "Rango",
+                                cv: "Coeficiente de Variación",
+                                median: "Mediana",
                             } satisfies Record<keyof EstudioUnidimensional, string>
                         )[v[0] as keyof EstudioUnidimensional]!,
                         v[1],
                     ])}
                 />
+                <br />
+                <h2>Gráfico de barras</h2>
+                <br />
+                <canvas bind:this={chart}></canvas>
             {/if}
         {/if}
     {/snippet}

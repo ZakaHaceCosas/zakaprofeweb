@@ -15,6 +15,7 @@
         applet,
         channel,
         result,
+        replaceState,
     }: {
         values: ParameterValueObject;
         applet: string;
@@ -28,6 +29,8 @@
         };
         channel: "profe" | "teka";
         result: Snippet;
+        /** importa esto de `$app/navigation` y pásaselo a `Core`, le hace falta para aplicar URLParams sin que SvelteKit le pegue */
+        replaceState: (url: string, state: any) => void;
     } = $props();
 
     const paramCallback = (v: Parameter): ParameterForField => {
@@ -67,7 +70,7 @@
     export function calculate(throws = true): void {
         try {
             method(values);
-            history.replaceState(null, "", genURL(false));
+            replaceState(genURL(false), {});
         } catch (e) {
             if (throws) alert(e);
         }

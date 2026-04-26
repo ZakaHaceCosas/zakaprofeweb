@@ -44,7 +44,8 @@
         "@zpw/ui": "workspace:*",
         "@vercel/analytics": "catalog:dep",
         "@zpw/utils": "workspace:*",
-        "mathjs": "catalog:dep"
+        "mathjs": "catalog:dep",
+        "chart.js": "catalog:dep"
     },
     "browserslist": {
         "production": [

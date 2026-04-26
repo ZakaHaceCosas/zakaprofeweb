@@ -40,7 +40,8 @@
                 "@sveltejs/adapter-vercel": "^6.3.3",
                 "@zhc.js/number-utils": "^2.1.1",
                 "@zhc.js/string-utils": "^4.1.0",
-                "mathjs": "^15.2.0"
+                "mathjs": "^15.2.0",
+                "chart.js": "^4.5.1"
             }
         }
     },
@@ -55,7 +56,7 @@
         "zpw:upd": "bun tools/deps.ts",
         "zpw:app": "bun tools/app-page-builder.ts",
         "zpw:typ": "bun tools/ui-typegen.ts",
-        "commit": "bun zpw:fch && bun zpw:chg && bun zpw:app teka && bun zpw:app profe && bun zpw:xml && bun zpw:img"
+        "commit": "bun zpw:fch && bun zpw:chg && bun zpw:app && bun zpw:xml && bun zpw:img"
     },
     "browserslist": {
         "production": [

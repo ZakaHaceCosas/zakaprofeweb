@@ -76,7 +76,6 @@
                 /></svg
             >{/snippet}
     </CardLink>
-
     <CardLink
         target="apps/calcular-vlsm"
         title="Calculadora de VLSM para IPs"
@@ -95,7 +94,6 @@
                 /></svg
             >{/snippet}
     </CardLink>
-
     <CardLink
         target="apps/calcular-ip-cidr"
         title="Calculadora de IPs con CIDR"
@@ -111,7 +109,6 @@
                 /></svg
             >{/snippet}
     </CardLink>
-
     <CardLink
         target="apps/calcular-flsm"
         title="Calculadora de FLSM para IPs"
