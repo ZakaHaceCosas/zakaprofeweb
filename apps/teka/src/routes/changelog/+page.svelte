@@ -124,10 +124,9 @@
     <li>Añadida documentación para contribuidores.</li>
 </ul>
 <p>
-    <a
-        href="https://github.com/ZakaHaceCosas/zakaprofeweb/compare/v3.5.0...v4.0.0"
-        class="text-(--accent) underline">Comparación de cambios</a
-    ><br /><br />
+    <a href="https://github.com/ZakaHaceCosas/zakaprofeweb/compare/v3.5.0...v4.0.0"
+        >Comparación de cambios (código fuente)</a
+    >
 </p>
 <hr />
 <h2>3.5.0 (06/04/2026)</h2>
@@ -349,8 +348,8 @@
 <p>
     <a
         href="https://github.com/ZakaHaceCosas/zakaprofeweb/compare/afb17008372c6916cae4e7e68eba8c6100e0c3b1...fad2abd7ae05e61b2f5ad8a16cf9701aaded1115"
-        class="text-(--accent) underline">Comparación de cambios</a
-    ><br /><br />
+        >Comparación de cambios (código fuente)</a
+    >
 </p>
 <hr />
 <h2>2.2.0 (03/03/2025)</h2>
@@ -366,8 +365,8 @@
 <p>
     <a
         href="https://github.com/ZakaHaceCosas/zakaprofeweb/compare/61a89ebb62a0eb0f75d005ce7e6dbf51e750885b...afb17008372c6916cae4e7e68eba8c6100e0c3b1"
-        class="text-(--accent) underline">Comparación de cambios</a
-    ><br /><br />
+        >Comparación de cambios (código fuente)</a
+    >
 </p>
 <hr />
 <h2>2.1.2 (19/02/2025)</h2>
@@ -386,8 +385,8 @@
 <p>
     <a
         href="https://github.com/ZakaHaceCosas/zakaprofeweb/compare/1575d528d7be86d800a2ff11e253fd05c6bcc075...61a89ebb62a0eb0f75d005ce7e6dbf51e750885b"
-        class="text-(--accent) underline">Comparación de cambios</a
-    ><br /><br />
+        >Comparación de cambios (código fuente)</a
+    >
 </p>
 <hr />
 <h2>2.1.1 (14/02/2025)</h2>
@@ -407,8 +406,8 @@
 <p>
     <a
         href="https://github.com/ZakaHaceCosas/zakaprofeweb/compare/b1717088db022e6b228dd93e958c746c01354a97...1575d528d7be86d800a2ff11e253fd05c6bcc075"
-        class="text-(--accent) underline">Comparación de cambios</a
-    ><br /><br />
+        >Comparación de cambios (código fuente)</a
+    >
 </p>
 <hr />
 <h2>2.1.0 (12/02/2025)</h2>
@@ -440,8 +439,8 @@
 <p>
     <a
         href="https://github.com/ZakaHaceCosas/zakaprofeweb/compare/75761b525181b5244963e83dd67c73cf0fd81103...b1717088db022e6b228dd93e958c746c01354a97"
-        class="text-(--accent) underline">Comparación de cambios</a
-    ><br /><br />.
+        >Comparación de cambios (código fuente)</a
+    >.
 </p>
 <hr />
 <h2>2.0.0 (08/02/2025)</h2>
@@ -487,8 +486,8 @@
 <p>
     <a
         href="https://github.com/ZakaHaceCosas/zakaprofeweb/compare/5457f06689b7b1510067c6a3d077bcb6fb17bc34...75761b525181b5244963e83dd67c73cf0fd81103"
-        class="text-(--accent) underline">Comparación de cambios</a
-    ><br /><br />.
+        >Comparación de cambios (código fuente)</a
+    >.
 </p>
 <hr />
 <h2>1.1.4</h2>

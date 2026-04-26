@@ -4,10 +4,11 @@
     import { onMount, type Snippet } from "svelte";
     import FieldRenderer from "./FieldRenderer.svelte";
     import { toKebabCase, splitCamelOrPascalCase } from "@zhc.js/string-utils";
+    import { tick } from "svelte";
 
     let loading = $state(true);
 
-    const {
+    let {
         values = $bindable({}),
         params: _params,
         method,
@@ -33,43 +34,72 @@
         replaceState: (url: string, state: any) => void;
     } = $props();
 
-    const paramCallback = (v: Parameter): ParameterForField => {
-        return { ...v, id: toKebabCase(splitCamelOrPascalCase(v.key).join(" ")) };
+    const paramCallback = (v: Parameter): ParameterForField | null => {
+        const finalParam = { ...v, id: toKebabCase(splitCamelOrPascalCase(v.key).join(" ")) };
+        if (!v.depends) return finalParam;
+        const dependencies = v.depends.map((d) => {
+            if (d.type == "is-truthy" || d.type == "is-falsy") {
+                return !!values[d.dependency];
+            } else if (d.type == "is") {
+                return values[d.dependency] == d.value;
+            } else if (d.type == "is-not") {
+                return values[d.dependency] != d.value;
+            }
+        });
+        if (!dependencies.every(Boolean)) return null;
+        return finalParam;
     };
     const params: (ParameterForField | ParameterForField[])[] = $derived(
-        _params.map((v: Parameter | Parameter[]) =>
-            Array.isArray(v) ? v.map(paramCallback) : paramCallback(v)
-        )
+        _params
+            .map((v: Parameter | Parameter[]) =>
+                Array.isArray(v) ? v.map(paramCallback).filter((p) => p != null) : paramCallback(v)
+            )
+            .filter((p) => p != null)
     );
 
-    onMount(() => {
+    onMount(async () => {
         if (!window.location.search) {
             loading = false;
             return;
         }
 
         const URLParams = new URLSearchParams(window.location.search);
-        const flatParams = params.flat();
+        const flatParams = _params.flat();
+        const updates: ParameterValueObject = {};
         flatParams.forEach((p: Parameter) => {
             const val = URLParams.get(p.key);
             if (!val || val.trim() === "") return;
-            values[p.key] = p.list && p.list != undefined ? JSON.parse(atob(val)) : val;
+            updates[p.key] = p.list ? JSON.parse(atob(val)) : val;
         });
+        values = { ...values, ...updates };
 
         if (
-            flatParams
+            _params
+                .flat()
                 .filter((v: Parameter) => v.req)
                 .every((v: Parameter) => values[v.key] !== undefined)
         ) {
-            calculate();
+            await calculate();
         }
 
         loading = false;
     });
 
-    export function calculate(throws = true): void {
+    export async function calculate(throws = true): Promise<void> {
         try {
             method(values);
+            // esto está pq el `.depends` de los params jode un poco la gestión de estado
+            // no sé explicarlo muy bien pero en resumen hay una especie de race-condition entre
+            // - cargar default state del usuario de `<Core />` (actualiza el estado)
+            // - cargar de la URL (actualiza el estado)
+            // - leer condiciones para las dependencias (depende del estado)
+            // - leer valores para la nueva URL (depende del estado)
+            // todo pasa a la vez, por eso esta cosa que nos fuerza a usar async
+            // también es por este problema que uso un objeto de updates en vez de mutar
+            // `values` directamente, hacer eso (en un bucle, como hacía antes) son
+            // VARIAS mutaciones y eso lo hace mucho peor, mejor aplicar de una vez
+            // y ya.
+            await tick();
             replaceState(genURL(false), {});
         } catch (e) {
             if (throws) alert(e);
@@ -80,6 +110,7 @@
 
     function genURL(abs: boolean = true): string {
         return `${abs ? `https://${channel}.zhc.es/apps/` : ""}${applet}?${Object.entries(values)
+            .filter(([_, v]) => v !== undefined && v !== "")
             .map(
                 ([k, v]) =>
                     `${k}=${encodeURIComponent(typeof v === "string" ? v : btoa(JSON.stringify(v)))}`
@@ -130,7 +161,7 @@
         {/if}
     {/each}
     <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-        <Button onclick={() => calculate()} title={labels.calcLite}
+        <Button onclick={async () => await calculate()} title={labels.calcLite}
             ><b>&starf;</b> {labels.calc}</Button
         >
         <Button

@@ -37,7 +37,11 @@
         estudio: EstudioUnidimensional;
     };
 
-    let res = $state<EstudioCompleto | { x: EstudioCompleto; y: EstudioCompleto } | null>(null);
+    let res = $state<
+        | { level: "uni"; x: EstudioCompleto }
+        | { level: "bi"; x: EstudioCompleto; y: EstudioCompleto }
+        | null
+    >(null);
     let values = $state<{
         level: "uni" | "bi";
         data: [string, string][];
@@ -110,7 +114,7 @@
             throw "Error interno (asignación ilegal), reporta esto por favor.";
         const datos: [number, number][] = data.map((v) => [num(v[0]), num(v[1])]);
         if (level == "uni") {
-            res = estudiarVariableUnidimensional(datos);
+            res = { level: "uni", x: estudiarVariableUnidimensional(datos) };
             return;
         }
         if (data.length != dataBi.length)
@@ -122,6 +126,7 @@
             throw "Hay datos vacíos en alguna de las tablas marginales. No hagas eso.";
         const datosBi: [number, number][] = dataBi.map((v) => [num(v[0]), num(v[1])]);
         res = {
+            level: "bi",
             x: estudiarVariableUnidimensional(datos),
             y: estudiarVariableUnidimensional(datosBi),
         };
@@ -131,7 +136,6 @@
 
     $effect(() => {
         if (!chart || !res) return;
-        if ("x" in res) return;
         console.log("chart element:", chart);
         const ctx = chart.getContext("2d");
         console.log("ctx:", ctx);
@@ -144,11 +148,11 @@
                 },
             },
             data: {
-                labels: res.tabla.map((row) => `xi ${row.xi}`),
+                labels: res.x.tabla.map((row) => `xi ${row.xi}`),
                 datasets: [
                     {
                         label: "Valor de fi",
-                        data: res.tabla.map((row) => row.fi),
+                        data: res.x.tabla.map((row) => row.fi),
                     },
                 ],
             },
@@ -174,11 +178,27 @@
         {
             key: "data",
             type: "number",
-            title: "Añade los datos aquí",
+            title: "Añade los datos unidimensionales (xi y fi) aquí",
             list: {
                 pairs: true,
                 title: ["xi", "fi"],
             },
+        },
+        {
+            key: "dataBi",
+            type: "number",
+            title: "Añade los datos bidimensionales (xi y fi de Y) aquí",
+            list: {
+                pairs: true,
+                title: ["xi", "fi"],
+            },
+            depends: [
+                {
+                    type: "is",
+                    dependency: "level",
+                    value: "bi",
+                },
+            ],
         },
     ]}
     applet="estadistica"
@@ -194,13 +214,13 @@
 >
     {#snippet result()}
         {#if res != null}
-            {#if values.level == "uni"}
+            {#if res.level == "uni"}
                 <h2>Tabla de frecuencias</h2>
                 <br />
                 <Table
                     keys={["xi", "fi", "Fi", "hi", "Hi", "%", "% acc", "xi * fi", "xi² * fi"]}
                     data={Object.values(
-                        (res as EstudioCompleto).tabla
+                        res.x.tabla
                             .map((v) => [
                                 v.xi,
                                 v.fi,
@@ -220,7 +240,7 @@
                 <br />
                 <Table
                     keys={["Parámetro", "Valor calculado"]}
-                    data={Object.entries((res as EstudioCompleto).estudio).map((v) => [
+                    data={Object.entries(res.x.estudio).map((v) => [
                         (
                             {
                                 avg: "Media aritmética",
@@ -241,6 +261,122 @@
                 <h2>Gráfico de barras</h2>
                 <br />
                 <canvas bind:this={chart}></canvas>
+            {:else}
+                <h2>Tablas de frecuencias marginales</h2>
+                <br />
+                <div class="flex flex-row gap-2">
+                    <div>
+                        <h3>X</h3>
+                        <Table
+                            keys={[
+                                "xi",
+                                "fi",
+                                "Fi",
+                                "hi",
+                                "Hi",
+                                "%",
+                                "% acc",
+                                "xi * fi",
+                                "xi² * fi",
+                            ]}
+                            data={Object.values(
+                                res.x.tabla
+                                    .map((v) => [
+                                        v.xi,
+                                        v.fi,
+                                        v.Fi,
+                                        v.hi,
+                                        v.Hi,
+                                        v.per,
+                                        v.perAc,
+                                        v.xiFi,
+                                        v.xi2Fi,
+                                    ])
+                                    .sort((a, b) => a[0] - b[0])
+                            )}
+                        />
+                    </div>
+                    <div>
+                        <h3>Y</h3>
+                        <Table
+                            keys={[
+                                "xi",
+                                "fi",
+                                "Fi",
+                                "hi",
+                                "Hi",
+                                "%",
+                                "% acc",
+                                "xi * fi",
+                                "xi² * fi",
+                            ]}
+                            data={Object.values(
+                                res.y.tabla
+                                    .map((v) => [
+                                        v.xi,
+                                        v.fi,
+                                        v.Fi,
+                                        v.hi,
+                                        v.Hi,
+                                        v.per,
+                                        v.perAc,
+                                        v.xiFi,
+                                        v.xi2Fi,
+                                    ])
+                                    .sort((a, b) => a[0] - b[0])
+                            )}
+                        />
+                    </div>
+                </div>
+                <br />
+                <h2>Parámetros de centralización y de dispersión individuales</h2>
+                <br />
+                <div class="flex flex-row gap-2">
+                    <div>
+                        <h3>X</h3>
+                        <Table
+                            keys={["Parámetro", "Valor calculado"]}
+                            data={Object.entries(res.x.estudio).map((v) => [
+                                (
+                                    {
+                                        avg: "Media aritmética",
+                                        moda: "Moda (valor de xi)",
+                                        N: "Total de elementos (N)",
+                                        dm: "Desviación Media",
+                                        dt: "Desviación Típica",
+                                        varianza: "Varianza",
+                                        rango: "Rango",
+                                        cv: "Coeficiente de Variación",
+                                        median: "Mediana",
+                                    } satisfies Record<keyof EstudioUnidimensional, string>
+                                )[v[0] as keyof EstudioUnidimensional]!,
+                                v[1],
+                            ])}
+                        />
+                    </div>
+                    <div>
+                        <h3>Y</h3>
+                        <Table
+                            keys={["Parámetro", "Valor calculado"]}
+                            data={Object.entries(res.y.estudio).map((v) => [
+                                (
+                                    {
+                                        avg: "Media aritmética",
+                                        moda: "Moda (valor de xi)",
+                                        N: "Total de elementos (N)",
+                                        dm: "Desviación Media",
+                                        dt: "Desviación Típica",
+                                        varianza: "Varianza",
+                                        rango: "Rango",
+                                        cv: "Coeficiente de Variación",
+                                        median: "Mediana",
+                                    } satisfies Record<keyof EstudioUnidimensional, string>
+                                )[v[0] as keyof EstudioUnidimensional]!,
+                                v[1],
+                            ])}
+                        />
+                    </div>
+                </div>
             {/if}
         {/if}
     {/snippet}

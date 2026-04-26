@@ -51,6 +51,10 @@ export type Parameter = {
     options?: { value: string; label: string }[];
     req?: boolean;
     tail?: string;
+    depends?: (
+        | { type: "is" | "is-not"; dependency: string; value: string }
+        | { type: "is-truthy" | "is-falsy"; dependency: string }
+    )[];
 };
 export type ParameterForField = Parameter & { id: string };
 export type ParameterValue = string | string[] | [string, string][];

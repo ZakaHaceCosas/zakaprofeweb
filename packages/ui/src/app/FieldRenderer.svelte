@@ -13,20 +13,20 @@
     }: {
         paramList?: ParameterForField[];
         param: ParameterForField;
-        calculate: (throws: boolean) => void;
+        calculate: (throws: boolean) => Promise<void>;
         values: ParameterValueObject;
         i?: number;
     } = $props();
 
     const onchange = $derived(
-        param.onchange == "none" ? undefined : () => calculate(param.onchange == "calc")
+        param.onchange == "none" ? undefined : async () => await calculate(param.onchange == "calc")
     );
     const onkeydown = $derived(
         paramList && i
-            ? (e: KeyboardEvent) => {
+            ? async (e: KeyboardEvent) => {
                   if (param.onenter == "none") return;
                   if (e.key !== "Enter") return;
-                  if (e.shiftKey) calculate(param.onchange == "calc");
+                  if (e.shiftKey) await calculate(param.onchange == "calc");
                   else {
                       document.getElementById(paramList[i + 1].id)?.focus();
                   }
@@ -79,6 +79,7 @@
 {#if !param.list}
     <Field {param} {onchange} {onkeydown} {values} />
 {:else if param.list.pairs}
+    <p class="opacity-75"><b>{param.title}</b></p>
     <div class="flex w-full flex-col gap-2">
         {#each list as li, index (index)}
             <div class="mb-3 flex w-full flex-col items-center gap-3 md:flex-row">
@@ -92,9 +93,9 @@
                     required
                     id={`${param.id}_i${index}_v0`}
                     tail="w-full! flex-1 md:flex-3"
-                    onkeydown={(e) => {
+                    onkeydown={async (e) => {
                         if (e.key !== "Enter") return;
-                        if (e.shiftKey) calculate(param.onchange == "calc");
+                        if (e.shiftKey) await calculate(param.onchange == "calc");
                         else {
                             setTimeout(() => {
                                 document.getElementById(`${param.id}_i${index}_v1`)?.focus();
@@ -110,9 +111,9 @@
                     oninput={(e) => handleInputChange(index, e.currentTarget.value, 1)}
                     title={param.list.title[1]}
                     required
-                    onkeydown={(e) => {
+                    onkeydown={async (e) => {
                         if (e.key !== "Enter") return;
-                        if (e.shiftKey) calculate(param.onchange == "calc");
+                        if (e.shiftKey) await calculate(param.onchange == "calc");
                         else {
                             if (index + 1 == list!.length) addField();
                             setTimeout(() => {
